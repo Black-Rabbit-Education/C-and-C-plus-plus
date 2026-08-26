@@ -1,0 +1,1944 @@
+/* ../../node_modules/katex/dist/katex.min.css */
+@font-face {
+  font-display: block;
+  font-family: KaTeX_AMS;
+  font-style: normal;
+  font-weight: 400;
+  src:
+    url("./KaTeX_AMS-Regular-U6PRYMIZ.woff2") format("woff2"),
+    url("./KaTeX_AMS-Regular-CYEKBG2K.woff") format("woff"),
+    url("./KaTeX_AMS-Regular-JKX5W2C4.ttf") format("truetype");
+}
+@font-face {
+  font-display: block;
+  font-family: KaTeX_Caligraphic;
+  font-style: normal;
+  font-weight: 700;
+  src:
+    url("./KaTeX_Caligraphic-Bold-5QL5CMTE.woff2") format("woff2"),
+    url("./KaTeX_Caligraphic-Bold-WZ3QSGD3.woff") format("woff"),
+    url("./KaTeX_Caligraphic-Bold-ZTS3R3HK.ttf") format("truetype");
+}
+@font-face {
+  font-display: block;
+  font-family: KaTeX_Caligraphic;
+  font-style: normal;
+  font-weight: 400;
+  src:
+    url("./KaTeX_Caligraphic-Regular-KX5MEWCF.woff2") format("woff2"),
+    url("./KaTeX_Caligraphic-Regular-3LKEU76G.woff") format("woff"),
+    url("./KaTeX_Caligraphic-Regular-A7XRTZ5Q.ttf") format("truetype");
+}
+@font-face {
+  font-display: block;
+  font-family: KaTeX_Fraktur;
+  font-style: normal;
+  font-weight: 700;
+  src:
+    url("./KaTeX_Fraktur-Bold-2QVFK6NQ.woff2") format("woff2"),
+    url("./KaTeX_Fraktur-Bold-T4SWXBMT.woff") format("woff"),
+    url("./KaTeX_Fraktur-Bold-WGHVTYOR.ttf") format("truetype");
+}
+@font-face {
+  font-display: block;
+  font-family: KaTeX_Fraktur;
+  font-style: normal;
+  font-weight: 400;
+  src:
+    url("./KaTeX_Fraktur-Regular-2PEIFJSJ.woff2") format("woff2"),
+    url("./KaTeX_Fraktur-Regular-PQMHCIK6.woff") format("woff"),
+    url("./KaTeX_Fraktur-Regular-5U4OPH2X.ttf") format("truetype");
+}
+@font-face {
+  font-display: block;
+  font-family: KaTeX_Main;
+  font-style: normal;
+  font-weight: 700;
+  src:
+    url("./KaTeX_Main-Bold-YP5VVQRP.woff2") format("woff2"),
+    url("./KaTeX_Main-Bold-2GA4IZIN.woff") format("woff"),
+    url("./KaTeX_Main-Bold-W5FBVCZM.ttf") format("truetype");
+}
+@font-face {
+  font-display: block;
+  font-family: KaTeX_Main;
+  font-style: italic;
+  font-weight: 700;
+  src:
+    url("./KaTeX_Main-BoldItalic-N4V3DX7S.woff2") format("woff2"),
+    url("./KaTeX_Main-BoldItalic-4P4C7HJH.woff") format("woff"),
+    url("./KaTeX_Main-BoldItalic-ODMLBJJQ.ttf") format("truetype");
+}
+@font-face {
+  font-display: block;
+  font-family: KaTeX_Main;
+  font-style: italic;
+  font-weight: 400;
+  src:
+    url("./KaTeX_Main-Italic-RELBIK7M.woff2") format("woff2"),
+    url("./KaTeX_Main-Italic-SASNQFN2.woff") format("woff"),
+    url("./KaTeX_Main-Italic-I43T2HSR.ttf") format("truetype");
+}
+@font-face {
+  font-display: block;
+  font-family: KaTeX_Main;
+  font-style: normal;
+  font-weight: 400;
+  src:
+    url("./KaTeX_Main-Regular-ARRPAO67.woff2") format("woff2"),
+    url("./KaTeX_Main-Regular-P5I74A2A.woff") format("woff"),
+    url("./KaTeX_Main-Regular-W74P5G27.ttf") format("truetype");
+}
+@font-face {
+  font-display: block;
+  font-family: KaTeX_Math;
+  font-style: italic;
+  font-weight: 700;
+  src:
+    url("./KaTeX_Math-BoldItalic-K4WTGH3J.woff2") format("woff2"),
+    url("./KaTeX_Math-BoldItalic-6EBV3DK5.woff") format("woff"),
+    url("./KaTeX_Math-BoldItalic-VB447A4D.ttf") format("truetype");
+}
+@font-face {
+  font-display: block;
+  font-family: KaTeX_Math;
+  font-style: italic;
+  font-weight: 400;
+  src:
+    url("./KaTeX_Math-Italic-6KGCHLFN.woff2") format("woff2"),
+    url("./KaTeX_Math-Italic-KKK3USB2.woff") format("woff"),
+    url("./KaTeX_Math-Italic-SON4MRCA.ttf") format("truetype");
+}
+@font-face {
+  font-display: block;
+  font-family: "KaTeX_SansSerif";
+  font-style: normal;
+  font-weight: 700;
+  src:
+    url("./KaTeX_SansSerif-Bold-RRNVJFFW.woff2") format("woff2"),
+    url("./KaTeX_SansSerif-Bold-X5M5EMOD.woff") format("woff"),
+    url("./KaTeX_SansSerif-Bold-STQ6RXC7.ttf") format("truetype");
+}
+@font-face {
+  font-display: block;
+  font-family: "KaTeX_SansSerif";
+  font-style: italic;
+  font-weight: 400;
+  src:
+    url("./KaTeX_SansSerif-Italic-HMPFTM52.woff2") format("woff2"),
+    url("./KaTeX_SansSerif-Italic-PSN4QKYX.woff") format("woff"),
+    url("./KaTeX_SansSerif-Italic-WTBAZBGY.ttf") format("truetype");
+}
+@font-face {
+  font-display: block;
+  font-family: "KaTeX_SansSerif";
+  font-style: normal;
+  font-weight: 400;
+  src:
+    url("./KaTeX_SansSerif-Regular-XIQ62X4E.woff2") format("woff2"),
+    url("./KaTeX_SansSerif-Regular-OQCII6EP.woff") format("woff"),
+    url("./KaTeX_SansSerif-Regular-2TL3USAE.ttf") format("truetype");
+}
+@font-face {
+  font-display: block;
+  font-family: KaTeX_Script;
+  font-style: normal;
+  font-weight: 400;
+  src:
+    url("./KaTeX_Script-Regular-APUWIHLP.woff2") format("woff2"),
+    url("./KaTeX_Script-Regular-A5IFOEBS.woff") format("woff"),
+    url("./KaTeX_Script-Regular-72OLXYNA.ttf") format("truetype");
+}
+@font-face {
+  font-display: block;
+  font-family: KaTeX_Size1;
+  font-style: normal;
+  font-weight: 400;
+  src:
+    url("./KaTeX_Size1-Regular-5LRUTBFT.woff2") format("woff2"),
+    url("./KaTeX_Size1-Regular-4HRHTS65.woff") format("woff"),
+    url("./KaTeX_Size1-Regular-7K6AASVL.ttf") format("truetype");
+}
+@font-face {
+  font-display: block;
+  font-family: KaTeX_Size2;
+  font-style: normal;
+  font-weight: 400;
+  src:
+    url("./KaTeX_Size2-Regular-LELKET5D.woff2") format("woff2"),
+    url("./KaTeX_Size2-Regular-K5ZHAIS6.woff") format("woff"),
+    url("./KaTeX_Size2-Regular-222HN3GT.ttf") format("truetype");
+}
+@font-face {
+  font-display: block;
+  font-family: KaTeX_Size3;
+  font-style: normal;
+  font-weight: 400;
+  src:
+    url("./KaTeX_Size3-Regular-WQRQ47UD.woff2") format("woff2"),
+    url("./KaTeX_Size3-Regular-TLFPAHDE.woff") format("woff"),
+    url("./KaTeX_Size3-Regular-UFCO6WCA.ttf") format("truetype");
+}
+@font-face {
+  font-display: block;
+  font-family: KaTeX_Size4;
+  font-style: normal;
+  font-weight: 400;
+  src:
+    url("./KaTeX_Size4-Regular-CDMV7U5C.woff2") format("woff2"),
+    url("./KaTeX_Size4-Regular-PKMWZHNC.woff") format("woff"),
+    url("./KaTeX_Size4-Regular-7PGNVPQK.ttf") format("truetype");
+}
+@font-face {
+  font-display: block;
+  font-family: KaTeX_Typewriter;
+  font-style: normal;
+  font-weight: 400;
+  src:
+    url("./KaTeX_Typewriter-Regular-VBYJ4NRC.woff2") format("woff2"),
+    url("./KaTeX_Typewriter-Regular-MJMFSK64.woff") format("woff"),
+    url("./KaTeX_Typewriter-Regular-3F5K6SQ6.ttf") format("truetype");
+}
+.katex {
+  font:
+    normal 1.21em KaTeX_Main,
+    Times New Roman,
+    serif;
+  line-height: 1.2;
+  position: relative;
+  text-indent: 0;
+  text-rendering: auto;
+}
+.katex * {
+  -ms-high-contrast-adjust: none !important;
+  border-color: currentColor;
+}
+.katex .katex-version:after {
+  content: "0.17.0";
+}
+.katex .katex-mathml {
+  border: 0;
+  -webkit-clip-path: inset(50%);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+.katex .katex-html > .newline {
+  display: block;
+}
+.katex .base {
+  position: relative;
+  white-space: nowrap;
+  width: -webkit-min-content;
+  width: -moz-min-content;
+  width: min-content;
+}
+.katex .base,
+.katex .strut {
+  display: inline-block;
+}
+.katex .textbf {
+  font-weight: 700;
+}
+.katex .textit {
+  font-style: italic;
+}
+.katex .textrm {
+  font-family: KaTeX_Main;
+}
+.katex .textsf {
+  font-family: KaTeX_SansSerif;
+}
+.katex .texttt {
+  font-family: KaTeX_Typewriter;
+}
+.katex .mathnormal {
+  font-family: KaTeX_Math;
+  font-style: italic;
+}
+.katex .mathit {
+  font-family: KaTeX_Main;
+  font-style: italic;
+}
+.katex .mathrm {
+  font-style: normal;
+}
+.katex .mathbf {
+  font-family: KaTeX_Main;
+  font-weight: 700;
+}
+.katex .boldsymbol {
+  font-family: KaTeX_Math;
+  font-style: italic;
+  font-weight: 700;
+}
+.katex .amsrm,
+.katex .mathbb,
+.katex .textbb {
+  font-family: KaTeX_AMS;
+}
+.katex .mathcal {
+  font-family: KaTeX_Caligraphic;
+}
+.katex .mathfrak,
+.katex .textfrak {
+  font-family: KaTeX_Fraktur;
+}
+.katex .mathboldfrak,
+.katex .textboldfrak {
+  font-family: KaTeX_Fraktur;
+  font-weight: 700;
+}
+.katex .mathtt {
+  font-family: KaTeX_Typewriter;
+}
+.katex .mathscr,
+.katex .textscr {
+  font-family: KaTeX_Script;
+}
+.katex .mathsf,
+.katex .textsf {
+  font-family: KaTeX_SansSerif;
+}
+.katex .mathboldsf,
+.katex .textboldsf {
+  font-family: KaTeX_SansSerif;
+  font-weight: 700;
+}
+.katex .mathitsf,
+.katex .mathsfit,
+.katex .textitsf {
+  font-family: KaTeX_SansSerif;
+  font-style: italic;
+}
+.katex .mainrm {
+  font-family: KaTeX_Main;
+  font-style: normal;
+}
+.katex .vlist-t {
+  border-collapse: collapse;
+  display: inline-table;
+  table-layout: fixed;
+}
+.katex .vlist-r {
+  display: table-row;
+}
+.katex .vlist {
+  display: table-cell;
+  position: relative;
+  vertical-align: bottom;
+}
+.katex .vlist > span {
+  display: block;
+  height: 0;
+  position: relative;
+}
+.katex .vlist > span > span {
+  display: inline-block;
+}
+.katex .vlist > span > .pstrut {
+  overflow: hidden;
+  width: 0;
+}
+.katex .vlist-t2 {
+  margin-right: -2px;
+}
+.katex .vlist-s {
+  display: table-cell;
+  font-size: 1px;
+  min-width: 2px;
+  vertical-align: bottom;
+  width: 2px;
+}
+.katex .vbox {
+  align-items: baseline;
+  display: inline-flex;
+  flex-direction: column;
+}
+.katex .hbox {
+  width: 100%;
+}
+.katex .hbox,
+.katex .thinbox {
+  display: inline-flex;
+  flex-direction: row;
+}
+.katex .thinbox {
+  max-width: 0;
+  width: 0;
+}
+.katex .msupsub {
+  text-align: left;
+}
+.katex .mfrac > span > span {
+  text-align: center;
+}
+.katex .mfrac .frac-line {
+  border-bottom-style: solid;
+  display: inline-block;
+  width: 100%;
+}
+.katex .hdashline,
+.katex .hline,
+.katex .mfrac .frac-line,
+.katex .overline .overline-line,
+.katex .rule,
+.katex .underline .underline-line {
+  min-height: 1px;
+}
+.katex .mspace {
+  display: inline-block;
+}
+.katex .smash {
+  display: inline;
+  line-height: 0;
+}
+.katex .clap,
+.katex .llap,
+.katex .rlap {
+  position: relative;
+  width: 0;
+}
+.katex .clap > .inner,
+.katex .llap > .inner,
+.katex .rlap > .inner {
+  position: absolute;
+}
+.katex .clap > .fix,
+.katex .llap > .fix,
+.katex .rlap > .fix {
+  display: inline-block;
+}
+.katex .llap > .inner {
+  right: 0;
+}
+.katex .clap > .inner,
+.katex .rlap > .inner {
+  left: 0;
+}
+.katex .clap > .inner > span {
+  margin-left: -50%;
+  margin-right: 50%;
+}
+.katex .rule {
+  border: 0 solid;
+  display: inline-block;
+  position: relative;
+}
+.katex .hline,
+.katex .overline .overline-line,
+.katex .underline .underline-line {
+  border-bottom-style: solid;
+  display: inline-block;
+  width: 100%;
+}
+.katex .hdashline {
+  border-bottom-style: dashed;
+  display: inline-block;
+  width: 100%;
+}
+.katex .sqrt > .root {
+  margin-left: .2777777778em;
+  margin-right: -.5555555556em;
+}
+.katex .fontsize-ensurer.reset-size1.size1,
+.katex .sizing.reset-size1.size1 {
+  font-size: 1em;
+}
+.katex .fontsize-ensurer.reset-size1.size2,
+.katex .sizing.reset-size1.size2 {
+  font-size: 1.2em;
+}
+.katex .fontsize-ensurer.reset-size1.size3,
+.katex .sizing.reset-size1.size3 {
+  font-size: 1.4em;
+}
+.katex .fontsize-ensurer.reset-size1.size4,
+.katex .sizing.reset-size1.size4 {
+  font-size: 1.6em;
+}
+.katex .fontsize-ensurer.reset-size1.size5,
+.katex .sizing.reset-size1.size5 {
+  font-size: 1.8em;
+}
+.katex .fontsize-ensurer.reset-size1.size6,
+.katex .sizing.reset-size1.size6 {
+  font-size: 2em;
+}
+.katex .fontsize-ensurer.reset-size1.size7,
+.katex .sizing.reset-size1.size7 {
+  font-size: 2.4em;
+}
+.katex .fontsize-ensurer.reset-size1.size8,
+.katex .sizing.reset-size1.size8 {
+  font-size: 2.88em;
+}
+.katex .fontsize-ensurer.reset-size1.size9,
+.katex .sizing.reset-size1.size9 {
+  font-size: 3.456em;
+}
+.katex .fontsize-ensurer.reset-size1.size10,
+.katex .sizing.reset-size1.size10 {
+  font-size: 4.148em;
+}
+.katex .fontsize-ensurer.reset-size1.size11,
+.katex .sizing.reset-size1.size11 {
+  font-size: 4.976em;
+}
+.katex .fontsize-ensurer.reset-size2.size1,
+.katex .sizing.reset-size2.size1 {
+  font-size: .8333333333em;
+}
+.katex .fontsize-ensurer.reset-size2.size2,
+.katex .sizing.reset-size2.size2 {
+  font-size: 1em;
+}
+.katex .fontsize-ensurer.reset-size2.size3,
+.katex .sizing.reset-size2.size3 {
+  font-size: 1.1666666667em;
+}
+.katex .fontsize-ensurer.reset-size2.size4,
+.katex .sizing.reset-size2.size4 {
+  font-size: 1.3333333333em;
+}
+.katex .fontsize-ensurer.reset-size2.size5,
+.katex .sizing.reset-size2.size5 {
+  font-size: 1.5em;
+}
+.katex .fontsize-ensurer.reset-size2.size6,
+.katex .sizing.reset-size2.size6 {
+  font-size: 1.6666666667em;
+}
+.katex .fontsize-ensurer.reset-size2.size7,
+.katex .sizing.reset-size2.size7 {
+  font-size: 2em;
+}
+.katex .fontsize-ensurer.reset-size2.size8,
+.katex .sizing.reset-size2.size8 {
+  font-size: 2.4em;
+}
+.katex .fontsize-ensurer.reset-size2.size9,
+.katex .sizing.reset-size2.size9 {
+  font-size: 2.88em;
+}
+.katex .fontsize-ensurer.reset-size2.size10,
+.katex .sizing.reset-size2.size10 {
+  font-size: 3.4566666667em;
+}
+.katex .fontsize-ensurer.reset-size2.size11,
+.katex .sizing.reset-size2.size11 {
+  font-size: 4.1466666667em;
+}
+.katex .fontsize-ensurer.reset-size3.size1,
+.katex .sizing.reset-size3.size1 {
+  font-size: .7142857143em;
+}
+.katex .fontsize-ensurer.reset-size3.size2,
+.katex .sizing.reset-size3.size2 {
+  font-size: .8571428571em;
+}
+.katex .fontsize-ensurer.reset-size3.size3,
+.katex .sizing.reset-size3.size3 {
+  font-size: 1em;
+}
+.katex .fontsize-ensurer.reset-size3.size4,
+.katex .sizing.reset-size3.size4 {
+  font-size: 1.1428571429em;
+}
+.katex .fontsize-ensurer.reset-size3.size5,
+.katex .sizing.reset-size3.size5 {
+  font-size: 1.2857142857em;
+}
+.katex .fontsize-ensurer.reset-size3.size6,
+.katex .sizing.reset-size3.size6 {
+  font-size: 1.4285714286em;
+}
+.katex .fontsize-ensurer.reset-size3.size7,
+.katex .sizing.reset-size3.size7 {
+  font-size: 1.7142857143em;
+}
+.katex .fontsize-ensurer.reset-size3.size8,
+.katex .sizing.reset-size3.size8 {
+  font-size: 2.0571428571em;
+}
+.katex .fontsize-ensurer.reset-size3.size9,
+.katex .sizing.reset-size3.size9 {
+  font-size: 2.4685714286em;
+}
+.katex .fontsize-ensurer.reset-size3.size10,
+.katex .sizing.reset-size3.size10 {
+  font-size: 2.9628571429em;
+}
+.katex .fontsize-ensurer.reset-size3.size11,
+.katex .sizing.reset-size3.size11 {
+  font-size: 3.5542857143em;
+}
+.katex .fontsize-ensurer.reset-size4.size1,
+.katex .sizing.reset-size4.size1 {
+  font-size: .625em;
+}
+.katex .fontsize-ensurer.reset-size4.size2,
+.katex .sizing.reset-size4.size2 {
+  font-size: .75em;
+}
+.katex .fontsize-ensurer.reset-size4.size3,
+.katex .sizing.reset-size4.size3 {
+  font-size: .875em;
+}
+.katex .fontsize-ensurer.reset-size4.size4,
+.katex .sizing.reset-size4.size4 {
+  font-size: 1em;
+}
+.katex .fontsize-ensurer.reset-size4.size5,
+.katex .sizing.reset-size4.size5 {
+  font-size: 1.125em;
+}
+.katex .fontsize-ensurer.reset-size4.size6,
+.katex .sizing.reset-size4.size6 {
+  font-size: 1.25em;
+}
+.katex .fontsize-ensurer.reset-size4.size7,
+.katex .sizing.reset-size4.size7 {
+  font-size: 1.5em;
+}
+.katex .fontsize-ensurer.reset-size4.size8,
+.katex .sizing.reset-size4.size8 {
+  font-size: 1.8em;
+}
+.katex .fontsize-ensurer.reset-size4.size9,
+.katex .sizing.reset-size4.size9 {
+  font-size: 2.16em;
+}
+.katex .fontsize-ensurer.reset-size4.size10,
+.katex .sizing.reset-size4.size10 {
+  font-size: 2.5925em;
+}
+.katex .fontsize-ensurer.reset-size4.size11,
+.katex .sizing.reset-size4.size11 {
+  font-size: 3.11em;
+}
+.katex .fontsize-ensurer.reset-size5.size1,
+.katex .sizing.reset-size5.size1 {
+  font-size: .5555555556em;
+}
+.katex .fontsize-ensurer.reset-size5.size2,
+.katex .sizing.reset-size5.size2 {
+  font-size: .6666666667em;
+}
+.katex .fontsize-ensurer.reset-size5.size3,
+.katex .sizing.reset-size5.size3 {
+  font-size: .7777777778em;
+}
+.katex .fontsize-ensurer.reset-size5.size4,
+.katex .sizing.reset-size5.size4 {
+  font-size: .8888888889em;
+}
+.katex .fontsize-ensurer.reset-size5.size5,
+.katex .sizing.reset-size5.size5 {
+  font-size: 1em;
+}
+.katex .fontsize-ensurer.reset-size5.size6,
+.katex .sizing.reset-size5.size6 {
+  font-size: 1.1111111111em;
+}
+.katex .fontsize-ensurer.reset-size5.size7,
+.katex .sizing.reset-size5.size7 {
+  font-size: 1.3333333333em;
+}
+.katex .fontsize-ensurer.reset-size5.size8,
+.katex .sizing.reset-size5.size8 {
+  font-size: 1.6em;
+}
+.katex .fontsize-ensurer.reset-size5.size9,
+.katex .sizing.reset-size5.size9 {
+  font-size: 1.92em;
+}
+.katex .fontsize-ensurer.reset-size5.size10,
+.katex .sizing.reset-size5.size10 {
+  font-size: 2.3044444444em;
+}
+.katex .fontsize-ensurer.reset-size5.size11,
+.katex .sizing.reset-size5.size11 {
+  font-size: 2.7644444444em;
+}
+.katex .fontsize-ensurer.reset-size6.size1,
+.katex .sizing.reset-size6.size1 {
+  font-size: .5em;
+}
+.katex .fontsize-ensurer.reset-size6.size2,
+.katex .sizing.reset-size6.size2 {
+  font-size: .6em;
+}
+.katex .fontsize-ensurer.reset-size6.size3,
+.katex .sizing.reset-size6.size3 {
+  font-size: .7em;
+}
+.katex .fontsize-ensurer.reset-size6.size4,
+.katex .sizing.reset-size6.size4 {
+  font-size: .8em;
+}
+.katex .fontsize-ensurer.reset-size6.size5,
+.katex .sizing.reset-size6.size5 {
+  font-size: .9em;
+}
+.katex .fontsize-ensurer.reset-size6.size6,
+.katex .sizing.reset-size6.size6 {
+  font-size: 1em;
+}
+.katex .fontsize-ensurer.reset-size6.size7,
+.katex .sizing.reset-size6.size7 {
+  font-size: 1.2em;
+}
+.katex .fontsize-ensurer.reset-size6.size8,
+.katex .sizing.reset-size6.size8 {
+  font-size: 1.44em;
+}
+.katex .fontsize-ensurer.reset-size6.size9,
+.katex .sizing.reset-size6.size9 {
+  font-size: 1.728em;
+}
+.katex .fontsize-ensurer.reset-size6.size10,
+.katex .sizing.reset-size6.size10 {
+  font-size: 2.074em;
+}
+.katex .fontsize-ensurer.reset-size6.size11,
+.katex .sizing.reset-size6.size11 {
+  font-size: 2.488em;
+}
+.katex .fontsize-ensurer.reset-size7.size1,
+.katex .sizing.reset-size7.size1 {
+  font-size: .4166666667em;
+}
+.katex .fontsize-ensurer.reset-size7.size2,
+.katex .sizing.reset-size7.size2 {
+  font-size: .5em;
+}
+.katex .fontsize-ensurer.reset-size7.size3,
+.katex .sizing.reset-size7.size3 {
+  font-size: .5833333333em;
+}
+.katex .fontsize-ensurer.reset-size7.size4,
+.katex .sizing.reset-size7.size4 {
+  font-size: .6666666667em;
+}
+.katex .fontsize-ensurer.reset-size7.size5,
+.katex .sizing.reset-size7.size5 {
+  font-size: .75em;
+}
+.katex .fontsize-ensurer.reset-size7.size6,
+.katex .sizing.reset-size7.size6 {
+  font-size: .8333333333em;
+}
+.katex .fontsize-ensurer.reset-size7.size7,
+.katex .sizing.reset-size7.size7 {
+  font-size: 1em;
+}
+.katex .fontsize-ensurer.reset-size7.size8,
+.katex .sizing.reset-size7.size8 {
+  font-size: 1.2em;
+}
+.katex .fontsize-ensurer.reset-size7.size9,
+.katex .sizing.reset-size7.size9 {
+  font-size: 1.44em;
+}
+.katex .fontsize-ensurer.reset-size7.size10,
+.katex .sizing.reset-size7.size10 {
+  font-size: 1.7283333333em;
+}
+.katex .fontsize-ensurer.reset-size7.size11,
+.katex .sizing.reset-size7.size11 {
+  font-size: 2.0733333333em;
+}
+.katex .fontsize-ensurer.reset-size8.size1,
+.katex .sizing.reset-size8.size1 {
+  font-size: .3472222222em;
+}
+.katex .fontsize-ensurer.reset-size8.size2,
+.katex .sizing.reset-size8.size2 {
+  font-size: .4166666667em;
+}
+.katex .fontsize-ensurer.reset-size8.size3,
+.katex .sizing.reset-size8.size3 {
+  font-size: .4861111111em;
+}
+.katex .fontsize-ensurer.reset-size8.size4,
+.katex .sizing.reset-size8.size4 {
+  font-size: .5555555556em;
+}
+.katex .fontsize-ensurer.reset-size8.size5,
+.katex .sizing.reset-size8.size5 {
+  font-size: .625em;
+}
+.katex .fontsize-ensurer.reset-size8.size6,
+.katex .sizing.reset-size8.size6 {
+  font-size: .6944444444em;
+}
+.katex .fontsize-ensurer.reset-size8.size7,
+.katex .sizing.reset-size8.size7 {
+  font-size: .8333333333em;
+}
+.katex .fontsize-ensurer.reset-size8.size8,
+.katex .sizing.reset-size8.size8 {
+  font-size: 1em;
+}
+.katex .fontsize-ensurer.reset-size8.size9,
+.katex .sizing.reset-size8.size9 {
+  font-size: 1.2em;
+}
+.katex .fontsize-ensurer.reset-size8.size10,
+.katex .sizing.reset-size8.size10 {
+  font-size: 1.4402777778em;
+}
+.katex .fontsize-ensurer.reset-size8.size11,
+.katex .sizing.reset-size8.size11 {
+  font-size: 1.7277777778em;
+}
+.katex .fontsize-ensurer.reset-size9.size1,
+.katex .sizing.reset-size9.size1 {
+  font-size: .2893518519em;
+}
+.katex .fontsize-ensurer.reset-size9.size2,
+.katex .sizing.reset-size9.size2 {
+  font-size: .3472222222em;
+}
+.katex .fontsize-ensurer.reset-size9.size3,
+.katex .sizing.reset-size9.size3 {
+  font-size: .4050925926em;
+}
+.katex .fontsize-ensurer.reset-size9.size4,
+.katex .sizing.reset-size9.size4 {
+  font-size: .462962963em;
+}
+.katex .fontsize-ensurer.reset-size9.size5,
+.katex .sizing.reset-size9.size5 {
+  font-size: .5208333333em;
+}
+.katex .fontsize-ensurer.reset-size9.size6,
+.katex .sizing.reset-size9.size6 {
+  font-size: .5787037037em;
+}
+.katex .fontsize-ensurer.reset-size9.size7,
+.katex .sizing.reset-size9.size7 {
+  font-size: .6944444444em;
+}
+.katex .fontsize-ensurer.reset-size9.size8,
+.katex .sizing.reset-size9.size8 {
+  font-size: .8333333333em;
+}
+.katex .fontsize-ensurer.reset-size9.size9,
+.katex .sizing.reset-size9.size9 {
+  font-size: 1em;
+}
+.katex .fontsize-ensurer.reset-size9.size10,
+.katex .sizing.reset-size9.size10 {
+  font-size: 1.2002314815em;
+}
+.katex .fontsize-ensurer.reset-size9.size11,
+.katex .sizing.reset-size9.size11 {
+  font-size: 1.4398148148em;
+}
+.katex .fontsize-ensurer.reset-size10.size1,
+.katex .sizing.reset-size10.size1 {
+  font-size: .2410800386em;
+}
+.katex .fontsize-ensurer.reset-size10.size2,
+.katex .sizing.reset-size10.size2 {
+  font-size: .2892960463em;
+}
+.katex .fontsize-ensurer.reset-size10.size3,
+.katex .sizing.reset-size10.size3 {
+  font-size: .337512054em;
+}
+.katex .fontsize-ensurer.reset-size10.size4,
+.katex .sizing.reset-size10.size4 {
+  font-size: .3857280617em;
+}
+.katex .fontsize-ensurer.reset-size10.size5,
+.katex .sizing.reset-size10.size5 {
+  font-size: .4339440694em;
+}
+.katex .fontsize-ensurer.reset-size10.size6,
+.katex .sizing.reset-size10.size6 {
+  font-size: .4821600771em;
+}
+.katex .fontsize-ensurer.reset-size10.size7,
+.katex .sizing.reset-size10.size7 {
+  font-size: .5785920926em;
+}
+.katex .fontsize-ensurer.reset-size10.size8,
+.katex .sizing.reset-size10.size8 {
+  font-size: .6943105111em;
+}
+.katex .fontsize-ensurer.reset-size10.size9,
+.katex .sizing.reset-size10.size9 {
+  font-size: .8331726133em;
+}
+.katex .fontsize-ensurer.reset-size10.size10,
+.katex .sizing.reset-size10.size10 {
+  font-size: 1em;
+}
+.katex .fontsize-ensurer.reset-size10.size11,
+.katex .sizing.reset-size10.size11 {
+  font-size: 1.1996142719em;
+}
+.katex .fontsize-ensurer.reset-size11.size1,
+.katex .sizing.reset-size11.size1 {
+  font-size: .2009646302em;
+}
+.katex .fontsize-ensurer.reset-size11.size2,
+.katex .sizing.reset-size11.size2 {
+  font-size: .2411575563em;
+}
+.katex .fontsize-ensurer.reset-size11.size3,
+.katex .sizing.reset-size11.size3 {
+  font-size: .2813504823em;
+}
+.katex .fontsize-ensurer.reset-size11.size4,
+.katex .sizing.reset-size11.size4 {
+  font-size: .3215434084em;
+}
+.katex .fontsize-ensurer.reset-size11.size5,
+.katex .sizing.reset-size11.size5 {
+  font-size: .3617363344em;
+}
+.katex .fontsize-ensurer.reset-size11.size6,
+.katex .sizing.reset-size11.size6 {
+  font-size: .4019292605em;
+}
+.katex .fontsize-ensurer.reset-size11.size7,
+.katex .sizing.reset-size11.size7 {
+  font-size: .4823151125em;
+}
+.katex .fontsize-ensurer.reset-size11.size8,
+.katex .sizing.reset-size11.size8 {
+  font-size: .578778135em;
+}
+.katex .fontsize-ensurer.reset-size11.size9,
+.katex .sizing.reset-size11.size9 {
+  font-size: .6945337621em;
+}
+.katex .fontsize-ensurer.reset-size11.size10,
+.katex .sizing.reset-size11.size10 {
+  font-size: .8336012862em;
+}
+.katex .fontsize-ensurer.reset-size11.size11,
+.katex .sizing.reset-size11.size11 {
+  font-size: 1em;
+}
+.katex .delimsizing.size1 {
+  font-family: KaTeX_Size1;
+}
+.katex .delimsizing.size2 {
+  font-family: KaTeX_Size2;
+}
+.katex .delimsizing.size3 {
+  font-family: KaTeX_Size3;
+}
+.katex .delimsizing.size4 {
+  font-family: KaTeX_Size4;
+}
+.katex .delimsizing.mult .delim-size1 > span {
+  font-family: KaTeX_Size1;
+}
+.katex .delimsizing.mult .delim-size4 > span {
+  font-family: KaTeX_Size4;
+}
+.katex .nulldelimiter {
+  display: inline-block;
+  width: .12em;
+}
+.katex .delimcenter,
+.katex .op-symbol {
+  position: relative;
+}
+.katex .op-symbol.small-op {
+  font-family: KaTeX_Size1;
+}
+.katex .op-symbol.large-op {
+  font-family: KaTeX_Size2;
+}
+.katex .accent > .vlist-t,
+.katex .op-limits > .vlist-t {
+  text-align: center;
+}
+.katex .accent .accent-body {
+  position: relative;
+}
+.katex .accent .accent-body:not(.accent-full) {
+  width: 0;
+}
+.katex .overlay {
+  display: block;
+}
+.katex .mtable .vertical-separator {
+  display: inline-block;
+  min-width: 1px;
+}
+.katex .mtable .arraycolsep {
+  display: inline-block;
+}
+.katex .mtable .col-align-c > .vlist-t {
+  text-align: center;
+}
+.katex .mtable .col-align-l > .vlist-t {
+  text-align: left;
+}
+.katex .mtable .col-align-r > .vlist-t {
+  text-align: right;
+}
+.katex .svg-align {
+  text-align: left;
+}
+.katex svg {
+  fill: currentColor;
+  stroke: currentColor;
+  display: block;
+  height: inherit;
+  position: absolute;
+  width: 100%;
+}
+.katex svg path {
+  stroke: none;
+}
+.katex svg {
+  fill-rule: nonzero;
+  fill-opacity: 1;
+  stroke-width: 1;
+  stroke-linecap: butt;
+  stroke-linejoin: miter;
+  stroke-miterlimit: 4;
+  stroke-dasharray: none;
+  stroke-dashoffset: 0;
+  stroke-opacity: 1;
+}
+.katex img {
+  border-style: none;
+  max-height: none;
+  max-width: none;
+  min-height: 0;
+  min-width: 0;
+}
+.katex .stretchy {
+  display: block;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+.katex .stretchy:after,
+.katex .stretchy:before {
+  content: "";
+}
+.katex .hide-tail {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+.katex .halfarrow-left {
+  left: 0;
+  overflow: hidden;
+  position: absolute;
+  width: 50.2%;
+}
+.katex .halfarrow-right {
+  overflow: hidden;
+  position: absolute;
+  right: 0;
+  width: 50.2%;
+}
+.katex .brace-left {
+  left: 0;
+  overflow: hidden;
+  position: absolute;
+  width: 25.1%;
+}
+.katex .brace-center {
+  left: 25%;
+  overflow: hidden;
+  position: absolute;
+  width: 50%;
+}
+.katex .brace-right {
+  overflow: hidden;
+  position: absolute;
+  right: 0;
+  width: 25.1%;
+}
+.katex .x-arrow-pad {
+  padding: 0 .5em;
+}
+.katex .cd-arrow-pad {
+  padding: 0 .55556em 0 .27778em;
+}
+.katex .mover,
+.katex .munder,
+.katex .x-arrow {
+  text-align: center;
+}
+.katex .boxpad {
+  padding: 0 .3em;
+}
+.katex .fbox,
+.katex .fcolorbox {
+  border: .04em solid;
+  box-sizing: border-box;
+}
+.katex .cancel-pad {
+  padding: 0 .2em;
+}
+.katex .cancel-lap {
+  margin-left: -.2em;
+  margin-right: -.2em;
+}
+.katex .sout {
+  border-bottom-style: solid;
+  border-bottom-width: .08em;
+}
+.katex .angl {
+  border-right: .049em solid;
+  border-top: .049em solid;
+  box-sizing: border-box;
+  margin-right: .03889em;
+}
+.katex .anglpad {
+  padding: 0 .03889em;
+}
+.katex .eqn-num:before {
+  content: "(" counter(katexEqnNo) ")";
+  counter-increment: katexEqnNo;
+}
+.katex .mml-eqn-num:before {
+  content: "(" counter(mmlEqnNo) ")";
+  counter-increment: mmlEqnNo;
+}
+.katex .mtr-glue {
+  width: 50%;
+}
+.katex .cd-vert-arrow {
+  display: inline-block;
+  position: relative;
+}
+.katex .cd-label-left {
+  display: inline-block;
+  position: absolute;
+  right: calc(50% + .3em);
+  text-align: left;
+}
+.katex .cd-label-right {
+  display: inline-block;
+  left: calc(50% + .3em);
+  position: absolute;
+  text-align: right;
+}
+.katex-display {
+  display: block;
+  margin: 1em 0;
+  text-align: center;
+}
+.katex-display > .katex {
+  display: block;
+  text-align: center;
+  white-space: nowrap;
+}
+.katex-display > .katex > .katex-html {
+  display: block;
+  position: relative;
+}
+.katex-display > .katex > .katex-html > .tag {
+  position: absolute;
+  right: 0;
+}
+.katex-display.leqno > .katex > .katex-html > .tag {
+  left: 0;
+  right: auto;
+}
+.katex-display.fleqn > .katex {
+  padding-left: 2em;
+  text-align: left;
+}
+body {
+  counter-reset: katexEqnNo mmlEqnNo;
+}
+
+/* ../../node_modules/highlight.js/styles/default.css */
+pre code.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 1em;
+}
+code.hljs {
+  padding: 3px 5px;
+}
+pre code.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 1em;
+}
+code.hljs {
+  padding: 3px 5px;
+}
+.hljs {
+  background: #F3F3F3;
+  color: #444;
+}
+.hljs-subst {
+}
+.hljs-formula,
+.hljs-attr,
+.hljs-property,
+.hljs-params {
+}
+.hljs-comment {
+  color: #697070;
+}
+.hljs-tag,
+.hljs-punctuation {
+  color: #444a;
+}
+.hljs-tag .hljs-name,
+.hljs-tag .hljs-attr {
+  color: #444;
+}
+.hljs-keyword,
+.hljs-attribute,
+.hljs-selector-tag,
+.hljs-meta .hljs-keyword,
+.hljs-doctag,
+.hljs-name {
+  font-weight: bold;
+}
+.hljs-type,
+.hljs-string,
+.hljs-number,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-quote,
+.hljs-template-tag,
+.hljs-deletion {
+  color: #880000;
+}
+.hljs-title,
+.hljs-section {
+  color: #880000;
+  font-weight: bold;
+}
+.hljs-regexp,
+.hljs-symbol,
+.hljs-variable,
+.hljs-template-variable,
+.hljs-link,
+.hljs-selector-attr,
+.hljs-operator,
+.hljs-selector-pseudo {
+  color: #ab5656;
+}
+.hljs-literal {
+  color: #695;
+}
+.hljs-built_in,
+.hljs-bullet,
+.hljs-code,
+.hljs-addition {
+  color: #397300;
+}
+.hljs-meta {
+  color: #1f7199;
+}
+.hljs-meta .hljs-string {
+  color: #38a;
+}
+.hljs-emphasis {
+  font-style: italic;
+}
+.hljs-strong {
+  font-weight: bold;
+}
+
+/* ../../node_modules/ckeditor5/dist/ckeditor5-content.css */
+.ck-content code {
+  background-color: #c7c7c74d;
+  border-radius: 2px;
+  padding: .15em;
+}
+.ck-content blockquote {
+  border-left: 5px solid #ccc;
+  margin-left: 0;
+  margin-right: 0;
+  padding-left: 1.5em;
+  padding-right: 1.5em;
+  font-style: italic;
+  overflow: hidden;
+}
+.ck-content[dir=rtl] blockquote {
+  border-left: 0;
+  border-right: 5px solid #ccc;
+}
+.ck-content pre {
+  color: #353535;
+  text-align: left;
+  tab-size: 4;
+  white-space: pre-wrap;
+  direction: ltr;
+  background: #c7c7c74d;
+  border: 1px solid #c4c4c4;
+  border-radius: 2px;
+  min-width: 200px;
+  margin: .9em 0;
+  padding: 1em;
+  font-style: normal;
+}
+.ck-content pre code {
+  background: unset;
+  border-radius: 0;
+  padding: 0;
+}
+:root {
+  --ck-content-font-family:Helvetica,
+    Arial,
+    Tahoma,
+    Verdana,
+    Sans-Serif;
+  --ck-content-font-size:medium;
+  --ck-content-font-color:#000;
+  --ck-content-line-height:1.5;
+  --ck-content-word-break:normal;
+  --ck-content-overflow-wrap:break-word;
+}
+.ck-content {
+  font-family: var(--ck-content-font-family);
+  font-size: var(--ck-content-font-size);
+  color: var(--ck-content-font-color);
+  line-height: var(--ck-content-line-height);
+  word-break: var(--ck-content-word-break);
+  overflow-wrap: var(--ck-content-overflow-wrap);
+}
+:root {
+  --ck-content-font-size-tiny:.7em;
+  --ck-content-font-size-small:.85em;
+  --ck-content-font-size-big:1.4em;
+  --ck-content-font-size-huge:1.8em;
+}
+.ck-content .text-tiny {
+  font-size: var(--ck-content-font-size-tiny);
+}
+.ck-content .text-small {
+  font-size: var(--ck-content-font-size-small);
+}
+.ck-content .text-big {
+  font-size: var(--ck-content-font-size-big);
+}
+.ck-content .text-huge {
+  font-size: var(--ck-content-font-size-huge);
+}
+:root {
+  --ck-content-highlight-marker-yellow:#fdfd77;
+  --ck-content-highlight-marker-green:#62f962;
+  --ck-content-highlight-marker-pink:#fc7899;
+  --ck-content-highlight-marker-blue:#72ccfd;
+  --ck-content-highlight-pen-red:#e71313;
+  --ck-content-highlight-pen-green:#128a00;
+}
+.ck-content .marker-yellow {
+  background-color: var(--ck-content-highlight-marker-yellow);
+}
+.ck-content .marker-green {
+  background-color: var(--ck-content-highlight-marker-green);
+}
+.ck-content .marker-pink {
+  background-color: var(--ck-content-highlight-marker-pink);
+}
+.ck-content .marker-blue {
+  background-color: var(--ck-content-highlight-marker-blue);
+}
+.ck-content .pen-red {
+  color: var(--ck-content-highlight-pen-red);
+  background-color: #0000;
+}
+.ck-content .pen-green {
+  color: var(--ck-content-highlight-pen-green);
+  background-color: #0000;
+}
+.ck-content hr {
+  vertical-align: middle;
+  background: #dedede;
+  border: 0;
+  width: 100%;
+  height: 4px;
+  margin: 15px 0;
+  display: inline-block;
+}
+:root {
+  --ck-content-color-image-caption-background:#f7f7f7;
+  --ck-content-color-image-caption-text:#333;
+}
+.ck-content .image > figcaption {
+  caption-side: bottom;
+  word-break: normal;
+  overflow-wrap: anywhere;
+  break-before: avoid;
+  color: var(--ck-content-color-image-caption-text);
+  background-color: var(--ck-content-color-image-caption-background);
+  outline-offset: -1px;
+  padding: .6em;
+  font-size: .75em;
+  display: table-caption;
+}
+@media (forced-colors: active) {
+  .ck-content .image > figcaption {
+    background-color: unset;
+    color: unset;
+  }
+}
+.ck-content img.image_resized {
+  height: auto;
+}
+.ck-content .image.image_resized {
+  box-sizing: border-box;
+  max-width: 100%;
+  display: block;
+}
+.ck-content .image.image_resized img {
+  width: 100%;
+}
+.ck-content .image.image_resized > figcaption {
+  display: block;
+}
+:root {
+  --ck-content-image-style-spacing:1.5em;
+  --ck-content-inline-image-style-spacing:calc(var(--ck-content-image-style-spacing) / 2);
+}
+.ck-content .image.image-style-block-align-left,
+.ck-content .image.image-style-block-align-right {
+  max-width: calc(100% - var(--ck-content-image-style-spacing));
+}
+.ck-content .image.image-style-align-left,
+.ck-content .image.image-style-align-right {
+  clear: none;
+}
+.ck-content .image.image-style-side {
+  float: right;
+  margin-left: var(--ck-content-image-style-spacing);
+  max-width: 50%;
+}
+.ck-content .image.image-style-align-left {
+  float: left;
+  margin-right: var(--ck-content-image-style-spacing);
+}
+.ck-content .image.image-style-align-right {
+  float: right;
+  margin-left: var(--ck-content-image-style-spacing);
+}
+.ck-content .image.image-style-block-align-right {
+  margin-left: auto;
+  margin-right: 0;
+}
+.ck-content .image.image-style-block-align-left {
+  margin-left: 0;
+  margin-right: auto;
+}
+.ck-content .image-style-align-center {
+  margin-left: auto;
+  margin-right: auto;
+}
+.ck-content .image-style-align-left {
+  float: left;
+  margin-right: var(--ck-content-image-style-spacing);
+}
+.ck-content .image-style-align-right {
+  float: right;
+  margin-left: var(--ck-content-image-style-spacing);
+}
+.ck-content p + .image.image-style-align-left,
+.ck-content p + .image.image-style-align-right,
+.ck-content p + .image.image-style-side {
+  margin-top: 0;
+}
+.ck-content .image-inline.image-style-align-left,
+.ck-content .image-inline.image-style-align-right {
+  margin-top: var(--ck-content-inline-image-style-spacing);
+  margin-bottom: var(--ck-content-inline-image-style-spacing);
+}
+.ck-content .image-inline.image-style-align-left {
+  margin-right: var(--ck-content-inline-image-style-spacing);
+}
+.ck-content .image-inline.image-style-align-right {
+  margin-left: var(--ck-content-inline-image-style-spacing);
+}
+.ck-content .image {
+  clear: both;
+  text-align: center;
+  min-width: 50px;
+  margin: .9em auto;
+  display: table;
+}
+.ck-content .image img {
+  min-width: 100%;
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto;
+  display: block;
+}
+.ck-content .image-inline {
+  align-items: flex-start;
+  max-width: 100%;
+  display: inline-flex;
+}
+.ck-content .image-inline picture {
+  display: flex;
+}
+.ck-content .image-inline picture,
+.ck-content .image-inline img {
+  flex-grow: 1;
+  flex-shrink: 1;
+  max-width: 100%;
+}
+:root {
+  --ck-content-list-marker-color:var(--ck-content-font-color);
+  --ck-content-list-marker-font-family:var(--ck-content-font-family);
+  --ck-content-list-marker-font-size:var(--ck-content-font-size);
+}
+.ck-content li > p:first-of-type {
+  margin-top: 0;
+}
+.ck-content li > p:only-of-type {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.ck-content li.ck-list-marker-bold::marker {
+  font-weight: bold;
+}
+.ck-content li.ck-list-marker-italic::marker {
+  font-style: italic;
+}
+.ck-content li.ck-list-marker-color::marker {
+  color: var(--ck-content-list-marker-color);
+}
+.ck-content li.ck-list-marker-font-family::marker {
+  font-family: var(--ck-content-list-marker-font-family);
+}
+.ck-content li.ck-list-marker-font-size::marker {
+  font-size: var(--ck-content-list-marker-font-size);
+}
+.ck-content li.ck-list-marker-font-size-tiny::marker {
+  font-size: var(--ck-content-font-size-tiny);
+}
+.ck-content li.ck-list-marker-font-size-small::marker {
+  font-size: var(--ck-content-font-size-small);
+}
+.ck-content li.ck-list-marker-font-size-big::marker {
+  font-size: var(--ck-content-font-size-big);
+}
+.ck-content li.ck-list-marker-font-size-huge::marker {
+  font-size: var(--ck-content-font-size-huge);
+}
+.ck-content ol {
+  list-style-type: decimal;
+}
+.ck-content ol ol {
+  list-style-type: lower-latin;
+}
+.ck-content ol ol ol {
+  list-style-type: lower-roman;
+}
+.ck-content ol ol ol ol {
+  list-style-type: upper-latin;
+}
+.ck-content ol ol ol ol ol {
+  list-style-type: upper-roman;
+}
+.ck-content ul {
+  list-style-type: disc;
+}
+.ck-content ul ul {
+  list-style-type: circle;
+}
+.ck-content ul ul ul {
+  list-style-type: square;
+}
+.ck-content ul ul ul ul {
+  list-style-type: square;
+}
+:root {
+  --ck-content-todo-list-checkmark-size:16px;
+}
+.ck-content .todo-list .todo-list__label > input,
+.ck-editor__editable.ck-content .todo-list .todo-list__label > span[contenteditable=false] > input {
+  -webkit-appearance: none;
+  width: var(--ck-content-todo-list-checkmark-size);
+  height: var(--ck-content-todo-list-checkmark-size);
+  vertical-align: middle;
+  border: 0;
+  margin-left: 0;
+  margin-right: -15px;
+  display: inline-block;
+  position: relative;
+  left: -25px;
+  right: 0;
+}
+[dir=rtl]:is(.ck-content .todo-list .todo-list__label > input, .ck-editor__editable.ck-content .todo-list .todo-list__label > span[contenteditable=false] > input) {
+  margin-left: -15px;
+  margin-right: 0;
+  left: 0;
+  right: -25px;
+}
+:is(.ck-content .todo-list .todo-list__label > input, .ck-editor__editable.ck-content .todo-list .todo-list__label > span[contenteditable=false] > input):before {
+  box-sizing: border-box;
+  content: "";
+  border: 1px solid #333;
+  border-radius: 2px;
+  width: 100%;
+  height: 100%;
+  transition: box-shadow .25s ease-in-out;
+  display: block;
+  position: absolute;
+}
+@media (prefers-reduced-motion: reduce) {
+  :is(.ck-content .todo-list .todo-list__label > input, .ck-editor__editable.ck-content .todo-list .todo-list__label > span[contenteditable=false] > input):before {
+    transition: none;
+  }
+}
+:is(.ck-content .todo-list .todo-list__label > input, .ck-editor__editable.ck-content .todo-list .todo-list__label > span[contenteditable=false] > input):after {
+  box-sizing: content-box;
+  pointer-events: none;
+  content: "";
+  left: calc(var(--ck-content-todo-list-checkmark-size) / 3);
+  top: calc(var(--ck-content-todo-list-checkmark-size) / 5.3);
+  width: calc(var(--ck-content-todo-list-checkmark-size) / 5.3);
+  height: calc(var(--ck-content-todo-list-checkmark-size) / 2.6);
+  border-style: solid;
+  border-color: #0000;
+  border-width: 0 calc(var(--ck-content-todo-list-checkmark-size) / 8) calc(var(--ck-content-todo-list-checkmark-size) / 8) 0;
+  display: block;
+  position: absolute;
+  transform: rotate(45deg);
+}
+:is(.ck-content .todo-list .todo-list__label > input, .ck-editor__editable.ck-content .todo-list .todo-list__label > span[contenteditable=false] > input)[checked]:before {
+  background: #26ab33;
+  border-color: #26ab33;
+}
+:is(.ck-content .todo-list .todo-list__label > input, .ck-editor__editable.ck-content .todo-list .todo-list__label > span[contenteditable=false] > input)[checked]:after {
+  border-color: #fff;
+}
+.ck-content .todo-list {
+  list-style: none;
+}
+.ck-content .todo-list li {
+  margin-bottom: 5px;
+  position: relative;
+}
+.ck-content .todo-list li .todo-list {
+  margin-top: 5px;
+}
+.ck-content .todo-list .todo-list__label .todo-list__label__description {
+  vertical-align: middle;
+}
+.ck-content .todo-list .todo-list__label.todo-list__label_without-description input[type=checkbox] {
+  position: absolute;
+}
+.ck-editor__editable.ck-content .todo-list .todo-list__label > input,
+.ck-editor__editable.ck-content .todo-list .todo-list__label > span[contenteditable=false] > input {
+  cursor: pointer;
+}
+:is(.ck-editor__editable.ck-content .todo-list .todo-list__label > input, .ck-editor__editable.ck-content .todo-list .todo-list__label > span[contenteditable=false] > input):hover:before {
+  box-shadow: 0 0 0 5px #0000001a;
+}
+.ck-editor__editable.ck-content .todo-list .todo-list__label.todo-list__label_without-description input[type=checkbox] {
+  position: absolute;
+}
+.ck-content .media {
+  clear: both;
+  min-width: 15em;
+  margin: .9em auto;
+  display: block;
+}
+.ck-content .media:has(> div[data-oembed-url*="open.spotify.com"]) {
+  width: 300px;
+  min-width: 286px;
+}
+.ck-content .media.media_resized {
+  box-sizing: border-box;
+  max-width: 100%;
+  display: block;
+}
+.ck-content .media.media_resized > div[data-oembed-url] {
+  width: 100%;
+}
+:root {
+  --ck-content-media-style-spacing:1.5em;
+}
+.ck-content .media.media-style-align-left,
+.ck-content .media.media-style-align-right {
+  clear: none;
+  width: 100%;
+}
+.ck-content .media.media-style-align-left {
+  float: left;
+  margin-right: var(--ck-content-media-style-spacing);
+}
+.ck-content .media.media-style-align-right {
+  float: right;
+  margin-left: var(--ck-content-media-style-spacing);
+}
+.ck-content .media.media-style-block-align-left {
+  margin-left: 0;
+  margin-right: auto;
+}
+.ck-content .media.media-style-block-align-right {
+  margin-left: auto;
+  margin-right: 0;
+}
+:root {
+  --ck-content-color-mention-background:#9900301a;
+  --ck-content-color-mention-text:#990030;
+}
+.ck-content .mention {
+  background: var(--ck-content-color-mention-background);
+  color: var(--ck-content-color-mention-text);
+}
+.ck-content .page-break {
+  clear: both;
+  justify-content: center;
+  align-items: center;
+  padding: 5px 0;
+  display: flex;
+  position: relative;
+}
+.ck-content .page-break:after {
+  content: "";
+  border-bottom: 2px dashed #c4c4c4;
+  width: 100%;
+  position: absolute;
+}
+.ck-content .page-break__label {
+  z-index: 1;
+  text-transform: uppercase;
+  color: #333;
+  -webkit-user-select: none;
+  user-select: none;
+  background: #fff;
+  border: 1px solid #c4c4c4;
+  border-radius: 2px;
+  padding: .3em .6em;
+  font-size: .75em;
+  font-weight: bold;
+  display: block;
+  position: relative;
+  box-shadow: 2px 2px 1px #00000026;
+}
+@media print {
+  .ck-content .page-break {
+    padding: 0;
+  }
+  .ck-content .page-break:after {
+    display: none;
+  }
+  .ck-content :has(+ .page-break) {
+    margin-bottom: 0;
+  }
+}
+.ck-content .table th {
+  text-align: start;
+}
+.ck-content[dir=rtl] .table th {
+  text-align: right;
+}
+.ck-content[dir=ltr] .table th {
+  text-align: left;
+}
+.ck-content figure.table:not(.layout-table) {
+  display: table;
+}
+.ck-content figure.table:not(.layout-table) > table {
+  width: 100%;
+  height: 100%;
+}
+.ck-content .table:not(.layout-table) {
+  margin: .9em auto;
+}
+.ck-content table.table:not(.layout-table),
+.ck-content figure.table:not(.layout-table) > table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  border: 1px double #b3b3b3;
+}
+:is(:is(.ck-content table.table:not(.layout-table), .ck-content figure.table:not(.layout-table) > table) > thead, :is(.ck-content table.table:not(.layout-table), .ck-content figure.table:not(.layout-table) > table) > tfoot, :is(.ck-content table.table:not(.layout-table), .ck-content figure.table:not(.layout-table) > table) > tbody) > tr > th {
+  background: #0000000d;
+  font-weight: bold;
+}
+:is(:is(:is(.ck-content table.table:not(.layout-table), .ck-content figure.table:not(.layout-table) > table) > thead, :is(.ck-content table.table:not(.layout-table), .ck-content figure.table:not(.layout-table) > table) > tfoot, :is(.ck-content table.table:not(.layout-table), .ck-content figure.table:not(.layout-table) > table) > tbody) > tr > td, :is(:is(.ck-content table.table:not(.layout-table), .ck-content figure.table:not(.layout-table) > table) > thead, :is(.ck-content table.table:not(.layout-table), .ck-content figure.table:not(.layout-table) > table) > tfoot, :is(.ck-content table.table:not(.layout-table), .ck-content figure.table:not(.layout-table) > table) > tbody) > tr > th) > p:first-of-type {
+  margin-top: 0;
+}
+:is(:is(:is(.ck-content table.table:not(.layout-table), .ck-content figure.table:not(.layout-table) > table) > thead, :is(.ck-content table.table:not(.layout-table), .ck-content figure.table:not(.layout-table) > table) > tfoot, :is(.ck-content table.table:not(.layout-table), .ck-content figure.table:not(.layout-table) > table) > tbody) > tr > td, :is(:is(.ck-content table.table:not(.layout-table), .ck-content figure.table:not(.layout-table) > table) > thead, :is(.ck-content table.table:not(.layout-table), .ck-content figure.table:not(.layout-table) > table) > tfoot, :is(.ck-content table.table:not(.layout-table), .ck-content figure.table:not(.layout-table) > table) > tbody) > tr > th) > p:last-of-type {
+  margin-bottom: 0;
+}
+:is(:is(.ck-content table.table:not(.layout-table), .ck-content figure.table:not(.layout-table) > table) > thead, :is(.ck-content table.table:not(.layout-table), .ck-content figure.table:not(.layout-table) > table) > tfoot, :is(.ck-content table.table:not(.layout-table), .ck-content figure.table:not(.layout-table) > table) > tbody) > tr > td,
+:is(:is(.ck-content table.table:not(.layout-table), .ck-content figure.table:not(.layout-table) > table) > thead, :is(.ck-content table.table:not(.layout-table), .ck-content figure.table:not(.layout-table) > table) > tfoot, :is(.ck-content table.table:not(.layout-table), .ck-content figure.table:not(.layout-table) > table) > tbody) > tr > th {
+  border: 1px solid #bfbfbf;
+  min-width: 2em;
+  padding: .4em;
+}
+@media print {
+  .ck-content figure.table:not(.layout-table) {
+    width: fit-content;
+    height: fit-content;
+  }
+  .ck-content figure.table:not(.layout-table) > table {
+    height: initial;
+  }
+}
+.ck-content table.table.layout-table,
+.ck-content figure.table.layout-table {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.ck-content table.table.layout-table,
+.ck-content figure.table.layout-table > table {
+  border-spacing: 0;
+}
+:root {
+  --ck-content-table-style-spacing:1.5em;
+}
+.ck-content .table.table-style-align-left {
+  float: left;
+  margin-right: var(--ck-content-table-style-spacing);
+}
+.ck-content .table.table-style-align-right {
+  float: right;
+  margin-left: var(--ck-content-table-style-spacing);
+}
+.ck-content .table.table-style-align-center {
+  margin-left: auto;
+  margin-right: auto;
+}
+.ck-content .table.table-style-block-align-left {
+  margin-left: 0;
+  margin-right: auto;
+}
+.ck-content .table.table-style-block-align-right {
+  margin-left: auto;
+  margin-right: 0;
+}
+:root {
+  --ck-content-color-table-caption-background:#f7f7f7;
+  --ck-content-color-table-caption-text:#333;
+}
+.ck-content .table > figcaption,
+.ck-content figure.table > table > caption {
+  caption-side: top;
+  word-break: normal;
+  overflow-wrap: anywhere;
+  text-align: center;
+  color: var(--ck-content-color-table-caption-text);
+  background-color: var(--ck-content-color-table-caption-background);
+  outline-offset: -1px;
+  padding: .6em;
+  font-size: .75em;
+  display: table-caption;
+}
+@media (forced-colors: active) {
+  .ck-content .table > figcaption,
+  .ck-content figure.table > table > caption {
+    background-color: unset;
+    color: unset;
+  }
+}
+.ck-content .table .ck-table-resized {
+  table-layout: fixed;
+}
+.ck-content .table td,
+.ck-content .table th {
+  overflow-wrap: break-word;
+}
+
+/* ../ckeditor5/src/theme/ck-content.css */
+.printed-content .ck-widget__selection-handle,
+.printed-content .ck-widget__type-around {
+  display: none;
+}
+.page-break {
+  page-break-after: always;
+}
+.printed-content .page-break:after,
+.printed-content .page-break > * {
+  display: none !important;
+}
+.ck-content li p {
+  margin: 0 !important;
+}
+.admonition {
+  --accent-color: var(--card-border-color);
+  border: 1px solid var(--accent-color);
+  box-shadow: var(--card-box-shadow);
+  background: var(--card-background-color);
+  border-radius: 0.5em;
+  padding: 1em;
+  margin: 1.25em 0;
+  position: relative;
+  padding-inline-start: 2.5em;
+  overflow: hidden;
+}
+.admonition p:last-child {
+  margin-bottom: 0;
+}
+.admonition p,
+h2 {
+  margin-top: 0;
+}
+.admonition.note {
+  --accent-color: #69c7ff;
+}
+.admonition.tip {
+  --accent-color: #40c025;
+}
+.admonition.important {
+  --accent-color: #9839f7;
+}
+.admonition.caution {
+  --accent-color: #ff2e2e;
+}
+.admonition.warning {
+  --accent-color: #e2aa03;
+}
+.admonition::before {
+  color: var(--accent-color);
+  font-family: boxicons !important;
+  position: absolute;
+  top: 1em;
+  inset-inline-start: 1em;
+}
+.admonition.note::before {
+  content: "\eb21";
+}
+.admonition.tip::before {
+  content: "\ea0d";
+}
+.admonition.important::before {
+  content: "\ea7c";
+}
+.admonition.caution::before {
+  content: "\eac7";
+}
+.admonition.warning::before {
+  content: "\eac5";
+}
+/*! Bundled license information:
+
+highlight.js/styles/default.css:
+  (*!
+    Theme: Default
+    Description: Original highlight.js style
+    Author: (c) Ivan Sagalaev <maniac@softwaremaniacs.org>
+    Maintainer: @highlightjs/core-team
+    Website: https://highlightjs.org/
+    License: see project LICENSE
+    Touched: 2021
+  *)
+
+ckeditor5/dist/ckeditor5-content.css:
+  (**
+   * @license Copyright (c) 2003-2026, CKSource Holding sp. z o.o. All rights reserved.
+   * For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-licensing-options
+   *)
+*/
