@@ -48,7 +48,15 @@
 					"isExpanded": true,
 					"type": "text",
 					"mime": "text/html",
-					"attributes": [],
+					"attributes": [
+						{
+							"type": "relation",
+							"name": "internalLink",
+							"value": "2oSCHwarV1au",
+							"isInheritable": false,
+							"position": 10
+						}
+					],
 					"format": "html",
 					"dataFileName": "第一章：前置知识概述.html",
 					"attachments": [],
@@ -147,13 +155,35 @@
 					"title": "第二章：基本变量类型",
 					"notePosition": 20,
 					"prefix": null,
-					"isExpanded": false,
+					"isExpanded": true,
 					"type": "text",
 					"mime": "text/html",
 					"attributes": [],
 					"format": "html",
 					"dataFileName": "第二章：基本变量类型.html",
-					"attachments": []
+					"attachments": [],
+					"dirFileName": "第二章：基本变量类型",
+					"children": [
+						{
+							"isClone": false,
+							"noteId": "s3r4Qy6itbHe",
+							"notePath": [
+								"3f0LOwtZ3I9T",
+								"EO7WR8YerCdE",
+								"s3r4Qy6itbHe"
+							],
+							"title": "2.1 初识变量",
+							"notePosition": 10,
+							"prefix": null,
+							"isExpanded": false,
+							"type": "text",
+							"mime": "text/html",
+							"attributes": [],
+							"format": "html",
+							"dataFileName": "2.1 初识变量.html",
+							"attachments": []
+						}
+					]
 				}
 			]
 		},

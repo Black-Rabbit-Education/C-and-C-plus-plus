@@ -1851,17 +1851,37 @@
         </li>
     
     
-        <li class="item">
+        <li class="submenu-item">
             
 
     
     <a class="type-text" href="../%E7%AC%AC%E4%BA%8C%E7%AB%A0%EF%BC%9A%E5%9F%BA%E6%9C%AC%E5%8F%98%E9%87%8F%E7%B1%BB%E5%9E%8B.html">
-        
-        <span><i class="tn-icon bx bx-note"></i> 第二章：基本变量类型</span>
+        <button class="collapse-button" aria-label="展开"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></button>
+        <span><i class="tn-icon bx bx-folder"></i> 第二章：基本变量类型</span>
     </a>
 
 
 
+
+<ul>
+    
+    
+        <li class="item">
+            
+
+    
+    <a class="type-text" href="../%E7%AC%AC%E4%BA%8C%E7%AB%A0%EF%BC%9A%E5%9F%BA%E6%9C%AC%E5%8F%98%E9%87%8F%E7%B1%BB%E5%9E%8B/2.1%20%E5%88%9D%E8%AF%86%E5%8F%98%E9%87%8F.html">
+        
+        <span><i class="tn-icon bx bx-note"></i> 2.1 初识变量</span>
+    </a>
+
+
+
+
+
+        </li>
+    
+</ul>
 
 
         </li>
@@ -1892,7 +1912,7 @@
 	std::cin &gt;&gt; x;		<span class="hljs-comment">// 输入一个整数变量</span>
 	std::cout &lt;&lt; x * <span class="hljs-number">2</span>;	<span class="hljs-comment">// 输出输入的数字翻倍的值</span>
 	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
-}</code></pre><h2>案例详解<a id="案例详解" class="toc-anchor" name="案例详解" href="#案例详解">#</a></h2><h3>定义变量<a id="定义变量" class="toc-anchor" name="定义变量" href="#定义变量">#</a></h3><p>其中<code spellcheck="false">int x;</code>表示我们需要一个整数，关于定义变量，我们将在下一章节详细讲解，如今我们可以理解为：设一个<span class="math-tex">\(x\)</span>，且定义域为<span class="math-tex">\(\left\lbrace x属于整数\right\rbrace\)</span>。</p><p>暂时我们只需要知道这些。</p><h3>输入与输出<a id="输入与输出" class="toc-anchor" name="输入与输出" href="#输入与输出">#</a></h3><p>在c语言中，我们使用<code spellcheck="false">scanf</code>作为输入函数，在c++中我们使用<code spellcheck="false">std::cin</code>。</p><h4>C语言参数<a id="c语言参数" class="toc-anchor" name="c语言参数" href="#c语言参数">#</a></h4><p>我们C语言中的输入和输出函数可以填入多个值，但第一个值一定是固定的。</p><p>第一个值我们可以叫他：输入格式。</p><p>他告诉程序，输入一段文字，我们该如何把他变成我们想要的数据。</p><p>我们在输入函数第一个参数中，我们使用一种叫<strong>占位符</strong>的东西来表示要的是何种数据。</p><p>代码中的<code spellcheck="false">%d</code>便是占位符，表示整数占位符，我们要的是一个整数。</p><p>而后面可以有无数个值，他们表示要把输入的数字给到哪个变量。暂时，我们需要在变量名字前添加一个<code spellcheck="false">&amp;</code>符号，在后续中也会讲到具体原因。</p><p>比如以下代码：</p><pre><code class="language-text-x-csrc hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+}</code></pre><h2>案例详解<a id="案例详解" class="toc-anchor" name="案例详解" href="#案例详解">#</a></h2><h3>定义变量<a id="定义变量" class="toc-anchor" name="定义变量" href="#定义变量">#</a></h3><p>其中<code spellcheck="false">int x;</code>表示我们需要一个整数，关于定义变量，我们将在下一章节详细讲解，如今我们可以理解为：设一个<span class="math-tex">\(x\)</span>，且定义域为<span class="math-tex">\(\left\lbrace x属于整数\right\rbrace\)</span>。</p><p>暂时我们只需要知道这些。</p><h3>输入与输出<a id="输入与输出" class="toc-anchor" name="输入与输出" href="#输入与输出">#</a></h3><p>在c语言中，我们使用<code spellcheck="false">scanf</code>作为输入函数，在c++中我们使用<code spellcheck="false">std::cin</code>。</p><h4>C语言参数<a id="c语言参数" class="toc-anchor" name="c语言参数" href="#c语言参数">#</a></h4><p>我们C语言中的输入和输出函数可以填入多个值，但第一个值一定是固定的。</p><p>第一个值我们可以叫他：输入格式。</p><p>他告诉程序，输入一段文字，我们该如何把他变成我们想要的数据。</p><p>我们在输入函数第一个参数中，我们需要知道哪些是我们需要解读的数据，想要知道数据的具体位置和数据的具体类型，我们就需要用到<strong>占位符</strong>，用占位符占住数据的位置，表示这个位置需要数据，用具体哪个占位符，来表示这个占位符代表的数据是什么类型的。</p><p>代码中的<code spellcheck="false">%d</code>便是占位符，表示整数占位符，我们要的是一个整数。</p><p>而后面可以有无数个值，他们表示要把输入的数字给到哪个变量。暂时，我们需要在变量名字前添加一个<code spellcheck="false">&amp;</code>符号，在后续中也会讲到具体原因。</p><p>比如以下代码：</p><pre><code class="language-text-x-csrc hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
 <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
 	<span class="hljs-type">int</span> x;					<span class="hljs-comment">// 声明一个整数变量</span>
 	<span class="hljs-type">int</span> y;					<span class="hljs-comment">// 再次声明一个整数变量</span>
@@ -1913,7 +1933,7 @@
 	<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%dn%d&quot;</span>,&amp;x,&amp;y);
 	std::cout &lt;&lt; x &lt;&lt; <span class="hljs-string">&quot; &quot;</span> &lt;&lt; y;
 	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
-}</code></pre><p>此时你输入<code spellcheck="false">10n20</code>他也同样会输出<code spellcheck="false">10 20</code></p><p>我们将在后续讲解。</p><h2>小结<a id="小结" class="toc-anchor" name="小结" href="#小结">#</a></h2><p>这一章我们讲解了输入输出的基本用法，这一点知识将在我们完整学习输入输出之前非常有用！</p><p>相信你有很多疑惑，但是没有关系，这一章到此结束，下一章开始，我们的学习将不再如此浅薄，我们将一层层解开程序神秘的面纱。</p><p>下一章：<a class="reference-link type-text" href="../%E7%AC%AC%E4%BA%8C%E7%AB%A0%EF%BC%9A%E5%9F%BA%E6%9C%AC%E5%8F%98%E9%87%8F%E7%B1%BB%E5%9E%8B.html"><span><span class="tn-icon bx bx-note"></span>第二章：基本变量类型</span></a></p><h2>习题<a id="习题" class="toc-anchor" name="习题" href="#习题">#</a></h2><h3>1.尝试做一个计算器<a id="1-尝试做一个计算器" class="toc-anchor" name="1-尝试做一个计算器" href="#1-尝试做一个计算器">#</a></h3><p>输入两个数字，然后输出两个数字相加的结果</p><p>本题推荐最大时长：5分钟</p><details class="trilium-collapsible"><summary>答案</summary><h4>C<a id="c-3" class="toc-anchor" name="c-3" href="#c-3">#</a></h4><pre><code class="language-text-x-csrc hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+}</code></pre><p>此时你输入<code spellcheck="false">10n20</code>他也同样会输出<code spellcheck="false">10 20</code></p><p>我们将在后续讲解。</p><h2>小结<a id="小结" class="toc-anchor" name="小结" href="#小结">#</a></h2><p>这一章我们讲解了输入输出的基本用法，这一点知识将在我们完整学习输入输出之前非常有用！</p><p>相信你有很多疑惑，但是没有关系，这一章到此结束，下一章开始，我们的学习将不再如此浅薄，我们将一层层解开程序神秘的面纱。</p><p>下一章：<a class="reference-link type-text" href="../%E7%AC%AC%E4%BA%8C%E7%AB%A0%EF%BC%9A%E5%9F%BA%E6%9C%AC%E5%8F%98%E9%87%8F%E7%B1%BB%E5%9E%8B.html"><span><span class="tn-icon bx bx-folder"></span>第二章：基本变量类型</span></a></p><h2>习题<a id="习题" class="toc-anchor" name="习题" href="#习题">#</a></h2><h3>1.尝试做一个计算器<a id="1-尝试做一个计算器" class="toc-anchor" name="1-尝试做一个计算器" href="#1-尝试做一个计算器">#</a></h3><p>输入两个数字，然后输出两个数字相加的结果</p><p>本题推荐最大时长：5分钟</p><details class="trilium-collapsible"><summary>答案</summary><h4>C<a id="c-3" class="toc-anchor" name="c-3" href="#c-3">#</a></h4><pre><code class="language-text-x-csrc hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
 <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
 	<span class="hljs-type">int</span> x;
 	<span class="hljs-type">int</span> y;
@@ -1927,7 +1947,19 @@
 	std::cin &gt;&gt; x &gt;&gt; y;
 	std::cout &lt;&lt; x + y;
 	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
-}</code></pre></details><h3>2.观察以下代码结果<a id="2-观察以下代码结果" class="toc-anchor" name="2-观察以下代码结果" href="#2-观察以下代码结果">#</a></h3><p>将代码复制到你的项目中运行，输入<code spellcheck="false">10.001</code>然后看看结果。</p>
+}</code></pre></details><h3>2.观察以下代码结果<a id="2-观察以下代码结果" class="toc-anchor" name="2-观察以下代码结果" href="#2-观察以下代码结果">#</a></h3><p>将代码复制到你的项目中运行，输入<code spellcheck="false">10.001</code>然后看看结果。</p><p>只需要观察结果即可，不需要理解超出预期的结果原因。</p><h4>C<a id="c-5" class="toc-anchor" name="c-5" href="#c-5">#</a></h4><pre><code class="language-text-x-csrc hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+	<span class="hljs-type">int</span> x;
+	<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>,&amp;x);
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d&quot;</span>,x);
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre><h4>C++<a id="c-6" class="toc-anchor" name="c-6" href="#c-6">#</a></h4><pre><code class="language-text-x-c-src hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+	<span class="hljs-type">int</span> x;
+	std::cin &gt;&gt; x;
+	std::cout &lt;&lt; x;
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre><p>&nbsp;</p>
                 
                 
             </div>
@@ -2119,6 +2151,32 @@
         <span>2.观察以下代码结果</span>
     </a>
 
+    
+        <ul>
+            
+                
+
+<li>
+    <a href="#c-5">
+        <span>C</span>
+    </a>
+
+    
+</li>
+
+            
+                
+
+<li>
+    <a href="#c-6">
+        <span>C++</span>
+    </a>
+
+    
+</li>
+
+            
+        </ul>
     
 </li>
 
