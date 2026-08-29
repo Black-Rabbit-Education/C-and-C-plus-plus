@@ -6,19 +6,19 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="shortcut icon" href="../favicon.ico">
     
-        <link href="assets/styles.css" rel="stylesheet">
+        <link href="../assets/styles.css" rel="stylesheet">
     
-        <link href="assets/scripts.css" rel="stylesheet">
-    
-    
-        <script type="module" src="assets/scripts.js"></script>
+        <link href="../assets/scripts.css" rel="stylesheet">
     
     
+        <script type="module" src="../assets/scripts.js"></script>
     
     
-    <title>C与C++(自制教程)</title>
+    
+    
+    <title>2.3 声明、定义与初始化 - C与C++(自制教程)</title>
     <script>
         // Load dark/light theme as soon as possible to avoid color flashes.
         let theme = localStorage.getItem("theme");
@@ -44,14 +44,14 @@
     <!-- Facebook Meta Tags -->
     <meta property="og:url" content="">
     <meta property="og:type" content="website">
-    <meta property="og:title" content="C与C++(自制教程)">
+    <meta property="og:title" content="2.3 声明、定义与初始化 - C与C++(自制教程)">
     <meta property="og:description" content="">
     <meta property="og:image" content="">
     <!-- Twitter Meta Tags -->
     <meta name="twitter:card" content="summary_large_image">
     <meta property="twitter:domain" content="">
     <meta property="twitter:url" content="">
-    <meta name="twitter:title" content="C与C++(自制教程)">
+    <meta name="twitter:title" content="2.3 声明、定义与初始化 - C与C++(自制教程)">
     <meta name="twitter:description" content="">
     <meta name="twitter:image" content="">
     <!-- Meta Tags Generated via https://opengraph.dev -->
@@ -61,7 +61,7 @@
                 font-family: 'boxicons';
                 font-weight: normal;
                 font-style: normal;
-                src: url('assets/icon-pack-bx.woff2') format('woff2');
+                src: url('../assets/icon-pack-bx.woff2') format('woff2');
             }
 
             .bx {
@@ -1736,16 +1736,16 @@
     
 </head>
 
-<body data-note-id="3f0LOwtZ3I9T" class="type-text" data-ancestor-note-id="3f0LOwtZ3I9T">
+<body data-note-id="1d8ckKp6n94M" class="type-text" data-ancestor-note-id="3f0LOwtZ3I9T">
 
 <div id="header">
     <button aria-label="切换导航" id="left-pane-toggle-button" class="header-button"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z"></path></svg></button>
-    <a href="" id="header-logo">
-            <img src="icon-color.svg" width="32" height="24.150943396226417" alt="Logo" />
+    <a href="../" id="header-logo">
+            <img src="../icon-color.svg" width="32" height="24.150943396226417" alt="Logo" />
         C与C++(自制教程)
     </a>
     
-        <button aria-label="切换目录" id="toc-pane-toggle-button" class="header-button"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M3 9h14V7H3v2zm0 4h14v-2H3v2zm0 4h14v-2H3v2zm16 0h2v-2h-2v2zm0-10V7h2v2h-2zm0 6h2v-2h-2v2z"></path></svg></button>
+        <div class="header-button-placeholder"></div>
     
 </div>
 <div id="split-pane">
@@ -1787,7 +1787,7 @@
             
 
     
-    <a class="type-text" href="%E7%AC%AC%E4%B8%80%E7%AB%A0%EF%BC%9A%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86%E6%A6%82%E8%BF%B0.html">
+    <a class="type-text" href="../%E7%AC%AC%E4%B8%80%E7%AB%A0%EF%BC%9A%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86%E6%A6%82%E8%BF%B0.html">
         <button class="collapse-button" aria-label="展开"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></button>
         <span><i class="tn-icon bx bx-folder"></i> 第一章：前置知识概述</span>
     </a>
@@ -1802,7 +1802,7 @@
             
 
     
-    <a class="type-text" href="%E7%AC%AC%E4%B8%80%E7%AB%A0%EF%BC%9A%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86%E6%A6%82%E8%BF%B0/1.1%20%E7%A4%BA%E4%BE%8B%E7%A8%8B%E5%BA%8F.html">
+    <a class="type-text" href="../%E7%AC%AC%E4%B8%80%E7%AB%A0%EF%BC%9A%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86%E6%A6%82%E8%BF%B0/1.1%20%E7%A4%BA%E4%BE%8B%E7%A8%8B%E5%BA%8F.html">
         
         <span><i class="tn-icon bx bx-note"></i> 1.1 示例程序</span>
     </a>
@@ -1818,7 +1818,7 @@
             
 
     
-    <a class="type-text" href="%E7%AC%AC%E4%B8%80%E7%AB%A0%EF%BC%9A%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86%E6%A6%82%E8%BF%B0/1.2%20%E8%A1%A8%E8%BE%BE%E5%BC%8F%E6%A6%82%E8%BF%B0.html">
+    <a class="type-text" href="../%E7%AC%AC%E4%B8%80%E7%AB%A0%EF%BC%9A%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86%E6%A6%82%E8%BF%B0/1.2%20%E8%A1%A8%E8%BE%BE%E5%BC%8F%E6%A6%82%E8%BF%B0.html">
         
         <span><i class="tn-icon bx bx-note"></i> 1.2 表达式概述</span>
     </a>
@@ -1834,7 +1834,7 @@
             
 
     
-    <a class="type-text" href="%E7%AC%AC%E4%B8%80%E7%AB%A0%EF%BC%9A%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86%E6%A6%82%E8%BF%B0/1.3%20%E8%BE%93%E5%85%A5%E4%B8%8E%E8%BE%93%E5%87%BA%E6%A6%82%E8%BF%B0.html">
+    <a class="type-text" href="../%E7%AC%AC%E4%B8%80%E7%AB%A0%EF%BC%9A%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86%E6%A6%82%E8%BF%B0/1.3%20%E8%BE%93%E5%85%A5%E4%B8%8E%E8%BE%93%E5%87%BA%E6%A6%82%E8%BF%B0.html">
         
         <span><i class="tn-icon bx bx-note"></i> 1.3 输入与输出概述</span>
     </a>
@@ -1850,7 +1850,7 @@
             
 
     
-    <a class="type-text" href="%E7%AC%AC%E4%B8%80%E7%AB%A0%EF%BC%9A%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86%E6%A6%82%E8%BF%B0/1.4%20%E6%B3%A8%E9%87%8A.html">
+    <a class="type-text" href="../%E7%AC%AC%E4%B8%80%E7%AB%A0%EF%BC%9A%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86%E6%A6%82%E8%BF%B0/1.4%20%E6%B3%A8%E9%87%8A.html">
         
         <span><i class="tn-icon bx bx-note"></i> 1.4 注释</span>
     </a>
@@ -1867,11 +1867,11 @@
         </li>
     
     
-        <li class="submenu-item">
+        <li class="submenu-item expanded">
             
 
     
-    <a class="type-text" href="%E7%AC%AC%E4%BA%8C%E7%AB%A0%EF%BC%9A%E5%9F%BA%E6%9C%AC%E5%8F%98%E9%87%8F%E7%B1%BB%E5%9E%8B.html">
+    <a class="type-text" href="../%E7%AC%AC%E4%BA%8C%E7%AB%A0%EF%BC%9A%E5%9F%BA%E6%9C%AC%E5%8F%98%E9%87%8F%E7%B1%BB%E5%9E%8B.html">
         <button class="collapse-button" aria-label="展开"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></button>
         <span><i class="tn-icon bx bx-folder"></i> 第二章：基本变量类型</span>
     </a>
@@ -1886,7 +1886,7 @@
             
 
     
-    <a class="type-text" href="%E7%AC%AC%E4%BA%8C%E7%AB%A0%EF%BC%9A%E5%9F%BA%E6%9C%AC%E5%8F%98%E9%87%8F%E7%B1%BB%E5%9E%8B/2.1%20%E5%88%9D%E8%AF%86%E5%8F%98%E9%87%8F%E8%AF%AD%E6%B3%95.html">
+    <a class="type-text" href="2.1%20%E5%88%9D%E8%AF%86%E5%8F%98%E9%87%8F%E8%AF%AD%E6%B3%95.html">
         
         <span><i class="tn-icon bx bx-note"></i> 2.1 初识变量语法</span>
     </a>
@@ -1902,7 +1902,7 @@
             
 
     
-    <a class="type-text" href="%E7%AC%AC%E4%BA%8C%E7%AB%A0%EF%BC%9A%E5%9F%BA%E6%9C%AC%E5%8F%98%E9%87%8F%E7%B1%BB%E5%9E%8B/2.2%20%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B.html">
+    <a class="type-text" href="2.2%20%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B.html">
         
         <span><i class="tn-icon bx bx-note"></i> 2.2 基本类型</span>
     </a>
@@ -1914,11 +1914,11 @@
         </li>
     
     
-        <li class="item">
+        <li class="item expanded">
             
 
     
-    <a class="type-text" href="%E7%AC%AC%E4%BA%8C%E7%AB%A0%EF%BC%9A%E5%9F%BA%E6%9C%AC%E5%8F%98%E9%87%8F%E7%B1%BB%E5%9E%8B/2.3%20%E5%A3%B0%E6%98%8E%E3%80%81%E5%AE%9A%E4%B9%89%E4%B8%8E%E5%88%9D%E5%A7%8B%E5%8C%96.html">
+    <a class="type-text active" href="2.3%20%E5%A3%B0%E6%98%8E%E3%80%81%E5%AE%9A%E4%B9%89%E4%B8%8E%E5%88%9D%E5%A7%8B%E5%8C%96.html">
         
         <span><i class="tn-icon bx bx-note"></i> 2.3 声明、定义与初始化</span>
     </a>
@@ -1943,34 +1943,15 @@
     </div>
     <div id="right-pane">
         <div id="main">
-            <div id="content" class="type-text ck-content">
+            <div id="content" class="type-text ck-content no-content">
                 
-                    <h1 id="title">C与C++(自制教程)</h1>
+                    <h1 id="title">2.3 声明、定义与初始化</h1>
                 
-                    
-                    <h2>为什么建议初学者学C与C++<a id="为什么建议初学者学c与c" class="toc-anchor" name="为什么建议初学者学c与c" href="#为什么建议初学者学c与c">#</a></h2><h3>C语言<a id="c语言" class="toc-anchor" name="c语言" href="#c语言">#</a></h3><p>首先，选择C语言是因为他是当代最接近底层的高级编程语言，是现代入门编程的最佳选择案例。</p><p>因为C语言足够接近底层，所以后很多东西需要你自己设计。如果你能使用C语言自己设计，那么再去学习任何一个高级语言的时候，你就可以一通百通，看一眼案例便能理解其中运行原理，便能更好的使用任何一种编程语言。</p><p>同时，如果你需要涉及很多底层，或是需要极限性能的场景，此时你就需要学习C语言来做到其他语言做不到的，无与伦比的性能。</p><h3>有C为什么还要C++<a id="有c为什么还要c" class="toc-anchor" name="有c为什么还要c" href="#有c为什么还要c">#</a></h3><p>C对于某些事情，需要自己重复制作太多东西，有时候我们并不需要每一个地方都做到极限的性能，我们希望将重心放在重要的地方，那么C语言此时就太过于繁琐，开发成本过高。</p><p>同时，C语言是<strong>面向过程编程</strong>，有时候我们想要<strong>面向对象编程</strong>，但是我们又需要一个非常极限的性能，此时C语言就不够用了，需要C++。而C++对比C，还有允许泛型编程、异常处理、运算符重载等等各种优势。</p><p>上述名词如果听不懂没有关系，我们未来会慢慢了解这一切，现在你只需要知道有这些即可。</p><h2>为什么要两个一起学<a id="为什么要两个一起学" class="toc-anchor" name="为什么要两个一起学" href="#为什么要两个一起学">#</a></h2><p>首先，C++支持几乎所有C语言语法，也就是说，你的C语言代码写完后，当成C++代码运行，几乎不会出现任何问题，结果几乎一致！C++几乎拥有C语言的一切！</p><p>C++有一些新的方式去完成一个任务，但也支持用C语言的方式去完成，可以具体情况具体分析使用。</p><p>然后，C语言太过底层，学完语言后想要学习更多例如游戏开发、显卡编程等等，那么此时C语言实在太过繁琐，你还需要学习一门新的语言，这会非常繁琐，而C和C++非常接近，C++可以做到最全面的开发。</p><p>如果实在需要底层，去学习各种底层框架，去进行各种需要每一个逻辑每一个细节都把控的项目，那么此时C才是最优选择。</p><p>而且学习了C，在有些时候你能更好的理解C++，因为C++就是基于C进行添加修改的产物。</p><p>所以最后总结，两个一起学并不会增加过多的学习量，反而进可攻退可守。</p><h2>关于学习本教程<a id="关于学习本教程" class="toc-anchor" name="关于学习本教程" href="#关于学习本教程">#</a></h2><p>本教程有不少代码示例，还有大量习题，不过还是希望能将代码放在自己的电脑上运行，去推测自己心中的某个操作可不可以，这样我们就能更好的理解其中运作原理。</p><p>关于习题答案，我会给予最长时间，如果超过了最长时间还是没有做出来，此时我才认为可以看答案，不过我还是更希望无论多长时间，能自己写出来最好。</p><p>同时，无论自己的答案是否正确，都建议写完后看看答案，本教程会给出最优解，尝试学习最优解。</p><p>关于ai，本教程并不建议学习期间使用ai，但如果出现了语法错误，自己还在规定时间内没有解决题目，那么此时才建议使用ai询问语法错误，但是建议在询问ai时，让其不要给出题目答案，只更改语法错误。</p><h3>本教程使用版本<a id="本教程使用版本" class="toc-anchor" name="本教程使用版本" href="#本教程使用版本">#</a></h3><p>C17，C++21</p><h2>关于写代码和编译工具<a id="关于写代码和编译工具" class="toc-anchor" name="关于写代码和编译工具" href="#关于写代码和编译工具">#</a></h2><p>这个暂时叫人帮忙弄吧，随着时代发展这个变化太多了，所以还是叫黑兔或者其余人员帮你搭建一个代码环境。</p><p>&nbsp;</p>
+                    <p>此笔记没有内容。</p>
                 
                 
             </div>
 
-            
-                <nav id="childLinks" class="list">
-                    
-                        <span>子页面：</span>
-                    
-
-                    <ul>
-                        
-                            <li>
-                                <a class="type-text" href="%E7%AC%AC%E4%B8%80%E7%AB%A0%EF%BC%9A%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86%E6%A6%82%E8%BF%B0.html">第一章：前置知识概述</a>
-                            </li>
-                        
-                            <li>
-                                <a class="type-text" href="%E7%AC%AC%E4%BA%8C%E7%AB%A0%EF%BC%9A%E5%9F%BA%E6%9C%AC%E5%8F%98%E9%87%8F%E7%B1%BB%E5%9E%8B.html">第二章：基本变量类型</a>
-                            </li>
-                        
-                    </ul>
-                </nav>
             
 
             <footer id="content-footer">
@@ -1980,106 +1961,14 @@
                     
 
 <div class="navigation">
+    <a class="previous" href="2.2%20%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B.html">2.2 基本类型</a>
     
-    <a class="next" href="%E7%AC%AC%E4%B8%80%E7%AB%A0%EF%BC%9A%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86%E6%A6%82%E8%BF%B0.html">第一章：前置知识概述</a>
 </div>
                 
 
                 
             </footer>
         </div>
-        
-            <div id="toc-pane">
-                <h3>本页内容</h3>
-                <ul id="toc">
-                    
-                        
-
-<li>
-    <a href="#为什么建议初学者学c与c">
-        <span>为什么建议初学者学C与C++</span>
-    </a>
-
-    
-        <ul>
-            
-                
-
-<li>
-    <a href="#c语言">
-        <span>C语言</span>
-    </a>
-
-    
-</li>
-
-            
-                
-
-<li>
-    <a href="#有c为什么还要c">
-        <span>有C为什么还要C++</span>
-    </a>
-
-    
-</li>
-
-            
-        </ul>
-    
-</li>
-
-                    
-                        
-
-<li>
-    <a href="#为什么要两个一起学">
-        <span>为什么要两个一起学</span>
-    </a>
-
-    
-</li>
-
-                    
-                        
-
-<li>
-    <a href="#关于学习本教程">
-        <span>关于学习本教程</span>
-    </a>
-
-    
-        <ul>
-            
-                
-
-<li>
-    <a href="#本教程使用版本">
-        <span>本教程使用版本</span>
-    </a>
-
-    
-</li>
-
-            
-        </ul>
-    
-</li>
-
-                    
-                        
-
-<li>
-    <a href="#关于写代码和编译工具">
-        <span>关于写代码和编译工具</span>
-    </a>
-
-    
-</li>
-
-                    
-                </ul>
-            </div>
         
     </div>
 </div>
