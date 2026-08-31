@@ -1929,6 +1929,74 @@
 
         </li>
     
+    
+        <li class="item">
+            
+
+    
+    <a class="type-text" href="../%E7%AC%AC%E4%BA%8C%E7%AB%A0%EF%BC%9A%E5%9F%BA%E6%9C%AC%E5%8F%98%E9%87%8F%E7%B1%BB%E5%9E%8B/2.4%20%E8%B5%8B%E5%80%BC%E4%B8%8E%E6%89%80%E6%9C%89%E8%BF%90%E7%AE%97%E7%AC%A6.html">
+        
+        <span><i class="tn-icon bx bx-note"></i> 2.4 赋值与所有运算符</span>
+    </a>
+
+
+
+
+
+        </li>
+    
+    
+        <li class="item">
+            
+
+    
+    <a class="type-text" href="../%E7%AC%AC%E4%BA%8C%E7%AB%A0%EF%BC%9A%E5%9F%BA%E6%9C%AC%E5%8F%98%E9%87%8F%E7%B1%BB%E5%9E%8B/2.5%20%E6%95%B0%E7%BB%84.html">
+        
+        <span><i class="tn-icon bx bx-note"></i> 2.5 数组</span>
+    </a>
+
+
+
+
+
+        </li>
+    
+</ul>
+
+
+        </li>
+    
+    
+        <li class="submenu-item">
+            
+
+    
+    <a class="type-text" href="../%E7%AC%AC%E4%B8%89%E7%AB%A0%EF%BC%9A%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6.html">
+        <button class="collapse-button" aria-label="展开"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></button>
+        <span><i class="tn-icon bx bx-folder"></i> 第三章：流程控制</span>
+    </a>
+
+
+
+
+<ul>
+    
+    
+        <li class="item">
+            
+
+    
+    <a class="type-text" href="../%E7%AC%AC%E4%B8%89%E7%AB%A0%EF%BC%9A%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6/3.1%20%E5%9F%9F.html">
+        
+        <span><i class="tn-icon bx bx-note"></i> 3.1 域</span>
+    </a>
+
+
+
+
+
+        </li>
+    
 </ul>
 
 
@@ -1954,7 +2022,7 @@
 	<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>,&amp;x);		<span class="hljs-comment">// 输入一个整数变量</span>
 	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d&quot;</span>,x*<span class="hljs-number">2</span>);	<span class="hljs-comment">// 输出输入的数字翻倍的值</span>
 	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
-}</code></pre><h3>C++<a id="c-1" class="toc-anchor" name="c-1" href="#c-1">#</a></h3><pre><code class="language-text-x-c-src hljs"><span class="hljs-meta">#inlcude <span class="hljs-string">&lt;iostream&gt;</span></span>
+}</code></pre><h3>C++<a id="c-1" class="toc-anchor" name="c-1" href="#c-1">#</a></h3><pre><code class="language-text-x-c-src hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
 <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
 	<span class="hljs-type">int</span> x;				<span class="hljs-comment">// 声明一个整数变量</span>
 	std::cin &gt;&gt; x;		<span class="hljs-comment">// 输入一个整数变量</span>
@@ -1965,7 +2033,7 @@
 	<span class="hljs-type">int</span> x;					<span class="hljs-comment">// 声明一个整数变量</span>
 	<span class="hljs-type">int</span> y;					<span class="hljs-comment">// 再次声明一个整数变量</span>
 	<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d %d&quot;</span>,&amp;x,&amp;y);		<span class="hljs-comment">// 输入两个整数变量</span>
-	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d %d&quot;</span>,x，y);	<span class="hljs-comment">// 输出输入的数字翻倍的值</span>
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d %d&quot;</span>,x,y);	<span class="hljs-comment">// 输出输入的数字翻倍的值</span>
 	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
 }</code></pre><p>复制到你的项目中，然后你输入<code spellcheck="false">10 20</code>，那么程序也会输出<code spellcheck="false">10 20</code>，这非常简单易懂。</p><p>我们在输入函数的第一个参数给定的格式可以理解为：<code spellcheck="false">整数 整数</code></p><p>中间用一个空格隔开，当然如果你想，你也完全可以用一个字母替代中间的空格，这样你在输入的时候，可以使用一个你格式中的字母作为分隔，比如<code spellcheck="false">10n20</code>，程序也能正确读到两侧的数字。</p><p>最后输出第一个参数与输入的第一个参数一致，你当然也可以用字母替代中间的空格，然后观察会输出什么。</p><p>最后，请你尝试改变两个变量的位置，看看会发生什么。</p><p>你会发现这非常易懂，都是一通百通的东西，编程就是这样，与数学一样。</p><h3>C++<a id="c-2" class="toc-anchor" name="c-2" href="#c-2">#</a></h3><p>C++就会简单很多，我们并不会使用<strong>占位符</strong>，我们可以直接输入要输入的变量，他会自动检测输入，如果符合输入变量的类型，便会将变量直接变成这个值。</p><p>所以以下代码：</p><pre><code class="language-text-x-c-src hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
 <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{

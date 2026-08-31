@@ -11,7 +11,7 @@
 			"title": "C与C++(自制教程)",
 			"notePosition": 10,
 			"prefix": null,
-			"isExpanded": false,
+			"isExpanded": true,
 			"type": "text",
 			"mime": "text/html",
 			"attributes": [
@@ -182,10 +182,18 @@
 					"title": "第二章：基本变量类型",
 					"notePosition": 20,
 					"prefix": null,
-					"isExpanded": false,
+					"isExpanded": true,
 					"type": "text",
 					"mime": "text/html",
-					"attributes": [],
+					"attributes": [
+						{
+							"type": "relation",
+							"name": "internalLink",
+							"value": "s3r4Qy6itbHe",
+							"isInheritable": false,
+							"position": 10
+						}
+					],
 					"format": "html",
 					"dataFileName": "第二章：基本变量类型.html",
 					"attachments": [],
@@ -266,9 +274,119 @@
 							"isExpanded": false,
 							"type": "text",
 							"mime": "text/html",
-							"attributes": [],
+							"attributes": [
+								{
+									"type": "relation",
+									"name": "internalLink",
+									"value": "oOYga2XBHu5c",
+									"isInheritable": false,
+									"position": 10
+								}
+							],
 							"format": "html",
 							"dataFileName": "2.3 声明、定义与初始化.html",
+							"attachments": []
+						},
+						{
+							"isClone": false,
+							"noteId": "oOYga2XBHu5c",
+							"notePath": [
+								"3f0LOwtZ3I9T",
+								"EO7WR8YerCdE",
+								"oOYga2XBHu5c"
+							],
+							"title": "2.4 赋值与所有运算符",
+							"notePosition": 40,
+							"prefix": null,
+							"isExpanded": false,
+							"type": "text",
+							"mime": "text/html",
+							"attributes": [
+								{
+									"type": "relation",
+									"name": "internalLink",
+									"value": "SwwDQIwOZkg8",
+									"isInheritable": false,
+									"position": 10
+								}
+							],
+							"format": "html",
+							"dataFileName": "2.4 赋值与所有运算符.html",
+							"attachments": []
+						},
+						{
+							"isClone": false,
+							"noteId": "SwwDQIwOZkg8",
+							"notePath": [
+								"3f0LOwtZ3I9T",
+								"EO7WR8YerCdE",
+								"SwwDQIwOZkg8"
+							],
+							"title": "2.5 数组",
+							"notePosition": 50,
+							"prefix": null,
+							"isExpanded": false,
+							"type": "text",
+							"mime": "text/html",
+							"attributes": [
+								{
+									"type": "relation",
+									"name": "internalLink",
+									"value": "iVI7mMUeLHrm",
+									"isInheritable": false,
+									"position": 10
+								}
+							],
+							"format": "html",
+							"dataFileName": "2.5 数组.html",
+							"attachments": []
+						}
+					]
+				},
+				{
+					"isClone": false,
+					"noteId": "iVI7mMUeLHrm",
+					"notePath": [
+						"3f0LOwtZ3I9T",
+						"iVI7mMUeLHrm"
+					],
+					"title": "第三章：流程控制",
+					"notePosition": 40,
+					"prefix": null,
+					"isExpanded": true,
+					"type": "text",
+					"mime": "text/html",
+					"attributes": [
+						{
+							"type": "relation",
+							"name": "internalLink",
+							"value": "kDlnCqOQKJ7H",
+							"isInheritable": false,
+							"position": 10
+						}
+					],
+					"format": "html",
+					"dataFileName": "第三章：流程控制.html",
+					"attachments": [],
+					"dirFileName": "第三章：流程控制",
+					"children": [
+						{
+							"isClone": false,
+							"noteId": "kDlnCqOQKJ7H",
+							"notePath": [
+								"3f0LOwtZ3I9T",
+								"iVI7mMUeLHrm",
+								"kDlnCqOQKJ7H"
+							],
+							"title": "3.1 域",
+							"notePosition": 10,
+							"prefix": null,
+							"isExpanded": false,
+							"type": "text",
+							"mime": "text/html",
+							"attributes": [],
+							"format": "html",
+							"dataFileName": "3.1 域.html",
 							"attachments": []
 						}
 					]

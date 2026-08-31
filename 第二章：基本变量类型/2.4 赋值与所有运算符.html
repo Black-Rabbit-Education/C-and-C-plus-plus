@@ -18,7 +18,7 @@
     
     
     
-    <title>2.3 声明、定义与初始化 - C与C++(自制教程)</title>
+    <title>2.4 赋值与所有运算符 - C与C++(自制教程)</title>
     <script>
         // Load dark/light theme as soon as possible to avoid color flashes.
         let theme = localStorage.getItem("theme");
@@ -44,14 +44,14 @@
     <!-- Facebook Meta Tags -->
     <meta property="og:url" content="">
     <meta property="og:type" content="website">
-    <meta property="og:title" content="2.3 声明、定义与初始化 - C与C++(自制教程)">
+    <meta property="og:title" content="2.4 赋值与所有运算符 - C与C++(自制教程)">
     <meta property="og:description" content="">
     <meta property="og:image" content="">
     <!-- Twitter Meta Tags -->
     <meta name="twitter:card" content="summary_large_image">
     <meta property="twitter:domain" content="">
     <meta property="twitter:url" content="">
-    <meta name="twitter:title" content="2.3 声明、定义与初始化 - C与C++(自制教程)">
+    <meta name="twitter:title" content="2.4 赋值与所有运算符 - C与C++(自制教程)">
     <meta name="twitter:description" content="">
     <meta name="twitter:image" content="">
     <!-- Meta Tags Generated via https://opengraph.dev -->
@@ -1736,7 +1736,7 @@
     
 </head>
 
-<body data-note-id="1d8ckKp6n94M" class="type-text" data-ancestor-note-id="3f0LOwtZ3I9T">
+<body data-note-id="oOYga2XBHu5c" class="type-text" data-ancestor-note-id="3f0LOwtZ3I9T">
 
 <div id="header">
     <button aria-label="切换导航" id="left-pane-toggle-button" class="header-button"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z"></path></svg></button>
@@ -1914,11 +1914,11 @@
         </li>
     
     
-        <li class="item expanded">
+        <li class="item">
             
 
     
-    <a class="type-text active" href="2.3%20%E5%A3%B0%E6%98%8E%E3%80%81%E5%AE%9A%E4%B9%89%E4%B8%8E%E5%88%9D%E5%A7%8B%E5%8C%96.html">
+    <a class="type-text" href="2.3%20%E5%A3%B0%E6%98%8E%E3%80%81%E5%AE%9A%E4%B9%89%E4%B8%8E%E5%88%9D%E5%A7%8B%E5%8C%96.html">
         
         <span><i class="tn-icon bx bx-note"></i> 2.3 声明、定义与初始化</span>
     </a>
@@ -1930,11 +1930,11 @@
         </li>
     
     
-        <li class="item">
+        <li class="item expanded">
             
 
     
-    <a class="type-text" href="2.4%20%E8%B5%8B%E5%80%BC%E4%B8%8E%E6%89%80%E6%9C%89%E8%BF%90%E7%AE%97%E7%AC%A6.html">
+    <a class="type-text active" href="2.4%20%E8%B5%8B%E5%80%BC%E4%B8%8E%E6%89%80%E6%9C%89%E8%BF%90%E7%AE%97%E7%AC%A6.html">
         
         <span><i class="tn-icon bx bx-note"></i> 2.4 赋值与所有运算符</span>
     </a>
@@ -2013,28 +2013,73 @@
         <div id="main">
             <div id="content" class="type-text ck-content">
                 
-                    <h1 id="title">2.3 声明、定义与初始化</h1>
+                    <h1 id="title">2.4 赋值与所有运算符</h1>
                 
                     
-                    <p>正如我们开始前所说，C++与C都是极度自由的语言，所以我们的变量什么时候被电脑分配内存，什么时候被电脑赋予具体值，这都可以自己掌控的，这样一来，你就能做到极致的性能把控。</p><h2>三个概念的区别<a id="三个概念的区别" class="toc-anchor" name="三个概念的区别" href="#三个概念的区别">#</a></h2><p>先记住一句话：<strong>声明</strong>告诉编译器类型，<strong>定义</strong>真正创建变量并分配内存，<strong>初始化</strong>在定义的同时给一个初始值。</p><figure class="table"><table><tbody><tr><td>写法</td><td>术语</td><td>效果</td></tr><tr><td><code spellcheck="false">extern int x;</code></td><td>只有声明</td><td>告诉编译器存在一个 int 类型的 x，但不分配内存（x 在别处定义）</td></tr><tr><td><code spellcheck="false">int x;</code></td><td>声明 + 定义</td><td>分配内存，但没有给初值（局部变量此时是垃圾值！）</td></tr><tr><td><code spellcheck="false">int x = 10;</code></td><td>声明 + 定义 + 初始化</td><td>分配内存，并同时把 10 放进这块内存</td></tr></tbody></table></figure><h3>示例<a id="示例" class="toc-anchor" name="示例" href="#示例">#</a></h3><pre><code class="language-text-x-csrc hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+                    <h2>基础语法<a id="基础语法" class="toc-anchor" name="基础语法" href="#基础语法">#</a></h2><p>变量赋值的基础语法如下：</p><pre><code class="language-text-x-csrc hljs">变量名 [运算符]<span class="hljs-operator">=</span> 表达式<span class="hljs-comment">;</span></code></pre><p>几个案例：</p><pre><code class="language-text-x-csrc hljs"> <span class="hljs-keyword">int</span> a = <span class="hljs-number">0</span>;
+ a = <span class="hljs-number">10</span>;				<span class="hljs-regexp">//</span> 将a改为<span class="hljs-number">10</span>
+ <span class="hljs-keyword">printf</span>(<span class="hljs-string">&quot;<span class="hljs-variable">%d</span>\n&quot;</span>,a);		<span class="hljs-regexp">//</span> 输出<span class="hljs-number">10</span>并换行
+ a = a + <span class="hljs-number">2</span>;				<span class="hljs-regexp">//</span> 将a的值加上<span class="hljs-number">2</span>
+ a += <span class="hljs-number">2</span>;				<span class="hljs-regexp">//</span> 与上一行一致
+ a *= a*a;				<span class="hljs-regexp">//</span> 将a改为a的<span class="hljs-number">3</span>次方
+ <span class="hljs-keyword">printf</span>(<span class="hljs-string">&quot;<span class="hljs-variable">%d</span>&quot;</span>,a);		<span class="hljs-regexp">//</span> 输出</code></pre><p>最终输出结果如下：</p><pre><code class="language-text-x-csrc hljs"><span class="hljs-number">10</span>
+<span class="hljs-number">2744</span></code></pre><p>建议可以自己用计算器运算一遍，看看和自己想的是否一致。</p><h2>所有运算符<a id="所有运算符" class="toc-anchor" name="所有运算符" href="#所有运算符">#</a></h2><p>C 和 C++ 的运算符很多，但不需要死记，用熟了自然就记住了。下面按类别列出：</p><h3>赋值运算符<a id="赋值运算符" class="toc-anchor" name="赋值运算符" href="#赋值运算符">#</a></h3><figure class="table"><table><tbody><tr><td>运算符</td><td>描述</td><td>示例</td></tr><tr><td><code spellcheck="false">+</code></td><td>加后赋值</td><td><code spellcheck="false">a += 2;</code> 等价于 <code spellcheck="false">a = a + 2;</code></td></tr><tr><td><code spellcheck="false">-</code></td><td>减后赋值</td><td><code spellcheck="false">a -= 2;</code> 等价于 <code spellcheck="false">a = a - 2;</code></td></tr><tr><td><code spellcheck="false">*</code></td><td>乘后赋值</td><td><code spellcheck="false">a *= 3;</code> 等价于 <code spellcheck="false">a = a * 3;</code></td></tr><tr><td><code spellcheck="false">/</code></td><td>除后赋值</td><td><code spellcheck="false">a /= 2;</code> 等价于 <code spellcheck="false">a = a / 2;</code></td></tr><tr><td><code spellcheck="false">%</code></td><td>取余后赋值</td><td><code spellcheck="false">a %= 3;</code> 等价于 <code spellcheck="false">a = a % 3;</code></td></tr><tr><td><code spellcheck="false">&lt;&lt;</code> <code spellcheck="false">&gt;&gt;</code></td><td>左移/右移后赋值</td><td><code spellcheck="false">a &lt;&lt;= 1;</code> 等价于 <code spellcheck="false">a = a * 2;</code></td></tr><tr><td><code spellcheck="false">&amp;</code> <code spellcheck="false">|</code> <code spellcheck="false">^</code></td><td>位与/位或/异或后赋值</td><td>见位运算符</td></tr></tbody></table></figure><p><strong>不过这里需要注意的是：</strong></p><pre><code class="language-text-x-csrc hljs"><span class="hljs-attribute">a</span> = <span class="hljs-number">2</span>;
+<span class="hljs-attribute">a</span> *= <span class="hljs-number">10</span> + <span class="hljs-number">2</span>;	// 此时a的值为 <span class="hljs-number">24</span>
+<span class="hljs-attribute">a</span> = <span class="hljs-number">2</span>;
+<span class="hljs-attribute">a</span> = a * <span class="hljs-number">10</span> +<span class="hljs-number">2</span>;	// 此时a的值为 <span class="hljs-number">22</span></code></pre><p>也就是说，会先将右侧表达式所有结果算完后，再去使用赋值运算符计算，这是一个容易搞错的地方。</p><h3>算术运算符<a id="算术运算符" class="toc-anchor" name="算术运算符" href="#算术运算符">#</a></h3><figure class="table"><table><tbody><tr><td>运算符</td><td>描述</td><td>示例</td></tr><tr><td><code spellcheck="false">+</code> <code spellcheck="false">-</code> <code spellcheck="false">*</code></td><td>加、减、乘</td><td><code spellcheck="false">a + b</code></td></tr><tr><td><code spellcheck="false">/</code></td><td>除法（整数相除结果截断）</td><td><code spellcheck="false">5 / 2</code> 结果是 <code spellcheck="false">2</code></td></tr><tr><td><code spellcheck="false">%</code></td><td>取余（只能用于整数）</td><td><code spellcheck="false">5 % 2</code> 结果是 <code spellcheck="false">1</code></td></tr><tr><td><code spellcheck="false">++</code></td><td>自增 1（前缀 <code spellcheck="false">++a</code> 先加再用；后缀 <code spellcheck="false">a++</code> 先用再加）</td><td><code spellcheck="false">a++</code> 等价于 <code spellcheck="false">a += 1</code></td></tr><tr><td><code spellcheck="false">--</code></td><td>自减 1</td><td><code spellcheck="false">--a</code></td></tr></tbody></table></figure><h3>关系运算符<a id="关系运算符" class="toc-anchor" name="关系运算符" href="#关系运算符">#</a></h3><figure class="table"><table><tbody><tr><td>运算符</td><td>描述</td><td>示例</td></tr><tr><td><code spellcheck="false">&gt;</code> <code spellcheck="false">&lt;</code> <code spellcheck="false">&gt; =</code> <code spellcheck="false">&lt; =</code></td><td>大于、小于、大于等于、小于等于</td><td>结果为 1（真）或 0（假）</td></tr><tr><td><code spellcheck="false">= =</code></td><td>等于（比较两个值是否相等）</td><td><code spellcheck="false">a = = 3</code></td></tr><tr><td><code spellcheck="false">! =</code></td><td>不等于</td><td><code spellcheck="false">a ! = 0</code></td></tr></tbody></table></figure><aside class="admonition warning"><p>最容易写错：判断相等要用两个等号 <code spellcheck="false">= =</code>，写成一个 <code spellcheck="false">=</code> 就变成赋值了<code spellcheck="false">bool a = 1 = 3;</code>就会出现报错！</p></aside><h3>逻辑运算符<a id="逻辑运算符" class="toc-anchor" name="逻辑运算符" href="#逻辑运算符">#</a></h3><figure class="table"><table><tbody><tr><td>运算符</td><td>描述</td><td>示例</td></tr><tr><td><code spellcheck="false">&amp;&amp;</code></td><td>逻辑与（两边都为真才为真）</td><td><code spellcheck="false">a &gt; 0 &amp;&amp; a &lt; 10</code></td></tr><tr><td><code spellcheck="false">||</code></td><td>逻辑或（一边为真即为真）</td><td><code spellcheck="false">a == 0 || a == 10</code></td></tr><tr><td><code spellcheck="false">!</code></td><td>逻辑非（取反）</td><td><code spellcheck="false">!a</code></td></tr></tbody></table></figure><p>逻辑与和逻辑或有一个特性叫<strong>短路</strong>：<code spellcheck="false">&amp;&amp;</code> 左边为假时，右边根本不会执行；<code spellcheck="false">||</code> 左边为真时，右边也不会执行。这在后面排错时很重要。</p><h3>位运算符<a id="位运算符" class="toc-anchor" name="位运算符" href="#位运算符">#</a></h3><figure class="table"><table><tbody><tr><td>运算符</td><td>描述</td><td>示例</td></tr><tr><td><code spellcheck="false">&amp;</code> <code spellcheck="false">|</code> <code spellcheck="false">^</code> <code spellcheck="false">~</code></td><td>按位与、或、异或、取反（对二进制每一位进行逻辑运算）</td><td><code spellcheck="false">5 &amp; 3</code> = <code spellcheck="false">1</code></td></tr><tr><td><code spellcheck="false">&lt;&lt;</code> <code spellcheck="false">&gt;&gt;</code></td><td>左移、右移（相当于乘/除以 2 的幂）</td><td><code spellcheck="false">1 &lt;&lt; 4</code> = <code spellcheck="false">16</code></td></tr></tbody></table></figure><h3>其他运算符<a id="其他运算符" class="toc-anchor" name="其他运算符" href="#其他运算符">#</a></h3><figure class="table"><table><tbody><tr><td>运算符</td><td>描述</td><td>示例</td></tr><tr><td><code spellcheck="false">?:</code></td><td>条件运算符（三元运算符）</td><td><code spellcheck="false">a &gt; b ? a : b</code> 取较大的</td></tr><tr><td><code spellcheck="false">,</code></td><td>逗号运算符（依次执行，取最后一个的值）</td><td><code spellcheck="false">a = (1, 2);</code> a 为 2</td></tr><tr><td><code spellcheck="false">&amp;</code> <code spellcheck="false">*</code></td><td>取地址 / 解引用（指针章节详解）</td><td>后续章节讲解</td></tr><tr><td><code spellcheck="false">.</code> <code spellcheck="false">-&gt;</code> <code spellcheck="false">[]</code></td><td>成员访问、指针成员访问、下标（结构体/数组章节）</td><td>后续章节讲解</td></tr></tbody></table></figure><p>运算符有优先级：比如 <code spellcheck="false">*</code> 和 <code spellcheck="false">/</code> 高于 <code spellcheck="false">+</code> 和 <code spellcheck="false">-</code>，<code spellcheck="false">&amp;&amp;</code> 高于 <code spellcheck="false">||</code>。拿不准的时候，像数学一样加括号永远不会错，括号的优先级最高。</p><p>不过在编程中，只有小括号，只需要嵌套即可，比如：</p><pre><code class="language-text-x-trilium-auto hljs"><span class="hljs-attribute">int</span> a = ((<span class="hljs-number">1</span>+<span class="hljs-number">2</span>)*<span class="hljs-number">3</span>+<span class="hljs-number">2</span>)*<span class="hljs-number">4</span>;</code></pre><h3>关于三元运算符<a id="关于三元运算符" class="toc-anchor" name="关于三元运算符" href="#关于三元运算符">#</a></h3><p>三元运算符是一个让你更方便的东西，但他看起来有些麻烦。</p><pre><code class="language-text-x-trilium-auto hljs"><span class="hljs-attribute">int</span> a = <span class="hljs-number">10</span> &lt;= <span class="hljs-number">5</span> ? <span class="hljs-number">1</span> : <span class="hljs-number">1</span>&lt;<span class="hljs-number">2</span> ? <span class="hljs-number">0</span> : <span class="hljs-number">3</span> &lt; <span class="hljs-number">4</span> ? <span class="hljs-number">2</span> : <span class="hljs-number">3</span>;</code></pre><p>比如这个，实在是太长，非常难以理解！</p><p>我让我们逐步理解：</p><p>先看最简单的形式：<code spellcheck="false">条件 ? 表达式1 : 表达式2</code>——条件为真时整个式子的值取表达式1，为假时取表达式2。比如 <code spellcheck="false">a &gt; b ? a : b</code> 就是"取较大的那个"，如果<code spellcheck="false">a&gt;b</code>条件达成，就选择左边的，如果<code spellcheck="false">a&lt;b</code>条件不达成，就选择右边的。</p><p>这个例子难懂，是因为它嵌套了三层。三元运算符是<strong>右结合</strong>的（嵌套时会先处理右边的三元），所以它其实等价于加好括号的这样：</p><pre><code class="language-text-x-csrc hljs"><span class="hljs-attribute">int</span> a = (<span class="hljs-number">10</span> &lt;= <span class="hljs-number">5</span> ? <span class="hljs-number">1</span> : (<span class="hljs-number">1</span> &lt; <span class="hljs-number">2</span> ? <span class="hljs-number">0</span> : (<span class="hljs-number">3</span> &lt; <span class="hljs-number">4</span> ? <span class="hljs-number">2</span> : <span class="hljs-number">3</span>)));</code></pre><p>然后从外层往内一层层看：</p><p><strong>第 1 层</strong>：<code spellcheck="false">10 &lt;= 5</code> 是假，所以不取 1，整个式子进入冒号后面的分支。</p><p><strong>第 2 层</strong>：<code spellcheck="false">1 &lt; 2</code> 是真的，所以取 0，后面的 <code spellcheck="false">3 &lt; 4 ? 2 : 3</code> 根本不会被计算（直接跳过）。</p><p><strong>结论</strong>：a 的值为 <code spellcheck="false">0</code>。</p><p>运行验证一下：</p><pre><code class="language-text-x-c-src hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
 <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
-	<span class="hljs-keyword">extern</span> <span class="hljs-type">int</span> c;		<span class="hljs-comment">// 只有声明：c 的类型是 int，定义在别处</span>
-	c = <span class="hljs-number">10</span>;				<span class="hljs-comment">// 定义在此处</span>
-	<span class="hljs-type">int</span> a;				<span class="hljs-comment">// 定义：分配内存，但没有初值</span>
-	<span class="hljs-type">int</span> b = <span class="hljs-number">10</span>;			<span class="hljs-comment">// 定义 + 初始化</span>
-	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>, a);	<span class="hljs-comment">// 未知值（不确定，每次运行可能不一样）</span>
-	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>, b);	<span class="hljs-comment">// 10</span>
-	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>, c);	<span class="hljs-comment">// 100（extern 声明的变量在别处能找到）</span>
+	<span class="hljs-type">int</span> a = <span class="hljs-number">10</span> &lt;= <span class="hljs-number">5</span> ? <span class="hljs-number">1</span> : <span class="hljs-number">1</span> &lt; <span class="hljs-number">2</span> ? <span class="hljs-number">0</span> : <span class="hljs-number">3</span> &lt; <span class="hljs-number">4</span> ? <span class="hljs-number">2</span> : <span class="hljs-number">3</span>;
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>, a);	<span class="hljs-comment">// 输出 0</span>
 	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
-}</code></pre><p>运行结果的前两行类似这样：</p><pre><code class="language-text-x-trilium-auto hljs"><span class="hljs-number">4201204</span>	（垃圾值，你的机器上可能是别的数）
-<span class="hljs-number">10</span></code></pre><h2>未初始化值<a id="未初始化值" class="toc-anchor" name="未初始化值" href="#未初始化值">#</a></h2><p>没有初始化的局部变量，内存里是之前某个程序留下的残留数据。</p><p>计算机可以做到数据恢复的原因其实就是：计算机删除数据时并没有清空数据，所有数据都有标记，哪里到哪里是什么数据，而删除只是取消标记，下一次要用的时候直接覆盖，这就是为什么这个值是随机的。（不过有时可以把他当作一个随机数使用，但仍然不建议使用他作为随机数，因为你无法给出具体的概率是某个值。）</p><p>所以直接使用未初始化的变量，结果不可预测：</p><aside class="admonition warning"><p>用变量之前，一定要保证它已经被赋值。这是初学者最容易犯的错误：忘记初始化就用，程序表现出"时好时坏"的诡异行为，其实只是在使用不可预测的数值。</p></aside><p>有一个例外：<strong>全局变量</strong>（写在所有函数外面的变量）和用 <code spellcheck="false">static</code> 修饰的变量，即使不初始化也自动是 0。</p><p>不过暂时不用担心，我们还没有学到这里。</p><h2>为什么要保留"不初始化"的自由<a id="为什么要保留-不初始化-的自由" class="toc-anchor" name="为什么要保留-不初始化-的自由" href="#为什么要保留-不初始化-的自由">#</a></h2><p>因为有时候变量的值马上就会来（比如下一秒就用 <code spellcheck="false">scanf</code> 读入），这时先给一个初值反而多了一次无意义的写入，浪费性能。正如开头所说，C 和 C++ 把"什么时候分配、什么时候赋值"的决定权交给你。</p><p>但自由也意味着责任：<strong>用之前最好确定它有值</strong>。</p><h2>C++ 的初始化写法补充<a id="c-的初始化写法补充" class="toc-anchor" name="c-的初始化写法补充" href="#c-的初始化写法补充">#</a></h2><p>C++ 除了 <code spellcheck="false">int x = 10;</code> 这种写法，还有两种：</p><pre><code class="language-text-x-c-src hljs"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">x</span><span class="hljs-params">(<span class="hljs-number">10</span>)</span></span>;	<span class="hljs-comment">// 直接初始化（C++ 风格）</span>
-<span class="hljs-type">int</span> y{<span class="hljs-number">10</span>};	<span class="hljs-comment">// 列表初始化（C++11 起推荐，类型不对会报错）</span></code></pre><p><code spellcheck="false">int y{10.5}</code> 会编译报错（小数不能塞进整数），而 <code spellcheck="false">int x = 10.5;</code> 只会数据丢失然后变成10，这也是 C++ 推荐花括号写法的原因。</p><p>具体这个初始化列表等初始化方法更具体的语法，我们会在后续函数或类的章节讲解到。</p><h2>常量<a id="常量" class="toc-anchor" name="常量" href="#常量">#</a></h2><p>2.2 里我们看到的常量都是"没有名字"的字面量（比如 <code spellcheck="false">100</code>、<code spellcheck="false">3.14f</code>）。如果同一个值要在程序里反复使用，每次都写死数字会很难维护。</p><p>比如成绩的最大分 100 在代码里出现十几次，改一次标准就要改十几次。这时可以用 <code spellcheck="false">const</code> 关键字给常量起一个名字。</p><h3>const 的声明、定义与初始化<a id="const-的声明-定义与初始化" class="toc-anchor" name="const-的声明-定义与初始化" href="#const-的声明-定义与初始化">#</a></h3><p>const 常量的写法和变量几乎一样，只是在类型前面加一个 <code spellcheck="false">const</code>：</p><pre><code class="language-text-x-c-src hljs"><span class="hljs-keyword">const</span> <span class="hljs-built_in">int</span> MAX = <span class="hljs-number">100</span>;	<span class="hljs-comment">// 声明 + 定义 + 初始化</span></code></pre><p>它和变量的区别在于两条硬性规则：</p><p><strong>1. 必须初始化:</strong> <code spellcheck="false">const int MAX;</code> 这种"只声明不初始化"的写法是非法的，因为之后再也不允许给它赋值，没有初值就永远没有值了。</p><p><strong>2. 初始化之后不能再修改</strong></p><pre><code class="language-text-x-c-src hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+}</code></pre><p>你完全可以自己再改几个条件，体会里面的"跳过"行为。</p><h4>建议<a id="建议" class="toc-anchor" name="建议" href="#建议">#</a></h4><p>嵌套三元虽然合法，但可读性很差，自己过两天都看不懂。建议：<strong>最多嵌套一层，必要时加括号</strong>；如果逻辑再复杂，等学完 <code spellcheck="false">if-else</code> 后用 <code spellcheck="false">if-else</code> 写，代码会清楚得多。</p><h3>自增加和自减少<a id="自增加和自减少" class="toc-anchor" name="自增加和自减少" href="#自增加和自减少">#</a></h3><p><code spellcheck="false">++</code> 让变量加 1，<code spellcheck="false">--</code> 让变量减 1，单独使用时很简单：</p><pre><code class="language-text-x-csrc hljs"><span class="hljs-variable">a</span>++;	<span class="hljs-comment">// 等价于 a = a + 1;（也就是 a += 1;）</span>
+<span class="hljs-variable">a</span>--;	<span class="hljs-comment">// 等价于 a = a - 1;</span></code></pre><p>但 <code spellcheck="false">++</code> 和 <code spellcheck="false">--</code> 可以放在变量的<strong>前面</strong>（前缀）或<strong>后面</strong>（后缀），两种写法在"参与表达式计算"时结果不一样：</p><figure class="table"><table><tbody><tr><td>写法</td><td>表达式的值</td><td>之后变量的值</td></tr><tr><td><code spellcheck="false">++a</code>（前缀）</td><td>先加 1 再取用，得到<strong>新值</strong></td><td>a + 1</td></tr><tr><td><code spellcheck="false">a++</code>（后缀）</td><td>先取用再 +1，得到<strong>旧值</strong></td><td>a + 1</td></tr><tr><td><code spellcheck="false">--a</code>（前缀）</td><td>先减 1 再取用，得到<strong>新值</strong></td><td>a - 1</td></tr><tr><td><code spellcheck="false">a--</code>（后缀）</td><td>先取用再 -1，得到<strong>旧值</strong></td><td>a - 1</td></tr></tbody></table></figure><p>一句话记忆：<strong>前缀"先变后用"，后缀"先用后变"</strong>。</p><h4>示例<a id="示例" class="toc-anchor" name="示例" href="#示例">#</a></h4><pre><code class="language-text-x-csrc hljs"><span class="hljs-comment">#include &lt;stdio.h&gt;</span>
+<span class="hljs-keyword">int</span> main(){
+	<span class="hljs-keyword">int</span> a = <span class="hljs-number">5</span>;
+	<span class="hljs-keyword">printf</span>(<span class="hljs-string">&quot;<span class="hljs-variable">%d</span> &quot;</span>, a++);	<span class="hljs-regexp">//</span> 输出 <span class="hljs-number">5</span>（先用旧值），之后 a 变成 <span class="hljs-number">6</span>
+	<span class="hljs-keyword">printf</span>(<span class="hljs-string">&quot;<span class="hljs-variable">%d</span> &quot;</span>, a);	<span class="hljs-regexp">//</span> 输出 <span class="hljs-number">6</span>
+	<span class="hljs-keyword">printf</span>(<span class="hljs-string">&quot;<span class="hljs-variable">%d</span> &quot;</span>, ++a);	<span class="hljs-regexp">//</span> 先变成 <span class="hljs-number">7</span> 再输出 <span class="hljs-number">7</span>
+	<span class="hljs-keyword">printf</span>(<span class="hljs-string">&quot;<span class="hljs-variable">%d</span> &quot;</span>, a);	<span class="hljs-regexp">//</span> 输出 <span class="hljs-number">7</span>
+	<span class="hljs-keyword">printf</span>(<span class="hljs-string">&quot;<span class="hljs-variable">%d</span> &quot;</span>, --a);	<span class="hljs-regexp">//</span> 先变成 <span class="hljs-number">6</span> 再输出 <span class="hljs-number">6</span>
+	<span class="hljs-keyword">printf</span>(<span class="hljs-string">&quot;<span class="hljs-variable">%d</span> &quot;</span>, a--);	<span class="hljs-regexp">//</span> 输出 <span class="hljs-number">6</span>（旧值），之后 a 变成 <span class="hljs-number">5</span>
+	<span class="hljs-keyword">printf</span>(<span class="hljs-string">&quot;<span class="hljs-variable">%d</span>&quot;</span>, a);	<span class="hljs-regexp">//</span> 输出 <span class="hljs-number">5</span>
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre><p>运行结果：<code spellcheck="false">5 6 7 7 6 6 5</code>。建议你亲手运行一遍，并把前后缀互换看看输出怎么变。</p><h4>两个常见问题<a id="两个常见问题" class="toc-anchor" name="两个常见问题" href="#两个常见问题">#</a></h4><p><strong>1. 单独一行写 a++; 和 ++a; 有区别吗？</strong>——没有区别。只有表达式的值被"使用"时（比如传给 printf、赋给别的变量），前后缀的差别才会显现。</p><p><strong>2. 可以连着写 a++++a 吗？</strong>——不可以，而且在一个表达式中多次修改同一个变量（比如 <code spellcheck="false">b = (a++) + (a++);</code>）是<strong>未定义行为</strong>，不同的编译器可能给出不同的结果，永远不要这么写。</p><p>后面学习循环时，<code spellcheck="false">i++</code> 会是你写的最多的代码之一。</p><h2>小结<a id="小结" class="toc-anchor" name="小结" href="#小结">#</a></h2><p>这一节我们学习了更多的运算符和完整的赋值方案。</p><p>但是我们还有许多问题，比如如何创建一万个变量，一个个去创建太慢了，我们将学习数组。</p><p>下一节：<a class="reference-link type-text" href="2.5%20%E6%95%B0%E7%BB%84.html"><span><span class="tn-icon bx bx-note"></span>2.5 数组</span></a></p><h2>习题<a id="习题" class="toc-anchor" name="习题" href="#习题">#</a></h2><h3>1.输出自己的身高<a id="1-输出自己的身高" class="toc-anchor" name="1-输出自己的身高" href="#1-输出自己的身高">#</a></h3><p>输入你的身高，用厘米表示。</p><p>然后输出用米、分米、厘米添加身高单位。</p><p>对于所有输入数据，保证只会是整数，且<span class="math-tex">\(\ge100，\le999\)</span></p><p>题目输入案例：<code spellcheck="false">175</code></p><p>输出结果案例：<code spellcheck="false">1米7分米5厘米</code></p><p>本题推荐最大时长：8分钟</p><details class="trilium-collapsible"><summary>答案</summary><h4>讲解<a id="讲解" class="toc-anchor" name="讲解" href="#讲解">#</a></h4><p>这题有非常多的解法，看个人喜好。</p><p>第一种解法是用表达式运算，通过精度丢失完成任务。</p><p>第二种是使用字符的方式完成答案，因为我们题目能保证只有三位数。</p><h4>解法1<a id="解法1" class="toc-anchor" name="解法1" href="#解法1">#</a></h4><h5>C<a id="c" class="toc-anchor" name="c" href="#c">#</a></h5><pre><code class="language-text-x-csrc hljs"><span class="hljs-comment">#include &lt;stdio.h&gt;</span>
+<span class="hljs-keyword">int</span> main(){
+	<span class="hljs-keyword">int</span> <span class="hljs-keyword">length</span>;
+	scanf(<span class="hljs-string">&quot;<span class="hljs-variable">%d</span>&quot;</span>,&amp;<span class="hljs-keyword">length</span>);
+	<span class="hljs-keyword">int</span> m = <span class="hljs-keyword">length</span> / <span class="hljs-number">100</span>; 				<span class="hljs-regexp">//</span> 分米和厘米直接被化为小数精度丢失了
+	<span class="hljs-keyword">int</span> dm = <span class="hljs-keyword">length</span> / <span class="hljs-number">10</span> - m*<span class="hljs-number">10</span>;		<span class="hljs-regexp">//</span> 将厘米精度丢失掉，然后减去米即可
+	<span class="hljs-keyword">int</span> cm = <span class="hljs-keyword">length</span> % <span class="hljs-number">10</span>;				<span class="hljs-regexp">//</span> <span class="hljs-number">10</span>以上的数都能被整除，刚好剩下的是厘米
+	<span class="hljs-keyword">printf</span>(<span class="hljs-string">&quot;<span class="hljs-variable">%d</span>米<span class="hljs-variable">%d</span>分米<span class="hljs-variable">%d</span>厘米&quot;</span>,m,dm,cm);	<span class="hljs-regexp">//</span> 按要求输出
+}</code></pre><h5>C++<a id="c-1" class="toc-anchor" name="c-1" href="#c-1">#</a></h5><pre><code class="language-text-x-c-src hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
 <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
-	<span class="hljs-type">const</span> <span class="hljs-type">int</span> MAX = <span class="hljs-number">100</span>;	<span class="hljs-comment">// 正确：定义并初始化</span>
-	MAX = <span class="hljs-number">200</span>;			<span class="hljs-comment">// 错误：常量不能被修改（编译不过）</span>
-	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>, MAX);
-	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
-}</code></pre><p>把上面代码中 <code spellcheck="false">MAX = 200;</code> 那行注释掉，程序才能编译通过，才能运行。</p><aside class="admonition note"><p>上一节课我们学习到的获取一个类型最大值和最小值的方法，其实比如<code spellcheck="false">INT_MIN</code>他就是一个常量，只不过它使用了我们暂时还没学到的常量声明方法。</p></aside><h3>两种等效写法<a id="两种等效写法" class="toc-anchor" name="两种等效写法" href="#两种等效写法">#</a></h3><p><code spellcheck="false">const int MAX = 100;</code> 和 <code spellcheck="false">int const MAX = 100;</code> 完全等价，按你的习惯选择一种即可（第一个更常见，所以推荐第一个）。</p><h2>小结<a id="小结" class="toc-anchor" name="小结" href="#小结">#</a></h2><p>这一节学习了对内存的把控，但仍然不够，我们有时可能会需要中途修改变量，就引申出了非常多东西，我们下一节继续。</p><p>下一节：<a class="reference-link type-text" href="2.4%20%E8%B5%8B%E5%80%BC%E4%B8%8E%E6%89%80%E6%9C%89%E8%BF%90%E7%AE%97%E7%AC%A6.html"><span><span class="tn-icon bx bx-note"></span>2.4 赋值与所有运算符</span></a></p>
+	<span class="hljs-type">int</span> length;
+	std::cin &gt;&gt; length;
+	<span class="hljs-type">int</span> m = length / <span class="hljs-number">100</span>; 				<span class="hljs-comment">// 分米和厘米直接被化为小数精度丢失了</span>
+	<span class="hljs-type">int</span> dm = length / <span class="hljs-number">10</span> - m*<span class="hljs-number">10</span>;		<span class="hljs-comment">// 将厘米精度丢失掉，然后减去米即可</span>
+	<span class="hljs-type">int</span> cm = length % <span class="hljs-number">10</span>;				<span class="hljs-comment">// 10以上的数都能被整除，刚好剩下的是厘米</span>
+	std::cout &lt;&lt; m &lt;&lt; <span class="hljs-string">&quot;米&quot;</span> &lt;&lt; dm &lt;&lt; <span class="hljs-string">&quot;分米&quot;</span> &lt;&lt; cm &lt;&lt; <span class="hljs-string">&quot;厘米&quot;</span>);	<span class="hljs-comment">// 按要求输出</span>
+}</code></pre><h4>解法2<a id="解法2" class="toc-anchor" name="解法2" href="#解法2">#</a></h4><h5>C<a id="c-2" class="toc-anchor" name="c-2" href="#c-2">#</a></h5><pre><code class="language-text-x-csrc hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+	<span class="hljs-type">char</span> m,dm,cm;
+    <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%c%c%c&quot;</span>,&amp;m,&amp;dm,&amp;cm);			<span class="hljs-comment">// 直接格式化输入</span>
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%c米%c分米%c厘米&quot;</span>,m,dm,cm);	<span class="hljs-comment">// 直接格式化输出</span>
+}</code></pre><h5>C++<a id="c-3" class="toc-anchor" name="c-3" href="#c-3">#</a></h5><pre><code class="language-text-x-c-src hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+	<span class="hljs-type">char</span> m,dm,cm;
+    std::cin &gt;&gt; m &gt;&gt; dm &gt;&gt; cm;
+    std::cout &lt;&lt; m &lt;&lt; <span class="hljs-string">&quot;米&quot;</span> &lt;&lt; dm &lt;&lt; <span class="hljs-string">&quot;分米&quot;</span> &lt;&lt; cm &lt;&lt; <span class="hljs-string">&quot;厘米&quot;</span>;
+}</code></pre></details><h3>2.输出最大数<a id="2-输出最大数" class="toc-anchor" name="2-输出最大数" href="#2-输出最大数">#</a></h3><p>输入两个整数，输出其中的最大数。</p><p>输入的所有数字<span class="math-tex">\(&gt;-10^{11}且&lt;10^{11}\)</span>。</p><p>题目输入案例：<code spellcheck="false">100 200</code></p><p>输出结果案例：<code spellcheck="false">200</code></p><p>本题推荐最大时长：8分钟</p><details class="trilium-collapsible"><summary>答案</summary><h4>讲解<a id="讲解-1" class="toc-anchor" name="讲解-1" href="#讲解-1">#</a></h4><p>这题主要坑在于数字不能用<code spellcheck="false">int</code>类型，不够大！其他的就是考察三元运算符。</p><h4>C<a id="c-4" class="toc-anchor" name="c-4" href="#c-4">#</a></h4><pre><code class="language-text-x-csrc hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+	<span class="hljs-type">long</span> <span class="hljs-type">long</span> a,b;
+    <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%lld %lld&quot;</span>,&amp;a,&amp;b);
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%lld&quot;</span>,a&gt;&gt;b?a:b);
+}</code></pre><h4>C++<a id="c-5" class="toc-anchor" name="c-5" href="#c-5">#</a></h4><pre><code class="language-text-x-c-src hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+	<span class="hljs-type">long</span> <span class="hljs-type">long</span> a,b;
+    std::cin &gt;&gt; a &gt;&gt; b;
+    std::cout &lt;&lt; (a&gt;&gt;b?a:b);
+}</code></pre></details>
                 
                 
             </div>
@@ -2048,8 +2093,8 @@
                     
 
 <div class="navigation">
-    <a class="previous" href="2.2%20%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B.html">2.2 基本类型</a>
-    <a class="next" href="2.4%20%E8%B5%8B%E5%80%BC%E4%B8%8E%E6%89%80%E6%9C%89%E8%BF%90%E7%AE%97%E7%AC%A6.html">2.4 赋值与所有运算符</a>
+    <a class="previous" href="2.3%20%E5%A3%B0%E6%98%8E%E3%80%81%E5%AE%9A%E4%B9%89%E4%B8%8E%E5%88%9D%E5%A7%8B%E5%8C%96.html">2.3 声明、定义与初始化</a>
+    <a class="next" href="2.5%20%E6%95%B0%E7%BB%84.html">2.5 数组</a>
 </div>
                 
 
@@ -2064,8 +2109,121 @@
                         
 
 <li>
-    <a href="#三个概念的区别">
-        <span>三个概念的区别</span>
+    <a href="#基础语法">
+        <span>基础语法</span>
+    </a>
+
+    
+</li>
+
+                    
+                        
+
+<li>
+    <a href="#所有运算符">
+        <span>所有运算符</span>
+    </a>
+
+    
+        <ul>
+            
+                
+
+<li>
+    <a href="#赋值运算符">
+        <span>赋值运算符</span>
+    </a>
+
+    
+</li>
+
+            
+                
+
+<li>
+    <a href="#算术运算符">
+        <span>算术运算符</span>
+    </a>
+
+    
+</li>
+
+            
+                
+
+<li>
+    <a href="#关系运算符">
+        <span>关系运算符</span>
+    </a>
+
+    
+</li>
+
+            
+                
+
+<li>
+    <a href="#逻辑运算符">
+        <span>逻辑运算符</span>
+    </a>
+
+    
+</li>
+
+            
+                
+
+<li>
+    <a href="#位运算符">
+        <span>位运算符</span>
+    </a>
+
+    
+</li>
+
+            
+                
+
+<li>
+    <a href="#其他运算符">
+        <span>其他运算符</span>
+    </a>
+
+    
+</li>
+
+            
+                
+
+<li>
+    <a href="#关于三元运算符">
+        <span>关于三元运算符</span>
+    </a>
+
+    
+        <ul>
+            
+                
+
+<li>
+    <a href="#建议">
+        <span>建议</span>
+    </a>
+
+    
+</li>
+
+            
+        </ul>
+    
+</li>
+
+            
+                
+
+<li>
+    <a href="#自增加和自减少">
+        <span>自增加和自减少</span>
     </a>
 
     
@@ -2082,72 +2240,18 @@
 </li>
 
             
+                
+
+<li>
+    <a href="#两个常见问题">
+        <span>两个常见问题</span>
+    </a>
+
+    
+</li>
+
+            
         </ul>
-    
-</li>
-
-                    
-                        
-
-<li>
-    <a href="#未初始化值">
-        <span>未初始化值</span>
-    </a>
-
-    
-</li>
-
-                    
-                        
-
-<li>
-    <a href="#为什么要保留-不初始化-的自由">
-        <span>为什么要保留&#34;不初始化&#34;的自由</span>
-    </a>
-
-    
-</li>
-
-                    
-                        
-
-<li>
-    <a href="#c-的初始化写法补充">
-        <span>C++ 的初始化写法补充</span>
-    </a>
-
-    
-</li>
-
-                    
-                        
-
-<li>
-    <a href="#常量">
-        <span>常量</span>
-    </a>
-
-    
-        <ul>
-            
-                
-
-<li>
-    <a href="#const-的声明-定义与初始化">
-        <span>const 的声明、定义与初始化</span>
-    </a>
-
-    
-</li>
-
-            
-                
-
-<li>
-    <a href="#两种等效写法">
-        <span>两种等效写法</span>
-    </a>
-
     
 </li>
 
@@ -2164,6 +2268,169 @@
         <span>小结</span>
     </a>
 
+    
+</li>
+
+                    
+                        
+
+<li>
+    <a href="#习题">
+        <span>习题</span>
+    </a>
+
+    
+        <ul>
+            
+                
+
+<li>
+    <a href="#1-输出自己的身高">
+        <span>1.输出自己的身高</span>
+    </a>
+
+    
+        <ul>
+            
+                
+
+<li>
+    <a href="#讲解">
+        <span>讲解</span>
+    </a>
+
+    
+</li>
+
+            
+                
+
+<li>
+    <a href="#解法1">
+        <span>解法1</span>
+    </a>
+
+    
+        <ul>
+            
+                
+
+<li>
+    <a href="#c">
+        <span>C</span>
+    </a>
+
+    
+</li>
+
+            
+                
+
+<li>
+    <a href="#c-1">
+        <span>C++</span>
+    </a>
+
+    
+</li>
+
+            
+        </ul>
+    
+</li>
+
+            
+                
+
+<li>
+    <a href="#解法2">
+        <span>解法2</span>
+    </a>
+
+    
+        <ul>
+            
+                
+
+<li>
+    <a href="#c-2">
+        <span>C</span>
+    </a>
+
+    
+</li>
+
+            
+                
+
+<li>
+    <a href="#c-3">
+        <span>C++</span>
+    </a>
+
+    
+</li>
+
+            
+        </ul>
+    
+</li>
+
+            
+        </ul>
+    
+</li>
+
+            
+                
+
+<li>
+    <a href="#2-输出最大数">
+        <span>2.输出最大数</span>
+    </a>
+
+    
+        <ul>
+            
+                
+
+<li>
+    <a href="#讲解-1">
+        <span>讲解</span>
+    </a>
+
+    
+</li>
+
+            
+                
+
+<li>
+    <a href="#c-4">
+        <span>C</span>
+    </a>
+
+    
+</li>
+
+            
+                
+
+<li>
+    <a href="#c-5">
+        <span>C++</span>
+    </a>
+
+    
+</li>
+
+            
+        </ul>
+    
+</li>
+
+            
+        </ul>
     
 </li>
 
