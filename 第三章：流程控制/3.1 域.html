@@ -2047,13 +2047,7 @@
 	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>, a);	<span class="hljs-comment">// 10：走出内层块，外层 a 回来了</span>
 	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
 }</code></pre><p>输出 <code spellcheck="false">5</code> 和 <code spellcheck="false">10</code>。遮蔽本身合法，但容易让读代码的人犯晕，命名时尽量避开。</p><h2>先声明，后使用<a id="先声明-后使用" class="toc-anchor" name="先声明-后使用" href="#先声明-后使用">#</a></h2><p>变量必须先声明才能用（从声明那一行开始进入域）：</p><pre><code class="language-text-x-c-src hljs"><span class="hljs-keyword">printf</span>(<span class="hljs-string">&quot;<span class="hljs-variable">%d</span>\n&quot;</span>, <span class="hljs-keyword">x</span>);	<span class="hljs-regexp">//</span> 错误！还没声明
-<span class="hljs-keyword">int</span> <span class="hljs-keyword">x</span> = <span class="hljs-number">3</span>;			<span class="hljs-regexp">//</span> 声明从这里开始</code></pre><p>这是初学者常犯的错误：把使用写在了声明前面。</p><h2>域与生存期<a id="域与生存期" class="toc-anchor" name="域与生存期" href="#域与生存期">#</a></h2><p>两个容易混的概念：</p><figure class="table"><table><tbody><tr><td>概念</td><td>回答的问题</td><td>例子</td></tr><tr><td>域（作用域）</td><td>代码的哪些地方能<strong>看见</strong>这个名字</td><td>块内的 b 只在本块可见</td></tr><tr><td>生存期（存储期）</td><td>变量在内存里<strong>活多久</strong></td><td>局部变量在函数结束时消亡，全局变量活到程序结束</td></tr></tbody></table></figure><p>两者常常一起出现（块内变量"块结束就死"），但它们是两个不同维度的问题。</p><h2>C++ 补充：域解析运算符 ::<a id="c-补充-域解析运算符" class="toc-anchor" name="c-补充-域解析运算符" href="#c-补充-域解析运算符">#</a></h2><p>C++ 里访问全局变量可以显式写 <code spellcheck="false">::g</code>（冒号冒号，域解析运算符），即使被遮蔽也能拿到外层的：</p><pre><code class="language-text-x-c-src hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
-<span class="hljs-type">int</span> g = <span class="hljs-number">100</span>;
-<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
-	<span class="hljs-type">int</span> g = <span class="hljs-number">5</span>;
-	std::cout &lt;&lt; g &lt;&lt; <span class="hljs-string">&quot; &quot;</span> &lt;&lt; ::g &lt;&lt; std::endl;	<span class="hljs-comment">// 5 100</span>
-	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
-}</code></pre><p>另外，C++ 还有命名空间域（namespace）、类域、枚举域（<code spellcheck="false">enum class</code> 的成员必须写 <code spellcheck="false">Color::Red</code>），会在后续章节展开。</p><h2>小结<a id="小结" class="toc-anchor" name="小结" href="#小结">#</a></h2><p>域决定了名字能被谁看见：块内变量只在块内有效，全局变量全文件可见；内层可以遮蔽外层；先声明后使用。学完这一节，第三章后面的 <code spellcheck="false">if</code> 和循环里"变量写在哪、能用在哪"的问题就不会再踩坑了。</p><h2>习题<a id="习题" class="toc-anchor" name="习题" href="#习题">#</a></h2><h3>1. 猜输出<a id="1-猜输出" class="toc-anchor" name="1-猜输出" href="#1-猜输出">#</a></h3><p>不运行代码，说出下面程序的输出：</p><pre><code class="language-text-x-c-src hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+<span class="hljs-keyword">int</span> <span class="hljs-keyword">x</span> = <span class="hljs-number">3</span>;			<span class="hljs-regexp">//</span> 声明从这里开始</code></pre><p>这是初学者常犯的错误，喜欢把使用写在了声明前面。</p><p>两者常常一起出现（块内变量"块结束就死"），但它们是两个不同维度的问题。</p><h2>小结<a id="小结" class="toc-anchor" name="小结" href="#小结">#</a></h2><p>域决定了名字能被谁看见：块内变量只在块内有效，全局变量全文件可见；内层可以遮蔽外层；先声明后使用。学完这一节，第三章后面的 <code spellcheck="false">if</code> 和循环里"变量写在哪、能用在哪"的问题就不会再踩坑了。</p><h2>习题<a id="习题" class="toc-anchor" name="习题" href="#习题">#</a></h2><h3>1. 猜输出<a id="1-猜输出" class="toc-anchor" name="1-猜输出" href="#1-猜输出">#</a></h3><p>不运行代码，说出下面程序的输出：</p><pre><code class="language-text-x-c-src hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
 <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
 	<span class="hljs-type">int</span> x = <span class="hljs-number">1</span>;
 	{
@@ -2136,28 +2130,6 @@
 <li>
     <a href="#先声明-后使用">
         <span>先声明，后使用</span>
-    </a>
-
-    
-</li>
-
-                    
-                        
-
-<li>
-    <a href="#域与生存期">
-        <span>域与生存期</span>
-    </a>
-
-    
-</li>
-
-                    
-                        
-
-<li>
-    <a href="#c-补充-域解析运算符">
-        <span>C++ 补充：域解析运算符 ::</span>
     </a>
 
     
