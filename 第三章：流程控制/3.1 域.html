@@ -2016,7 +2016,7 @@
                     <h1 id="title">3.1 域</h1>
                 
                     
-                    <p>每个变量都有自己的<strong>生存域</strong>，他决定变量什么时候被删除，什么地方可以用什么地方不可用，这个范围就叫<strong>域</strong>（作用域，scope）。理解域，是读懂一切代码的前提。</p><h2>块域<a id="块域" class="toc-anchor" name="块域" href="#块域">#</a></h2><p><strong>块</strong>就是一对花括号<code spellcheck="false">{ }</code>（函数体也是块）。在块里面声明的变量，只在这个块里有效，出了块就"消失"了：</p><pre><code class="language-text-x-c-src hljs"><span class="hljs-comment">#include &lt;stdio.h&gt;</span>
+                    <p>每个变量都有自己的<strong>生存域</strong>，它决定变量什么时候被删除，什么地方可以用什么地方不可用，这个范围就叫<strong>域</strong>（作用域，scope）。理解域，是读懂一切代码的前提。</p><h2>块域<a id="块域" class="toc-anchor" name="块域" href="#块域">#</a></h2><p><strong>块</strong>就是一对花括号<code spellcheck="false">{ }</code>（函数体也是块）。在块里面声明的变量，只在这个块里有效，出了块就"消失"了：</p><pre><code class="language-text-x-c-src hljs"><span class="hljs-comment">#include &lt;stdio.h&gt;</span>
 <span class="hljs-keyword">int</span> main(){	<span class="hljs-regexp">//</span> 这里其实也是域的开始
 	<span class="hljs-keyword">int</span> a = <span class="hljs-number">10</span>;		<span class="hljs-regexp">//</span> main 的块域内
 	{	<span class="hljs-regexp">//</span> 直接创建一个域
@@ -2026,7 +2026,7 @@
 	// <span class="hljs-keyword">printf</span>(<span class="hljs-string">&quot;<span class="hljs-variable">%d</span>&quot;</span>, b);	<span class="hljs-regexp">//</span> 错误！b 走出它的域，已经不存在了
 	<span class="hljs-keyword">printf</span>(<span class="hljs-string">&quot;<span class="hljs-variable">%d</span>\n&quot;</span>, a);	<span class="hljs-regexp">//</span> a 还在
 	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
-}</code></pre><p>你可以试试把注释掉的 <code spellcheck="false">printf("%d", b)</code> 放出来，编译器会直接报错：<code spellcheck="false">b</code> 未声明。因为他已经被删除了。</p><h2>文件域（全局变量）<a id="文件域-全局变量" class="toc-anchor" name="文件域-全局变量" href="#文件域-全局变量">#</a></h2><p>不再任何域里的变量是<strong>全局变量</strong>，它的域从声明那一行开始，一直到文件末尾，在后续我们无论学到什么，全局变量只要在这个文件里都行：</p><pre><code class="language-text-x-c-src hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+}</code></pre><p>你可以试试把注释掉的 <code spellcheck="false">printf("%d", b)</code> 放出来，编译器会直接报错：<code spellcheck="false">b</code> 未声明。因为它已经被删除了。</p><h2>文件域（全局变量）<a id="文件域-全局变量" class="toc-anchor" name="文件域-全局变量" href="#文件域-全局变量">#</a></h2><p>不在任何域里的变量是<strong>全局变量</strong>，它的域从声明那一行开始，一直到文件末尾，在后续我们无论学到什么，全局变量只要在这个文件里都行：</p><pre><code class="language-text-x-c-src hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
 <span class="hljs-type">int</span> g = <span class="hljs-number">100</span>;	<span class="hljs-comment">// 文件域：全文件可见</span>
 
 <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">say</span><span class="hljs-params">()</span></span>{
