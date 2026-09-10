@@ -45,7 +45,7 @@
 					"title": "第一章：前置知识概述",
 					"notePosition": 10,
 					"prefix": null,
-					"isExpanded": false,
+					"isExpanded": true,
 					"type": "text",
 					"mime": "text/html",
 					"attributes": [
@@ -353,7 +353,7 @@
 					"title": "第三章：流程控制",
 					"notePosition": 40,
 					"prefix": null,
-					"isExpanded": true,
+					"isExpanded": false,
 					"type": "text",
 					"mime": "text/html",
 					"attributes": [
