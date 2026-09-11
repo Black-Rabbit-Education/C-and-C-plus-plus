@@ -45,7 +45,7 @@
 					"title": "第一章：前置知识概述",
 					"notePosition": 10,
 					"prefix": null,
-					"isExpanded": true,
+					"isExpanded": false,
 					"type": "text",
 					"mime": "text/html",
 					"attributes": [
@@ -182,7 +182,7 @@
 					"title": "第二章：基本变量类型",
 					"notePosition": 20,
 					"prefix": null,
-					"isExpanded": true,
+					"isExpanded": false,
 					"type": "text",
 					"mime": "text/html",
 					"attributes": [
@@ -353,7 +353,7 @@
 					"title": "第三章：流程控制",
 					"notePosition": 40,
 					"prefix": null,
-					"isExpanded": false,
+					"isExpanded": true,
 					"type": "text",
 					"mime": "text/html",
 					"attributes": [
@@ -363,6 +363,20 @@
 							"value": "kDlnCqOQKJ7H",
 							"isInheritable": false,
 							"position": 10
+						},
+						{
+							"type": "relation",
+							"name": "internalLink",
+							"value": "c4WPJDHAEIZ6",
+							"isInheritable": false,
+							"position": 20
+						},
+						{
+							"type": "relation",
+							"name": "internalLink",
+							"value": "iEaIb7tlE5tu",
+							"isInheritable": false,
+							"position": 30
 						}
 					],
 					"format": "html",
@@ -384,9 +398,63 @@
 							"isExpanded": false,
 							"type": "text",
 							"mime": "text/html",
-							"attributes": [],
+							"attributes": [
+								{
+									"type": "relation",
+									"name": "internalLink",
+									"value": "c4WPJDHAEIZ6",
+									"isInheritable": false,
+									"position": 10
+								}
+							],
 							"format": "html",
 							"dataFileName": "3.1 域.html",
+							"attachments": []
+						},
+						{
+							"isClone": false,
+							"noteId": "c4WPJDHAEIZ6",
+							"notePath": [
+								"3f0LOwtZ3I9T",
+								"iVI7mMUeLHrm",
+								"c4WPJDHAEIZ6"
+							],
+							"title": "3.2 if语句",
+							"notePosition": 20,
+							"prefix": null,
+							"isExpanded": false,
+							"type": "text",
+							"mime": "text/html",
+							"attributes": [
+								{
+									"type": "relation",
+									"name": "internalLink",
+									"value": "iEaIb7tlE5tu",
+									"isInheritable": false,
+									"position": 10
+								}
+							],
+							"format": "html",
+							"dataFileName": "3.2 if语句.html",
+							"attachments": []
+						},
+						{
+							"isClone": false,
+							"noteId": "iEaIb7tlE5tu",
+							"notePath": [
+								"3f0LOwtZ3I9T",
+								"iVI7mMUeLHrm",
+								"iEaIb7tlE5tu"
+							],
+							"title": "3.3 switch语句",
+							"notePosition": 30,
+							"prefix": null,
+							"isExpanded": false,
+							"type": "text",
+							"mime": "text/html",
+							"attributes": [],
+							"format": "html",
+							"dataFileName": "3.3 switch语句.html",
 							"attachments": []
 						}
 					]

@@ -1997,6 +1997,38 @@
 
         </li>
     
+    
+        <li class="item">
+            
+
+    
+    <a class="type-text" href="3.2%20if%E8%AF%AD%E5%8F%A5.html">
+        
+        <span><i class="tn-icon bx bx-note"></i> 3.2 if语句</span>
+    </a>
+
+
+
+
+
+        </li>
+    
+    
+        <li class="item">
+            
+
+    
+    <a class="type-text" href="3.3%20switch%E8%AF%AD%E5%8F%A5.html">
+        
+        <span><i class="tn-icon bx bx-note"></i> 3.3 switch语句</span>
+    </a>
+
+
+
+
+
+        </li>
+    
 </ul>
 
 
@@ -2016,17 +2048,17 @@
                     <h1 id="title">3.1 域</h1>
                 
                     
-                    <p>每个变量都有自己的<strong>生存域</strong>，它决定变量什么时候被删除，什么地方可以用什么地方不可用，这个范围就叫<strong>域</strong>（作用域，scope）。理解域，是读懂一切代码的前提。</p><h2>块域<a id="块域" class="toc-anchor" name="块域" href="#块域">#</a></h2><p><strong>块</strong>就是一对花括号<code spellcheck="false">{ }</code>（函数体也是块）。在块里面声明的变量，只在这个块里有效，出了块就"消失"了：</p><pre><code class="language-text-x-c-src hljs"><span class="hljs-comment">#include &lt;stdio.h&gt;</span>
+                    <p>每个变量都有自己的<strong>生存域</strong>，它决定变量什么时候被删除，什么地方可以用什么地方不可用，这个范围就叫<strong>域</strong>（作用域，scope）。理解域，是读懂一切代码的前提。</p><h2>块域<a id="块域" class="toc-anchor" name="块域" href="#块域">#</a></h2><p><strong>块</strong>就是一对花括号<code spellcheck="false">{}</code>（函数体也是块）。在块里面声明的变量，只在这个块里有效，出了块就"消失"了：</p><pre><code class="language-text-x-c-src hljs"><span class="hljs-comment">#include &lt;stdio.h&gt;</span>
 <span class="hljs-keyword">int</span> main(){	<span class="hljs-regexp">//</span> 这里其实也是域的开始
 	<span class="hljs-keyword">int</span> a = <span class="hljs-number">10</span>;		<span class="hljs-regexp">//</span> main 的块域内
 	{	<span class="hljs-regexp">//</span> 直接创建一个域
 		<span class="hljs-keyword">int</span> b = <span class="hljs-number">20</span>;	<span class="hljs-regexp">//</span> 内层块的变量
 		<span class="hljs-keyword">printf</span>(<span class="hljs-string">&quot;<span class="hljs-variable">%d</span> <span class="hljs-variable">%d</span>\n&quot;</span>, a, b);	<span class="hljs-regexp">//</span> 两个都能访问
-	}	// 域结束，当前域内所有变量都会被删除释放掉，降低程序占用内存
+	}	// 域结束，当前域内所有变量生命周期结束，减小内存占用
 	// <span class="hljs-keyword">printf</span>(<span class="hljs-string">&quot;<span class="hljs-variable">%d</span>&quot;</span>, b);	<span class="hljs-regexp">//</span> 错误！b 走出它的域，已经不存在了
 	<span class="hljs-keyword">printf</span>(<span class="hljs-string">&quot;<span class="hljs-variable">%d</span>\n&quot;</span>, a);	<span class="hljs-regexp">//</span> a 还在
 	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
-}</code></pre><p>你可以试试把注释掉的 <code spellcheck="false">printf("%d", b)</code> 放出来，编译器会直接报错：<code spellcheck="false">b</code> 未声明。因为它已经被删除了。</p><h2>文件域（全局变量）<a id="文件域-全局变量" class="toc-anchor" name="文件域-全局变量" href="#文件域-全局变量">#</a></h2><p>不在任何域里的变量是<strong>全局变量</strong>，它的域从声明那一行开始，一直到文件末尾，在后续我们无论学到什么，全局变量只要在这个文件里都行：</p><pre><code class="language-text-x-c-src hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+}</code></pre><p>你可以试试把注释掉的 <code spellcheck="false">printf("%d", b)</code> 放出来，编译器会直接报错：<code spellcheck="false">b</code> 未声明。因为它已经被删除了。</p><h2>文件域（全局变量）<a id="文件域-全局变量" class="toc-anchor" name="文件域-全局变量" href="#文件域-全局变量">#</a></h2><p>不在我们自己用<code spellcheck="false">{}</code>做的域中的变量是<strong>全局变量</strong>，它的域从声明那一行开始，一直到文件末尾，在后续我们无论学到什么，全局变量只要在这个文件里都行：</p><pre><code class="language-text-x-c-src hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
 <span class="hljs-type">int</span> g = <span class="hljs-number">100</span>;	<span class="hljs-comment">// 文件域：全文件可见</span>
 
 <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">say</span><span class="hljs-params">()</span></span>{
@@ -2047,7 +2079,7 @@
 	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>, a);	<span class="hljs-comment">// 10：走出内层块，外层 a 回来了</span>
 	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
 }</code></pre><p>输出 <code spellcheck="false">5</code> 和 <code spellcheck="false">10</code>。遮蔽本身合法，但容易让读代码的人犯晕，命名时尽量避开。</p><h2>先声明，后使用<a id="先声明-后使用" class="toc-anchor" name="先声明-后使用" href="#先声明-后使用">#</a></h2><p>变量必须先声明才能用（从声明那一行开始进入域）：</p><pre><code class="language-text-x-c-src hljs"><span class="hljs-keyword">printf</span>(<span class="hljs-string">&quot;<span class="hljs-variable">%d</span>\n&quot;</span>, <span class="hljs-keyword">x</span>);	<span class="hljs-regexp">//</span> 错误！还没声明
-<span class="hljs-keyword">int</span> <span class="hljs-keyword">x</span> = <span class="hljs-number">3</span>;			<span class="hljs-regexp">//</span> 声明从这里开始</code></pre><p>这是初学者常犯的错误，喜欢把使用写在了声明前面。</p><p>两者常常一起出现（块内变量"块结束就死"），但它们是两个不同维度的问题。</p><h2>小结<a id="小结" class="toc-anchor" name="小结" href="#小结">#</a></h2><p>域决定了名字能被谁看见：块内变量只在块内有效，全局变量全文件可见；内层可以遮蔽外层；先声明后使用。学完这一节，第三章后面的 <code spellcheck="false">if</code> 和循环里"变量写在哪、能用在哪"的问题就不会再踩坑了。</p><h2>习题<a id="习题" class="toc-anchor" name="习题" href="#习题">#</a></h2><h3>1. 猜输出<a id="1-猜输出" class="toc-anchor" name="1-猜输出" href="#1-猜输出">#</a></h3><p>不运行代码，说出下面程序的输出：</p><pre><code class="language-text-x-c-src hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+<span class="hljs-keyword">int</span> <span class="hljs-keyword">x</span> = <span class="hljs-number">3</span>;			<span class="hljs-regexp">//</span> 声明从这里开始</code></pre><p>这是初学者常犯的错误，喜欢把使用写在了声明前面。</p><p>两者常常一起出现（块内变量"块结束就死"），但它们是两个不同维度的问题。</p><h2>小结<a id="小结" class="toc-anchor" name="小结" href="#小结">#</a></h2><p>域决定了名字能被谁看见：块内变量只在块内有效，全局变量全文件可见；内层可以遮蔽外层；先声明后使用。学完这一节，第三章后面的 <code spellcheck="false">if</code> 和循环里"变量写在哪、能用在哪"的问题就不会再踩坑了。</p><p>下一节：<a class="reference-link type-text" href="3.2%20if%E8%AF%AD%E5%8F%A5.html"><span><span class="tn-icon bx bx-note"></span>3.2 if语句</span></a></p><h2>习题<a id="习题" class="toc-anchor" name="习题" href="#习题">#</a></h2><h3>1. 猜输出<a id="1-猜输出" class="toc-anchor" name="1-猜输出" href="#1-猜输出">#</a></h3><p>不运行代码，说出下面程序的输出：</p><pre><code class="language-text-x-c-src hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
 <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
 	<span class="hljs-type">int</span> x = <span class="hljs-number">1</span>;
 	{
@@ -2058,13 +2090,14 @@
 	}
 	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>, x);
 	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
-}</code></pre><p>本题推荐最大时长：3分钟</p><details class="trilium-collapsible"><summary>答案</summary><p>输出 <code spellcheck="false">2</code> 和 <code spellcheck="false">1</code>。最内层看到的是 <code spellcheck="false">x = 2</code>（它遮蔽了外层的 1）；走出块后，main 的 <code spellcheck="false">x = 1</code> 又恢复可见。</p></details><h3>2. 找错误<a id="2-找错误" class="toc-anchor" name="2-找错误" href="#2-找错误">#</a></h3><p>下面代码有编译错误，指出是哪一行、为什么：</p><pre><code class="language-text-x-c-src hljs">int main(){
-	int a <span class="hljs-operator">=</span> <span class="hljs-number">1</span><span class="hljs-comment">;</span>
+}</code></pre><p>本题推荐最大时长：3分钟</p><details class="trilium-collapsible"><summary>答案</summary><p>输出 <code spellcheck="false">2</code> 和 <code spellcheck="false">1</code>。最内层看到的是 <code spellcheck="false">x = 2</code>（它遮蔽了外层的 1）；走出块后，main 的 <code spellcheck="false">x = 1</code> 又恢复可见。</p></details><h3>2. 找错误<a id="2-找错误" class="toc-anchor" name="2-找错误" href="#2-找错误">#</a></h3><p>下面代码有编译错误，指出是哪一行、为什么：</p><pre><code class="language-text-x-c-src hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+	<span class="hljs-type">int</span> a = <span class="hljs-number">1</span>;
 	{
-		int b <span class="hljs-operator">=</span> <span class="hljs-number">2</span><span class="hljs-comment">;</span>
+		<span class="hljs-type">int</span> b = <span class="hljs-number">2</span>;
 	}
-	a <span class="hljs-operator">=</span> b<span class="hljs-comment">;</span>
-	return <span class="hljs-number">0</span><span class="hljs-comment">;</span>
+	a = b;
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
 }</code></pre><p>本题推荐最大时长：3分钟</p><details class="trilium-collapsible"><summary>答案</summary><p>错误在 <code spellcheck="false">a = b;</code> 这一行：<code spellcheck="false">b</code> 声明在它自己的块内，走出那个块就已经不存在了，main 直接使用它是"未声明"错误。想跨块使用，就把 b 声明到块外面。</p></details>
                 
                 
@@ -2080,7 +2113,7 @@
 
 <div class="navigation">
     <a class="previous" href="../%E7%AC%AC%E4%B8%89%E7%AB%A0%EF%BC%9A%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6.html">第三章：流程控制</a>
-    
+    <a class="next" href="3.2%20if%E8%AF%AD%E5%8F%A5.html">3.2 if语句</a>
 </div>
                 
 
