@@ -45,7 +45,7 @@
 					"title": "第一章：前置知识概述",
 					"notePosition": 10,
 					"prefix": null,
-					"isExpanded": false,
+					"isExpanded": true,
 					"type": "text",
 					"mime": "text/html",
 					"attributes": [
@@ -182,7 +182,7 @@
 					"title": "第二章：基本变量类型",
 					"notePosition": 20,
 					"prefix": null,
-					"isExpanded": false,
+					"isExpanded": true,
 					"type": "text",
 					"mime": "text/html",
 					"attributes": [
@@ -455,6 +455,25 @@
 							"attributes": [],
 							"format": "html",
 							"dataFileName": "3.3 switch语句.html",
+							"attachments": []
+						},
+						{
+							"isClone": false,
+							"noteId": "4cyj8VT0eyjO",
+							"notePath": [
+								"3f0LOwtZ3I9T",
+								"iVI7mMUeLHrm",
+								"4cyj8VT0eyjO"
+							],
+							"title": "3.4 while和do-while",
+							"notePosition": 40,
+							"prefix": null,
+							"isExpanded": false,
+							"type": "text",
+							"mime": "text/html",
+							"attributes": [],
+							"format": "html",
+							"dataFileName": "3.4 while和do-while.html",
 							"attachments": []
 						}
 					]
