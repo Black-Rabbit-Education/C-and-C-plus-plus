@@ -2045,6 +2045,38 @@
 
         </li>
     
+    
+        <li class="item">
+            
+
+    
+    <a class="type-text" href="3.5%20for%E5%BE%AA%E7%8E%AF.html">
+        
+        <span><i class="tn-icon bx bx-note"></i> 3.5 for循环</span>
+    </a>
+
+
+
+
+
+        </li>
+    
+    
+        <li class="item">
+            
+
+    
+    <a class="type-text" href="3.6%20goto%E6%A0%87%E7%AD%BE.html">
+        
+        <span><i class="tn-icon bx bx-note"></i> 3.6 goto标签</span>
+    </a>
+
+
+
+
+
+        </li>
+    
 </ul>
 
 
@@ -2254,7 +2286,7 @@
 }</code></pre><p>同样的常量出现两次，放进 <code spellcheck="false">main</code> 里编译会报错 <code spellcheck="false">duplicate case value</code>。</p><h3>4. switch 里塞了浮点数或字符串<a id="4-switch-里塞了浮点数或字符串" class="toc-anchor" name="4-switch-里塞了浮点数或字符串" href="#4-switch-里塞了浮点数或字符串">#</a></h3><pre><code class="language-text-x-csrc hljs"><span class="hljs-built_in">float</span> f = <span class="hljs-number">1.5</span>;
 <span class="hljs-keyword">switch</span> (f) {				<span class="hljs-comment">// 错误！switch 只能判断整数类型</span>
 	...
-}</code></pre><p>放进 <code spellcheck="false">main</code> 里编译会报 <code spellcheck="false">switch quantity not an integer</code>。浮点数要比较大小用 <code spellcheck="false">if</code>；</p><h2>小结<a id="小结" class="toc-anchor" name="小结" href="#小结">#</a></h2><p>这一节我们学会了 <code spellcheck="false">switch</code>：一个整数表达式的值跟多个常量匹配，命中后一路执行到 <code spellcheck="false">break</code>；贯穿（fall-through）既是它最大的坑，也是"多个 case 共用一段代码"的合法技巧；还知道了 switch 和 else if 怎么选，以及 case 里要声明变量就用 <code spellcheck="false">{}</code> 包起来。到这里，程序的"选择"能力就完整了：条件复杂、分支少，用 if；分支多、都是固定值，用 switch。</p><p>下一节：</p><h2>习题<a id="习题" class="toc-anchor" name="习题" href="#习题">#</a></h2><h3>1. 星期几判断<a id="1-星期几判断" class="toc-anchor" name="1-星期几判断" href="#1-星期几判断">#</a></h3><p>输入一个整数 <code spellcheck="false">d</code>（<span class="math-tex">\(1 \le d \le 7\)</span>），输出对应的"星期一"~"星期日"；输入其他数字输出 <code spellcheck="false">输入错误</code>。必须用 switch。</p><p>本题推荐最大时长：5分钟</p><p>题目输入案例：<code spellcheck="false">3</code></p><p>输出结果案例：<code spellcheck="false">星期三</code></p><details class="trilium-collapsible"><summary>答案</summary><h4>C<a id="c-4" class="toc-anchor" name="c-4" href="#c-4">#</a></h4><pre><code class="language-text-x-csrc hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+}</code></pre><p>放进 <code spellcheck="false">main</code> 里编译会报 <code spellcheck="false">switch quantity not an integer</code>。浮点数要比较大小用 <code spellcheck="false">if</code>；</p><h2>小结<a id="小结" class="toc-anchor" name="小结" href="#小结">#</a></h2><p>这一节我们学会了 <code spellcheck="false">switch</code>：一个整数表达式的值跟多个常量匹配，命中后一路执行到 <code spellcheck="false">break</code>；贯穿（fall-through）既是它最大的坑，也是"多个 case 共用一段代码"的合法技巧；还知道了 switch 和 else if 怎么选，以及 case 里要声明变量就用 <code spellcheck="false">{}</code> 包起来。到这里，程序的"选择"能力就完整了：条件复杂、分支少，用 if；分支多、都是固定值，用 switch。</p><p>下一节：<a class="reference-link type-text" href="3.4%20while%E5%92%8Cdo-while.html"><span><span class="tn-icon bx bx-note"></span>3.4 while和do-while</span></a></p><h2>习题<a id="习题" class="toc-anchor" name="习题" href="#习题">#</a></h2><h3>1. 星期几判断<a id="1-星期几判断" class="toc-anchor" name="1-星期几判断" href="#1-星期几判断">#</a></h3><p>输入一个整数 <code spellcheck="false">d</code>（<span class="math-tex">\(1 \le d \le 7\)</span>），输出对应的"星期一"~"星期日"；输入其他数字输出 <code spellcheck="false">输入错误</code>。必须用 switch。</p><p>本题推荐最大时长：5分钟</p><p>题目输入案例：<code spellcheck="false">3</code></p><p>输出结果案例：<code spellcheck="false">星期三</code></p><details class="trilium-collapsible"><summary>答案</summary><h4>C<a id="c-4" class="toc-anchor" name="c-4" href="#c-4">#</a></h4><pre><code class="language-text-x-csrc hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
 <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
 	<span class="hljs-type">int</span> d;						<span class="hljs-comment">// 星期几，1~7</span>
 	<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>,&amp;d);				<span class="hljs-comment">// 输入一个整数</span>

@@ -45,7 +45,7 @@
 					"title": "第一章：前置知识概述",
 					"notePosition": 10,
 					"prefix": null,
-					"isExpanded": true,
+					"isExpanded": false,
 					"type": "text",
 					"mime": "text/html",
 					"attributes": [
@@ -182,7 +182,7 @@
 					"title": "第二章：基本变量类型",
 					"notePosition": 20,
 					"prefix": null,
-					"isExpanded": true,
+					"isExpanded": false,
 					"type": "text",
 					"mime": "text/html",
 					"attributes": [
@@ -377,6 +377,27 @@
 							"value": "iEaIb7tlE5tu",
 							"isInheritable": false,
 							"position": 30
+						},
+						{
+							"type": "relation",
+							"name": "internalLink",
+							"value": "4cyj8VT0eyjO",
+							"isInheritable": false,
+							"position": 40
+						},
+						{
+							"type": "relation",
+							"name": "internalLink",
+							"value": "2erJuRsA1VpI",
+							"isInheritable": false,
+							"position": 50
+						},
+						{
+							"type": "relation",
+							"name": "internalLink",
+							"value": "uuMZnnEQAlBA",
+							"isInheritable": false,
+							"position": 60
 						}
 					],
 					"format": "html",
@@ -452,7 +473,15 @@
 							"isExpanded": false,
 							"type": "text",
 							"mime": "text/html",
-							"attributes": [],
+							"attributes": [
+								{
+									"type": "relation",
+									"name": "internalLink",
+									"value": "4cyj8VT0eyjO",
+									"isInheritable": false,
+									"position": 10
+								}
+							],
 							"format": "html",
 							"dataFileName": "3.3 switch语句.html",
 							"attachments": []
@@ -474,6 +503,52 @@
 							"attributes": [],
 							"format": "html",
 							"dataFileName": "3.4 while和do-while.html",
+							"attachments": []
+						},
+						{
+							"isClone": false,
+							"noteId": "2erJuRsA1VpI",
+							"notePath": [
+								"3f0LOwtZ3I9T",
+								"iVI7mMUeLHrm",
+								"2erJuRsA1VpI"
+							],
+							"title": "3.5 for循环",
+							"notePosition": 50,
+							"prefix": null,
+							"isExpanded": false,
+							"type": "text",
+							"mime": "text/html",
+							"attributes": [
+								{
+									"type": "relation",
+									"name": "internalLink",
+									"value": "uuMZnnEQAlBA",
+									"isInheritable": false,
+									"position": 10
+								}
+							],
+							"format": "html",
+							"dataFileName": "3.5 for循环.html",
+							"attachments": []
+						},
+						{
+							"isClone": false,
+							"noteId": "uuMZnnEQAlBA",
+							"notePath": [
+								"3f0LOwtZ3I9T",
+								"iVI7mMUeLHrm",
+								"uuMZnnEQAlBA"
+							],
+							"title": "3.6 goto标签",
+							"notePosition": 60,
+							"prefix": null,
+							"isExpanded": false,
+							"type": "text",
+							"mime": "text/html",
+							"attributes": [],
+							"format": "html",
+							"dataFileName": "3.6 goto标签.html",
 							"attachments": []
 						}
 					]
