@@ -1745,7 +1745,7 @@
         C与C++(自制教程)
     </a>
     
-        <div class="header-button-placeholder"></div>
+        <button aria-label="切换目录" id="toc-pane-toggle-button" class="header-button"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M3 9h14V7H3v2zm0 4h14v-2H3v2zm0 4h14v-2H3v2zm16 0h2v-2h-2v2zm0-10V7h2v2h-2zm0 6h2v-2h-2v2z"></path></svg></button>
     
 </div>
 <div id="split-pane">
@@ -2082,6 +2082,42 @@
 
         </li>
     
+    
+        <li class="submenu-item">
+            
+
+    
+    <a class="type-text" href="../%E7%AC%AC%E5%9B%9B%E7%AB%A0%EF%BC%9A%E5%87%BD%E6%95%B0.html">
+        <button class="collapse-button" aria-label="展开"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></button>
+        <span><i class="tn-icon bx bx-folder"></i> 第四章：函数</span>
+    </a>
+
+
+
+
+<ul>
+    
+    
+        <li class="item">
+            
+
+    
+    <a class="type-text" href="../%E7%AC%AC%E5%9B%9B%E7%AB%A0%EF%BC%9A%E5%87%BD%E6%95%B0/4.1%20%E5%88%9D%E8%AF%86%E5%87%BD%E6%95%B0%E8%AF%AD%E6%B3%95.html">
+        
+        <span><i class="tn-icon bx bx-note"></i> 4.1 初识函数语法</span>
+    </a>
+
+
+
+
+
+        </li>
+    
+</ul>
+
+
+        </li>
+    
 </ul>
 
 
@@ -2091,11 +2127,203 @@
     </div>
     <div id="right-pane">
         <div id="main">
-            <div id="content" class="type-text ck-content no-content">
+            <div id="content" class="type-text ck-content">
                 
                     <h1 id="title">3.6 goto标签</h1>
                 
-                    <p>此笔记没有内容。</p>
+                    
+                    <p>goto 在现代工程里使用越来越少了，因为大型项目的维护难度较高；不过它仍然是一个部分时候好用的东西。</p><h2>goto 的语法<a id="goto-的语法" class="toc-anchor" name="goto-的语法" href="#goto-的语法">#</a></h2><p>前面学的 <code spellcheck="false">if</code> / <code spellcheck="false">switch</code> 是按条件跳转，<code spellcheck="false">while</code> / <code spellcheck="false">for</code> 是按条件反复，而 <code spellcheck="false">goto</code> 是<strong>无条件</strong>跳转：执行到它，就立刻跳到指定的地方。完整形式：</p><pre><code class="language-text-x-csrc hljs"><span class="hljs-keyword">goto</span> 标签名;
+
+标签名:
+	语句;</code></pre><p>先分清两个角色：<code spellcheck="false">goto</code> 是一条<strong>语句</strong>；标签只是挂在语句前面的跳转目标，不是一个独立的语法结构。程序执行到 <code spellcheck="false">goto</code> 时，立刻跳到标签处，从那里继续往下执行，中间隔着的代码全部跳过。</p><p>两条小规矩：</p><p>1. 标签名的起名规则和变量名一样（字母、数字、下划线组成，不能以数字开头），并且<strong>同一个函数里的标签名不能重复</strong>。<br>2. <code spellcheck="false">goto</code> 只能在<strong>同一个函数内部</strong>跳转，不能跳进别的函数。</p><p>在1.1的时候我们就大致讲了一遍主函数，关于更多函数我们会在后续讲解。</p><h2>例子：跳过中间一段代码<a id="例子-跳过中间一段代码" class="toc-anchor" name="例子-跳过中间一段代码" href="#例子-跳过中间一段代码">#</a></h2><p>最简单的用法：直接往下跳，跳过中间几行：</p><h4>C<a id="c" class="toc-anchor" name="c" href="#c">#</a></h4><pre><code class="language-text-x-csrc hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;1\n&quot;</span>);
+	<span class="hljs-keyword">goto</span> end;			<span class="hljs-comment">// 直接跳到 end 标签处</span>
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;2\n&quot;</span>);		<span class="hljs-comment">// 这一行被跳过了</span>
+end:
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;3\n&quot;</span>);		<span class="hljs-comment">// 从这一行继续执行</span>
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre><p>运行结果：</p><pre><code class="language-text-x-trilium-auto hljs">1
+3</code></pre><p>执行到 <code spellcheck="false">goto end</code> 时，<code spellcheck="false">printf("2\n")</code> 被整个跳过，程序直接来到 <code spellcheck="false">end:</code> 标签处继续。可以在脑子里跟着走一遍。</p><h2>标签要贴在一条语句前面<a id="标签要贴在一条语句前面" class="toc-anchor" name="标签要贴在一条语句前面" href="#标签要贴在一条语句前面">#</a></h2><p>标签本身不是语句，它只是在语句前面的记号，所以标签后面要有一条语句。想跳到一个"什么都不做"的地方（比如块的末尾），就给标签贴一条<strong>空语句</strong>，单独一个分号 <code spellcheck="false">;</code> 就是一条什么都不做的语句：</p><pre><code class="language-text-x-csrc hljs"><span class="hljs-selector-tag">label</span>:
+	;		// 空语句：标签贴在上面，合法</code></pre><blockquote><p>把标签直接贴在右花括号 <code spellcheck="false">}</code> 前面（也就是"贴在块的最后"）是 C23 / C++23 才加入的新写法，在老标准里编译器会警告甚至报错，所以平时就按"标签后面跟语句、实在没语句写分号写空语句"来。</p></blockquote><h2>goto 的主要用法：跳出多重循环<a id="goto-的主要用法-跳出多重循环" class="toc-anchor" name="goto-的主要用法-跳出多重循环" href="#goto-的主要用法-跳出多重循环">#</a></h2><p>3.4 学的 <code spellcheck="false">break</code> 只能跳出<strong>当前这一层</strong>循环：嵌套循环里从内层 break，外层还会继续转。如果想从最内层<strong>一次跳出所有循环</strong>，<code spellcheck="false">break</code> 就做不到了，这就可以用 <code spellcheck="false">goto</code> 。</p><p>例子：在 1~9 的乘法表里，从 (1,1) 开始按顺序找<strong>第一对</strong>乘积大于 20 的 (i, j)，找到就打印并结束：</p><h4>C<a id="c-1" class="toc-anchor" name="c-1" href="#c-1">#</a></h4><pre><code class="language-text-x-csrc hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+	<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt;= <span class="hljs-number">9</span>; i++) {		<span class="hljs-comment">// 外层循环：行</span>
+		<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = <span class="hljs-number">1</span>; j &lt;= <span class="hljs-number">9</span>; j++) {	<span class="hljs-comment">// 内层循环：列</span>
+			<span class="hljs-keyword">if</span> (i * j &gt; <span class="hljs-number">20</span>) {		<span class="hljs-comment">// 找到第一对</span>
+				<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d*%d=%d\n&quot;</span>, i, j, i * j);
+				<span class="hljs-keyword">goto</span> found;		<span class="hljs-comment">// 一次跳出两层循环</span>
+			}
+		}
+	}
+found:
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre><h4>C++<a id="c-2" class="toc-anchor" name="c-2" href="#c-2">#</a></h4><pre><code class="language-text-x-c-src hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+	<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt;= <span class="hljs-number">9</span>; i++) {		<span class="hljs-comment">// 外层循环：行</span>
+		<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = <span class="hljs-number">1</span>; j &lt;= <span class="hljs-number">9</span>; j++) {	<span class="hljs-comment">// 内层循环：列</span>
+			<span class="hljs-keyword">if</span> (i * j &gt; <span class="hljs-number">20</span>) {		<span class="hljs-comment">// 找到第一对</span>
+				std::cout &lt;&lt; i &lt;&lt; <span class="hljs-string">&quot;*&quot;</span> &lt;&lt; j &lt;&lt; <span class="hljs-string">&quot;=&quot;</span> &lt;&lt; i * j &lt;&lt; <span class="hljs-string">&quot;\n&quot;</span>;
+				<span class="hljs-keyword">goto</span> found;		<span class="hljs-comment">// 一次跳出两层循环</span>
+			}
+		}
+	}
+found:
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre><p>运行结果：</p><pre><code class="language-text-x-trilium-auto hljs"><span class="hljs-attribute">3</span>*<span class="hljs-number">7</span>=<span class="hljs-number">21</span></code></pre><p>内层一发现 <code spellcheck="false">i * j &gt; 20</code>，<code spellcheck="false">goto</code> 直接带着程序跳出两层 <code spellcheck="false">for</code>，来到 <code spellcheck="false">found</code> 标签处。作为对比，不用 <code spellcheck="false">goto</code> 的老办法绕得多：</p><h4>C<a id="c-3" class="toc-anchor" name="c-3" href="#c-3">#</a></h4><pre><code class="language-text-x-csrc hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+	<span class="hljs-type">int</span> done = <span class="hljs-number">0</span>;				<span class="hljs-comment">// 标志变量：找到没有</span>
+	<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt;= <span class="hljs-number">9</span>; i++) {
+		<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = <span class="hljs-number">1</span>; j &lt;= <span class="hljs-number">9</span>; j++) {
+			<span class="hljs-keyword">if</span> (i * j &gt; <span class="hljs-number">20</span>) {
+				<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d*%d=%d\n&quot;</span>, i, j, i * j);
+				done = <span class="hljs-number">1</span>;		<span class="hljs-comment">// 记下：找到了</span>
+				<span class="hljs-keyword">break</span>;			<span class="hljs-comment">// 只能跳出内层</span>
+			}
+		}
+		<span class="hljs-keyword">if</span> (done) <span class="hljs-keyword">break</span>;		<span class="hljs-comment">// 看到标志，再跳出外层</span>
+	}
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre><p>两段代码输出完全一样，但 <code spellcheck="false">goto</code> 版没有多余的标志变量，意图也更直接。</p><h2>goto 也能当循环用（往回跳）<a id="goto-也能当循环用-往回跳" class="toc-anchor" name="goto-也能当循环用-往回跳" href="#goto-也能当循环用-往回跳">#</a></h2><p><code spellcheck="false">goto</code> 不只可以往下跳，也可以<strong>往回跳</strong>到前面。把"往回跳 + 条件判断"组合起来，就能拼出一个循环</p><p>最早的程序语言(如汇编)就是这么写循环的，后来才有了 <code spellcheck="false">while</code>、<code spellcheck="false">for</code> 这些专门的结构：</p><pre><code class="language-text-x-csrc hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+	<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>;
+	<span class="hljs-type">int</span> sum = <span class="hljs-number">0</span>;
+loop:
+	<span class="hljs-keyword">if</span> (i &gt; <span class="hljs-number">10</span>) <span class="hljs-keyword">goto</span> done;	<span class="hljs-comment">// 条件不满足：跳到 done 结束</span>
+	sum += i;			<span class="hljs-comment">// 累加</span>
+	i++;
+	<span class="hljs-keyword">goto</span> loop;			<span class="hljs-comment">// 跳回 loop，再来一轮</span>
+done:
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>, sum);	<span class="hljs-comment">// 55</span>
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre><p>运行结果：</p><pre><code class="language-text-x-trilium-auto hljs">55</code></pre><p>这段和 3.4 的 <code spellcheck="false">while</code> 求和完全等价：<code spellcheck="false">loop</code> 到 <code spellcheck="false">goto loop</code> 之间就是"循环体"，最上面的 <code spellcheck="false">if</code> 是"循环条件"。不过把两个版本摆在一起看，<code spellcheck="false">goto</code> 版的路线绕来绕去，读起来费劲得多。所以<strong>平时写循环请用 while / for</strong>，这里只用来体会"goto 能往回跳"这件事。</p><h2>goto 的规矩<a id="goto-的规矩" class="toc-anchor" name="goto-的规矩" href="#goto-的规矩">#</a></h2><p><code spellcheck="false">goto</code> 用起来要守几条规矩，其中最重要的一条，C 和 C++ 的规矩<strong>不一样</strong>：C++ 不允许 <code spellcheck="false">goto</code> 跳过"带初始化的声明"。先看一段 C++ 代码：</p><h4>C++（编译不过）<a id="c-编译不过" class="toc-anchor" name="c-编译不过" href="#c-编译不过">#</a></h4><pre><code class="language-text-x-c-src hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+	<span class="hljs-keyword">goto</span> label;			<span class="hljs-comment">// 想跳到 label</span>
+	<span class="hljs-type">int</span> x = <span class="hljs-number">10</span>;			<span class="hljs-comment">// 错误！label 在 x 的作用域内，goto 跳过了 x 的初始化</span>
+label:
+	std::cout &lt;&lt; x &lt;&lt; <span class="hljs-string">&quot;\n&quot;</span>;
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre><p>这段代码在 C++ 里<strong>直接编译报错</strong>：<code spellcheck="false">error: jump to label 'label'</code>，下面还提示 <code spellcheck="false">crosses initialization of 'int x'</code>。原因是：<code spellcheck="false">x</code> 声明在 <code spellcheck="false">label</code> 的前面，<code spellcheck="false">goto</code> 从外面跳进来，等于跳过了 <code spellcheck="false">x = 10</code> 的初始化，<code spellcheck="false">x</code> 会是一个没初始化过的垃圾值</p><p>C++ 选择干脆在编译期就拦住这种代码。</p><h4>C（同样的代码）<a id="c-同样的代码" class="toc-anchor" name="c-同样的代码" href="#c-同样的代码">#</a></h4><pre><code class="language-text-x-csrc hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+	<span class="hljs-keyword">goto</span> label;			<span class="hljs-comment">// C 允许这种跳转（默认不警告）</span>
+	<span class="hljs-type">int</span> x = <span class="hljs-number">10</span>;			<span class="hljs-comment">// 被跳过的初始化</span>
+label:
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>, x);	<span class="hljs-comment">// x 没初始化，输出垃圾值</span>
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre><p>同样的逻辑换成 C：<strong>能编译通过</strong>（开启 <code spellcheck="false">-Wall</code> 时 gcc 会提示 <code spellcheck="false">'x' is used uninitialized</code>），但运行时 <code spellcheck="false">x</code> 没有执行过初始化，输出的是一个垃圾值，这比编译报错更危险，因为编译器不会拦住你。</p><p>真遇到这种情况，建议把标签挪到声明前面，让程序跳过来之后先老老实实执行初始化：</p><h4>C++（修正版）<a id="c-修正版" class="toc-anchor" name="c-修正版" href="#c-修正版">#</a></h4><pre><code class="language-text-x-c-src hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+	<span class="hljs-keyword">goto</span> label;			<span class="hljs-comment">// 合法：先跳到 label</span>
+label:
+	<span class="hljs-type">int</span> x = <span class="hljs-number">10</span>;			<span class="hljs-comment">// 初始化在标签后面，不会漏掉</span>
+	std::cout &lt;&lt; x &lt;&lt; <span class="hljs-string">&quot;\n&quot;</span>;
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre><p>运行结果：</p><pre><code class="language-text-x-trilium-auto hljs">10</code></pre><blockquote><p>提醒：其实无论C还是C++都可以用<code spellcheck="false">goto</code>跳入循环之中，但是建议三思后再这样，因为你很难清晰的知道这会不会导致死循环之类的问题。</p></blockquote><h2>小结<a id="小结" class="toc-anchor" name="小结" href="#小结">#</a></h2><p><code spellcheck="false">goto</code>是个很好用也很危险的东西，会让项目变得复杂，建议使用时一定要想明白。</p><p>到这里，第三章的流程控制就全部学完了：3.1 域、3.2 if、3.3 switch、3.4 while/do-while、3.5 for、3.6 goto。下一章开始，我们要进入函数，他与数学中的函数极其相似。</p><p>下一章：<a class="reference-link type-text" href="../%E7%AC%AC%E5%9B%9B%E7%AB%A0%EF%BC%9A%E5%87%BD%E6%95%B0.html"><span><span class="tn-icon bx bx-folder"></span>第四章：函数</span></a></p><h2>习题<a id="习题" class="toc-anchor" name="习题" href="#习题">#</a></h2><h3>1. 用 goto 实现求和<a id="1-用-goto-实现求和" class="toc-anchor" name="1-用-goto-实现求和" href="#1-用-goto-实现求和">#</a></h3><p>输入一个整数&nbsp;<span class="math-tex">\(n\)</span>（<span class="math-tex">\(1 \le n \le 1000\)</span>），用 <code spellcheck="false">goto</code> 拼出循环（不要用 <code spellcheck="false">while</code> 和 <code spellcheck="false">for</code>），输出 <code spellcheck="false">1+2+...+n</code> 的和。可以参考正文"往回跳"的模板。</p><p>本题推荐最大时长：8分钟</p><p>题目输入案例：<code spellcheck="false">100</code></p><p>输出结果案例：<code spellcheck="false">5050</code></p><details class="trilium-collapsible"><summary>答案</summary><h4>C<a id="c-4" class="toc-anchor" name="c-4" href="#c-4">#</a></h4><pre><code class="language-text-x-csrc hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+	<span class="hljs-type">int</span> n;					<span class="hljs-comment">// 输入的 n</span>
+	<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>;				<span class="hljs-comment">// 从 1 开始</span>
+	<span class="hljs-type">int</span> sum = <span class="hljs-number">0</span>;				<span class="hljs-comment">// 累加结果，从 0 开始</span>
+	<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>, &amp;n);
+loop:
+	<span class="hljs-keyword">if</span> (i &gt; n) <span class="hljs-keyword">goto</span> done;	<span class="hljs-comment">// 加完了：结束</span>
+	sum += i;				<span class="hljs-comment">// 累加</span>
+	i++;					<span class="hljs-comment">// 下一个数</span>
+	<span class="hljs-keyword">goto</span> loop;				<span class="hljs-comment">// 跳回 loop</span>
+done:
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>, sum);
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre><h4>C++<a id="c-5" class="toc-anchor" name="c-5" href="#c-5">#</a></h4><pre><code class="language-text-x-c-src hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+	<span class="hljs-type">int</span> n;					<span class="hljs-comment">// 输入的 n</span>
+	<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>;				<span class="hljs-comment">// 从 1 开始</span>
+	<span class="hljs-type">int</span> sum = <span class="hljs-number">0</span>;				<span class="hljs-comment">// 累加结果，从 0 开始</span>
+	std::cin &gt;&gt; n;
+loop:
+	<span class="hljs-keyword">if</span> (i &gt; n) <span class="hljs-keyword">goto</span> done;	<span class="hljs-comment">// 加完了：结束</span>
+	sum += i;				<span class="hljs-comment">// 累加</span>
+	i++;					<span class="hljs-comment">// 下一个数</span>
+	<span class="hljs-keyword">goto</span> loop;				<span class="hljs-comment">// 跳回 loop</span>
+done:
+	std::cout &lt;&lt; sum &lt;&lt; <span class="hljs-string">&quot;\n&quot;</span>;
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre></details><h3>2. 输入检查<a id="2-输入检查" class="toc-anchor" name="2-输入检查" href="#2-输入检查">#</a></h3><p>输入一个整数，要求它必须在 <code spellcheck="false">1~100</code> 之间。如果不在范围内，输出"重新输入"，然后跳回去重新读，直到读到合法的数为止，最后把这个数输出。</p><p>本题推荐最大时长：8分钟</p><p>题目输入案例：<code spellcheck="false">200 50</code></p><p>输出结果案例：</p><pre><code class="language-text-x-trilium-auto hljs">重新输入
+50</code></pre><details class="trilium-collapsible"><summary>答案</summary><h4>C<a id="c-6" class="toc-anchor" name="c-6" href="#c-6">#</a></h4><pre><code class="language-text-x-csrc hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+	<span class="hljs-type">int</span> x;						<span class="hljs-comment">// 输入的数</span>
+again:
+	<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>, &amp;x);	<span class="hljs-comment">// 先读一个数</span>
+	<span class="hljs-keyword">if</span> (x &lt; <span class="hljs-number">1</span> || x &gt; <span class="hljs-number">100</span>) {	<span class="hljs-comment">// 不在 1~100</span>
+		<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;重新输入\n&quot;</span>);	<span class="hljs-comment">// 提示</span>
+		<span class="hljs-keyword">goto</span> again;				<span class="hljs-comment">// 跳回去重新读</span>
+	}
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>, x);			<span class="hljs-comment">// 合法：输出</span>
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre><h4>C++<a id="c-7" class="toc-anchor" name="c-7" href="#c-7">#</a></h4><pre><code class="language-text-x-c-src hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+	<span class="hljs-type">int</span> x;							<span class="hljs-comment">// 输入的数</span>
+again:
+	std::cin &gt;&gt; x;	<span class="hljs-comment">// 先读一个数</span>
+	<span class="hljs-keyword">if</span> (x &lt; <span class="hljs-number">1</span> || x &gt; <span class="hljs-number">100</span>) {		<span class="hljs-comment">// 不在 1~100</span>
+		std::cout &lt;&lt; <span class="hljs-string">&quot;重新输入\n&quot;</span>;	<span class="hljs-comment">// 提示</span>
+		<span class="hljs-keyword">goto</span> again;					<span class="hljs-comment">// 跳回去重新读</span>
+	}
+	std::cout &lt;&lt; x &lt;&lt; <span class="hljs-string">&quot;\n&quot;</span>;		<span class="hljs-comment">// 合法：输出</span>
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre></details><h3>3. 跳出多重循环<a id="3-跳出多重循环" class="toc-anchor" name="3-跳出多重循环" href="#3-跳出多重循环">#</a></h3><p>在 1~9 的乘法表里，从 (1,1) 开始按从小到大顺序找第一对乘积大于 20 的 (i, j)，输出 <code spellcheck="false">i*j=乘积</code>，并用 <code spellcheck="false">goto</code> 一次跳出两层循环。</p><p>本题推荐最大时长：10分钟</p><p>输出结果案例：<code spellcheck="false">3*7=21</code></p><details class="trilium-collapsible"><summary>答案</summary><h4>C<a id="c-8" class="toc-anchor" name="c-8" href="#c-8">#</a></h4><pre><code class="language-text-x-csrc hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+	<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt;= <span class="hljs-number">9</span>; i++) {		<span class="hljs-comment">// 外层循环：行</span>
+		<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = <span class="hljs-number">1</span>; j &lt;= <span class="hljs-number">9</span>; j++) {	<span class="hljs-comment">// 内层循环：列</span>
+			<span class="hljs-keyword">if</span> (i * j &gt; <span class="hljs-number">20</span>) {		<span class="hljs-comment">// 找到第一对</span>
+				<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d*%d=%d\n&quot;</span>, i, j, i * j);
+				<span class="hljs-keyword">goto</span> found;		<span class="hljs-comment">// 一次跳出两层循环</span>
+			}
+		}
+	}
+found:
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre><h4>C++<a id="c-9" class="toc-anchor" name="c-9" href="#c-9">#</a></h4><pre><code class="language-text-x-c-src hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+	<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt;= <span class="hljs-number">9</span>; i++) {		<span class="hljs-comment">// 外层循环：行</span>
+		<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = <span class="hljs-number">1</span>; j &lt;= <span class="hljs-number">9</span>; j++) {	<span class="hljs-comment">// 内层循环：列</span>
+			<span class="hljs-keyword">if</span> (i * j &gt; <span class="hljs-number">20</span>) {		<span class="hljs-comment">// 找到第一对</span>
+				std::cout &lt;&lt; i &lt;&lt; <span class="hljs-string">&quot;*&quot;</span> &lt;&lt; j &lt;&lt; <span class="hljs-string">&quot;=&quot;</span> &lt;&lt; i * j &lt;&lt; <span class="hljs-string">&quot;\n&quot;</span>;
+				<span class="hljs-keyword">goto</span> found;		<span class="hljs-comment">// 一次跳出两层循环</span>
+			}
+		}
+	}
+found:
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre></details><h3>4. goto 也能当 continue<a id="4-goto-也能当-continue" class="toc-anchor" name="4-goto-也能当-continue" href="#4-goto-也能当-continue">#</a></h3><p>用 <code spellcheck="false">goto</code> 拼循环输出 1~10，但跳过 5 不输出。</p><p>本题推荐最大时长：6分钟</p><p>输出结果案例：<code spellcheck="false">1 2 3 4 6 7 8 9 10</code></p><details class="trilium-collapsible"><summary>答案</summary><h4>C<a id="c-10" class="toc-anchor" name="c-10" href="#c-10">#</a></h4><pre><code class="language-text-x-csrc hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+	<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>;
+loop:
+	<span class="hljs-keyword">if</span> (i &gt; <span class="hljs-number">10</span>) <span class="hljs-keyword">goto</span> done;	<span class="hljs-comment">// 输出完了：结束</span>
+	<span class="hljs-keyword">if</span> (i == <span class="hljs-number">5</span>) <span class="hljs-keyword">goto</span> next;	<span class="hljs-comment">// 5 不输出：直接去更新</span>
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d &quot;</span>, i);
+next:
+	i++;					<span class="hljs-comment">// 更新计数</span>
+	<span class="hljs-keyword">goto</span> loop;				<span class="hljs-comment">// 跳回 loop</span>
+done:
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;\n&quot;</span>);
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre><h4>C++<a id="c-11" class="toc-anchor" name="c-11" href="#c-11">#</a></h4><pre><code class="language-text-x-c-src hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+	<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>;
+loop:
+	<span class="hljs-keyword">if</span> (i &gt; <span class="hljs-number">10</span>) <span class="hljs-keyword">goto</span> done;	<span class="hljs-comment">// 输出完了：结束</span>
+	<span class="hljs-keyword">if</span> (i == <span class="hljs-number">5</span>) <span class="hljs-keyword">goto</span> next;	<span class="hljs-comment">// 5 不输出：直接去更新</span>
+	std::cout &lt;&lt; i &lt;&lt; <span class="hljs-string">&quot; &quot;</span>;
+next:
+	i++;					<span class="hljs-comment">// 更新计数</span>
+	<span class="hljs-keyword">goto</span> loop;				<span class="hljs-comment">// 跳回 loop</span>
+done:
+	std::cout &lt;&lt; <span class="hljs-string">&quot;\n&quot;</span>;
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre></details><h3>5. 改错题：C 与 C++ 的区别<a id="5-改错题-c-与-c-的区别" class="toc-anchor" name="5-改错题-c-与-c-的区别" href="#5-改错题-c-与-c-的区别">#</a></h3><p>下面这段 C++ 代码编译不过，请说明为什么，并把它改成能编译、输出 <code spellcheck="false">10</code> 的代码。再想一想：如果这是 C 代码，运行起来会怎样？</p><pre><code class="language-text-x-c-src hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+	<span class="hljs-keyword">goto</span> label;
+	<span class="hljs-type">int</span> x = <span class="hljs-number">10</span>;
+label:
+	std::cout &lt;&lt; x &lt;&lt; <span class="hljs-string">&quot;\n&quot;</span>;
+}</code></pre><p>本题推荐最大时长：5分钟</p>
                 
                 
             </div>
@@ -2110,13 +2338,360 @@
 
 <div class="navigation">
     <a class="previous" href="3.5%20for%E5%BE%AA%E7%8E%AF.html">3.5 for循环</a>
-    
+    <a class="next" href="../%E7%AC%AC%E5%9B%9B%E7%AB%A0%EF%BC%9A%E5%87%BD%E6%95%B0.html">第四章：函数</a>
 </div>
                 
 
                 
             </footer>
         </div>
+        
+            <div id="toc-pane">
+                <h3>本页内容</h3>
+                <ul id="toc">
+                    
+                        
+
+<li>
+    <a href="#goto-的语法">
+        <span>goto 的语法</span>
+    </a>
+
+    
+</li>
+
+                    
+                        
+
+<li>
+    <a href="#例子-跳过中间一段代码">
+        <span>例子：跳过中间一段代码</span>
+    </a>
+
+    
+        <ul>
+            
+                
+
+<li>
+    <a href="#c">
+        <span>C</span>
+    </a>
+
+    
+</li>
+
+            
+        </ul>
+    
+</li>
+
+                    
+                        
+
+<li>
+    <a href="#标签要贴在一条语句前面">
+        <span>标签要贴在一条语句前面</span>
+    </a>
+
+    
+</li>
+
+                    
+                        
+
+<li>
+    <a href="#goto-的主要用法-跳出多重循环">
+        <span>goto 的主要用法：跳出多重循环</span>
+    </a>
+
+    
+        <ul>
+            
+                
+
+<li>
+    <a href="#c-1">
+        <span>C</span>
+    </a>
+
+    
+</li>
+
+            
+                
+
+<li>
+    <a href="#c-2">
+        <span>C++</span>
+    </a>
+
+    
+</li>
+
+            
+                
+
+<li>
+    <a href="#c-3">
+        <span>C</span>
+    </a>
+
+    
+</li>
+
+            
+        </ul>
+    
+</li>
+
+                    
+                        
+
+<li>
+    <a href="#goto-也能当循环用-往回跳">
+        <span>goto 也能当循环用（往回跳）</span>
+    </a>
+
+    
+</li>
+
+                    
+                        
+
+<li>
+    <a href="#goto-的规矩">
+        <span>goto 的规矩</span>
+    </a>
+
+    
+        <ul>
+            
+                
+
+<li>
+    <a href="#c-编译不过">
+        <span>C++（编译不过）</span>
+    </a>
+
+    
+</li>
+
+            
+                
+
+<li>
+    <a href="#c-同样的代码">
+        <span>C（同样的代码）</span>
+    </a>
+
+    
+</li>
+
+            
+                
+
+<li>
+    <a href="#c-修正版">
+        <span>C++（修正版）</span>
+    </a>
+
+    
+</li>
+
+            
+        </ul>
+    
+</li>
+
+                    
+                        
+
+<li>
+    <a href="#小结">
+        <span>小结</span>
+    </a>
+
+    
+</li>
+
+                    
+                        
+
+<li>
+    <a href="#习题">
+        <span>习题</span>
+    </a>
+
+    
+        <ul>
+            
+                
+
+<li>
+    <a href="#1-用-goto-实现求和">
+        <span>1. 用 goto 实现求和</span>
+    </a>
+
+    
+        <ul>
+            
+                
+
+<li>
+    <a href="#c-4">
+        <span>C</span>
+    </a>
+
+    
+</li>
+
+            
+                
+
+<li>
+    <a href="#c-5">
+        <span>C++</span>
+    </a>
+
+    
+</li>
+
+            
+        </ul>
+    
+</li>
+
+            
+                
+
+<li>
+    <a href="#2-输入检查">
+        <span>2. 输入检查</span>
+    </a>
+
+    
+        <ul>
+            
+                
+
+<li>
+    <a href="#c-6">
+        <span>C</span>
+    </a>
+
+    
+</li>
+
+            
+                
+
+<li>
+    <a href="#c-7">
+        <span>C++</span>
+    </a>
+
+    
+</li>
+
+            
+        </ul>
+    
+</li>
+
+            
+                
+
+<li>
+    <a href="#3-跳出多重循环">
+        <span>3. 跳出多重循环</span>
+    </a>
+
+    
+        <ul>
+            
+                
+
+<li>
+    <a href="#c-8">
+        <span>C</span>
+    </a>
+
+    
+</li>
+
+            
+                
+
+<li>
+    <a href="#c-9">
+        <span>C++</span>
+    </a>
+
+    
+</li>
+
+            
+        </ul>
+    
+</li>
+
+            
+                
+
+<li>
+    <a href="#4-goto-也能当-continue">
+        <span>4. goto 也能当 continue</span>
+    </a>
+
+    
+        <ul>
+            
+                
+
+<li>
+    <a href="#c-10">
+        <span>C</span>
+    </a>
+
+    
+</li>
+
+            
+                
+
+<li>
+    <a href="#c-11">
+        <span>C++</span>
+    </a>
+
+    
+</li>
+
+            
+        </ul>
+    
+</li>
+
+            
+                
+
+<li>
+    <a href="#5-改错题-c-与-c-的区别">
+        <span>5. 改错题：C 与 C++ 的区别</span>
+    </a>
+
+    
+</li>
+
+            
+        </ul>
+    
+</li>
+
+                    
+                </ul>
+            </div>
         
     </div>
 </div>

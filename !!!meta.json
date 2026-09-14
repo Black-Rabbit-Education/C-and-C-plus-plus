@@ -182,7 +182,7 @@
 					"title": "第二章：基本变量类型",
 					"notePosition": 20,
 					"prefix": null,
-					"isExpanded": false,
+					"isExpanded": true,
 					"type": "text",
 					"mime": "text/html",
 					"attributes": [
@@ -363,41 +363,6 @@
 							"value": "kDlnCqOQKJ7H",
 							"isInheritable": false,
 							"position": 10
-						},
-						{
-							"type": "relation",
-							"name": "internalLink",
-							"value": "c4WPJDHAEIZ6",
-							"isInheritable": false,
-							"position": 20
-						},
-						{
-							"type": "relation",
-							"name": "internalLink",
-							"value": "iEaIb7tlE5tu",
-							"isInheritable": false,
-							"position": 30
-						},
-						{
-							"type": "relation",
-							"name": "internalLink",
-							"value": "4cyj8VT0eyjO",
-							"isInheritable": false,
-							"position": 40
-						},
-						{
-							"type": "relation",
-							"name": "internalLink",
-							"value": "2erJuRsA1VpI",
-							"isInheritable": false,
-							"position": 50
-						},
-						{
-							"type": "relation",
-							"name": "internalLink",
-							"value": "uuMZnnEQAlBA",
-							"isInheritable": false,
-							"position": 60
 						}
 					],
 					"format": "html",
@@ -546,9 +511,65 @@
 							"isExpanded": false,
 							"type": "text",
 							"mime": "text/html",
-							"attributes": [],
+							"attributes": [
+								{
+									"type": "relation",
+									"name": "internalLink",
+									"value": "JfIF2zF6C1HJ",
+									"isInheritable": false,
+									"position": 10
+								}
+							],
 							"format": "html",
 							"dataFileName": "3.6 goto标签.html",
+							"attachments": []
+						}
+					]
+				},
+				{
+					"isClone": false,
+					"noteId": "JfIF2zF6C1HJ",
+					"notePath": [
+						"3f0LOwtZ3I9T",
+						"JfIF2zF6C1HJ"
+					],
+					"title": "第四章：函数",
+					"notePosition": 50,
+					"prefix": null,
+					"isExpanded": true,
+					"type": "text",
+					"mime": "text/html",
+					"attributes": [
+						{
+							"type": "relation",
+							"name": "internalLink",
+							"value": "uYZjfpBUQjP5",
+							"isInheritable": false,
+							"position": 10
+						}
+					],
+					"format": "html",
+					"dataFileName": "第四章：函数.html",
+					"attachments": [],
+					"dirFileName": "第四章：函数",
+					"children": [
+						{
+							"isClone": false,
+							"noteId": "uYZjfpBUQjP5",
+							"notePath": [
+								"3f0LOwtZ3I9T",
+								"JfIF2zF6C1HJ",
+								"uYZjfpBUQjP5"
+							],
+							"title": "4.1 初识函数语法",
+							"notePosition": 10,
+							"prefix": null,
+							"isExpanded": false,
+							"type": "text",
+							"mime": "text/html",
+							"attributes": [],
+							"format": "html",
+							"dataFileName": "4.1 初识函数语法.html",
 							"attachments": []
 						}
 					]
