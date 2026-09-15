@@ -1745,7 +1745,7 @@
         C与C++(自制教程)
     </a>
     
-        <div class="header-button-placeholder"></div>
+        <button aria-label="切换目录" id="toc-pane-toggle-button" class="header-button"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M3 9h14V7H3v2zm0 4h14v-2H3v2zm0 4h14v-2H3v2zm16 0h2v-2h-2v2zm0-10V7h2v2h-2zm0 6h2v-2h-2v2z"></path></svg></button>
     
 </div>
 <div id="split-pane">
@@ -2113,6 +2113,22 @@
 
         </li>
     
+    
+        <li class="item">
+            
+
+    
+    <a class="type-text" href="4.2%20%E5%87%BD%E6%95%B0%E7%9A%84%E5%A3%B0%E6%98%8E%E4%B8%8E%E5%AE%9A%E4%B9%89%E8%AF%A6%E8%A7%A3.html">
+        
+        <span><i class="tn-icon bx bx-note"></i> 4.2 函数的声明与定义详解</span>
+    </a>
+
+
+
+
+
+        </li>
+    
 </ul>
 
 
@@ -2127,11 +2143,93 @@
     </div>
     <div id="right-pane">
         <div id="main">
-            <div id="content" class="type-text ck-content no-content">
+            <div id="content" class="type-text ck-content">
                 
                     <h1 id="title">4.1 初识函数语法</h1>
                 
-                    <p>此笔记没有内容。</p>
+                    
+                    <p>有时候，我们常常要实现某些功能，比如一个程序中我们总要计算微积分，我们不能每一次使用的时候都写一大段计算微积分的代码，这实在是太累了，函数就是用来解决这个问题的，只需要写一遍，其他时候只需要一调用就会触发。</p><p>其实从第一章开始我们就一直在使用函数：<code spellcheck="false">printf</code>、<code spellcheck="false">scanf</code> 都是别人已经打包好的函数，我们只是拿来调用。这一节开始，我们学习如何自己创建函数。</p><h2>创造一个函数的语法<a id="创造一个函数的语法" class="toc-anchor" name="创造一个函数的语法" href="#创造一个函数的语法">#</a></h2><p>这一个语法，C++与C并没有任何区别。</p><p>创造函数有多种语法，在这里使用<code spellcheck="false">[]</code>表示可选的语法</p><pre><code class="language-text-x-c-src hljs">返回类型 函数名([参数类型 参数名 [,参数类型 参数名...]]){
+	语句...
+	[return 表达式;]
+}</code></pre><p>几个案例：</p><pre><code class="language-text-x-c-src hljs"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">max</span><span class="hljs-params">(<span class="hljs-type">int</span> a, <span class="hljs-type">int</span> b)</span></span>{
+	<span class="hljs-keyword">if</span>(a &gt; b){
+		<span class="hljs-keyword">return</span> a;
+	}
+	<span class="hljs-keyword">return</span> b;
+}
+
+<span class="hljs-function"><span class="hljs-type">double</span> <span class="hljs-title">area</span><span class="hljs-params">(<span class="hljs-type">double</span> length, <span class="hljs-type">double</span> width)</span></span>{
+	<span class="hljs-keyword">return</span> length * width;
+}
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">hello</span><span class="hljs-params">()</span></span>{
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;hello\n&quot;</span>);
+}</code></pre><p>这里，第一个函数我们可以理解为：<span class="math-tex">\(max\{a,b\}=a与b中较大的那一个\)</span></p><p>第二个函数我们可以理解为：<span class="math-tex">\(area\{length,width\}=length\times width\)</span></p><p>第三个函数我们可以理解为：<span class="math-tex">\(hello\{\}=输出hello\)</span></p><h3>关于函数嵌套<a id="关于函数嵌套" class="toc-anchor" name="关于函数嵌套" href="#关于函数嵌套">#</a></h3><p>函数内部再写一个函数，这个是C和C++标准中没有的，所以部分编译器可能允许，部分编译器可能不允许，请自行测试。</p><h3>调用函数<a id="调用函数" class="toc-anchor" name="调用函数" href="#调用函数">#</a></h3><p>光创造还不够，函数被<strong>调用</strong>才会执行。调用的时候，在小括号里写出要传入的数据（可以有零个或多个）：</p><pre><code class="language-text-x-c-src hljs"><span class="hljs-attribute">int</span> m = max(<span class="hljs-number">3</span>, <span class="hljs-number">5</span>);			// m 为 <span class="hljs-number">5</span>
+<span class="hljs-attribute">double</span> s = area(<span class="hljs-number">10</span>.<span class="hljs-number">0</span>, <span class="hljs-number">10</span>.<span class="hljs-number">0</span>);	// s 为 <span class="hljs-number">100</span>.<span class="hljs-number">0</span>
+<span class="hljs-attribute">hello</span>();				// 输出 hello</code></pre><p>这里，第一行代码我们可以理解为：<span class="math-tex">\(设m为max\left(3,5\right)且定义域为\left\lbrace m\in整数\right\rbrace\)</span></p><h3>表达式扩展<a id="表达式扩展" class="toc-anchor" name="表达式扩展" href="#表达式扩展">#</a></h3><p>实参的位置也可以放变量和表达式，有返回值的函数调用还可以当作一个值参与任何表达式，甚至函数里调用函数，就像数学里的<span class="math-tex">\(f(f(x))\)</span>一样：</p><pre><code class="language-text-x-c-src hljs"><span class="hljs-keyword">int</span> a = <span class="hljs-number">3</span>, b = <span class="hljs-number">5</span>;
+<span class="hljs-keyword">printf</span>(<span class="hljs-string">&quot;<span class="hljs-variable">%d</span>&quot;</span>, max(a, b) + <span class="hljs-number">1</span>);	<span class="hljs-regexp">//</span> 输出 <span class="hljs-number">6</span>
+<span class="hljs-keyword">printf</span>(<span class="hljs-string">&quot;<span class="hljs-variable">%d</span>&quot;</span>, max(max(a, b), <span class="hljs-number">7</span>));	<span class="hljs-regexp">//</span> 先算最里层的 max，输出 <span class="hljs-number">7</span></code></pre><h3>完整案例<a id="完整案例" class="toc-anchor" name="完整案例" href="#完整案例">#</a></h3><p>把上面的一切组合起来，写一个完整的程序。和使用变量一样，函数也要<strong>先创造，后使用</strong>，所以函数最好写在 <code spellcheck="false">main</code> 的前面：</p><pre><code class="language-text-x-c-src hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">max</span><span class="hljs-params">(<span class="hljs-type">int</span> a, <span class="hljs-type">int</span> b)</span></span>{	<span class="hljs-comment">// 创造函数</span>
+	<span class="hljs-keyword">if</span>(a &gt; b){
+		<span class="hljs-keyword">return</span> a;
+	}
+	<span class="hljs-keyword">return</span> b;
+}
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{		<span class="hljs-comment">// 创造主进程函数</span>
+	<span class="hljs-type">int</span> a = <span class="hljs-number">3</span>, b = <span class="hljs-number">5</span>;
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d&quot;</span>, <span class="hljs-built_in">max</span>(a, b));	<span class="hljs-comment">// 调用函数，输出 5</span>
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre><p>（C++ 的写法只是把 <code spellcheck="false">printf</code> 换成 <code spellcheck="false">std::cout</code>，其余完全一样，习题答案里会给出两种版本）</p><h2>语法详解<a id="语法详解" class="toc-anchor" name="语法详解" href="#语法详解">#</a></h2><h4>返回类型<a id="返回类型" class="toc-anchor" name="返回类型" href="#返回类型">#</a></h4><p>函数计算完成后要交回一个值，这个值的类型就是返回类型，写法与变量类型一样(也可以是返回数组！)。如果函数不需要交回任何值，就写<code spellcheck="false">void</code>（无返回值类型）。</p><figure class="table"><table><tbody><tr><td>类型</td><td>描述</td></tr><tr><td><code spellcheck="false">int</code></td><td>返回整数</td></tr><tr><td><code spellcheck="false">double</code></td><td>返回小数</td></tr><tr><td><code spellcheck="false">void</code></td><td>不返回任何值</td></tr></tbody></table></figure><p>一个函数只能返回一个值，和数学里的函数一样。</p><p>如果 <code spellcheck="false">return</code> 的值和返回类型不匹配，机器会把它强制隐式转换成返回类型。比如返回 <code spellcheck="false">int</code> 的函数里写 <code spellcheck="false">return 1.5;</code>，得到的是 <code spellcheck="false">1</code>。</p><h4>函数名<a id="函数名" class="toc-anchor" name="函数名" href="#函数名">#</a></h4><p>命名规则与变量名完全一样（字母、数字、下划线，不能由关键字组成，严格区分大小写），这里不再重复。函数名一般建议起成它的功能本身，让别人一眼看懂。</p><aside class="admonition tip"><p>给初学者一些建议：</p><p>和变量名一样，函数名也是写给人看的。一个函数最好只做一件事，名字就起成这件事本身，函数体尽量短小，方便日后阅读和修改。</p><pre><code class="language-text-x-c-src hljs"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">get_max</span><span class="hljs-params">(<span class="hljs-type">int</span> a, <span class="hljs-type">int</span> b)</span></span>{		<span class="hljs-comment">// 一眼看出：获取最大值</span>
+	<span class="hljs-keyword">return</span> a &gt; b ? a : b;
+}
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">print_hello</span><span class="hljs-params">()</span></span>{			<span class="hljs-comment">// 一眼看出：输出 hello</span>
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;hello\n&quot;</span>);
+}</code></pre><p>养成这个习惯，项目大的时候才方便阅读代码！</p></aside><h4>参数列表<a id="参数列表" class="toc-anchor" name="参数列表" href="#参数列表">#</a></h4><p>小括号里是函数要的数据，每个参数都要写出类型和名字，多个参数用逗号分隔。</p><p>函数也可以一个参数都不要，小括号留空即可，比如上面的 <code spellcheck="false">hello</code>。</p><p>函数定义时写在小括号里的参数叫做<strong>形式参数</strong>（形参），调用时传入的值叫做<strong>实际参数</strong>（实参）。调用的时候，实参的值会被复制给形参，所以函数里怎么改形参，都不会影响外面的实参，具体下一节会详细讲解。</p><h4>函数体与return<a id="函数体与return" class="toc-anchor" name="函数体与return" href="#函数体与return">#</a></h4><p>花括号里面是函数体，函数被调用时，从第一条语句开始顺序执行。</p><p><code spellcheck="false">return 表达式;</code> 表示"立刻结束这个函数，并把表达式的值交回去"。所以 <code spellcheck="false">return</code> 之后的语句不会再执行：</p><pre><code class="language-text-x-c-src hljs"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">test</span><span class="hljs-params">()</span></span>{
+	<span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;这一行永远执行不到\n&quot;</span>);
+}</code></pre><p>这一行代码永远不会被执行，写这种代码没有意义。</p><p>返回 <code spellcheck="false">void</code> 的函数可以写 <code spellcheck="false">return;</code> 直接结束（什么都不返回），也可以整个函数都不写 <code spellcheck="false">return</code>，执行到末尾自动结束；但不能 <code spellcheck="false">return</code> 一个值。</p><h4>main也是一个函数<a id="main也是一个函数" class="toc-anchor" name="main也是一个函数" href="#main也是一个函数">#</a></h4><p>我们天天写的 <code spellcheck="false">main</code> 本身就是一个函数：返回类型是 <code spellcheck="false">int</code>，<code spellcheck="false">return 0;</code> 表示程序正常结束。</p><p>程序从 <code spellcheck="false">main</code> 的第一条语句开始执行，<code spellcheck="false">main</code> 结束，整个程序就结束了。函数写在代码里的位置和执行的先后没有任何关系，只有被（直接或间接）调用的函数才会执行。</p><h2>小结<a id="小结" class="toc-anchor" name="小结" href="#小结">#</a></h2><p>这一小节初步了解了函数的基本语法，下一节会更详细的讲解函数的声明与定义。</p><p>下一节：<a class="reference-link type-text" href="4.2%20%E5%87%BD%E6%95%B0%E7%9A%84%E5%A3%B0%E6%98%8E%E4%B8%8E%E5%AE%9A%E4%B9%89%E8%AF%A6%E8%A7%A3.html"><span><span class="tn-icon bx bx-note"></span>4.2 函数的声明与定义详解</span></a></p><h2>习题<a id="习题" class="toc-anchor" name="习题" href="#习题">#</a></h2><h3>1.用函数计算矩形面积<a id="1-用函数计算矩形面积" class="toc-anchor" name="1-用函数计算矩形面积" href="#1-用函数计算矩形面积">#</a></h3><p>编写函数 <code spellcheck="false">area(int length, int width)</code>，返回矩形的面积。输入两个整数，分别为长和宽，输出矩形面积。</p><p>输入的数字为整数，且长和宽都<span class="math-tex">\(&lt;100且&gt;0\)</span>。</p><p>本题推荐最大时长：8分钟</p><p>题目输入案例：<code spellcheck="false">10 10</code></p><p>输出结果案例：<code spellcheck="false">100</code></p><details class="trilium-collapsible"><summary>答案</summary><h4>C<a id="c" class="toc-anchor" name="c" href="#c">#</a></h4><pre><code class="language-text-x-c-src hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">area</span><span class="hljs-params">(<span class="hljs-type">int</span> length, <span class="hljs-type">int</span> width)</span></span>{	<span class="hljs-comment">// 计算面积的函数</span>
+	<span class="hljs-keyword">return</span> length * width;		<span class="hljs-comment">// 返回面积</span>
+}
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+	<span class="hljs-type">int</span> length,width;				<span class="hljs-comment">// 创造两个变量，长和宽</span>
+	<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d %d&quot;</span>, &amp;length, &amp;width);	<span class="hljs-comment">// 输入两个数字，符合题目的用一个空格分隔</span>
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d&quot;</span>, <span class="hljs-built_in">area</span>(length,width));	<span class="hljs-comment">// 调用函数计算面积并输出</span>
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;					<span class="hljs-comment">// 结束程序</span>
+}</code></pre><h4>C++<a id="c-1" class="toc-anchor" name="c-1" href="#c-1">#</a></h4><pre><code class="language-text-x-c-src hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">area</span><span class="hljs-params">(<span class="hljs-type">int</span> length, <span class="hljs-type">int</span> width)</span></span>{	<span class="hljs-comment">// 计算面积的函数</span>
+	<span class="hljs-keyword">return</span> length * width;		<span class="hljs-comment">// 返回面积</span>
+}
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+	<span class="hljs-type">int</span> length,width;				<span class="hljs-comment">// 创造两个变量，长和宽</span>
+	std::cin &gt;&gt; length &gt;&gt; width;	<span class="hljs-comment">// 输入两个数字，符合题目的用一个空格分隔</span>
+	std::cout &lt;&lt; <span class="hljs-built_in">area</span>(length,width);	<span class="hljs-comment">// 调用函数计算面积并输出</span>
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;					<span class="hljs-comment">// 结束程序</span>
+}</code></pre></details><h3>2.计算(a+b)的平方<a id="2-计算-a-b-的平方" class="toc-anchor" name="2-计算-a-b-的平方" href="#2-计算-a-b-的平方">#</a></h3><p>编写两个函数：<code spellcheck="false">add(int a, int b)</code> 返回&nbsp;<span class="math-tex">\(a+b\)</span>，<code spellcheck="false">square(int x)</code> 返回&nbsp;<span class="math-tex">\(x^2\)</span>。输入两个整数 a 和 b，输出&nbsp;<span class="math-tex">\((a+b)^2\)</span>。</p><p>输入的数字为整数，且<span class="math-tex">\(-100&lt;a,b&lt;100\)</span>。</p><p>本题推荐最大时长：8分钟</p><p>题目输入案例：<code spellcheck="false">3 4</code></p><p>输出结果案例：<code spellcheck="false">49</code></p><details class="trilium-collapsible"><summary>答案</summary><h4>C<a id="c-2" class="toc-anchor" name="c-2" href="#c-2">#</a></h4><pre><code class="language-text-x-c-src hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">add</span><span class="hljs-params">(<span class="hljs-type">int</span> a, <span class="hljs-type">int</span> b)</span></span>{		<span class="hljs-comment">// 求和函数</span>
+	<span class="hljs-keyword">return</span> a + b;		<span class="hljs-comment">// 返回和</span>
+}
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">square</span><span class="hljs-params">(<span class="hljs-type">int</span> x)</span></span>{		<span class="hljs-comment">// 求平方函数</span>
+	<span class="hljs-keyword">return</span> x * x;		<span class="hljs-comment">// 返回平方</span>
+}
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+	<span class="hljs-type">int</span> a,b;				<span class="hljs-comment">// 创造两个变量a和b</span>
+	<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d %d&quot;</span>, &amp;a, &amp;b);		<span class="hljs-comment">// 输入两个数字，符合题目的用一个空格分隔</span>
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d&quot;</span>, <span class="hljs-built_in">square</span>(<span class="hljs-built_in">add</span>(a,b)));	<span class="hljs-comment">// 先add求和，再square求平方，最后输出</span>
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;				<span class="hljs-comment">// 结束程序</span>
+}</code></pre><h4>C++<a id="c-3" class="toc-anchor" name="c-3" href="#c-3">#</a></h4><pre><code class="language-text-x-c-src hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">add</span><span class="hljs-params">(<span class="hljs-type">int</span> a, <span class="hljs-type">int</span> b)</span></span>{		<span class="hljs-comment">// 求和函数</span>
+	<span class="hljs-keyword">return</span> a + b;		<span class="hljs-comment">// 返回和</span>
+}
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">square</span><span class="hljs-params">(<span class="hljs-type">int</span> x)</span></span>{		<span class="hljs-comment">// 求平方函数</span>
+	<span class="hljs-keyword">return</span> x * x;		<span class="hljs-comment">// 返回平方</span>
+}
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+	<span class="hljs-type">int</span> a,b;				<span class="hljs-comment">// 创造两个变量a和b</span>
+	std::cin &gt;&gt; a &gt;&gt; b;			<span class="hljs-comment">// 输入两个数字，符合题目的用一个空格分隔</span>
+	std::cout &lt;&lt; <span class="hljs-built_in">square</span>(<span class="hljs-built_in">add</span>(a,b));	<span class="hljs-comment">// 先add求和，再square求平方，最后输出</span>
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;				<span class="hljs-comment">// 结束程序</span>
+}</code></pre></details>
                 
                 
             </div>
@@ -2146,13 +2244,249 @@
 
 <div class="navigation">
     <a class="previous" href="../%E7%AC%AC%E5%9B%9B%E7%AB%A0%EF%BC%9A%E5%87%BD%E6%95%B0.html">第四章：函数</a>
-    
+    <a class="next" href="4.2%20%E5%87%BD%E6%95%B0%E7%9A%84%E5%A3%B0%E6%98%8E%E4%B8%8E%E5%AE%9A%E4%B9%89%E8%AF%A6%E8%A7%A3.html">4.2 函数的声明与定义详解</a>
 </div>
                 
 
                 
             </footer>
         </div>
+        
+            <div id="toc-pane">
+                <h3>本页内容</h3>
+                <ul id="toc">
+                    
+                        
+
+<li>
+    <a href="#创造一个函数的语法">
+        <span>创造一个函数的语法</span>
+    </a>
+
+    
+        <ul>
+            
+                
+
+<li>
+    <a href="#关于函数嵌套">
+        <span>关于函数嵌套</span>
+    </a>
+
+    
+</li>
+
+            
+                
+
+<li>
+    <a href="#调用函数">
+        <span>调用函数</span>
+    </a>
+
+    
+</li>
+
+            
+                
+
+<li>
+    <a href="#表达式扩展">
+        <span>表达式扩展</span>
+    </a>
+
+    
+</li>
+
+            
+                
+
+<li>
+    <a href="#完整案例">
+        <span>完整案例</span>
+    </a>
+
+    
+</li>
+
+            
+        </ul>
+    
+</li>
+
+                    
+                        
+
+<li>
+    <a href="#语法详解">
+        <span>语法详解</span>
+    </a>
+
+    
+        <ul>
+            
+                
+
+<li>
+    <a href="#返回类型">
+        <span>返回类型</span>
+    </a>
+
+    
+</li>
+
+            
+                
+
+<li>
+    <a href="#函数名">
+        <span>函数名</span>
+    </a>
+
+    
+</li>
+
+            
+                
+
+<li>
+    <a href="#参数列表">
+        <span>参数列表</span>
+    </a>
+
+    
+</li>
+
+            
+                
+
+<li>
+    <a href="#函数体与return">
+        <span>函数体与return</span>
+    </a>
+
+    
+</li>
+
+            
+                
+
+<li>
+    <a href="#main也是一个函数">
+        <span>main也是一个函数</span>
+    </a>
+
+    
+</li>
+
+            
+        </ul>
+    
+</li>
+
+                    
+                        
+
+<li>
+    <a href="#小结">
+        <span>小结</span>
+    </a>
+
+    
+</li>
+
+                    
+                        
+
+<li>
+    <a href="#习题">
+        <span>习题</span>
+    </a>
+
+    
+        <ul>
+            
+                
+
+<li>
+    <a href="#1-用函数计算矩形面积">
+        <span>1.用函数计算矩形面积</span>
+    </a>
+
+    
+        <ul>
+            
+                
+
+<li>
+    <a href="#c">
+        <span>C</span>
+    </a>
+
+    
+</li>
+
+            
+                
+
+<li>
+    <a href="#c-1">
+        <span>C++</span>
+    </a>
+
+    
+</li>
+
+            
+        </ul>
+    
+</li>
+
+            
+                
+
+<li>
+    <a href="#2-计算-a-b-的平方">
+        <span>2.计算(a+b)的平方</span>
+    </a>
+
+    
+        <ul>
+            
+                
+
+<li>
+    <a href="#c-2">
+        <span>C</span>
+    </a>
+
+    
+</li>
+
+            
+                
+
+<li>
+    <a href="#c-3">
+        <span>C++</span>
+    </a>
+
+    
+</li>
+
+            
+        </ul>
+    
+</li>
+
+            
+        </ul>
+    
+</li>
+
+                    
+                </ul>
+            </div>
         
     </div>
 </div>

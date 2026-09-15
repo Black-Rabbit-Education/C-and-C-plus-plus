@@ -18,7 +18,7 @@
     
     
     
-    <title>1.1 示例程序 - C与C++(自制教程)</title>
+    <title>4.2 函数的声明与定义详解 - C与C++(自制教程)</title>
     <script>
         // Load dark/light theme as soon as possible to avoid color flashes.
         let theme = localStorage.getItem("theme");
@@ -44,14 +44,14 @@
     <!-- Facebook Meta Tags -->
     <meta property="og:url" content="">
     <meta property="og:type" content="website">
-    <meta property="og:title" content="1.1 示例程序 - C与C++(自制教程)">
+    <meta property="og:title" content="4.2 函数的声明与定义详解 - C与C++(自制教程)">
     <meta property="og:description" content="">
     <meta property="og:image" content="">
     <!-- Twitter Meta Tags -->
     <meta name="twitter:card" content="summary_large_image">
     <meta property="twitter:domain" content="">
     <meta property="twitter:url" content="">
-    <meta name="twitter:title" content="1.1 示例程序 - C与C++(自制教程)">
+    <meta name="twitter:title" content="4.2 函数的声明与定义详解 - C与C++(自制教程)">
     <meta name="twitter:description" content="">
     <meta name="twitter:image" content="">
     <!-- Meta Tags Generated via https://opengraph.dev -->
@@ -1736,7 +1736,7 @@
     
 </head>
 
-<body data-note-id="2oSCHwarV1au" class="type-text" data-ancestor-note-id="3f0LOwtZ3I9T">
+<body data-note-id="i1EfaHk6tLa8" class="type-text" data-ancestor-note-id="3f0LOwtZ3I9T">
 
 <div id="header">
     <button aria-label="切换导航" id="left-pane-toggle-button" class="header-button"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z"></path></svg></button>
@@ -1783,7 +1783,7 @@
 <ul>
     
     
-        <li class="submenu-item expanded">
+        <li class="submenu-item">
             
 
     
@@ -1798,11 +1798,11 @@
 <ul>
     
     
-        <li class="item expanded">
+        <li class="item">
             
 
     
-    <a class="type-text active" href="1.1%20%E7%A4%BA%E4%BE%8B%E7%A8%8B%E5%BA%8F.html">
+    <a class="type-text" href="../%E7%AC%AC%E4%B8%80%E7%AB%A0%EF%BC%9A%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86%E6%A6%82%E8%BF%B0/1.1%20%E7%A4%BA%E4%BE%8B%E7%A8%8B%E5%BA%8F.html">
         
         <span><i class="tn-icon bx bx-note"></i> 1.1 示例程序</span>
     </a>
@@ -1818,7 +1818,7 @@
             
 
     
-    <a class="type-text" href="1.2%20%E8%A1%A8%E8%BE%BE%E5%BC%8F%E6%A6%82%E8%BF%B0.html">
+    <a class="type-text" href="../%E7%AC%AC%E4%B8%80%E7%AB%A0%EF%BC%9A%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86%E6%A6%82%E8%BF%B0/1.2%20%E8%A1%A8%E8%BE%BE%E5%BC%8F%E6%A6%82%E8%BF%B0.html">
         
         <span><i class="tn-icon bx bx-note"></i> 1.2 表达式概述</span>
     </a>
@@ -1834,7 +1834,7 @@
             
 
     
-    <a class="type-text" href="1.3%20%E8%BE%93%E5%85%A5%E4%B8%8E%E8%BE%93%E5%87%BA%E6%A6%82%E8%BF%B0.html">
+    <a class="type-text" href="../%E7%AC%AC%E4%B8%80%E7%AB%A0%EF%BC%9A%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86%E6%A6%82%E8%BF%B0/1.3%20%E8%BE%93%E5%85%A5%E4%B8%8E%E8%BE%93%E5%87%BA%E6%A6%82%E8%BF%B0.html">
         
         <span><i class="tn-icon bx bx-note"></i> 1.3 输入与输出概述</span>
     </a>
@@ -1850,7 +1850,7 @@
             
 
     
-    <a class="type-text" href="1.4%20%E6%B3%A8%E9%87%8A.html">
+    <a class="type-text" href="../%E7%AC%AC%E4%B8%80%E7%AB%A0%EF%BC%9A%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86%E6%A6%82%E8%BF%B0/1.4%20%E6%B3%A8%E9%87%8A.html">
         
         <span><i class="tn-icon bx bx-note"></i> 1.4 注释</span>
     </a>
@@ -2083,7 +2083,7 @@
         </li>
     
     
-        <li class="submenu-item">
+        <li class="submenu-item expanded">
             
 
     
@@ -2102,7 +2102,7 @@
             
 
     
-    <a class="type-text" href="../%E7%AC%AC%E5%9B%9B%E7%AB%A0%EF%BC%9A%E5%87%BD%E6%95%B0/4.1%20%E5%88%9D%E8%AF%86%E5%87%BD%E6%95%B0%E8%AF%AD%E6%B3%95.html">
+    <a class="type-text" href="4.1%20%E5%88%9D%E8%AF%86%E5%87%BD%E6%95%B0%E8%AF%AD%E6%B3%95.html">
         
         <span><i class="tn-icon bx bx-note"></i> 4.1 初识函数语法</span>
     </a>
@@ -2114,11 +2114,11 @@
         </li>
     
     
-        <li class="item">
+        <li class="item expanded">
             
 
     
-    <a class="type-text" href="../%E7%AC%AC%E5%9B%9B%E7%AB%A0%EF%BC%9A%E5%87%BD%E6%95%B0/4.2%20%E5%87%BD%E6%95%B0%E7%9A%84%E5%A3%B0%E6%98%8E%E4%B8%8E%E5%AE%9A%E4%B9%89%E8%AF%A6%E8%A7%A3.html">
+    <a class="type-text active" href="4.2%20%E5%87%BD%E6%95%B0%E7%9A%84%E5%A3%B0%E6%98%8E%E4%B8%8E%E5%AE%9A%E4%B9%89%E8%AF%A6%E8%A7%A3.html">
         
         <span><i class="tn-icon bx bx-note"></i> 4.2 函数的声明与定义详解</span>
     </a>
@@ -2145,49 +2145,19 @@
         <div id="main">
             <div id="content" class="type-text ck-content">
                 
-                    <h1 id="title">1.1 示例程序</h1>
+                    <h1 id="title">4.2 函数的声明与定义详解</h1>
                 
                     
-                    <h2>示例：<a id="示例" class="toc-anchor" name="示例" href="#示例">#</a></h2><p>新建两个项目，一个C语言一个C++，然后将这以下两个代码分别复制到你的项目文件中，并将其运行，看看运行后会发生什么。</p><p>C语言代码文件可以命名为<code spellcheck="false">main.c</code>，而C++代码文件可以命名为<code spellcheck="false">main.cpp</code>。</p><h3>C<a id="c" class="toc-anchor" name="c" href="#c">#</a></h3><pre><code class="language-text-x-csrc hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span>						<span class="hljs-comment">// 调用库</span></span>
-<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-type">int</span> argc, <span class="hljs-type">char</span> *argv[])</span>		<span class="hljs-comment">// 主函数，两个参数</span>
-</span>{										<span class="hljs-comment">// 函数开始</span>
-    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Hello, C!\n&quot;</span>);				<span class="hljs-comment">// 输出函数，输出Hello, C!还有换行</span>
-    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;							<span class="hljs-comment">// 函数返回0并结束程序</span>
-}										<span class="hljs-comment">// 函数结束</span></code></pre><h3>C++<a id="c-1" class="toc-anchor" name="c-1" href="#c-1">#</a></h3><pre><code class="language-text-x-c-src hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span>                     <span class="hljs-comment">// 调用库</span></span>
-<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-type">int</span> argc, <span class="hljs-type">char</span> *argv[])</span>        <span class="hljs-comment">// 主函数，两个参数</span>
-</span>{										<span class="hljs-comment">// 函数开始</span>
-	std::cout &lt;&lt; <span class="hljs-string">&quot;Hello C++!\n&quot;</span>;     	<span class="hljs-comment">// 输出函数，输出Hello C++!还有换行</span>
-	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;                           <span class="hljs-comment">// 函数返回0并结束程序</span>
-}                                       <span class="hljs-comment">// 函数结束</span></code></pre><p>您也完全可以试试将C语言代码复制到C++语言中，然后运行，看看效果，你会发现C++可以运行C语言的本案例代码。</p><h2>讲解<a id="讲解" class="toc-anchor" name="讲解" href="#讲解">#</a></h2><p>(注意，以下讲解你只需大概理解即可，暂时不要求会写，后续会详细讲解用法)</p><h3>注释<a id="注释" class="toc-anchor" name="注释" href="#注释">#</a></h3><p>代码中，你可以看见有很多<code spellcheck="false">//</code>符号，这表示注释，与代码无关，只是写在这里让人去看的。</p><p>在一行中，<code spellcheck="false">//</code>后方的所有内容，都是注释，都不会影响代码，你可以随意更改。</p><h3>库<a id="库" class="toc-anchor" name="库" href="#库">#</a></h3><p>第一行代码，<code spellcheck="false">#</code>是预处理指令，预处理指令就是在程序开始前要先处理的事务。</p><p><code spellcheck="false">include</code>是包含某个库的意思。</p><p>库是一些别人已经做好的程序内容，我们并不需要所有东西都自己写，我们可以调用别的人写好的东西来更快完成任务。</p><p><code spellcheck="false">&lt;iostream&gt;</code> 是iostream库，尖括号表示你要在尖括号内部输入你想要选择的库的名称，iostream是库的名字，stdio.h也是库的名字。</p><p>c语言中，只有stdio.h库，而C++两者皆有，所以你可以在C++中运行上述C语言代码。</p><h3>主函数<a id="主函数" class="toc-anchor" name="主函数" href="#主函数">#</a></h3><p>一个程序中有且仅有一个主函数（也就是代码中的<code spellcheck="false">int main(int argc, char *argv[])&nbsp;</code>），它内部包含了程序主要流程。</p><p><code spellcheck="false">int</code>我们暂时不需要了解是什么意思</p><p>主函数的第一个参数，也就是<code spellcheck="false">int argc</code>这段代码，它用于表示有多少个<strong>命令行</strong>参数。</p><p>第二个参数<code spellcheck="false">char *argv[]</code>是指每一个<strong>命令行</strong>参数的集合，你可以从集合中获取某个参数具体是什么。</p><h4>关于命令行参数<a id="关于命令行参数" class="toc-anchor" name="关于命令行参数" href="#关于命令行参数">#</a></h4><p>如果您使用的是Windows系统，那么你可以使用快捷键<code spellcheck="false">win+R</code>，然后输入<code spellcheck="false">cmd</code>，回车，你会打开命令行窗口。</p><p>随后输入你程序的位置，回车，你可以直接用命令行运行程序并查看输出。</p><p>比如输入：<code spellcheck="false">C://user/BlackRabbit/main.exe</code>然后回车，你能看到程序的结果。</p><p>此时如果你在后方加入一些参数，比如输入：<code spellcheck="false">C://user/BlackRabbit/main.exe -c -cpp</code></p><p>那么此时程序就有三个命令行参数，分别为<code spellcheck="false">C://user/BlackRabbit/main.exe</code>、<code spellcheck="false">-c</code>和<code spellcheck="false">-cpp</code>！(程序本身也是一个命令行参数)</p><p>您暂时不需要知道这有什么用，只需要了解一下，自己试试便可。</p><p>一个程序很多时候不需要命令行参数，您也可以将代码<code spellcheck="false">int main(int argc, char *argv[])</code>改为<code spellcheck="false">int main()</code>试试，这对于上述案例代码的结果不会有任何区别。</p><h3>域<a id="域" class="toc-anchor" name="域" href="#域">#</a></h3><p>我们用<code spellcheck="false">{</code>表示一个域的开始，用<code spellcheck="false">}</code>表示一个域的结尾。</p><p>我们常常需要用一个域来表示范围，比如主函数，哪里开始哪里结尾，我们便用域来表示，以此来避免有歧义。</p><p>域还可以有非常多作用，那是日后的事情，我们现在不需要了解。</p><p>现在的我们，只需要知道我们要写任何代码都写在主函数的域中即可！</p><p>(也要在<code spellcheck="false">return 0</code>之前哟，具体原因后续讲解)</p><h3>输出函数<a id="输出函数" class="toc-anchor" name="输出函数" href="#输出函数">#</a></h3><h4>函数<a id="函数" class="toc-anchor" name="函数" href="#函数">#</a></h4><p>函数并非是编程的术语，它是数学的术语！</p><p>它与数学中的函数没有区别，都是函数有几个变量，你给定一个具体的变量值，然后函数会变成一个具体的值。</p><p>编程也是一样，你给定一个具体的值，程序会根据函数执行具体的效果。</p><p>这里我们有两个用于<strong>输出</strong>功能的函数，C语言中它叫做<code spellcheck="false">printf</code>，而<code spellcheck="false">C++</code>中它叫做<code spellcheck="false">std::cout</code>。</p><p>你能看到，我们的函数具体给定哪些值，也是和数学中一致，在<code spellcheck="false">()</code>内部填入每个数值，用<code spellcheck="false">,</code>分隔每个值。</p><p>不过这里C++有些不同，我们使用<code spellcheck="false">&lt;&lt;</code>符号来分隔每个值，并不需要<code spellcheck="false">()</code>，不过其实C++中只有极小部分使用<code spellcheck="false">&lt;&lt;</code>这类符号，大部分函数仍然使用<code spellcheck="false">()</code>进行填写参数。不用着急，我们将在后面的章节中讲到。</p><h4>输出<a id="输出" class="toc-anchor" name="输出" href="#输出">#</a></h4><p>如果你尝试了运行，一定会看到某些屏幕上显示了什么！</p><p>有些人也会叫输出为打印，是因为以前，也可以将输出作为打印机的文字打印在纸上，而现如今，我们已经很少使用纸张来验证程序的效果了。</p><p>我们给定了一串文字，用<code spellcheck="false">"</code>表示文字开始和文字结尾。</p><p>我们有分为常量和变量，而程序中，这两者都不止包含数字，它们还可以是文字。</p><p>比如在上述c语言案例中，如果说<code spellcheck="false">1</code>是数字为1的常量，那么<code spellcheck="false">"Hello, C!\n"</code>就是一段为<code spellcheck="false">Hello, C!\n</code>文字的常量。</p><p>然后我们的输出函数，就会得到这个常量并将常量输出到屏幕上(也可以叫打印在纸上)。</p><p>您也可以修改<code spellcheck="false">"</code>中的内容然后再次运行看看会有什么变化。</p><h3>函数返回<a id="函数返回" class="toc-anchor" name="函数返回" href="#函数返回">#</a></h3><p>数学中的函数，填完参数后最终会给出一个结果。</p><p>而我们编程中的函数，填完参数后不仅会执行某些效果，还会执行完某些效果后像数学中那样给你一个具体的结果。</p><p>而这个值返回后有什么作用？同样放在日后的课程中。</p><h3>结束代码<a id="结束代码" class="toc-anchor" name="结束代码" href="#结束代码">#</a></h3><p>因为我们的编程语言是很严谨的，一个代码就是一个效果，但是有的代码过长，或者想要一行里面写两行代码等等，为了防止歧义，我们需要使用<code spellcheck="false">;</code>符号来表示我结束了一行代码！</p><p>所以，其实你完全可以做到以下代码：</p><pre><code class="language-text-x-csrc hljs"><span class="hljs-keyword">printf</span>(<span class="hljs-string">&quot;Hello, &quot;</span>);<span class="hljs-keyword">printf</span>(<span class="hljs-string">&quot;C!\n&quot;</span>);<span class="hljs-regexp">//</span> 这一行代码也可以替代: <span class="hljs-keyword">printf</span>(<span class="hljs-string">&quot;Hello, C!\n&quot;</span>);</code></pre><p>这个代码与上述的案例代码效果完全一致，您可以自己运行试试。</p><h3>代码流程<a id="代码流程" class="toc-anchor" name="代码流程" href="#代码流程">#</a></h3><p>我们的代码，一般情况下遵循从上到下一行行运行的流程，上述案例运行我们现在可以解读为文字理解便是：</p><ol><li data-list-item-id="ef56bad9d09e34bf52dfa0fd4d1e0fc09">包含库(代码：<code spellcheck="false">#include &lt;iostream&gt;</code>)</li><li data-list-item-id="efb91fb41566493560a1558efc66d40c5">主程序</li><li data-list-item-id="e2438ba5070b0c412c0cb49dfdc40ecf8">输出一段文字</li><li data-list-item-id="ec99a05a3805ddf1bf27802ab3d0629e7">返回函数结果，结束程序</li></ol><p>如果一行有多行代码，那么顺序便是从左往右。</p><h2>小结<a id="小结" class="toc-anchor" name="小结" href="#小结">#</a></h2><p>恭喜你大致理解了一个最简单的程序长什么样！</p><p>我们踏出了第一步！</p><p>下一节：<a class="reference-link type-text" href="1.2%20%E8%A1%A8%E8%BE%BE%E5%BC%8F%E6%A6%82%E8%BF%B0.html"><span><span class="tn-icon bx bx-note"></span>1.2 表达式概述</span></a></p><h2>习题<a id="习题" class="toc-anchor" name="习题" href="#习题">#</a></h2><h3>1.尝试改变文字输出<a id="1-尝试改变文字输出" class="toc-anchor" name="1-尝试改变文字输出" href="#1-尝试改变文字输出">#</a></h3><p>尝试写一个程序，打印你的名字</p><p>本题推荐最大时长：5分钟</p><details class="trilium-collapsible"><summary>答案(点击左侧箭头查看)</summary><h4>C答案(可以是C++答案)<a id="c答案-可以是c-答案" class="toc-anchor" name="c答案-可以是c-答案" href="#c答案-可以是c-答案">#</a></h4><pre><code class="language-text-x-csrc hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
-<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span>
-</span>{
-    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;我叫黑兔&quot;</span>);
-    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
-}</code></pre><h4>C++答案<a id="c-答案" class="toc-anchor" name="c-答案" href="#c-答案">#</a></h4><pre><code class="language-text-x-c-src hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
-<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span>
-</span>{
-    std::cout &lt;&lt; <span class="hljs-string">&quot;我叫黑兔&quot;</span>;
-    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
-}</code></pre></details><h3>2.尝试输出一个数字<a id="2-尝试输出一个数字" class="toc-anchor" name="2-尝试输出一个数字" href="#2-尝试输出一个数字">#</a></h3><p>尝试写一个程序，打印<code spellcheck="false">123</code></p><p>本题推荐最大时长：6分钟</p><details class="trilium-collapsible"><summary>答案</summary><h4>C语言答案(也可以是C++)<a id="c语言答案-也可以是c" class="toc-anchor" name="c语言答案-也可以是c" href="#c语言答案-也可以是c">#</a></h4><pre><code class="language-text-x-csrc hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
-<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span>
-</span>{
-    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;123&quot;</span>);
-    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
-}</code></pre><h4>C++<a id="c-2" class="toc-anchor" name="c-2" href="#c-2">#</a></h4><pre><code class="language-text-x-c-src hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
-<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span>
-</span>{
-    std::cout &lt;&lt; <span class="hljs-string">&quot;123&quot;</span>;
-    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
-}</code></pre><p>也可以用数字参数:</p><pre><code class="language-text-x-c-src hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+                    <p>函数的声明和定义跟声明变量一样，也是可以分开的。</p><p>这一小节主要讲解更多关于声明和定义的东西。</p><h2>声明与定义可以分开<a id="声明与定义可以分开" class="toc-anchor" name="声明与定义可以分开" href="#声明与定义可以分开">#</a></h2><p>函数也有声明和定义的区分。</p><p>声明语法：</p><pre><code class="language-text-x-csrc hljs">函数类型 函数名称(函数参数)<span class="hljs-comment">;</span></code></pre><p>分开后你可以像下面这样操作：</p><pre><code class="language-text-x-csrc hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">add</span><span class="hljs-params">(<span class="hljs-type">int</span> a, <span class="hljs-type">int</span> b)</span></span>;		<span class="hljs-comment">// 声明</span>
 <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
-	 std::cout &lt;&lt; <span class="hljs-number">123</span>;
-	 <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
-}</code></pre><h4>关于本题<a id="关于本题" class="toc-anchor" name="关于本题" href="#关于本题">#</a></h4><p>本题其实有很多答案，上述给出的答案没有好坏之分，你都可以使用。</p><p>你也可以有其他解决方案，不过上述答案是最少代码的答案了。</p><p>你也完全可以写出以下代码完成本题：</p><pre><code class="language-text-x-trilium-auto hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
-<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
-	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;12&quot;</span>);
-	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;3&quot;</span>);
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d&quot;</span>,<span class="hljs-built_in">add</span>(<span class="hljs-number">1</span>,<span class="hljs-number">3</span>));	<span class="hljs-comment">// 调用</span>
 	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
-}</code></pre></details>
+}
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">add</span> <span class="hljs-params">(<span class="hljs-type">int</span> a, <span class="hljs-type">int</span> b)</span></span>{ 	<span class="hljs-comment">// 定义</span>
+	<span class="hljs-keyword">return</span> a + b;
+}</code></pre><p>有时，这样看起来会舒心不少。</p><p>等到我们后续学习宏学习头文件的时候，我们将会经常使用这种方案来更清晰的理顺代码。</p><h2>函数的参数详解<a id="函数的参数详解" class="toc-anchor" name="函数的参数详解" href="#函数的参数详解">#</a></h2><h3>默认值<a id="默认值" class="toc-anchor" name="默认值" href="#默认值">#</a></h3><p>&nbsp;</p><h2>C++的函数重载<a id="c-的函数重载" class="toc-anchor" name="c-的函数重载" href="#c-的函数重载">#</a></h2>
                 
                 
             </div>
@@ -2201,8 +2171,8 @@
                     
 
 <div class="navigation">
-    <a class="previous" href="../%E7%AC%AC%E4%B8%80%E7%AB%A0%EF%BC%9A%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86%E6%A6%82%E8%BF%B0.html">第一章：前置知识概述</a>
-    <a class="next" href="1.2%20%E8%A1%A8%E8%BE%BE%E5%BC%8F%E6%A6%82%E8%BF%B0.html">1.2 表达式概述</a>
+    <a class="previous" href="4.1%20%E5%88%9D%E8%AF%86%E5%87%BD%E6%95%B0%E8%AF%AD%E6%B3%95.html">4.1 初识函数语法</a>
+    
 </div>
                 
 
@@ -2217,8 +2187,19 @@
                         
 
 <li>
-    <a href="#示例">
-        <span>示例：</span>
+    <a href="#声明与定义可以分开">
+        <span>声明与定义可以分开</span>
+    </a>
+
+    
+</li>
+
+                    
+                        
+
+<li>
+    <a href="#函数的参数详解">
+        <span>函数的参数详解</span>
     </a>
 
     
@@ -2227,19 +2208,8 @@
                 
 
 <li>
-    <a href="#c">
-        <span>C</span>
-    </a>
-
-    
-</li>
-
-            
-                
-
-<li>
-    <a href="#c-1">
-        <span>C++</span>
+    <a href="#默认值">
+        <span>默认值</span>
     </a>
 
     
@@ -2254,254 +2224,10 @@
                         
 
 <li>
-    <a href="#讲解">
-        <span>讲解</span>
+    <a href="#c-的函数重载">
+        <span>C++的函数重载</span>
     </a>
 
-    
-        <ul>
-            
-                
-
-<li>
-    <a href="#注释">
-        <span>注释</span>
-    </a>
-
-    
-</li>
-
-            
-                
-
-<li>
-    <a href="#库">
-        <span>库</span>
-    </a>
-
-    
-</li>
-
-            
-                
-
-<li>
-    <a href="#主函数">
-        <span>主函数</span>
-    </a>
-
-    
-        <ul>
-            
-                
-
-<li>
-    <a href="#关于命令行参数">
-        <span>关于命令行参数</span>
-    </a>
-
-    
-</li>
-
-            
-        </ul>
-    
-</li>
-
-            
-                
-
-<li>
-    <a href="#域">
-        <span>域</span>
-    </a>
-
-    
-</li>
-
-            
-                
-
-<li>
-    <a href="#输出函数">
-        <span>输出函数</span>
-    </a>
-
-    
-        <ul>
-            
-                
-
-<li>
-    <a href="#函数">
-        <span>函数</span>
-    </a>
-
-    
-</li>
-
-            
-                
-
-<li>
-    <a href="#输出">
-        <span>输出</span>
-    </a>
-
-    
-</li>
-
-            
-        </ul>
-    
-</li>
-
-            
-                
-
-<li>
-    <a href="#函数返回">
-        <span>函数返回</span>
-    </a>
-
-    
-</li>
-
-            
-                
-
-<li>
-    <a href="#结束代码">
-        <span>结束代码</span>
-    </a>
-
-    
-</li>
-
-            
-                
-
-<li>
-    <a href="#代码流程">
-        <span>代码流程</span>
-    </a>
-
-    
-</li>
-
-            
-        </ul>
-    
-</li>
-
-                    
-                        
-
-<li>
-    <a href="#小结">
-        <span>小结</span>
-    </a>
-
-    
-</li>
-
-                    
-                        
-
-<li>
-    <a href="#习题">
-        <span>习题</span>
-    </a>
-
-    
-        <ul>
-            
-                
-
-<li>
-    <a href="#1-尝试改变文字输出">
-        <span>1.尝试改变文字输出</span>
-    </a>
-
-    
-        <ul>
-            
-                
-
-<li>
-    <a href="#c答案-可以是c-答案">
-        <span>C答案(可以是C++答案)</span>
-    </a>
-
-    
-</li>
-
-            
-                
-
-<li>
-    <a href="#c-答案">
-        <span>C++答案</span>
-    </a>
-
-    
-</li>
-
-            
-        </ul>
-    
-</li>
-
-            
-                
-
-<li>
-    <a href="#2-尝试输出一个数字">
-        <span>2.尝试输出一个数字</span>
-    </a>
-
-    
-        <ul>
-            
-                
-
-<li>
-    <a href="#c语言答案-也可以是c">
-        <span>C语言答案(也可以是C++)</span>
-    </a>
-
-    
-</li>
-
-            
-                
-
-<li>
-    <a href="#c-2">
-        <span>C++</span>
-    </a>
-
-    
-</li>
-
-            
-                
-
-<li>
-    <a href="#关于本题">
-        <span>关于本题</span>
-    </a>
-
-    
-</li>
-
-            
-        </ul>
-    
-</li>
-
-            
-        </ul>
     
 </li>
 
