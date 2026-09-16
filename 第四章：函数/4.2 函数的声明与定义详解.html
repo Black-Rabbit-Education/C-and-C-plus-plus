@@ -2129,6 +2129,22 @@
 
         </li>
     
+    
+        <li class="item">
+            
+
+    
+    <a class="type-text" href="4.3%20%E9%80%92%E5%BD%92.html">
+        
+        <span><i class="tn-icon bx bx-note"></i> 4.3 递归</span>
+    </a>
+
+
+
+
+
+        </li>
+    
 </ul>
 
 
@@ -2148,7 +2164,10 @@
                     <h1 id="title">4.2 函数的声明与定义详解</h1>
                 
                     
-                    <p>函数的声明和定义跟声明变量一样，也是可以分开的。</p><p>这一小节主要讲解更多关于声明和定义的东西。</p><h2>声明与定义可以分开<a id="声明与定义可以分开" class="toc-anchor" name="声明与定义可以分开" href="#声明与定义可以分开">#</a></h2><p>函数也有声明和定义的区分。</p><p>声明语法：</p><pre><code class="language-text-x-csrc hljs">函数类型 函数名称(函数参数)<span class="hljs-comment">;</span></code></pre><p>分开后你可以像下面这样操作：</p><pre><code class="language-text-x-csrc hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+                    <p><span>函数的声明和定义跟声明变量一样，也是可以分开的。</span></p><p><span>这一小节主要讲解更多关于声明和定义的东西。</span></p><h2><span>声明与定义可以分开</span><a id="声明与定义可以分开" class="toc-anchor" name="声明与定义可以分开" href="#声明与定义可以分开">#</a></h2><p><span>函数也有声明和定义的区分。</span></p><p><span>声明语法：</span></p><div><div><div><div><pre><code class="language-text-x-csrc hljs">返回类型 函数名称(函数参数)<span class="hljs-comment">;</span></code></pre></div></div></div><svg></svg><svg></svg></div><p><span>定义语法：</span></p><div><div><div><div><pre><code class="language-text-x-csrc hljs">返回类型 函数名称(函数参数){
+	语句...
+	[<span class="hljs-keyword">return</span> 表达式;]
+}</code></pre></div></div></div><svg></svg><svg></svg></div><p><span>声明只是告诉编译器：“有这样一个函数，它叫什么名字、返回什么类型、要什么参数。”</span><br><span>定义则是真正把函数体写出来，告诉编译器这个函数具体怎么做事。</span></p><p><span>分开后你可以像下面这样操作：</span></p><pre><code class="language-text-x-csrc hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
 <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">add</span><span class="hljs-params">(<span class="hljs-type">int</span> a, <span class="hljs-type">int</span> b)</span></span>;		<span class="hljs-comment">// 声明</span>
 <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
 	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d&quot;</span>,<span class="hljs-built_in">add</span>(<span class="hljs-number">1</span>,<span class="hljs-number">3</span>));	<span class="hljs-comment">// 调用</span>
@@ -2157,7 +2176,80 @@
 
 <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">add</span> <span class="hljs-params">(<span class="hljs-type">int</span> a, <span class="hljs-type">int</span> b)</span></span>{ 	<span class="hljs-comment">// 定义</span>
 	<span class="hljs-keyword">return</span> a + b;
-}</code></pre><p>有时，这样看起来会舒心不少。</p><p>等到我们后续学习宏学习头文件的时候，我们将会经常使用这种方案来更清晰的理顺代码。</p><h2>函数的参数详解<a id="函数的参数详解" class="toc-anchor" name="函数的参数详解" href="#函数的参数详解">#</a></h2><h3>默认值<a id="默认值" class="toc-anchor" name="默认值" href="#默认值">#</a></h3><p>&nbsp;</p><h2>C++的函数重载<a id="c-的函数重载" class="toc-anchor" name="c-的函数重载" href="#c-的函数重载">#</a></h2>
+}</code></pre><div><svg></svg><svg></svg></div><p><span>有时，这样看起来会舒心不少。</span></p><p><span>只要在调用前函数被声明即可。</span></p><p><span>声明中的参数名可以省略，只写类型也可以：</span></p><pre><code class="language-text-x-csrc hljs"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">add</span><span class="hljs-params">(<span class="hljs-type">int</span>, <span class="hljs-type">int</span>)</span></span>;		<span class="hljs-comment">// 合法声明</span></code></pre><div><svg></svg><svg></svg></div><p><span>但定义中如果要使用参数，就必须写参数名。</span></p><p><span>等到我们后续学习宏、学习头文件的时候，我们将会经常使用这种方案来更清晰地理顺代码。通常会把函数声明放在头文件里，把函数定义放在源文件里。</span></p><aside class="admonition note"><p><span>一个函数可以声明很多次，但只能定义一次。</span><br><span>如果函数定义写在调用它的代码前面，那么定义本身也起到了声明的作用，可以不再单独声明。</span></p></aside><h2><span>函数的参数详解</span><a id="函数的参数详解" class="toc-anchor" name="函数的参数详解" href="#函数的参数详解">#</a></h2><h3><span>C++的默认值</span><a id="c-的默认值" class="toc-anchor" name="c-的默认值" href="#c-的默认值">#</a></h3><p><span>仅限 C++ 使用此语法。</span></p><p><span>你可以给参数一个默认值，如果你没有填写这个参数，它就是默认值，例如：</span></p><pre><code class="language-text-x-c-src hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">add</span><span class="hljs-params">(<span class="hljs-type">int</span> value1 = <span class="hljs-number">10</span>, <span class="hljs-type">int</span> value2 = <span class="hljs-number">20</span>)</span></span>{
+	<span class="hljs-keyword">return</span> value1 + value2;
+}
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+	std::cout &lt;&lt; <span class="hljs-built_in">add</span>() &lt;&lt; <span class="hljs-string">&quot;\n&quot;</span>;
+	std::cout &lt;&lt; <span class="hljs-built_in">add</span>(<span class="hljs-number">1</span>) &lt;&lt; <span class="hljs-string">&quot;\n&quot;</span>;
+	std::cout &lt;&lt; <span class="hljs-built_in">add</span>(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>) &lt;&lt; <span class="hljs-string">&quot;\n&quot;</span>;
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre><div><svg></svg><svg></svg></div><p><span>上述代码输出如下：</span></p><div><div><div><div><pre><code class="language-text-x-c-src hljs">30
+21
+3</code></pre></div></div></div><svg></svg><svg></svg></div><p><span>解释：</span></p><ul><li data-list-item-id="e9a089a35d4feab3f96bac1fc7a38f557"><code spellcheck="false">add()</code><span>：两个参数都不填，使用默认值 </span><code spellcheck="false">10</code><span> 和 </span><code spellcheck="false">20</code><span>，结果为 </span><code spellcheck="false">30</code><span>。</span></li><li data-list-item-id="edaa35ab03275c0d58c22d92324823856"><code spellcheck="false">add(1)</code><span>：只填第一个参数，第二个参数使用默认值 </span><code spellcheck="false">20</code><span>，结果为 </span><code spellcheck="false">21</code><span>。</span></li><li data-list-item-id="e48bd398ca5fa7a10ab0c962425234333"><code spellcheck="false">add(1, 2)</code><span>：两个参数都填，结果为 </span><code spellcheck="false">3</code><span>。</span></li></ul><h4><span>声明与定义</span><a id="声明与定义" class="toc-anchor" name="声明与定义" href="#声明与定义">#</a></h4><p><span>如果你将声明与定义分开，那么默认值只需要在一个地方写，另一个地方就不再需要写。</span></p><p><span>通常推荐把默认值写在声明里：</span></p><pre><code class="language-text-x-c-src hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">add</span><span class="hljs-params">(<span class="hljs-type">int</span> value1 = <span class="hljs-number">10</span>, <span class="hljs-type">int</span> value2 = <span class="hljs-number">20</span>)</span></span>;	<span class="hljs-comment">// 声明：默认值写在这里</span>
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+	std::cout &lt;&lt; <span class="hljs-built_in">add</span>() &lt;&lt; <span class="hljs-string">&quot;\n&quot;</span>;
+	std::cout &lt;&lt; <span class="hljs-built_in">add</span>(<span class="hljs-number">1</span>) &lt;&lt; <span class="hljs-string">&quot;\n&quot;</span>;
+	std::cout &lt;&lt; <span class="hljs-built_in">add</span>(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>) &lt;&lt; <span class="hljs-string">&quot;\n&quot;</span>;
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">add</span><span class="hljs-params">(<span class="hljs-type">int</span> value1, <span class="hljs-type">int</span> value2)</span></span>{		<span class="hljs-comment">// 定义：不再写默认值</span>
+	<span class="hljs-keyword">return</span> value1 + value2;
+}</code></pre><div><svg></svg><svg></svg></div><p><span>不要声明和定义里都写默认值，否则可能会报“重定义默认参数”之类的错误。</span></p><p><span>而且如果把默认值放在定义，而定义之前会执行调用的话，可能无法得知有默认参数从而报错。</span></p><aside class="admonition tip"><p><span>如果函数声明和定义分开，默认值一般写在声明中。这样所有能看到声明的地方，都能知道这个参数可以省略。</span></p></aside><h4><span>默认值只能从右往左连续的写默认值</span><a id="默认值只能从右往左连续的写默认值" class="toc-anchor" name="默认值只能从右往左连续的写默认值" href="#默认值只能从右往左连续的写默认值">#</a></h4><p><span>默认参数必须从参数列表的最右边开始，连续往左写。</span></p><p><span>也就是说：一旦某个参数有了默认值，它右边的所有参数都必须有默认值。</span></p><p><span>合法写法：</span></p><pre><code class="language-text-x-c-src hljs"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">f</span><span class="hljs-params">(<span class="hljs-type">int</span> a, <span class="hljs-type">int</span> b = <span class="hljs-number">2</span>, <span class="hljs-type">int</span> c = <span class="hljs-number">3</span>)</span></span>;	<span class="hljs-comment">// 合法</span>
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">g</span><span class="hljs-params">(<span class="hljs-type">int</span> a = <span class="hljs-number">1</span>, <span class="hljs-type">int</span> b = <span class="hljs-number">2</span>, <span class="hljs-type">int</span> c = <span class="hljs-number">3</span>)</span></span>;	<span class="hljs-comment">// 合法</span></code></pre><div><svg></svg><svg></svg></div><p><span>错误写法：</span></p><pre><code class="language-text-x-c-src hljs"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">h</span><span class="hljs-params">(<span class="hljs-type">int</span> a = <span class="hljs-number">1</span>, <span class="hljs-type">int</span> b, <span class="hljs-type">int</span> c = <span class="hljs-number">3</span>)</span></span>;	<span class="hljs-comment">// 错误：b 没有默认值，右边的 c 却有默认值</span>
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">k</span><span class="hljs-params">(<span class="hljs-type">int</span> a, <span class="hljs-type">int</span> b = <span class="hljs-number">1</span>, <span class="hljs-type">int</span> c)</span></span>;		<span class="hljs-comment">// 错误：c 在 b 右边，却没有默认值</span></code></pre><div><svg></svg><svg></svg></div><p><span>因为调用函数时，实参是从左往右依次传入的，不能跳过中间某个参数只填后面的参数。</span></p><p><span>例如：</span></p><pre><code class="language-text-x-c-src hljs"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">f</span><span class="hljs-params">(<span class="hljs-type">int</span> a, <span class="hljs-type">int</span> b = <span class="hljs-number">2</span>, <span class="hljs-type">int</span> c = <span class="hljs-number">3</span>)</span></span>;</code></pre><div><svg></svg><svg></svg></div><p><span>可以这样调用：</span></p><pre><code class="language-text-x-c-src hljs"><span class="hljs-attribute">f</span>(<span class="hljs-number">1</span>);		// 等价于 f(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>)
+<span class="hljs-attribute">f</span>(<span class="hljs-number">1</span>, <span class="hljs-number">5</span>);	// 等价于 f(<span class="hljs-number">1</span>, <span class="hljs-number">5</span>, <span class="hljs-number">3</span>)
+<span class="hljs-attribute">f</span>(<span class="hljs-number">1</span>, <span class="hljs-number">5</span>, <span class="hljs-number">8</span>);</code></pre><div><svg></svg><svg></svg></div><p><span>但不能只填 </span><code spellcheck="false">a</code><span> 和 </span><code spellcheck="false">c</code><span>，跳过 </span><code spellcheck="false">b</code><span>。</span></p><h3><span>可变参数函数</span><a id="可变参数函数" class="toc-anchor" name="可变参数函数" href="#可变参数函数">#</a></h3><p><span>有时候，我们不知道调用函数时到底会传多少个参数。比如 </span><code spellcheck="false">printf</code><span> 就是一个可变参函数，可以输出一个值，也可以输出很多个值：</span></p><pre><code class="language-text-x-c-src hljs"><span class="hljs-keyword">printf</span>(<span class="hljs-string">&quot;<span class="hljs-variable">%d</span>&quot;</span>, <span class="hljs-number">1</span>);
+<span class="hljs-keyword">printf</span>(<span class="hljs-string">&quot;<span class="hljs-variable">%d</span> <span class="hljs-variable">%d</span>&quot;</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>);
+<span class="hljs-keyword">printf</span>(<span class="hljs-string">&quot;<span class="hljs-variable">%d</span> <span class="hljs-variable">%d</span> <span class="hljs-variable">%d</span>&quot;</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>);</code></pre><div><svg></svg><svg></svg></div><p><span>像这种参数个数可以变化的函数，就叫<strong>可变参数函数</strong>。</span><br><span>C 和 C++ 都支持用省略号 </span><code spellcheck="false">...</code><span> 来表示可变参数。</span></p><h4><span>语法</span><a id="语法" class="toc-anchor" name="语法" href="#语法">#</a></h4><pre><code class="language-text-x-c-src hljs">返回类型 函数名(至少一个固定参数, <span class="hljs-params">...</span>);</code></pre><div><svg></svg><svg></svg></div><p><span>规则：</span></p><ul><li data-list-item-id="e7b0bfb6e87e87e0c8d9aaff15ba70865"><code spellcheck="false">...</code><span> 必须放在参数列表最后。</span></li><li data-list-item-id="e745e754e30729f3213a0d69e4d6dca65"><span>前面至少要有一个固定参数。</span></li><li data-list-item-id="e10983ed174d58774c4612a6a81d8bbd0"><span>不能写成 </span><code spellcheck="false">int f(...);</code><span>。</span></li></ul><p><span>例如：</span></p><pre><code class="language-text-x-c-src hljs"><span class="hljs-built_in">int</span> <span class="hljs-keyword">sum</span>(<span class="hljs-built_in">int</span> <span class="hljs-keyword">count</span>, ...);</code></pre><div><svg></svg><svg></svg></div><p><span>这里的 </span><code spellcheck="false">count</code><span> 是固定参数，用来告诉函数后面有几个数。</span></p><h3><span>获取可变参数</span><a id="获取可变参数" class="toc-anchor" name="获取可变参数" href="#获取可变参数">#</a></h3><p><span>想要获取可变参数，你需要添加一行新的代码。</span></p><p><span>如果你是C语言，你需要添加</span><code spellcheck="false"><span>#include &lt;</span>stdarg.h<span>&gt;</span></code></p><p><span>如果你是C++，你可以选择使用C的代码或者</span><code spellcheck="false"><span>#include &lt;</span>cstdarg<span>&gt;</span></code></p><p>示例代码：</p><pre><code class="language-text-x-csrc hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdarg.h&gt;</span></span>
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">sum</span><span class="hljs-params">(<span class="hljs-type">int</span> count, ...)</span></span>{
+    va_list ap;              <span class="hljs-comment">// 参数读取器</span>
+    <span class="hljs-built_in">va_start</span>(ap, count);     <span class="hljs-comment">// 从 count 后面开始读</span>
+
+    <span class="hljs-type">int</span> total = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; count; i++){
+        total += <span class="hljs-built_in">va_arg</span>(ap, <span class="hljs-type">int</span>);  <span class="hljs-comment">// 读下一个 int</span>
+    }
+
+    <span class="hljs-built_in">va_end</span>(ap);              <span class="hljs-comment">// 结束读取</span>
+    <span class="hljs-keyword">return</span> total;
+}
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>, <span class="hljs-built_in">sum</span>(<span class="hljs-number">3</span>, <span class="hljs-number">10</span>, <span class="hljs-number">20</span>, <span class="hljs-number">30</span>));  <span class="hljs-comment">// 输出 60</span>
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>, <span class="hljs-built_in">sum</span>(<span class="hljs-number">4</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>));  <span class="hljs-comment">// 输出 10</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre><p><span>四个关键东西：</span></p><div><figure class="table"><table><thead><tr><th><span>名字</span></th><th><span>作用</span></th></tr></thead><tbody><tr><td><code spellcheck="false">va_list</code></td><td><span>定义一个参数读取器</span></td></tr><tr><td><code spellcheck="false">va_start</code></td><td><span>开始读取，第二个参数写最后一个固定参数</span></td></tr><tr><td><code spellcheck="false">va_arg</code></td><td><span>读取下一个参数，第二个参数写类型</span></td></tr><tr><td><code spellcheck="false">va_end</code></td><td><span>结束读取，和 </span><code spellcheck="false">va_start</code><span> 配对</span></td></tr></tbody></table></figure><p>C++如果是写的<code spellcheck="false"><span>#include &lt;</span>cstdarg<span>&gt;</span></code>，那么可以在前面加一个<code spellcheck="false">std::</code>调用C++改过的类型或者函数等，比如<code spellcheck="false">std::va_list</code></p><p><span>关于更多后续会详细介绍。</span></p></div><h2><span>C++的函数重载</span><a id="c-的函数重载" class="toc-anchor" name="c-的函数重载" href="#c-的函数重载">#</a></h2><p><span>有时候，有些函数功能几乎一样，只是参数不同，这时就可以使用函数重载。比如针对不同数据类型的勾股定理函数就是一个很好的应用场景。</span></p><p><span>C++ 允许在同一作用域中，定义多个同名函数，只要它们的参数列表不同。这就是函数重载。</span></p><p><span>例如：</span></p><div><div><div><div><pre><code class="language-text-x-c-src hljs"><span class="hljs-meta">#include &lt;iostream&gt;</span>
+<span class="hljs-type">int</span> <span class="hljs-keyword">add</span>(<span class="hljs-type">int</span> a, <span class="hljs-type">int</span> b){
+	<span class="hljs-keyword">return</span> a + b;
+}
+<span class="hljs-type">double</span> <span class="hljs-keyword">add</span>(<span class="hljs-type">double</span> a, <span class="hljs-type">double</span> b){
+	<span class="hljs-keyword">return</span> a + b;
+}
+<span class="hljs-type">int</span> <span class="hljs-keyword">add</span>(<span class="hljs-type">int</span> a, <span class="hljs-type">int</span> b, <span class="hljs-type">int</span> c){
+	<span class="hljs-keyword">return</span> a + b + c;
+}
+<span class="hljs-type">int</span> main(){
+	std::cout &lt;&lt; <span class="hljs-keyword">add</span>(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>) &lt;&lt; &quot;\n&quot;;		// 调用 <span class="hljs-type">int</span> <span class="hljs-keyword">add</span>(<span class="hljs-type">int</span>, <span class="hljs-type">int</span>)
+	std::cout &lt;&lt; <span class="hljs-keyword">add</span>(<span class="hljs-number">1.5</span>, <span class="hljs-number">2.5</span>) &lt;&lt; &quot;\n&quot;;	// 调用 <span class="hljs-type">double</span> <span class="hljs-keyword">add</span>(<span class="hljs-type">double</span>, <span class="hljs-type">double</span>)
+	std::cout &lt;&lt; <span class="hljs-keyword">add</span>(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>) &lt;&lt; &quot;\n&quot;;	// 调用 <span class="hljs-type">int</span> <span class="hljs-keyword">add</span>(<span class="hljs-type">int</span>, <span class="hljs-type">int</span>, <span class="hljs-type">int</span>)
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre></div></div></div><svg></svg><svg></svg></div><p><span>输出：</span></p><pre><code class="language-text-x-c-src hljs">3
+4
+6</code></pre><div><svg></svg><svg></svg></div><p><span>编译器会根据你传入的实参个数和类型，自动选择合适的函数。</span></p><h3><span>什么算重载</span><a id="什么算重载" class="toc-anchor" name="什么算重载" href="#什么算重载">#</a></h3><p><span>函数名相同，并且满足下面任意一点，就算重载：</span></p><ul><li data-list-item-id="eef2ae19dc90888516341d9b083e4d164"><span>参数个数不同。</span></li><li data-list-item-id="e3938f658e7e99b6a7c118ee3c6a04dbe"><span>参数类型不同。</span></li><li data-list-item-id="ebf7ce3690054f47cee2a6eae266a651f"><span>参数类型顺序不同。</span></li></ul><aside class="admonition tip"><p><span>其实总的来说：只要这些同名函数的参数列表能够区分，调用时不会产生歧义，就是合法的重载。</span></p></aside><p><span>例如：</span></p><pre><code class="language-text-x-c-src hljs"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">add</span><span class="hljs-params">(<span class="hljs-type">int</span> a, <span class="hljs-type">int</span> b)</span></span>;
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">add</span><span class="hljs-params">(<span class="hljs-type">int</span> a, <span class="hljs-type">int</span> b, <span class="hljs-type">int</span> c)</span></span>;		<span class="hljs-comment">// 参数个数不同</span>
+<span class="hljs-function"><span class="hljs-type">double</span> <span class="hljs-title">add</span><span class="hljs-params">(<span class="hljs-type">double</span> a, <span class="hljs-type">double</span> b)</span></span>;		<span class="hljs-comment">// 参数类型不同</span></code></pre><div><svg></svg><svg></svg></div><h3><span>什么不算重载</span><a id="什么不算重载" class="toc-anchor" name="什么不算重载" href="#什么不算重载">#</a></h3><p><span>仅仅返回类型不同，不算重载：</span></p><pre><code class="language-text-x-c-src hljs"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">f</span><span class="hljs-params">(<span class="hljs-type">int</span> a)</span></span>;
+<span class="hljs-function"><span class="hljs-type">double</span> <span class="hljs-title">f</span><span class="hljs-params">(<span class="hljs-type">int</span> a)</span></span>;	<span class="hljs-comment">// 错误：只有返回类型不同</span></code></pre><div><svg></svg><svg></svg></div><p><span>仅仅参数名不同，也不算重载：</span></p><pre><code class="language-text-x-c-src hljs"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">f</span><span class="hljs-params">(<span class="hljs-type">int</span> a)</span></span>;
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">f</span><span class="hljs-params">(<span class="hljs-type">int</span> b)</span></span>;		<span class="hljs-comment">// 错误：参数类型和个数都相同，只是名字不同</span></code></pre><div><svg></svg><svg></svg></div><h3><span>默认参数与重载的二义性</span><a id="默认参数与重载的二义性" class="toc-anchor" name="默认参数与重载的二义性" href="#默认参数与重载的二义性">#</a></h3><p><span>默认参数和函数重载一起使用时，可能产生歧义性：</span></p><pre><code class="language-text-x-c-src hljs"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">print</span><span class="hljs-params">(<span class="hljs-type">int</span> a)</span></span>;
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">print</span><span class="hljs-params">(<span class="hljs-type">int</span> a, <span class="hljs-type">int</span> b = <span class="hljs-number">0</span>)</span></span>;
+
+<span class="hljs-comment">// print(1);	// 二义：两个函数都能匹配</span></code></pre><div><svg></svg><svg></svg></div><p><span>所以设计函数时，要尽量避免让编译器分不清该调用哪一个。</span></p><aside class="admonition note"><p><span>默认参数和函数重载都是 C++ 的特性，C 语言不支持。</span><br><span>在 C 语言中，同一作用域内不能写同名函数，也不能给参数写默认值。</span></p></aside><h2><span>小结</span><a id="小结" class="toc-anchor" name="小结" href="#小结">#</a></h2><p><span>这一节主要讲了更详细的创建函数细节，合理利用函数并好好命名，能让你代码可读性上升一个档次。</span></p><p><span>下一节：</span><a class="reference-link type-text" href="4.3%20%E9%80%92%E5%BD%92.html"><span><span class="tn-icon bx bx-note"></span>4.3 递归</span></a></p>
                 
                 
             </div>
@@ -2172,7 +2264,7 @@
 
 <div class="navigation">
     <a class="previous" href="4.1%20%E5%88%9D%E8%AF%86%E5%87%BD%E6%95%B0%E8%AF%AD%E6%B3%95.html">4.1 初识函数语法</a>
-    
+    <a class="next" href="4.3%20%E9%80%92%E5%BD%92.html">4.3 递归</a>
 </div>
                 
 
@@ -2208,8 +2300,71 @@
                 
 
 <li>
-    <a href="#默认值">
-        <span>默认值</span>
+    <a href="#c-的默认值">
+        <span>C++的默认值</span>
+    </a>
+
+    
+        <ul>
+            
+                
+
+<li>
+    <a href="#声明与定义">
+        <span>声明与定义</span>
+    </a>
+
+    
+</li>
+
+            
+                
+
+<li>
+    <a href="#默认值只能从右往左连续的写默认值">
+        <span>默认值只能从右往左连续的写默认值</span>
+    </a>
+
+    
+</li>
+
+            
+        </ul>
+    
+</li>
+
+            
+                
+
+<li>
+    <a href="#可变参数函数">
+        <span>可变参数函数</span>
+    </a>
+
+    
+        <ul>
+            
+                
+
+<li>
+    <a href="#语法">
+        <span>语法</span>
+    </a>
+
+    
+</li>
+
+            
+        </ul>
+    
+</li>
+
+            
+                
+
+<li>
+    <a href="#获取可变参数">
+        <span>获取可变参数</span>
     </a>
 
     
@@ -2226,6 +2381,54 @@
 <li>
     <a href="#c-的函数重载">
         <span>C++的函数重载</span>
+    </a>
+
+    
+        <ul>
+            
+                
+
+<li>
+    <a href="#什么算重载">
+        <span>什么算重载</span>
+    </a>
+
+    
+</li>
+
+            
+                
+
+<li>
+    <a href="#什么不算重载">
+        <span>什么不算重载</span>
+    </a>
+
+    
+</li>
+
+            
+                
+
+<li>
+    <a href="#默认参数与重载的二义性">
+        <span>默认参数与重载的二义性</span>
+    </a>
+
+    
+</li>
+
+            
+        </ul>
+    
+</li>
+
+                    
+                        
+
+<li>
+    <a href="#小结">
+        <span>小结</span>
     </a>
 
     

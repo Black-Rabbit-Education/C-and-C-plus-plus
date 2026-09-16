@@ -594,9 +594,36 @@
 							"isExpanded": false,
 							"type": "text",
 							"mime": "text/html",
-							"attributes": [],
+							"attributes": [
+								{
+									"type": "relation",
+									"name": "internalLink",
+									"value": "7RtY2gzLkRq0",
+									"isInheritable": false,
+									"position": 10
+								}
+							],
 							"format": "html",
 							"dataFileName": "4.2 函数的声明与定义详解.html",
+							"attachments": []
+						},
+						{
+							"isClone": false,
+							"noteId": "7RtY2gzLkRq0",
+							"notePath": [
+								"3f0LOwtZ3I9T",
+								"JfIF2zF6C1HJ",
+								"7RtY2gzLkRq0"
+							],
+							"title": "4.3 递归",
+							"notePosition": 30,
+							"prefix": null,
+							"isExpanded": false,
+							"type": "text",
+							"mime": "text/html",
+							"attributes": [],
+							"format": "html",
+							"dataFileName": "4.3 递归.html",
 							"attachments": []
 						}
 					]
