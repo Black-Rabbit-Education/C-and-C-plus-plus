@@ -625,6 +625,25 @@
 							"format": "html",
 							"dataFileName": "4.3 递归.html",
 							"attachments": []
+						},
+						{
+							"isClone": false,
+							"noteId": "Y2WDKqqYMsEs",
+							"notePath": [
+								"3f0LOwtZ3I9T",
+								"JfIF2zF6C1HJ",
+								"Y2WDKqqYMsEs"
+							],
+							"title": "4.4 lambda表达式",
+							"notePosition": 40,
+							"prefix": null,
+							"isExpanded": false,
+							"type": "text",
+							"mime": "text/html",
+							"attributes": [],
+							"format": "html",
+							"dataFileName": "4.4 lambda表达式.html",
+							"attachments": []
 						}
 					]
 				}

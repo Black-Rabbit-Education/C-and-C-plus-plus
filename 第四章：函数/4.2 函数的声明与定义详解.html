@@ -2145,6 +2145,22 @@
 
         </li>
     
+    
+        <li class="item">
+            
+
+    
+    <a class="type-text" href="4.4%20lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F.html">
+        
+        <span><i class="tn-icon bx bx-note"></i> 4.4 lambda表达式</span>
+    </a>
+
+
+
+
+
+        </li>
+    
 </ul>
 
 
@@ -2205,7 +2221,7 @@
 <span class="hljs-attribute">f</span>(<span class="hljs-number">1</span>, <span class="hljs-number">5</span>);	// 等价于 f(<span class="hljs-number">1</span>, <span class="hljs-number">5</span>, <span class="hljs-number">3</span>)
 <span class="hljs-attribute">f</span>(<span class="hljs-number">1</span>, <span class="hljs-number">5</span>, <span class="hljs-number">8</span>);</code></pre><div><svg></svg><svg></svg></div><p><span>但不能只填 </span><code spellcheck="false">a</code><span> 和 </span><code spellcheck="false">c</code><span>，跳过 </span><code spellcheck="false">b</code><span>。</span></p><h3><span>可变参数函数</span><a id="可变参数函数" class="toc-anchor" name="可变参数函数" href="#可变参数函数">#</a></h3><p><span>有时候，我们不知道调用函数时到底会传多少个参数。比如 </span><code spellcheck="false">printf</code><span> 就是一个可变参函数，可以输出一个值，也可以输出很多个值：</span></p><pre><code class="language-text-x-c-src hljs"><span class="hljs-keyword">printf</span>(<span class="hljs-string">&quot;<span class="hljs-variable">%d</span>&quot;</span>, <span class="hljs-number">1</span>);
 <span class="hljs-keyword">printf</span>(<span class="hljs-string">&quot;<span class="hljs-variable">%d</span> <span class="hljs-variable">%d</span>&quot;</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>);
-<span class="hljs-keyword">printf</span>(<span class="hljs-string">&quot;<span class="hljs-variable">%d</span> <span class="hljs-variable">%d</span> <span class="hljs-variable">%d</span>&quot;</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>);</code></pre><div><svg></svg><svg></svg></div><p><span>像这种参数个数可以变化的函数，就叫<strong>可变参数函数</strong>。</span><br><span>C 和 C++ 都支持用省略号 </span><code spellcheck="false">...</code><span> 来表示可变参数。</span></p><h4><span>语法</span><a id="语法" class="toc-anchor" name="语法" href="#语法">#</a></h4><pre><code class="language-text-x-c-src hljs">返回类型 函数名(至少一个固定参数, <span class="hljs-params">...</span>);</code></pre><div><svg></svg><svg></svg></div><p><span>规则：</span></p><ul><li data-list-item-id="e7b0bfb6e87e87e0c8d9aaff15ba70865"><code spellcheck="false">...</code><span> 必须放在参数列表最后。</span></li><li data-list-item-id="e745e754e30729f3213a0d69e4d6dca65"><span>前面至少要有一个固定参数。</span></li><li data-list-item-id="e10983ed174d58774c4612a6a81d8bbd0"><span>不能写成 </span><code spellcheck="false">int f(...);</code><span>。</span></li></ul><p><span>例如：</span></p><pre><code class="language-text-x-c-src hljs"><span class="hljs-built_in">int</span> <span class="hljs-keyword">sum</span>(<span class="hljs-built_in">int</span> <span class="hljs-keyword">count</span>, ...);</code></pre><div><svg></svg><svg></svg></div><p><span>这里的 </span><code spellcheck="false">count</code><span> 是固定参数，用来告诉函数后面有几个数。</span></p><h3><span>获取可变参数</span><a id="获取可变参数" class="toc-anchor" name="获取可变参数" href="#获取可变参数">#</a></h3><p><span>想要获取可变参数，你需要添加一行新的代码。</span></p><p><span>如果你是C语言，你需要添加</span><code spellcheck="false"><span>#include &lt;</span>stdarg.h<span>&gt;</span></code></p><p><span>如果你是C++，你可以选择使用C的代码或者</span><code spellcheck="false"><span>#include &lt;</span>cstdarg<span>&gt;</span></code></p><p>示例代码：</p><pre><code class="language-text-x-csrc hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+<span class="hljs-keyword">printf</span>(<span class="hljs-string">&quot;<span class="hljs-variable">%d</span> <span class="hljs-variable">%d</span> <span class="hljs-variable">%d</span>&quot;</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>);</code></pre><div><svg></svg><svg></svg></div><p><span>像这种参数个数可以变化的函数，就叫<strong>可变参数函数</strong>。</span><br><span>C 和 C++ 都支持用省略号 </span><code spellcheck="false">...</code><span> 来表示可变参数。</span></p><h4><span>语法</span><a id="语法" class="toc-anchor" name="语法" href="#语法">#</a></h4><pre><code class="language-text-x-c-src hljs">返回类型 函数名(至少一个固定参数, <span class="hljs-params">...</span>);</code></pre><div><svg></svg><svg></svg></div><p><span>规则：</span></p><ul><li data-list-item-id="e7b0bfb6e87e87e0c8d9aaff15ba70865"><code spellcheck="false">...</code><span> 必须放在参数列表最后。</span></li><li data-list-item-id="e745e754e30729f3213a0d69e4d6dca65"><span>前面至少要有一个固定参数。</span></li><li data-list-item-id="e10983ed174d58774c4612a6a81d8bbd0"><span>不建议写成 </span><code spellcheck="false">int f(...);</code><span>。</span></li></ul><p><span>例如：</span></p><pre><code class="language-text-x-c-src hljs"><span class="hljs-built_in">int</span> <span class="hljs-keyword">sum</span>(<span class="hljs-built_in">int</span> <span class="hljs-keyword">count</span>, ...);</code></pre><div><svg></svg><svg></svg></div><p><span>这里的 </span><code spellcheck="false">count</code><span> 是固定参数，用来告诉函数后面有几个数。</span></p><h3><span>获取可变参数</span><a id="获取可变参数" class="toc-anchor" name="获取可变参数" href="#获取可变参数">#</a></h3><p><span>想要获取可变参数，你需要添加一行新的代码。</span></p><p><span>如果你是C语言，你需要添加</span><code spellcheck="false"><span>#include &lt;</span>stdarg.h<span>&gt;</span></code></p><p><span>如果你是C++，你可以选择使用C的代码或者</span><code spellcheck="false"><span>#include &lt;</span>cstdarg<span>&gt;</span></code></p><p>示例代码：</p><pre><code class="language-text-x-csrc hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
 <span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdarg.h&gt;</span></span>
 
 <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">sum</span><span class="hljs-params">(<span class="hljs-type">int</span> count, ...)</span></span>{
@@ -2225,7 +2241,17 @@
     <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>, <span class="hljs-built_in">sum</span>(<span class="hljs-number">3</span>, <span class="hljs-number">10</span>, <span class="hljs-number">20</span>, <span class="hljs-number">30</span>));  <span class="hljs-comment">// 输出 60</span>
     <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>, <span class="hljs-built_in">sum</span>(<span class="hljs-number">4</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>));  <span class="hljs-comment">// 输出 10</span>
     <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
-}</code></pre><p><span>四个关键东西：</span></p><div><figure class="table"><table><thead><tr><th><span>名字</span></th><th><span>作用</span></th></tr></thead><tbody><tr><td><code spellcheck="false">va_list</code></td><td><span>定义一个参数读取器</span></td></tr><tr><td><code spellcheck="false">va_start</code></td><td><span>开始读取，第二个参数写最后一个固定参数</span></td></tr><tr><td><code spellcheck="false">va_arg</code></td><td><span>读取下一个参数，第二个参数写类型</span></td></tr><tr><td><code spellcheck="false">va_end</code></td><td><span>结束读取，和 </span><code spellcheck="false">va_start</code><span> 配对</span></td></tr></tbody></table></figure><p>C++如果是写的<code spellcheck="false"><span>#include &lt;</span>cstdarg<span>&gt;</span></code>，那么可以在前面加一个<code spellcheck="false">std::</code>调用C++改过的类型或者函数等，比如<code spellcheck="false">std::va_list</code></p><p><span>关于更多后续会详细介绍。</span></p></div><h2><span>C++的函数重载</span><a id="c-的函数重载" class="toc-anchor" name="c-的函数重载" href="#c-的函数重载">#</a></h2><p><span>有时候，有些函数功能几乎一样，只是参数不同，这时就可以使用函数重载。比如针对不同数据类型的勾股定理函数就是一个很好的应用场景。</span></p><p><span>C++ 允许在同一作用域中，定义多个同名函数，只要它们的参数列表不同。这就是函数重载。</span></p><p><span>例如：</span></p><div><div><div><div><pre><code class="language-text-x-c-src hljs"><span class="hljs-meta">#include &lt;iostream&gt;</span>
+}</code></pre><p><span>四个关键东西：</span></p><div><figure class="table"><table><thead><tr><th><span>名字</span></th><th><span>作用</span></th></tr></thead><tbody><tr><td><code spellcheck="false">va_list</code></td><td><span>定义一个参数读取器</span></td></tr><tr><td><code spellcheck="false">va_start</code></td><td><span>开始读取，第二个参数写最后一个固定参数</span></td></tr><tr><td><code spellcheck="false">va_arg</code></td><td><span>读取下一个参数，第二个参数写类型</span></td></tr><tr><td><code spellcheck="false">va_end</code></td><td><span>结束读取，和 </span><code spellcheck="false">va_start</code><span> 配对</span></td></tr></tbody></table></figure><p>C++如果是写的<code spellcheck="false"><span>#include &lt;</span>cstdarg<span>&gt;</span></code>，那么可以在前面加一个<code spellcheck="false">std::</code>调用C++改过的类型或者函数等，比如<code spellcheck="false">std::va_list</code></p><p>上面说不建议写出<code spellcheck="false">f(…)</code>的原因就是，<code spellcheck="false">va_start</code>不好方便获取锚点，不方便进一步获取后续参数。</p><p><span>关于更多后续会详细介绍。</span></p></div><h2>全局变量<a id="全局变量" class="toc-anchor" name="全局变量" href="#全局变量">#</a></h2><p>全局变量我们前面学过，有时候也可以做全局变量给函数传参，比如：</p><pre><code class="language-text-x-csrc hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+<span class="hljs-type">int</span> a = <span class="hljs-number">10</span>;
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">add</span><span class="hljs-params">(<span class="hljs-type">int</span> b)</span></span>{
+	a+=b;<span class="hljs-comment">// 将全局变量加上一个数</span>
+}
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+	<span class="hljs-type">int</span> b = <span class="hljs-number">10</span>;
+	<span class="hljs-built_in">add</span>(b);
+	<span class="hljs-built_in">printf</span>(a);<span class="hljs-comment">// 输出20</span>
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre><h2><span>C++的函数重载</span><a id="c-的函数重载" class="toc-anchor" name="c-的函数重载" href="#c-的函数重载">#</a></h2><p><span>有时候，有些函数功能几乎一样，只是参数不同，这时就可以使用函数重载。比如针对不同数据类型的勾股定理函数就是一个很好的应用场景。</span></p><p><span>C++ 允许在同一作用域中，定义多个同名函数，只要它们的参数列表不同。这就是函数重载。</span></p><p><span>例如：</span></p><div><div><div><div><pre><code class="language-text-x-c-src hljs"><span class="hljs-meta">#include &lt;iostream&gt;</span>
 <span class="hljs-type">int</span> <span class="hljs-keyword">add</span>(<span class="hljs-type">int</span> a, <span class="hljs-type">int</span> b){
 	<span class="hljs-keyword">return</span> a + b;
 }
@@ -2372,6 +2398,17 @@
 
             
         </ul>
+    
+</li>
+
+                    
+                        
+
+<li>
+    <a href="#全局变量">
+        <span>全局变量</span>
+    </a>
+
     
 </li>
 

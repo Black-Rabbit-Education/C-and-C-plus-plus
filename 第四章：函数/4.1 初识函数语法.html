@@ -2145,6 +2145,22 @@
 
         </li>
     
+    
+        <li class="item">
+            
+
+    
+    <a class="type-text" href="4.4%20lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F.html">
+        
+        <span><i class="tn-icon bx bx-note"></i> 4.4 lambda表达式</span>
+    </a>
+
+
+
+
+
+        </li>
+    
 </ul>
 
 
@@ -2200,7 +2216,17 @@
 }
 <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">print_hello</span><span class="hljs-params">()</span></span>{			<span class="hljs-comment">// 一眼看出：输出 hello</span>
 	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;hello\n&quot;</span>);
-}</code></pre><p>养成这个习惯，项目大的时候才方便阅读代码！</p></aside><h4>参数列表<a id="参数列表" class="toc-anchor" name="参数列表" href="#参数列表">#</a></h4><p>小括号里是函数要的数据，每个参数都要写出类型和名字，多个参数用逗号分隔。</p><p>函数也可以一个参数都不要，小括号留空即可，比如上面的 <code spellcheck="false">hello</code>。</p><p>函数定义时写在小括号里的参数叫做<strong>形式参数</strong>（形参），调用时传入的值叫做<strong>实际参数</strong>（实参）。调用的时候，实参的值会被复制给形参，所以函数里怎么改形参，都不会影响外面的实参，具体下一节会详细讲解。</p><h4>函数体与return<a id="函数体与return" class="toc-anchor" name="函数体与return" href="#函数体与return">#</a></h4><p>花括号里面是函数体，函数被调用时，从第一条语句开始顺序执行。</p><p><code spellcheck="false">return 表达式;</code> 表示"立刻结束这个函数，并把表达式的值交回去"。所以 <code spellcheck="false">return</code> 之后的语句不会再执行：</p><pre><code class="language-text-x-c-src hljs"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">test</span><span class="hljs-params">()</span></span>{
+}</code></pre><p>养成这个习惯，项目大的时候才方便阅读代码！</p></aside><h4>参数列表<a id="参数列表" class="toc-anchor" name="参数列表" href="#参数列表">#</a></h4><p>小括号里是函数要的数据，每个参数都要写出类型和名字，多个参数用逗号分隔。</p><p>函数也可以一个参数都不要，小括号留空即可，比如上面的 <code spellcheck="false">hello</code>。</p><p>函数定义时写在小括号里的参数叫做<strong>形式参数</strong>（形参），调用时传入的值叫做<strong>实际参数</strong>（实参）。调用的时候，实参的值会被复制给形参，所以函数里怎么改形参，都不会影响外面的实参，例如：</p><pre><code class="language-text-x-trilium-auto hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">add</span><span class="hljs-params">(<span class="hljs-type">int</span> a)</span></span>{
+	<span class="hljs-comment">// 传参其实是把值粘贴给另一个变量</span>
+	a = <span class="hljs-number">20</span>;	<span class="hljs-comment">// 在函数内的a变量会变成20</span>
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d&quot;</span>,a);<span class="hljs-comment">// 这里输出20</span>
+}
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+	<span class="hljs-type">int</span> a = <span class="hljs-number">10</span>;
+	<span class="hljs-built_in">add</span>(a);
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d&quot;</span>,a);<span class="hljs-comment">// 仍然输出10</span>
+}</code></pre><p>关于如何传参后，让函数修改变量，我们后续讲解。</p><h4>函数体与return<a id="函数体与return" class="toc-anchor" name="函数体与return" href="#函数体与return">#</a></h4><p>花括号里面是函数体，函数被调用时，从第一条语句开始顺序执行。</p><p><code spellcheck="false">return 表达式;</code> 表示"立刻结束这个函数，并把表达式的值交回去"。所以 <code spellcheck="false">return</code> 之后的语句不会再执行：</p><pre><code class="language-text-x-c-src hljs"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">test</span><span class="hljs-params">()</span></span>{
 	<span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;
 	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;这一行永远执行不到\n&quot;</span>);
 }</code></pre><p>这一行代码永远不会被执行，写这种代码没有意义。</p><p>返回 <code spellcheck="false">void</code> 的函数可以写 <code spellcheck="false">return;</code> 直接结束（什么都不返回），也可以整个函数都不写 <code spellcheck="false">return</code>，执行到末尾自动结束；但不能 <code spellcheck="false">return</code> 一个值。</p><h4>main也是一个函数<a id="main也是一个函数" class="toc-anchor" name="main也是一个函数" href="#main也是一个函数">#</a></h4><p>我们天天写的 <code spellcheck="false">main</code> 本身就是一个函数：返回类型是 <code spellcheck="false">int</code>，<code spellcheck="false">return 0;</code> 表示程序正常结束。</p><p>程序从 <code spellcheck="false">main</code> 的第一条语句开始执行，<code spellcheck="false">main</code> 结束，整个程序就结束了。函数写在代码里的位置和执行的先后没有任何关系，只有被（直接或间接）调用的函数才会执行。</p><h2>小结<a id="小结" class="toc-anchor" name="小结" href="#小结">#</a></h2><p>这一小节初步了解了函数的基本语法，下一节会更详细的讲解函数的声明与定义。</p><p>下一节：<a class="reference-link type-text" href="4.2%20%E5%87%BD%E6%95%B0%E7%9A%84%E5%A3%B0%E6%98%8E%E4%B8%8E%E5%AE%9A%E4%B9%89%E8%AF%A6%E8%A7%A3.html"><span><span class="tn-icon bx bx-note"></span>4.2 函数的声明与定义详解</span></a></p><h2>习题<a id="习题" class="toc-anchor" name="习题" href="#习题">#</a></h2><h3>1.用函数计算矩形面积<a id="1-用函数计算矩形面积" class="toc-anchor" name="1-用函数计算矩形面积" href="#1-用函数计算矩形面积">#</a></h3><p>编写函数 <code spellcheck="false">area(int length, int width)</code>，返回矩形的面积。输入两个整数，分别为长和宽，输出矩形面积。</p><p>输入的数字为整数，且长和宽都<span class="math-tex">\(&lt;100且&gt;0\)</span>。</p><p>本题推荐最大时长：8分钟</p><p>题目输入案例：<code spellcheck="false">10 10</code></p><p>输出结果案例：<code spellcheck="false">100</code></p><details class="trilium-collapsible"><summary>答案</summary><h4>C<a id="c" class="toc-anchor" name="c" href="#c">#</a></h4><pre><code class="language-text-x-c-src hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
