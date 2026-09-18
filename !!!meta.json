@@ -515,7 +515,7 @@
 								{
 									"type": "relation",
 									"name": "internalLink",
-									"value": "JfIF2zF6C1HJ",
+									"value": "oFmuforPqFHr",
 									"isInheritable": false,
 									"position": 10
 								}
@@ -528,15 +528,90 @@
 				},
 				{
 					"isClone": false,
+					"noteId": "oFmuforPqFHr",
+					"notePath": [
+						"3f0LOwtZ3I9T",
+						"oFmuforPqFHr"
+					],
+					"title": "第四章：指针、引用、解引用",
+					"notePosition": 50,
+					"prefix": null,
+					"isExpanded": true,
+					"type": "text",
+					"mime": "text/html",
+					"attributes": [
+						{
+							"type": "relation",
+							"name": "internalLink",
+							"value": "AGZxDu3uQwLA",
+							"isInheritable": false,
+							"position": 20
+						}
+					],
+					"format": "html",
+					"dataFileName": "第四章：指针、引用、解引用.html",
+					"attachments": [],
+					"dirFileName": "第四章：指针、引用、解引用",
+					"children": [
+						{
+							"isClone": false,
+							"noteId": "AGZxDu3uQwLA",
+							"notePath": [
+								"3f0LOwtZ3I9T",
+								"oFmuforPqFHr",
+								"AGZxDu3uQwLA"
+							],
+							"title": "4.1 内存与地址",
+							"notePosition": 10,
+							"prefix": null,
+							"isExpanded": false,
+							"type": "text",
+							"mime": "text/html",
+							"attributes": [
+								{
+									"type": "relation",
+									"name": "internalLink",
+									"value": "Nga1IXZZOndf",
+									"isInheritable": false,
+									"position": 10
+								}
+							],
+							"format": "html",
+							"dataFileName": "4.1 内存与地址.html",
+							"attachments": []
+						},
+						{
+							"isClone": false,
+							"noteId": "Nga1IXZZOndf",
+							"notePath": [
+								"3f0LOwtZ3I9T",
+								"oFmuforPqFHr",
+								"Nga1IXZZOndf"
+							],
+							"title": "4.2 指针与解引用",
+							"notePosition": 20,
+							"prefix": null,
+							"isExpanded": false,
+							"type": "text",
+							"mime": "text/html",
+							"attributes": [],
+							"format": "html",
+							"dataFileName": "4.2 指针与解引用.html",
+							"attachments": []
+						}
+					]
+				},
+				{
+					"isClone": false,
 					"noteId": "JfIF2zF6C1HJ",
 					"notePath": [
 						"3f0LOwtZ3I9T",
 						"JfIF2zF6C1HJ"
 					],
-					"title": "第四章：函数",
-					"notePosition": 50,
+					"title": "第五章：函数",
+					"notePosition": 60,
 					"prefix": null,
-					"isExpanded": true,
+					"isExpanded": false,
 					"type": "text",
 					"mime": "text/html",
 					"attributes": [
@@ -549,9 +624,9 @@
 						}
 					],
 					"format": "html",
-					"dataFileName": "第四章：函数.html",
+					"dataFileName": "第五章：函数.html",
 					"attachments": [],
-					"dirFileName": "第四章：函数",
+					"dirFileName": "第五章：函数",
 					"children": [
 						{
 							"isClone": false,
@@ -561,7 +636,7 @@
 								"JfIF2zF6C1HJ",
 								"uYZjfpBUQjP5"
 							],
-							"title": "4.1 初识函数语法",
+							"title": "5.1 初识函数语法",
 							"notePosition": 10,
 							"prefix": null,
 							"isExpanded": false,
@@ -577,7 +652,7 @@
 								}
 							],
 							"format": "html",
-							"dataFileName": "4.1 初识函数语法.html",
+							"dataFileName": "5.1 初识函数语法.html",
 							"attachments": []
 						},
 						{
@@ -588,7 +663,7 @@
 								"JfIF2zF6C1HJ",
 								"i1EfaHk6tLa8"
 							],
-							"title": "4.2 函数的声明与定义详解",
+							"title": "5.2 函数的声明与定义详解",
 							"notePosition": 20,
 							"prefix": null,
 							"isExpanded": false,
@@ -604,7 +679,7 @@
 								}
 							],
 							"format": "html",
-							"dataFileName": "4.2 函数的声明与定义详解.html",
+							"dataFileName": "5.2 函数的声明与定义详解.html",
 							"attachments": []
 						},
 						{
@@ -615,7 +690,7 @@
 								"JfIF2zF6C1HJ",
 								"7RtY2gzLkRq0"
 							],
-							"title": "4.3 递归",
+							"title": "5.3 递归",
 							"notePosition": 30,
 							"prefix": null,
 							"isExpanded": false,
@@ -623,29 +698,28 @@
 							"mime": "text/html",
 							"attributes": [],
 							"format": "html",
-							"dataFileName": "4.3 递归.html",
-							"attachments": []
-						},
-						{
-							"isClone": false,
-							"noteId": "Y2WDKqqYMsEs",
-							"notePath": [
-								"3f0LOwtZ3I9T",
-								"JfIF2zF6C1HJ",
-								"Y2WDKqqYMsEs"
-							],
-							"title": "4.4 lambda表达式",
-							"notePosition": 40,
-							"prefix": null,
-							"isExpanded": false,
-							"type": "text",
-							"mime": "text/html",
-							"attributes": [],
-							"format": "html",
-							"dataFileName": "4.4 lambda表达式.html",
+							"dataFileName": "5.3 递归.html",
 							"attachments": []
 						}
 					]
+				},
+				{
+					"isClone": false,
+					"noteId": "YFTnOCSzvXad",
+					"notePath": [
+						"3f0LOwtZ3I9T",
+						"YFTnOCSzvXad"
+					],
+					"title": "第六章：类、结构体、对象",
+					"notePosition": 70,
+					"prefix": null,
+					"isExpanded": false,
+					"type": "text",
+					"mime": "text/html",
+					"attributes": [],
+					"format": "html",
+					"dataFileName": "第六章：类、结构体、对象.html",
+					"attachments": []
 				}
 			]
 		},

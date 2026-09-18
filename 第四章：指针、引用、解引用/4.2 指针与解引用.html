@@ -6,19 +6,19 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="shortcut icon" href="../favicon.ico">
     
-        <link href="assets/styles.css" rel="stylesheet">
+        <link href="../assets/styles.css" rel="stylesheet">
     
-        <link href="assets/scripts.css" rel="stylesheet">
-    
-    
-        <script type="module" src="assets/scripts.js"></script>
+        <link href="../assets/scripts.css" rel="stylesheet">
     
     
+        <script type="module" src="../assets/scripts.js"></script>
     
     
-    <title>第四章：函数 - C与C++(自制教程)</title>
+    
+    
+    <title>4.2 指针与解引用 - C与C++(自制教程)</title>
     <script>
         // Load dark/light theme as soon as possible to avoid color flashes.
         let theme = localStorage.getItem("theme");
@@ -44,14 +44,14 @@
     <!-- Facebook Meta Tags -->
     <meta property="og:url" content="">
     <meta property="og:type" content="website">
-    <meta property="og:title" content="第四章：函数 - C与C++(自制教程)">
+    <meta property="og:title" content="4.2 指针与解引用 - C与C++(自制教程)">
     <meta property="og:description" content="">
     <meta property="og:image" content="">
     <!-- Twitter Meta Tags -->
     <meta name="twitter:card" content="summary_large_image">
     <meta property="twitter:domain" content="">
     <meta property="twitter:url" content="">
-    <meta name="twitter:title" content="第四章：函数 - C与C++(自制教程)">
+    <meta name="twitter:title" content="4.2 指针与解引用 - C与C++(自制教程)">
     <meta name="twitter:description" content="">
     <meta name="twitter:image" content="">
     <!-- Meta Tags Generated via https://opengraph.dev -->
@@ -61,7 +61,7 @@
                 font-family: 'boxicons';
                 font-weight: normal;
                 font-style: normal;
-                src: url('assets/icon-pack-bx.woff2') format('woff2');
+                src: url('../assets/icon-pack-bx.woff2') format('woff2');
             }
 
             .bx {
@@ -1736,16 +1736,16 @@
     
 </head>
 
-<body data-note-id="JfIF2zF6C1HJ" class="type-text" data-ancestor-note-id="3f0LOwtZ3I9T">
+<body data-note-id="Nga1IXZZOndf" class="type-text" data-ancestor-note-id="3f0LOwtZ3I9T">
 
 <div id="header">
     <button aria-label="切换导航" id="left-pane-toggle-button" class="header-button"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z"></path></svg></button>
-    <a href="" id="header-logo">
-            <img src="icon-color.svg" width="32" height="24.150943396226417" alt="Logo" />
+    <a href="../" id="header-logo">
+            <img src="../icon-color.svg" width="32" height="24.150943396226417" alt="Logo" />
         C与C++(自制教程)
     </a>
     
-        <div class="header-button-placeholder"></div>
+        <button aria-label="切换目录" id="toc-pane-toggle-button" class="header-button"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M3 9h14V7H3v2zm0 4h14v-2H3v2zm0 4h14v-2H3v2zm16 0h2v-2h-2v2zm0-10V7h2v2h-2zm0 6h2v-2h-2v2z"></path></svg></button>
     
 </div>
 <div id="split-pane">
@@ -1787,7 +1787,7 @@
             
 
     
-    <a class="type-text" href="%E7%AC%AC%E4%B8%80%E7%AB%A0%EF%BC%9A%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86%E6%A6%82%E8%BF%B0.html">
+    <a class="type-text" href="../%E7%AC%AC%E4%B8%80%E7%AB%A0%EF%BC%9A%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86%E6%A6%82%E8%BF%B0.html">
         <button class="collapse-button" aria-label="展开"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></button>
         <span><i class="tn-icon bx bx-folder"></i> 第一章：前置知识概述</span>
     </a>
@@ -1802,7 +1802,7 @@
             
 
     
-    <a class="type-text" href="%E7%AC%AC%E4%B8%80%E7%AB%A0%EF%BC%9A%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86%E6%A6%82%E8%BF%B0/1.1%20%E7%A4%BA%E4%BE%8B%E7%A8%8B%E5%BA%8F.html">
+    <a class="type-text" href="../%E7%AC%AC%E4%B8%80%E7%AB%A0%EF%BC%9A%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86%E6%A6%82%E8%BF%B0/1.1%20%E7%A4%BA%E4%BE%8B%E7%A8%8B%E5%BA%8F.html">
         
         <span><i class="tn-icon bx bx-note"></i> 1.1 示例程序</span>
     </a>
@@ -1818,7 +1818,7 @@
             
 
     
-    <a class="type-text" href="%E7%AC%AC%E4%B8%80%E7%AB%A0%EF%BC%9A%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86%E6%A6%82%E8%BF%B0/1.2%20%E8%A1%A8%E8%BE%BE%E5%BC%8F%E6%A6%82%E8%BF%B0.html">
+    <a class="type-text" href="../%E7%AC%AC%E4%B8%80%E7%AB%A0%EF%BC%9A%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86%E6%A6%82%E8%BF%B0/1.2%20%E8%A1%A8%E8%BE%BE%E5%BC%8F%E6%A6%82%E8%BF%B0.html">
         
         <span><i class="tn-icon bx bx-note"></i> 1.2 表达式概述</span>
     </a>
@@ -1834,7 +1834,7 @@
             
 
     
-    <a class="type-text" href="%E7%AC%AC%E4%B8%80%E7%AB%A0%EF%BC%9A%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86%E6%A6%82%E8%BF%B0/1.3%20%E8%BE%93%E5%85%A5%E4%B8%8E%E8%BE%93%E5%87%BA%E6%A6%82%E8%BF%B0.html">
+    <a class="type-text" href="../%E7%AC%AC%E4%B8%80%E7%AB%A0%EF%BC%9A%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86%E6%A6%82%E8%BF%B0/1.3%20%E8%BE%93%E5%85%A5%E4%B8%8E%E8%BE%93%E5%87%BA%E6%A6%82%E8%BF%B0.html">
         
         <span><i class="tn-icon bx bx-note"></i> 1.3 输入与输出概述</span>
     </a>
@@ -1850,7 +1850,7 @@
             
 
     
-    <a class="type-text" href="%E7%AC%AC%E4%B8%80%E7%AB%A0%EF%BC%9A%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86%E6%A6%82%E8%BF%B0/1.4%20%E6%B3%A8%E9%87%8A.html">
+    <a class="type-text" href="../%E7%AC%AC%E4%B8%80%E7%AB%A0%EF%BC%9A%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86%E6%A6%82%E8%BF%B0/1.4%20%E6%B3%A8%E9%87%8A.html">
         
         <span><i class="tn-icon bx bx-note"></i> 1.4 注释</span>
     </a>
@@ -1871,7 +1871,7 @@
             
 
     
-    <a class="type-text" href="%E7%AC%AC%E4%BA%8C%E7%AB%A0%EF%BC%9A%E5%9F%BA%E6%9C%AC%E5%8F%98%E9%87%8F%E7%B1%BB%E5%9E%8B.html">
+    <a class="type-text" href="../%E7%AC%AC%E4%BA%8C%E7%AB%A0%EF%BC%9A%E5%9F%BA%E6%9C%AC%E5%8F%98%E9%87%8F%E7%B1%BB%E5%9E%8B.html">
         <button class="collapse-button" aria-label="展开"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></button>
         <span><i class="tn-icon bx bx-folder"></i> 第二章：基本变量类型</span>
     </a>
@@ -1886,7 +1886,7 @@
             
 
     
-    <a class="type-text" href="%E7%AC%AC%E4%BA%8C%E7%AB%A0%EF%BC%9A%E5%9F%BA%E6%9C%AC%E5%8F%98%E9%87%8F%E7%B1%BB%E5%9E%8B/2.1%20%E5%88%9D%E8%AF%86%E5%8F%98%E9%87%8F%E8%AF%AD%E6%B3%95.html">
+    <a class="type-text" href="../%E7%AC%AC%E4%BA%8C%E7%AB%A0%EF%BC%9A%E5%9F%BA%E6%9C%AC%E5%8F%98%E9%87%8F%E7%B1%BB%E5%9E%8B/2.1%20%E5%88%9D%E8%AF%86%E5%8F%98%E9%87%8F%E8%AF%AD%E6%B3%95.html">
         
         <span><i class="tn-icon bx bx-note"></i> 2.1 初识变量语法</span>
     </a>
@@ -1902,7 +1902,7 @@
             
 
     
-    <a class="type-text" href="%E7%AC%AC%E4%BA%8C%E7%AB%A0%EF%BC%9A%E5%9F%BA%E6%9C%AC%E5%8F%98%E9%87%8F%E7%B1%BB%E5%9E%8B/2.2%20%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B.html">
+    <a class="type-text" href="../%E7%AC%AC%E4%BA%8C%E7%AB%A0%EF%BC%9A%E5%9F%BA%E6%9C%AC%E5%8F%98%E9%87%8F%E7%B1%BB%E5%9E%8B/2.2%20%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B.html">
         
         <span><i class="tn-icon bx bx-note"></i> 2.2 基本类型</span>
     </a>
@@ -1918,7 +1918,7 @@
             
 
     
-    <a class="type-text" href="%E7%AC%AC%E4%BA%8C%E7%AB%A0%EF%BC%9A%E5%9F%BA%E6%9C%AC%E5%8F%98%E9%87%8F%E7%B1%BB%E5%9E%8B/2.3%20%E5%A3%B0%E6%98%8E%E3%80%81%E5%AE%9A%E4%B9%89%E4%B8%8E%E5%88%9D%E5%A7%8B%E5%8C%96.html">
+    <a class="type-text" href="../%E7%AC%AC%E4%BA%8C%E7%AB%A0%EF%BC%9A%E5%9F%BA%E6%9C%AC%E5%8F%98%E9%87%8F%E7%B1%BB%E5%9E%8B/2.3%20%E5%A3%B0%E6%98%8E%E3%80%81%E5%AE%9A%E4%B9%89%E4%B8%8E%E5%88%9D%E5%A7%8B%E5%8C%96.html">
         
         <span><i class="tn-icon bx bx-note"></i> 2.3 声明、定义与初始化</span>
     </a>
@@ -1934,7 +1934,7 @@
             
 
     
-    <a class="type-text" href="%E7%AC%AC%E4%BA%8C%E7%AB%A0%EF%BC%9A%E5%9F%BA%E6%9C%AC%E5%8F%98%E9%87%8F%E7%B1%BB%E5%9E%8B/2.4%20%E8%B5%8B%E5%80%BC%E4%B8%8E%E6%89%80%E6%9C%89%E8%BF%90%E7%AE%97%E7%AC%A6.html">
+    <a class="type-text" href="../%E7%AC%AC%E4%BA%8C%E7%AB%A0%EF%BC%9A%E5%9F%BA%E6%9C%AC%E5%8F%98%E9%87%8F%E7%B1%BB%E5%9E%8B/2.4%20%E8%B5%8B%E5%80%BC%E4%B8%8E%E6%89%80%E6%9C%89%E8%BF%90%E7%AE%97%E7%AC%A6.html">
         
         <span><i class="tn-icon bx bx-note"></i> 2.4 赋值与所有运算符</span>
     </a>
@@ -1950,7 +1950,7 @@
             
 
     
-    <a class="type-text" href="%E7%AC%AC%E4%BA%8C%E7%AB%A0%EF%BC%9A%E5%9F%BA%E6%9C%AC%E5%8F%98%E9%87%8F%E7%B1%BB%E5%9E%8B/2.5%20%E6%95%B0%E7%BB%84.html">
+    <a class="type-text" href="../%E7%AC%AC%E4%BA%8C%E7%AB%A0%EF%BC%9A%E5%9F%BA%E6%9C%AC%E5%8F%98%E9%87%8F%E7%B1%BB%E5%9E%8B/2.5%20%E6%95%B0%E7%BB%84.html">
         
         <span><i class="tn-icon bx bx-note"></i> 2.5 数组</span>
     </a>
@@ -1971,7 +1971,7 @@
             
 
     
-    <a class="type-text" href="%E7%AC%AC%E4%B8%89%E7%AB%A0%EF%BC%9A%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6.html">
+    <a class="type-text" href="../%E7%AC%AC%E4%B8%89%E7%AB%A0%EF%BC%9A%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6.html">
         <button class="collapse-button" aria-label="展开"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></button>
         <span><i class="tn-icon bx bx-folder"></i> 第三章：流程控制</span>
     </a>
@@ -1986,7 +1986,7 @@
             
 
     
-    <a class="type-text" href="%E7%AC%AC%E4%B8%89%E7%AB%A0%EF%BC%9A%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6/3.1%20%E5%9F%9F.html">
+    <a class="type-text" href="../%E7%AC%AC%E4%B8%89%E7%AB%A0%EF%BC%9A%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6/3.1%20%E5%9F%9F.html">
         
         <span><i class="tn-icon bx bx-note"></i> 3.1 域</span>
     </a>
@@ -2002,7 +2002,7 @@
             
 
     
-    <a class="type-text" href="%E7%AC%AC%E4%B8%89%E7%AB%A0%EF%BC%9A%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6/3.2%20if%E8%AF%AD%E5%8F%A5.html">
+    <a class="type-text" href="../%E7%AC%AC%E4%B8%89%E7%AB%A0%EF%BC%9A%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6/3.2%20if%E8%AF%AD%E5%8F%A5.html">
         
         <span><i class="tn-icon bx bx-note"></i> 3.2 if语句</span>
     </a>
@@ -2018,7 +2018,7 @@
             
 
     
-    <a class="type-text" href="%E7%AC%AC%E4%B8%89%E7%AB%A0%EF%BC%9A%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6/3.3%20switch%E8%AF%AD%E5%8F%A5.html">
+    <a class="type-text" href="../%E7%AC%AC%E4%B8%89%E7%AB%A0%EF%BC%9A%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6/3.3%20switch%E8%AF%AD%E5%8F%A5.html">
         
         <span><i class="tn-icon bx bx-note"></i> 3.3 switch语句</span>
     </a>
@@ -2034,7 +2034,7 @@
             
 
     
-    <a class="type-text" href="%E7%AC%AC%E4%B8%89%E7%AB%A0%EF%BC%9A%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6/3.4%20while%E5%92%8Cdo-while.html">
+    <a class="type-text" href="../%E7%AC%AC%E4%B8%89%E7%AB%A0%EF%BC%9A%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6/3.4%20while%E5%92%8Cdo-while.html">
         
         <span><i class="tn-icon bx bx-note"></i> 3.4 while和do-while</span>
     </a>
@@ -2050,7 +2050,7 @@
             
 
     
-    <a class="type-text" href="%E7%AC%AC%E4%B8%89%E7%AB%A0%EF%BC%9A%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6/3.5%20for%E5%BE%AA%E7%8E%AF.html">
+    <a class="type-text" href="../%E7%AC%AC%E4%B8%89%E7%AB%A0%EF%BC%9A%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6/3.5%20for%E5%BE%AA%E7%8E%AF.html">
         
         <span><i class="tn-icon bx bx-note"></i> 3.5 for循环</span>
     </a>
@@ -2066,7 +2066,7 @@
             
 
     
-    <a class="type-text" href="%E7%AC%AC%E4%B8%89%E7%AB%A0%EF%BC%9A%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6/3.6%20goto%E6%A0%87%E7%AD%BE.html">
+    <a class="type-text" href="../%E7%AC%AC%E4%B8%89%E7%AB%A0%EF%BC%9A%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6/3.6%20goto%E6%A0%87%E7%AD%BE.html">
         
         <span><i class="tn-icon bx bx-note"></i> 3.6 goto标签</span>
     </a>
@@ -2087,9 +2087,9 @@
             
 
     
-    <a class="type-text active" href="%E7%AC%AC%E5%9B%9B%E7%AB%A0%EF%BC%9A%E5%87%BD%E6%95%B0.html">
+    <a class="type-text" href="../%E7%AC%AC%E5%9B%9B%E7%AB%A0%EF%BC%9A%E6%8C%87%E9%92%88%E3%80%81%E5%BC%95%E7%94%A8%E3%80%81%E8%A7%A3%E5%BC%95%E7%94%A8.html">
         <button class="collapse-button" aria-label="展开"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></button>
-        <span><i class="tn-icon bx bx-folder"></i> 第四章：函数</span>
+        <span><i class="tn-icon bx bx-folder"></i> 第四章：指针、引用、解引用</span>
     </a>
 
 
@@ -2102,9 +2102,9 @@
             
 
     
-    <a class="type-text" href="%E7%AC%AC%E5%9B%9B%E7%AB%A0%EF%BC%9A%E5%87%BD%E6%95%B0/4.1%20%E5%88%9D%E8%AF%86%E5%87%BD%E6%95%B0%E8%AF%AD%E6%B3%95.html">
+    <a class="type-text" href="4.1%20%E5%86%85%E5%AD%98%E4%B8%8E%E5%9C%B0%E5%9D%80.html">
         
-        <span><i class="tn-icon bx bx-note"></i> 4.1 初识函数语法</span>
+        <span><i class="tn-icon bx bx-note"></i> 4.1 内存与地址</span>
     </a>
 
 
@@ -2114,45 +2114,13 @@
         </li>
     
     
-        <li class="item">
+        <li class="item expanded">
             
 
     
-    <a class="type-text" href="%E7%AC%AC%E5%9B%9B%E7%AB%A0%EF%BC%9A%E5%87%BD%E6%95%B0/4.2%20%E5%87%BD%E6%95%B0%E7%9A%84%E5%A3%B0%E6%98%8E%E4%B8%8E%E5%AE%9A%E4%B9%89%E8%AF%A6%E8%A7%A3.html">
+    <a class="type-text active" href="4.2%20%E6%8C%87%E9%92%88%E4%B8%8E%E8%A7%A3%E5%BC%95%E7%94%A8.html">
         
-        <span><i class="tn-icon bx bx-note"></i> 4.2 函数的声明与定义详解</span>
-    </a>
-
-
-
-
-
-        </li>
-    
-    
-        <li class="item">
-            
-
-    
-    <a class="type-text" href="%E7%AC%AC%E5%9B%9B%E7%AB%A0%EF%BC%9A%E5%87%BD%E6%95%B0/4.3%20%E9%80%92%E5%BD%92.html">
-        
-        <span><i class="tn-icon bx bx-note"></i> 4.3 递归</span>
-    </a>
-
-
-
-
-
-        </li>
-    
-    
-        <li class="item">
-            
-
-    
-    <a class="type-text" href="%E7%AC%AC%E5%9B%9B%E7%AB%A0%EF%BC%9A%E5%87%BD%E6%95%B0/4.4%20lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F.html">
-        
-        <span><i class="tn-icon bx bx-note"></i> 4.4 lambda表达式</span>
+        <span><i class="tn-icon bx bx-note"></i> 4.2 指针与解引用</span>
     </a>
 
 
@@ -2162,6 +2130,90 @@
         </li>
     
 </ul>
+
+
+        </li>
+    
+    
+        <li class="submenu-item">
+            
+
+    
+    <a class="type-text" href="../%E7%AC%AC%E4%BA%94%E7%AB%A0%EF%BC%9A%E5%87%BD%E6%95%B0.html">
+        <button class="collapse-button" aria-label="展开"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></button>
+        <span><i class="tn-icon bx bx-folder"></i> 第五章：函数</span>
+    </a>
+
+
+
+
+<ul>
+    
+    
+        <li class="item">
+            
+
+    
+    <a class="type-text" href="../%E7%AC%AC%E4%BA%94%E7%AB%A0%EF%BC%9A%E5%87%BD%E6%95%B0/5.1%20%E5%88%9D%E8%AF%86%E5%87%BD%E6%95%B0%E8%AF%AD%E6%B3%95.html">
+        
+        <span><i class="tn-icon bx bx-note"></i> 5.1 初识函数语法</span>
+    </a>
+
+
+
+
+
+        </li>
+    
+    
+        <li class="item">
+            
+
+    
+    <a class="type-text" href="../%E7%AC%AC%E4%BA%94%E7%AB%A0%EF%BC%9A%E5%87%BD%E6%95%B0/5.2%20%E5%87%BD%E6%95%B0%E7%9A%84%E5%A3%B0%E6%98%8E%E4%B8%8E%E5%AE%9A%E4%B9%89%E8%AF%A6%E8%A7%A3.html">
+        
+        <span><i class="tn-icon bx bx-note"></i> 5.2 函数的声明与定义详解</span>
+    </a>
+
+
+
+
+
+        </li>
+    
+    
+        <li class="item">
+            
+
+    
+    <a class="type-text" href="../%E7%AC%AC%E4%BA%94%E7%AB%A0%EF%BC%9A%E5%87%BD%E6%95%B0/5.3%20%E9%80%92%E5%BD%92.html">
+        
+        <span><i class="tn-icon bx bx-note"></i> 5.3 递归</span>
+    </a>
+
+
+
+
+
+        </li>
+    
+</ul>
+
+
+        </li>
+    
+    
+        <li class="item">
+            
+
+    
+    <a class="type-text" href="../%E7%AC%AC%E5%85%AD%E7%AB%A0%EF%BC%9A%E7%B1%BB%E3%80%81%E7%BB%93%E6%9E%84%E4%BD%93%E3%80%81%E5%AF%B9%E8%B1%A1.html">
+        
+        <span><i class="tn-icon bx bx-note"></i> 第六章：类、结构体、对象</span>
+    </a>
+
+
+
 
 
         </li>
@@ -2177,40 +2229,159 @@
         <div id="main">
             <div id="content" class="type-text ck-content">
                 
-                    <h1 id="title">第四章：函数</h1>
+                    <h1 id="title">4.2 指针与解引用</h1>
                 
                     
-                    <p>函数与数学中的函数高度相似，只不过数学是执行某个运算公式，而程序是执行某些语句。</p><p>合理的利用函数是简化项目的一大助手！</p><p>让我们开始：<a class="reference-link type-text" href="%E7%AC%AC%E5%9B%9B%E7%AB%A0%EF%BC%9A%E5%87%BD%E6%95%B0/4.1%20%E5%88%9D%E8%AF%86%E5%87%BD%E6%95%B0%E8%AF%AD%E6%B3%95.html"><span><span class="tn-icon bx bx-note"></span>4.1 初识函数语法</span></a></p>
+                    <p>我们可以把一个内存地址存储起来，这就叫指针。而我们想要获取他的值，就叫做解引用。</p><h2>什么是指针<a id="什么是指针" class="toc-anchor" name="什么是指针" href="#什么是指针">#</a></h2><p>指针就是专门存储地址数据的，并不存储具体值。</p><p>声明一个指向 <code spellcheck="false">int</code> 的指针：</p><pre><code class="language-text-x-csrc hljs">int *p<span class="hljs-comment">;</span></code></pre><p>解读：<code spellcheck="false">int</code>是数据类型，然后接着读到<code spellcheck="false">*</code>我们就知道这是一个指向<code spellcheck="false">int</code>变量类型的指针变量。</p><p>最后加上<code spellcheck="false">p</code>我们就解读完成，此行代码意思为，声明一个指向<code spellcheck="false">int</code>类型的指针变量。</p><p>用起来是这样的：</p><h4>C<a id="c" class="toc-anchor" name="c" href="#c">#</a></h4><pre><code class="language-text-x-csrc hljs"><span class="hljs-comment">#include &lt;stdio.h&gt;</span>
+<span class="hljs-keyword">int</span> main(){
+	<span class="hljs-keyword">int</span> a = <span class="hljs-number">10</span>;
+	<span class="hljs-keyword">int</span> *p = &amp;a;					<span class="hljs-regexp">//</span> p 里存的是 a 的地址
+
+	<span class="hljs-keyword">printf</span>(<span class="hljs-string">&quot;a 的值：<span class="hljs-variable">%d</span>\n&quot;</span>, a);
+	<span class="hljs-keyword">printf</span>(<span class="hljs-string">&quot;p 里存的地址：<span class="hljs-variable">%p</span>\n&quot;</span>, p);			<span class="hljs-regexp">//</span> 直接输出变量p的值，也就是指针变量p存的地址值
+	<span class="hljs-keyword">printf</span>(<span class="hljs-string">&quot;顺着 p 找到的值：<span class="hljs-variable">%d</span>\n&quot;</span>, *p);		<span class="hljs-regexp">//</span> 解引用：照着地址去读
+
+	*p = <span class="hljs-number">20</span>;					<span class="hljs-regexp">//</span> 解引用后赋值
+	<span class="hljs-keyword">printf</span>(<span class="hljs-string">&quot;改过之后 a = <span class="hljs-variable">%d</span>\n&quot;</span>, a);
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre><h4>C++<a id="c-1" class="toc-anchor" name="c-1" href="#c-1">#</a></h4><pre><code class="language-text-x-c-src hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+	<span class="hljs-type">int</span> a = <span class="hljs-number">10</span>;
+	<span class="hljs-type">int</span> *p = &amp;a;					<span class="hljs-comment">// p 里存的是 a 的地址</span>
+
+	std::cout &lt;&lt; <span class="hljs-string">&quot;a 的值：&quot;</span> &lt;&lt; a &lt;&lt; <span class="hljs-string">&quot;\n&quot;</span>;
+	std::cout &lt;&lt; <span class="hljs-string">&quot;p 里存的地址：&quot;</span> &lt;&lt; p &lt;&lt; <span class="hljs-string">&quot;\n&quot;</span>;		<span class="hljs-comment">// 直接输出变量p的值，也就是指针变量p存的地址值</span>
+	std::cout &lt;&lt; <span class="hljs-string">&quot;顺着 p 找到的值：&quot;</span> &lt;&lt; *p &lt;&lt; <span class="hljs-string">&quot;\n&quot;</span>;	<span class="hljs-comment">// 解引用：照着地址去读</span>
+
+	*p = <span class="hljs-number">20</span>;					<span class="hljs-comment">// 解引用后赋值：照着地址去写</span>
+	std::cout &lt;&lt; <span class="hljs-string">&quot;改过之后 a = &quot;</span> &lt;&lt; a &lt;&lt; <span class="hljs-string">&quot;\n&quot;</span>;
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre><p>运行结果案例：</p><pre><code class="language-text-x-trilium-auto hljs"><span class="hljs-selector-tag">a</span> 的值：<span class="hljs-number">10</span>
+<span class="hljs-selector-tag">p</span> 里存的地址：<span class="hljs-number">0</span>x27a41ff774
+顺着 <span class="hljs-selector-tag">p</span> 找到的值：<span class="hljs-number">10</span>
+改过之后 <span class="hljs-selector-tag">a</span> = <span class="hljs-number">20</span></code></pre><p>下述表格一看便知其意义：</p><figure class="table"><table><thead><tr><th>变量</th><th>类型</th><th>值</th><th>自己的地址</th></tr></thead><tbody><tr><td><code spellcheck="false">a</code></td><td><code spellcheck="false">int</code></td><td>10</td><td>0000005AA0BFFDA4</td></tr><tr><td><code spellcheck="false">p</code></td><td><code spellcheck="false">int*</code></td><td>0000005AA0BFFDA4（就是 a 的地址）</td><td>0000005AA0BFFD98</td></tr></tbody></table></figure><h2>取地址 &amp; 和解引用 * 是一对反操作<a id="取地址-amp-和解引用-是一对反操作" class="toc-anchor" name="取地址-amp-和解引用-是一对反操作" href="#取地址-amp-和解引用-是一对反操作">#</a></h2><p>现在我们手里有两个符号，它们是反着来的：</p><ul><li data-list-item-id="e1a64ec9acd78ce25c109a76e53607520"><code spellcheck="false">&amp;a</code>：从名字出发，拿到地址（名字 → 地址）；</li><li data-list-item-id="ea8d9a72f8229e3a368d7ccfc0eea07a7"><code spellcheck="false">*p</code>：从地址出发，拿到那块内存（地址 → 数据）。</li></ul><p>所以 <code spellcheck="false">*(&amp;a)</code> 就是"指向内存(获取内存a的地址)的值"，绕了一圈又回到 <code spellcheck="false">a</code> 的值：</p><pre><code class="language-text-x-csrc hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+	<span class="hljs-type">int</span> a = <span class="hljs-number">10</span>;
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>, *(&amp;a));			<span class="hljs-comment">// 先取地址，再解引用：又回到 a</span>
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre><p>运行结果：</p><pre><code class="language-text-x-trilium-auto hljs">10</code></pre><p>所以，甚至你可以写出：</p><pre><code class="language-text-x-csrc hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+	<span class="hljs-type">int</span> a = <span class="hljs-number">10</span>;
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>, *(&amp;(*(&amp;(*(&amp;(*(&amp;a))))))));
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre><p>仍然输出<code spellcheck="false">10</code>，不过非常不建议写出这种垃圾。</p><h2>用指针改别人的值<a id="用指针改别人的值" class="toc-anchor" name="用指针改别人的值" href="#用指针改别人的值">#</a></h2><p>回头看什么是指针的案例，你会发现我们只改了<code spellcheck="false">*p</code>的值，但是<code spellcheck="false">a</code>却一起变动了，其实就是可以指向其他变量的地址。</p><p>然后通过直接指向其他变量地址来直接修改其他变量。</p><h2>语法细节<a id="语法细节" class="toc-anchor" name="语法细节" href="#语法细节">#</a></h2><h3>写成 int *p 还是 int* p<a id="写成-int-p-还是-int-p" class="toc-anchor" name="写成-int-p-还是-int-p" href="#写成-int-p-还是-int-p">#</a></h3><p>两种写法没有区别，也是同样的，他根本不在乎你空格，没有歧义就行了：</p><pre><code class="language-text-x-csrc hljs"><span class="hljs-comment">#include &lt;stdio.h&gt;</span>
+<span class="hljs-keyword">int</span> main(){
+	<span class="hljs-keyword">int</span> *p, <span class="hljs-keyword">q</span>;				<span class="hljs-regexp">//</span> 注意：只有 p 是指针，<span class="hljs-keyword">q</span> 是普通的 <span class="hljs-keyword">int</span>！
+	<span class="hljs-keyword">q</span> = <span class="hljs-number">10</span>;
+	<span class="hljs-keyword">printf</span>(<span class="hljs-string">&quot;sizeof(p) = <span class="hljs-variable">%zu</span>\n&quot;</span>, sizeof(p));	<span class="hljs-regexp">//</span> <span class="hljs-number">8</span>：指针（地址）的大小
+	<span class="hljs-keyword">printf</span>(<span class="hljs-string">&quot;sizeof(q) = <span class="hljs-variable">%zu</span>\n&quot;</span>, sizeof(<span class="hljs-keyword">q</span>));	<span class="hljs-regexp">//</span> <span class="hljs-number">4</span>：<span class="hljs-keyword">int</span> 的大小
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre><p>运行结果：</p><pre><code class="language-text-x-trilium-auto hljs"><span class="hljs-function"><span class="hljs-title">sizeof</span><span class="hljs-params">(p)</span></span> = <span class="hljs-number">8</span>
+<span class="hljs-function"><span class="hljs-title">sizeof</span><span class="hljs-params">(q)</span></span> = <span class="hljs-number">4</span></code></pre><p><code spellcheck="false">int *p, q;</code> 里的 <code spellcheck="false">*</code> 只属于 <code spellcheck="false">p</code>：<code spellcheck="false">p</code> 是指针（8 字节），<code spellcheck="false">q</code> 却是普通的 <code spellcheck="false">int</code>（4 字节）。写成 <code spellcheck="false">int* p, q;</code> 更容易让人误以为两个都是指针。一条语句只声明一个类型是最好的，不建议写出这种代码。</p><h3>声明里的 * 和表达式里的 * 不是一个东西<a id="声明里的-和表达式里的-不是一个东西" class="toc-anchor" name="声明里的-和表达式里的-不是一个东西" href="#声明里的-和表达式里的-不是一个东西">#</a></h3><ul><li data-list-item-id="eb7a1c3ad7c5f988665a8b3b3f12a3fa8">声明里（<code spellcheck="false">int *p;</code>）：<code spellcheck="false">*</code> 是类型的一部分，在说这是个指针类型；</li><li data-list-item-id="e359bf86c1a149fdb0d036018bb0e6f7b">表达式里（<code spellcheck="false">*p = 20;</code>、<code spellcheck="false">printf("%d", *p)</code>）：<code spellcheck="false">*</code> 是一个动作，意思是“解引用”。</li></ul><h3>指针的类型对应<a id="指针的类型对应" class="toc-anchor" name="指针的类型对应" href="#指针的类型对应">#</a></h3><p><code spellcheck="false">int*</code> 指向 <code spellcheck="false">int</code>，<code spellcheck="false">double*</code> 指向 <code spellcheck="false">double</code>，不能混着用，错误案例：</p><pre><code class="language-text-x-csrc hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+	<span class="hljs-type">double</span> d = <span class="hljs-number">1.5</span>;
+	<span class="hljs-type">int</span> *p = &amp;d;				<span class="hljs-comment">// 类型不匹配：int* 不能指向 double</span>
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>, *p);
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre><p>指针的大小和它的类型无关，本机实测 <code spellcheck="false">sizeof(int*)</code>、<code spellcheck="false">sizeof(double*)</code>、<code spellcheck="false">sizeof(char*)</code>、<code spellcheck="false">sizeof(void*)</code> 全是 8。类型不影响“装地址”这件事，它影响的是<strong>解引用的时候怎么解释这块内存</strong>：<code spellcheck="false">int*</code> 一次读 4 个字节，<code spellcheck="false">double*</code> 一次读 8 个字节。</p><h3>指针自己也有地址<a id="指针自己也有地址" class="toc-anchor" name="指针自己也有地址" href="#指针自己也有地址">#</a></h3><pre><code class="language-text-x-csrc hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+	<span class="hljs-type">int</span> a = <span class="hljs-number">10</span>;
+	<span class="hljs-type">int</span> *p = &amp;a;
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;a 的地址：%p\n&quot;</span>, &amp;a);
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;p 里存的地址：%p\n&quot;</span>, p);
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;p 自己的地址：%p\n&quot;</span>, &amp;p);
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre><p>运行结果：</p><pre><code class="language-text-x-trilium-auto hljs"><span class="hljs-attribute">a</span> 的地址：<span class="hljs-number">00000011</span>F71FFC2C
+<span class="hljs-attribute">p</span> 里存的地址：<span class="hljs-number">00000011</span>F71FFC2C
+<span class="hljs-attribute">p</span> 自己的地址：<span class="hljs-number">00000011</span>F71FFC20</code></pre><p>三行输出说明两件事：<code spellcheck="false">p</code> 的值就是 <code spellcheck="false">a</code> 的地址；而 <code spellcheck="false">p</code> 自己也是一个变量，单独占着一块内存，所以它也有自己的地址 <code spellcheck="false">&amp;p</code>。这就是“指针的指针”的入口。</p><h3>void*：通用地址类型<a id="void-通用地址类型" class="toc-anchor" name="void-通用地址类型" href="#void-通用地址类型">#</a></h3><p><code spellcheck="false">void*</code> 什么地址都能装，但它<strong>不能直接解引用</strong>，因为计算机不知道它指向的东西有多长、该怎么解释。</p><p>想用里面的内容，还是必须先转成具体类型的指针，例如 <code spellcheck="false">(int*)p</code>。（第二章学的强制转换类型）</p><p>而上述的占位符<code spellcheck="false">%p</code>，其实是<code spellcheck="false">(void*)</code>类型，只是程序做了隐式转换。</p><p>你也可以自己添加个转换看看输出是不是没有任何问题。</p><h2>空指针<a id="空指针" class="toc-anchor" name="空指针" href="#空指针">#</a></h2><p>有时候指针暂时没有目标，就可以用上空指针：</p><h4>C<a id="c-2" class="toc-anchor" name="c-2" href="#c-2">#</a></h4><pre><code class="language-text-x-csrc hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+	<span class="hljs-type">int</span> a = <span class="hljs-number">10</span>;
+	<span class="hljs-type">int</span> *p = <span class="hljs-literal">NULL</span>;				<span class="hljs-comment">// 先让它指向&quot;空&quot;</span>
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;p 是空指针吗？%c\n&quot;</span>, p == <span class="hljs-literal">NULL</span> ? <span class="hljs-string">&#x27;Y&#x27;</span> : <span class="hljs-string">&#x27;N&#x27;</span>);
+
+	p = &amp;a;					<span class="hljs-comment">// 再让它指向 a</span>
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;现在 *p = %d\n&quot;</span>, *p);
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre><h4>C++<a id="c-3" class="toc-anchor" name="c-3" href="#c-3">#</a></h4><pre><code class="language-text-x-c-src hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+	<span class="hljs-type">int</span> a = <span class="hljs-number">10</span>;
+	<span class="hljs-type">int</span> *p = <span class="hljs-literal">nullptr</span>;			<span class="hljs-comment">// 先让它指向&quot;空&quot;</span>
+	std::cout &lt;&lt; <span class="hljs-string">&quot;p 是空指针吗？&quot;</span> &lt;&lt; (p == <span class="hljs-literal">nullptr</span> ? <span class="hljs-string">&quot;是&quot;</span> : <span class="hljs-string">&quot;不是&quot;</span>) &lt;&lt; <span class="hljs-string">&quot;\n&quot;</span>;
+
+	p = &amp;a;					<span class="hljs-comment">// 再让它指向 a</span>
+	std::cout &lt;&lt; <span class="hljs-string">&quot;现在 *p = &quot;</span> &lt;&lt; *p &lt;&lt; <span class="hljs-string">&quot;\n&quot;</span>;
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre><p>运行结果（两版一样）：</p><pre><code class="language-text-x-trilium-auto hljs"><span class="hljs-selector-tag">p</span> 是空指针吗？是
+现在 *<span class="hljs-selector-tag">p</span> = <span class="hljs-number">10</span></code></pre><p>C 里写 <code spellcheck="false">NULL</code>，C++ 里写 <code spellcheck="false">nullptr</code>（C++11 起）。它们都表示“这个指针哪儿也不指”。C++ 里也还能用 <code spellcheck="false">NULL</code>，但推荐写 <code spellcheck="false">nullptr</code>，因为<code spellcheck="false">nullptr</code>在保障自由度不变的基础下做了很多防护措施。</p><p>空指针不能解引用。真去解引用会怎样？将下列代码复制尝试运行：</p><pre><code class="language-text-x-csrc hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+	<span class="hljs-type">int</span> *p = <span class="hljs-literal">NULL</span>;
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;程序即将解引用空指针……\n&quot;</span>);
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>, *p);			<span class="hljs-comment">// 危险：去读地址 0 上的数据</span>
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre><p>程序在打印第一行之前就被系统干掉了：Windows 上会报“0xC0000005 访问冲突”，Linux／macOS 上是 <code spellcheck="false">Segmentation fault</code>（段错误）。连那句提示都没来得及输出，是因为输出还卡在缓冲区里，没来得及交给屏幕。</p><aside class="admonition warning"><p>解引用之前可以先判断：<code spellcheck="false">if (p != NULL) { ... }</code>。空指针至少是“能检查出来的坏指针”，比下面要讲的野指针友好得多。</p></aside><h2>野指针：没有初始化的指针<a id="野指针-没有初始化的指针" class="toc-anchor" name="野指针-没有初始化的指针" href="#野指针-没有初始化的指针">#</a></h2><p>指针也是变量，声明了不初始化，它里面就是内存残留的垃圾值，这种指针叫<strong>野指针</strong>：</p><pre><code class="language-text-x-csrc hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+	<span class="hljs-type">int</span> *p;				<span class="hljs-comment">// 没有初始化：p 里是内存残留的垃圾值</span>
+	*p = <span class="hljs-number">10</span>;			<span class="hljs-comment">// 危险：往一个随机地址写数据</span>
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;写完了\n&quot;</span>);
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre><p>本机实测的运行结果：</p><pre><code class="language-text-x-trilium-auto hljs">写完了</code></pre><p>退出码 0，它居然“成功”了。</p><p>为什么说“居然”？因为 <code spellcheck="false">p</code> 里是一个随机地址，<code spellcheck="false">*p = 10</code> 等于往那个随机位置写数据。这次那个位置碰巧可以写，所以什么都没发生；下次它可能是别人的数据区，甚至是系统的保护区，程序当场崩溃。<strong>未定义行为最可怕的地方就在这里：它不保证报错，也不保证不报错。</strong></p><p>不少机器默认编译这段代码时，编译器一声不吭；只有编译加入参数 <code spellcheck="false">-Wall</code> 才会提醒：</p><pre><code class="language-text-x-trilium-auto hljs"><span class="hljs-symbol">warning:</span> <span class="hljs-comment">&#x27;p&#x27; is used uninitialized [-Wuninitialized]</span>
+<span class="hljs-symbol">note:</span> <span class="hljs-comment">&#x27;p&#x27; was declared here</span></code></pre><aside class="admonition warning"><p>指针非常好用，但是自由是有代价的，野指针杀伤力极大，一定要注意不要出现野指针！！！</p></aside><h2>悬垂指针：指向已经消失的变量<a id="悬垂指针-指向已经消失的变量" class="toc-anchor" name="悬垂指针-指向已经消失的变量" href="#悬垂指针-指向已经消失的变量">#</a></h2><p>3.1 学过：一对花括号就是一个域，出了花括号，里面的变量就没了。可是指针还记得它的地址：</p><pre><code class="language-text-x-csrc hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+	<span class="hljs-type">int</span> *p;
+	{
+		<span class="hljs-type">int</span> x = <span class="hljs-number">5</span>;		<span class="hljs-comment">// x 只在这个块里活着</span>
+		p = &amp;x;
+	}				<span class="hljs-comment">// 出了这个块，x 已经不存在了</span>
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>, *p);		<span class="hljs-comment">// p 悬空：指向一块已经被释放掉的内存</span>
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre><p>本机实测运行结果：</p><pre><code class="language-text-x-trilium-auto hljs">5</code></pre><p>输出 5，看着一切正常，其实这个 5 完全是巧合：<code spellcheck="false">x</code> 早就释放了，<code spellcheck="false">p</code> 却还有内存地址。那块内存现在归谁、里面是什么，全看运气，你再多写几行别的代码，这个 5 就可能变成别的数字，甚至崩掉。</p><p>这种指针叫<strong>悬垂指针</strong>。打开 <code spellcheck="false">-Wall</code> 时 &nbsp;会给出警告：</p><pre><code class="language-text-x-trilium-auto hljs"><span class="hljs-built_in">warning</span>: <span class="hljs-keyword">using</span> dangling pointer <span class="hljs-string">&#x27;p&#x27;</span> <span class="hljs-keyword">to</span> <span class="hljs-string">&#x27;x&#x27;</span> [-Wdangling-pointer=]
+note: <span class="hljs-string">&#x27;x&#x27;</span> declared here</code></pre><p>它和野指针是一对难兄难弟，其实都是指向了不被管控的内存地址。</p><h2>疯狂一下：1.0f 在内存里长什么样<a id="疯狂一下-1-0f-在内存里长什么样" class="toc-anchor" name="疯狂一下-1-0f-在内存里长什么样" href="#疯狂一下-1-0f-在内存里长什么样">#</a></h2><p>指针给了我们直接查看内存的能力，那就用它做点疯狂的事，把 <code spellcheck="false">float</code> 的地址当成 <code spellcheck="false">int</code> 的地址来读：</p><pre><code class="language-text-x-csrc hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+	<span class="hljs-type">float</span> f = <span class="hljs-number">1.0f</span>;
+	<span class="hljs-type">int</span> *p = (<span class="hljs-type">int</span>*)&amp;f;		<span class="hljs-comment">// 强行把 float 的地址当成 int 的地址来用</span>
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>, *p);		<span class="hljs-comment">// 1065353216：1.0f 在内存里长这样</span>
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre><p>运行结果：</p><pre><code class="language-text-x-trilium-auto hljs"><span class="hljs-number">1065353216</span></code></pre><p>1065353216 换成十六进制是 <code spellcheck="false">0x3F800000</code>，这就是 <code spellcheck="false">1.0f</code> 在内存里的真实样子。（浮点数到底怎么存的，以后单独讲。）</p><aside class="admonition warning"><p>这个操作叫“类型双关”，<strong>了解即可，真实项目里别这么写</strong>：C 和 C++ 都不保证这种读法有确定结果，换个编译器可能就读出别的值。</p></aside><h2>小结<a id="小结" class="toc-anchor" name="小结" href="#小结">#</a></h2><p>指针这一节内容不少，但真正的核心只有四条：</p><ul><li data-list-item-id="e2e6de0ac030e05936e771fbfd514e3fc">指针是存地址的变量：<code spellcheck="false">int *p = &amp;a;</code> 让 <code spellcheck="false">p</code> 指向 <code spellcheck="false">a</code>；</li><li data-list-item-id="ede54c9585a220d1fda5598bbf03637b3"><code spellcheck="false">&amp;</code> 取地址、<code spellcheck="false">*</code> 解引用，它们是一对反操作；解引用之后既能读也能写；</li><li data-list-item-id="e46690b1e241331ba50b4dc1bea6ad444">指针的类型决定解引用时怎么解释内存；指针自己也有地址；<code spellcheck="false">void*</code> 能存但不能直接解引用；</li><li data-list-item-id="eb7ec9d20ff4f4176aa1888f90058f18b">空指针、野指针、悬垂指针——崩溃基本都来自这三位，动手解引用之前先问一句“它到底指向哪儿”。</li></ul><p>下一节：4.3 指针与数组、字符串——2.5 结尾答应过你的“数组的更多知识”，就在那里。</p><h2>习题<a id="习题" class="toc-anchor" name="习题" href="#习题">#</a></h2><h3>1. 猜输出<a id="1-猜输出" class="toc-anchor" name="1-猜输出" href="#1-猜输出">#</a></h3><p>下面这个程序会输出什么？</p><pre><code class="language-text-x-csrc hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+	<span class="hljs-type">int</span> a = <span class="hljs-number">5</span>;
+	<span class="hljs-type">int</span> *p = &amp;a;
+	*p = *p + <span class="hljs-number">1</span>;
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d %d\n&quot;</span>, a, *p);
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre><p>本题推荐最大时长：3分钟</p><details class="trilium-collapsible"><summary>答案</summary><p>运行结果：</p><pre><code class="language-text-x-trilium-auto hljs"><span class="hljs-symbol">6 </span><span class="hljs-number">6</span></code></pre><p><code spellcheck="false">*p</code> 就是 <code spellcheck="false">a</code> 本身：右边的 <code spellcheck="false">*p + 1</code> 先读出 5、加 1 得到 6，再写回 <code spellcheck="false">a</code>。所以 <code spellcheck="false">a</code> 和 <code spellcheck="false">*p</code> 都是 6。</p></details><h3>2. 找错误<a id="2-找错误" class="toc-anchor" name="2-找错误" href="#2-找错误">#</a></h3><p>下面三个片段都有问题，请指出错在哪，并说明运行会发生什么。</p><p>（1）</p><pre><code class="language-text-x-csrc hljs">int *p<span class="hljs-comment">;</span>
+*p <span class="hljs-operator">=</span> <span class="hljs-number">10</span><span class="hljs-comment">;</span></code></pre><p>（2）</p><pre><code class="language-text-x-csrc hljs"><span class="hljs-built_in">double</span> d = <span class="hljs-number">1.5</span>;
+<span class="hljs-built_in">int</span> *p = &amp;d;</code></pre><p>（3）</p><pre><code class="language-text-x-csrc hljs"><span class="hljs-type">int</span> *p = <span class="hljs-literal">NULL</span>;
+<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>, *p);</code></pre><p>本题推荐最大时长：5分钟</p><details class="trilium-collapsible"><summary>答案</summary><h4>（1）野指针<a id="1-野指针" class="toc-anchor" name="1-野指针" href="#1-野指针">#</a></h4><p><code spellcheck="false">p</code> 没有初始化，里面是垃圾值，<code spellcheck="false">*p = 10</code> 会往一个随机地址写数据，典型的野指针。本机实测：默认编译没有警告，运行甚至“成功”了（打印“写完了”）；打开 <code spellcheck="false">-Wall</code> 才有 <code spellcheck="false">warning: 'p' is used uninitialized</code>。改成 <code spellcheck="false">int *p = NULL;</code>，或者让它指向一个真实变量。</p><h4>（2）类型不匹配<a id="2-类型不匹配" class="toc-anchor" name="2-类型不匹配" href="#2-类型不匹配">#</a></h4><p><code spellcheck="false">int*</code> 不能指向 <code spellcheck="false">double</code>。实测 C 与 C++ 都直接报错：<code spellcheck="false">error: initialization of 'int *' from incompatible pointer type 'double *'</code>。应该写 <code spellcheck="false">double *p = &amp;d;</code>。</p><h4>（3）解引用空指针<a id="3-解引用空指针" class="toc-anchor" name="3-解引用空指针" href="#3-解引用空指针">#</a></h4><p>空指针哪儿也不指，解引用它等于去读地址 0。本机实测：程序当场崩溃（Windows 报 0xC0000005），连 <code spellcheck="false">printf</code> 都来不及执行。应该先判断 <code spellcheck="false">if (p != NULL)</code> 再解引用。</p><aside class="admonition warning"><p>三个片段的共同点：<strong>它们关于“这个指针指向哪儿”这件事都是含糊的</strong>。写指针代码时，随时能回答这个问题，就不会踩坑。</p></aside></details><h3>3. 编程题：用指针交换两个数<a id="3-编程题-用指针交换两个数" class="toc-anchor" name="3-编程题-用指针交换两个数" href="#3-编程题-用指针交换两个数">#</a></h3><p>输入两个整数 <code spellcheck="false">a</code> 和 <code spellcheck="false">b</code>（同一行，空格分隔），要求<strong>通过指针</strong>把它们的值交换，然后按“先 a 后 b”的顺序输出。</p><p>本题推荐最大时长：6分钟<br>题目输入案例：<code spellcheck="false">3 5</code><br>输出结果案例：<code spellcheck="false">5 3</code></p><details class="trilium-collapsible"><summary>答案</summary><h4>C<a id="c-4" class="toc-anchor" name="c-4" href="#c-4">#</a></h4><pre><code class="language-text-x-csrc hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+	<span class="hljs-type">int</span> a, b;
+	<span class="hljs-keyword">if</span> (<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d %d&quot;</span>, &amp;a, &amp;b) != <span class="hljs-number">2</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+
+	<span class="hljs-type">int</span> *pa = &amp;a;
+	<span class="hljs-type">int</span> *pb = &amp;b;
+	<span class="hljs-type">int</span> t = *pa;				<span class="hljs-comment">// 先把 a 的值存起来</span>
+	*pa = *pb;				<span class="hljs-comment">// 把 b 的值写进 a</span>
+	*pb = t;				<span class="hljs-comment">// 把原来的 a 写进 b</span>
+
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d %d\n&quot;</span>, a, b);
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre><h4>C++<a id="c-5" class="toc-anchor" name="c-5" href="#c-5">#</a></h4><pre><code class="language-text-x-c-src hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+	<span class="hljs-type">int</span> a, b;
+	std::cin &gt;&gt; a &gt;&gt; b;
+
+	<span class="hljs-type">int</span> *pa = &amp;a;
+	<span class="hljs-type">int</span> *pb = &amp;b;
+	<span class="hljs-type">int</span> t = *pa;				<span class="hljs-comment">// 先把 a 的值存起来</span>
+	*pa = *pb;				<span class="hljs-comment">// 把 b 的值写进 a</span>
+	*pb = t;				<span class="hljs-comment">// 把原来的 a 写进 b</span>
+
+	std::cout &lt;&lt; a &lt;&lt; <span class="hljs-string">&quot; &quot;</span> &lt;&lt; b &lt;&lt; <span class="hljs-string">&quot;\n&quot;</span>;
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre><p>思路和 3.5 习题里的排序交换是同一套：先存一个、再覆盖、最后把存下来的写回去。区别只是这次是通过 <code spellcheck="false">*pa</code>、<code spellcheck="false">*pb</code> 操作内存，而不是直接写变量名——等第五章学了函数，这段代码就能原封不动搬进一个 <code spellcheck="false">swap</code> 函数里，去改调用者的变量。</p></details>
                 
                 
             </div>
 
-            
-                <nav id="childLinks" class="list">
-                    
-                        <span>子页面：</span>
-                    
-
-                    <ul>
-                        
-                            <li>
-                                <a class="type-text" href="%E7%AC%AC%E5%9B%9B%E7%AB%A0%EF%BC%9A%E5%87%BD%E6%95%B0/4.1%20%E5%88%9D%E8%AF%86%E5%87%BD%E6%95%B0%E8%AF%AD%E6%B3%95.html">4.1 初识函数语法</a>
-                            </li>
-                        
-                            <li>
-                                <a class="type-text" href="%E7%AC%AC%E5%9B%9B%E7%AB%A0%EF%BC%9A%E5%87%BD%E6%95%B0/4.2%20%E5%87%BD%E6%95%B0%E7%9A%84%E5%A3%B0%E6%98%8E%E4%B8%8E%E5%AE%9A%E4%B9%89%E8%AF%A6%E8%A7%A3.html">4.2 函数的声明与定义详解</a>
-                            </li>
-                        
-                            <li>
-                                <a class="type-text" href="%E7%AC%AC%E5%9B%9B%E7%AB%A0%EF%BC%9A%E5%87%BD%E6%95%B0/4.3%20%E9%80%92%E5%BD%92.html">4.3 递归</a>
-                            </li>
-                        
-                            <li>
-                                <a class="type-text" href="%E7%AC%AC%E5%9B%9B%E7%AB%A0%EF%BC%9A%E5%87%BD%E6%95%B0/4.4%20lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F.html">4.4 lambda表达式</a>
-                            </li>
-                        
-                    </ul>
-                </nav>
             
 
             <footer id="content-footer">
@@ -2220,14 +2391,342 @@
                     
 
 <div class="navigation">
-    <a class="previous" href="%E7%AC%AC%E4%B8%89%E7%AB%A0%EF%BC%9A%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6/3.6%20goto%E6%A0%87%E7%AD%BE.html">3.6 goto标签</a>
-    <a class="next" href="%E7%AC%AC%E5%9B%9B%E7%AB%A0%EF%BC%9A%E5%87%BD%E6%95%B0/4.1%20%E5%88%9D%E8%AF%86%E5%87%BD%E6%95%B0%E8%AF%AD%E6%B3%95.html">4.1 初识函数语法</a>
+    <a class="previous" href="4.1%20%E5%86%85%E5%AD%98%E4%B8%8E%E5%9C%B0%E5%9D%80.html">4.1 内存与地址</a>
+    <a class="next" href="../%E7%AC%AC%E4%BA%94%E7%AB%A0%EF%BC%9A%E5%87%BD%E6%95%B0.html">第五章：函数</a>
 </div>
                 
 
                 
             </footer>
         </div>
+        
+            <div id="toc-pane">
+                <h3>本页内容</h3>
+                <ul id="toc">
+                    
+                        
+
+<li>
+    <a href="#什么是指针">
+        <span>什么是指针</span>
+    </a>
+
+    
+        <ul>
+            
+                
+
+<li>
+    <a href="#c">
+        <span>C</span>
+    </a>
+
+    
+</li>
+
+            
+                
+
+<li>
+    <a href="#c-1">
+        <span>C++</span>
+    </a>
+
+    
+</li>
+
+            
+        </ul>
+    
+</li>
+
+                    
+                        
+
+<li>
+    <a href="#取地址-amp-和解引用-是一对反操作">
+        <span>取地址 &amp;amp; 和解引用 * 是一对反操作</span>
+    </a>
+
+    
+</li>
+
+                    
+                        
+
+<li>
+    <a href="#用指针改别人的值">
+        <span>用指针改别人的值</span>
+    </a>
+
+    
+</li>
+
+                    
+                        
+
+<li>
+    <a href="#语法细节">
+        <span>语法细节</span>
+    </a>
+
+    
+        <ul>
+            
+                
+
+<li>
+    <a href="#写成-int-p-还是-int-p">
+        <span>写成 int *p 还是 int* p</span>
+    </a>
+
+    
+</li>
+
+            
+                
+
+<li>
+    <a href="#声明里的-和表达式里的-不是一个东西">
+        <span>声明里的 * 和表达式里的 * 不是一个东西</span>
+    </a>
+
+    
+</li>
+
+            
+                
+
+<li>
+    <a href="#指针的类型对应">
+        <span>指针的类型对应</span>
+    </a>
+
+    
+</li>
+
+            
+                
+
+<li>
+    <a href="#指针自己也有地址">
+        <span>指针自己也有地址</span>
+    </a>
+
+    
+</li>
+
+            
+                
+
+<li>
+    <a href="#void-通用地址类型">
+        <span>void*：通用地址类型</span>
+    </a>
+
+    
+</li>
+
+            
+        </ul>
+    
+</li>
+
+                    
+                        
+
+<li>
+    <a href="#空指针">
+        <span>空指针</span>
+    </a>
+
+    
+        <ul>
+            
+                
+
+<li>
+    <a href="#c-2">
+        <span>C</span>
+    </a>
+
+    
+</li>
+
+            
+                
+
+<li>
+    <a href="#c-3">
+        <span>C++</span>
+    </a>
+
+    
+</li>
+
+            
+        </ul>
+    
+</li>
+
+                    
+                        
+
+<li>
+    <a href="#野指针-没有初始化的指针">
+        <span>野指针：没有初始化的指针</span>
+    </a>
+
+    
+</li>
+
+                    
+                        
+
+<li>
+    <a href="#悬垂指针-指向已经消失的变量">
+        <span>悬垂指针：指向已经消失的变量</span>
+    </a>
+
+    
+</li>
+
+                    
+                        
+
+<li>
+    <a href="#疯狂一下-1-0f-在内存里长什么样">
+        <span>疯狂一下：1.0f 在内存里长什么样</span>
+    </a>
+
+    
+</li>
+
+                    
+                        
+
+<li>
+    <a href="#小结">
+        <span>小结</span>
+    </a>
+
+    
+</li>
+
+                    
+                        
+
+<li>
+    <a href="#习题">
+        <span>习题</span>
+    </a>
+
+    
+        <ul>
+            
+                
+
+<li>
+    <a href="#1-猜输出">
+        <span>1. 猜输出</span>
+    </a>
+
+    
+</li>
+
+            
+                
+
+<li>
+    <a href="#2-找错误">
+        <span>2. 找错误</span>
+    </a>
+
+    
+        <ul>
+            
+                
+
+<li>
+    <a href="#1-野指针">
+        <span>（1）野指针</span>
+    </a>
+
+    
+</li>
+
+            
+                
+
+<li>
+    <a href="#2-类型不匹配">
+        <span>（2）类型不匹配</span>
+    </a>
+
+    
+</li>
+
+            
+                
+
+<li>
+    <a href="#3-解引用空指针">
+        <span>（3）解引用空指针</span>
+    </a>
+
+    
+</li>
+
+            
+        </ul>
+    
+</li>
+
+            
+                
+
+<li>
+    <a href="#3-编程题-用指针交换两个数">
+        <span>3. 编程题：用指针交换两个数</span>
+    </a>
+
+    
+        <ul>
+            
+                
+
+<li>
+    <a href="#c-4">
+        <span>C</span>
+    </a>
+
+    
+</li>
+
+            
+                
+
+<li>
+    <a href="#c-5">
+        <span>C++</span>
+    </a>
+
+    
+</li>
+
+            
+        </ul>
+    
+</li>
+
+            
+        </ul>
+    
+</li>
+
+                    
+                </ul>
+            </div>
         
     </div>
 </div>
