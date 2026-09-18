@@ -2341,7 +2341,13 @@ note: <span class="hljs-string">&#x27;x&#x27;</span> declared here</code></pre><
 	<span class="hljs-type">int</span> *p = (<span class="hljs-type">int</span>*)&amp;f;		<span class="hljs-comment">// 强行把 float 的地址当成 int 的地址来用</span>
 	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>, *p);		<span class="hljs-comment">// 1065353216：1.0f 在内存里长这样</span>
 	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
-}</code></pre><p>运行结果：</p><pre><code class="language-text-x-trilium-auto hljs"><span class="hljs-number">1065353216</span></code></pre><p>1065353216 换成十六进制是 <code spellcheck="false">0x3F800000</code>，这就是 <code spellcheck="false">1.0f</code> 在内存里的真实样子。（浮点数到底怎么存的，以后单独讲。）</p><aside class="admonition warning"><p>这个操作叫“类型双关”，<strong>了解即可，真实项目里别这么写</strong>：C 和 C++ 都不保证这种读法有确定结果，换个编译器可能就读出别的值。</p></aside><h2>小结<a id="小结" class="toc-anchor" name="小结" href="#小结">#</a></h2><p>指针这一节内容不少，但真正的核心只有四条：</p><ul><li data-list-item-id="e2e6de0ac030e05936e771fbfd514e3fc">指针是存地址的变量：<code spellcheck="false">int *p = &amp;a;</code> 让 <code spellcheck="false">p</code> 指向 <code spellcheck="false">a</code>；</li><li data-list-item-id="ede54c9585a220d1fda5598bbf03637b3"><code spellcheck="false">&amp;</code> 取地址、<code spellcheck="false">*</code> 解引用，它们是一对反操作；解引用之后既能读也能写；</li><li data-list-item-id="e46690b1e241331ba50b4dc1bea6ad444">指针的类型决定解引用时怎么解释内存；指针自己也有地址；<code spellcheck="false">void*</code> 能存但不能直接解引用；</li><li data-list-item-id="eb7ec9d20ff4f4176aa1888f90058f18b">空指针、野指针、悬垂指针——崩溃基本都来自这三位，动手解引用之前先问一句“它到底指向哪儿”。</li></ul><p>下一节：4.3 指针与数组、字符串——2.5 结尾答应过你的“数组的更多知识”，就在那里。</p><h2>习题<a id="习题" class="toc-anchor" name="习题" href="#习题">#</a></h2><h3>1. 猜输出<a id="1-猜输出" class="toc-anchor" name="1-猜输出" href="#1-猜输出">#</a></h3><p>下面这个程序会输出什么？</p><pre><code class="language-text-x-csrc hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+}</code></pre><p>运行结果：</p><pre><code class="language-text-x-trilium-auto hljs"><span class="hljs-number">1065353216</span></code></pre><p>1065353216 换成十六进制是 <code spellcheck="false">0x3F800000</code>，这就是 <code spellcheck="false">1.0f</code> 在内存里的真实样子。（浮点数到底怎么存的，以后单独讲。）</p><aside class="admonition warning"><p>这个操作叫“类型双关”，<strong>了解即可，真实项目里别这么写</strong>：C 和 C++ 都不保证这种读法有确定结果，换个编译器可能就读出别的值。</p></aside><h2>更加疯狂：指向指针的指针<a id="更加疯狂-指向指针的指针" class="toc-anchor" name="更加疯狂-指向指针的指针" href="#更加疯狂-指向指针的指针">#</a></h2><p>我们既然知道了，指针是指向一个变量的地址，是存储一个变量的地址，同时我们还知道指针本身也是一个变量</p><p>那么我们就可以做出疯狂的东西：指向指针的指针</p><p>看案例：</p><pre><code class="language-text-x-csrc hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+	<span class="hljs-type">int</span> a = <span class="hljs-number">10</span>;
+    <span class="hljs-type">int</span> *p = &amp;a;					<span class="hljs-comment">// 一个普通的变量</span>
+    <span class="hljs-type">int</span> **pp = &amp;p;					<span class="hljs-comment">// 一个指针变量</span>
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;a 的值：%d\n&quot;</span>, **pp);	<span class="hljs-comment">// 输出10</span>
+}</code></pre><p>你以为这就结束了？指向指针的指针同样是一个变量，于是我们可以做出：指向一个指向指针的指针。</p><pre><code class="language-text-x-csrc hljs">int ***ppp <span class="hljs-punctuation">=</span> <span class="hljs-meta">&amp;pp;</span></code></pre><p>这已经足够疯狂了，但是你会发现，这仍然是一个变量！也就是说，我们可以无限下去！</p><p>这个指针嵌套的用法非常少见，不过确实有时候是一个利器！</p><h2>小结<a id="小结" class="toc-anchor" name="小结" href="#小结">#</a></h2><p>指针这一节内容不少，但真正的核心只有四条：</p><ul><li data-list-item-id="e2e6de0ac030e05936e771fbfd514e3fc">指针是存地址的变量：<code spellcheck="false">int *p = &amp;a;</code> 让 <code spellcheck="false">p</code> 指向 <code spellcheck="false">a</code>；</li><li data-list-item-id="ede54c9585a220d1fda5598bbf03637b3"><code spellcheck="false">&amp;</code> 取地址、<code spellcheck="false">*</code> 解引用，它们是一对反操作；解引用之后既能读也能写；</li><li data-list-item-id="e46690b1e241331ba50b4dc1bea6ad444">指针的类型决定解引用时怎么解释内存；指针自己也有地址；<code spellcheck="false">void*</code> 能存但不能直接解引用；</li><li data-list-item-id="eb7ec9d20ff4f4176aa1888f90058f18b">空指针、野指针、悬垂指针，崩溃基本都来自这三位，动手解引用之前先问一句“它到底指向哪儿”。</li></ul><p>下一节：</p><h2>习题<a id="习题" class="toc-anchor" name="习题" href="#习题">#</a></h2><h3>1. 猜输出<a id="1-猜输出" class="toc-anchor" name="1-猜输出" href="#1-猜输出">#</a></h3><p>下面这个程序会输出什么？</p><pre><code class="language-text-x-csrc hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
 <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
 	<span class="hljs-type">int</span> a = <span class="hljs-number">5</span>;
 	<span class="hljs-type">int</span> *p = &amp;a;
@@ -2597,6 +2603,17 @@ note: <span class="hljs-string">&#x27;x&#x27;</span> declared here</code></pre><
 <li>
     <a href="#疯狂一下-1-0f-在内存里长什么样">
         <span>疯狂一下：1.0f 在内存里长什么样</span>
+    </a>
+
+    
+</li>
+
+                    
+                        
+
+<li>
+    <a href="#更加疯狂-指向指针的指针">
+        <span>更加疯狂：指向指针的指针</span>
     </a>
 
     
