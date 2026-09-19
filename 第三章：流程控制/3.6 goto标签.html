@@ -2129,6 +2129,86 @@
 
         </li>
     
+    
+        <li class="item">
+            
+
+    
+    <a class="type-text" href="../%E7%AC%AC%E5%9B%9B%E7%AB%A0%EF%BC%9A%E6%8C%87%E9%92%88%E3%80%81%E5%BC%95%E7%94%A8%E3%80%81%E8%A7%A3%E5%BC%95%E7%94%A8/4.3%20%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86.html">
+        
+        <span><i class="tn-icon bx bx-note"></i> 4.3 内存管理</span>
+    </a>
+
+
+
+
+
+        </li>
+    
+    
+        <li class="item">
+            
+
+    
+    <a class="type-text" href="../%E7%AC%AC%E5%9B%9B%E7%AB%A0%EF%BC%9A%E6%8C%87%E9%92%88%E3%80%81%E5%BC%95%E7%94%A8%E3%80%81%E8%A7%A3%E5%BC%95%E7%94%A8/4.4%20%E6%8C%87%E9%92%88%E4%B8%8E%E6%95%B0%E7%BB%84.html">
+        
+        <span><i class="tn-icon bx bx-note"></i> 4.4 指针与数组</span>
+    </a>
+
+
+
+
+
+        </li>
+    
+    
+        <li class="item">
+            
+
+    
+    <a class="type-text" href="../%E7%AC%AC%E5%9B%9B%E7%AB%A0%EF%BC%9A%E6%8C%87%E9%92%88%E3%80%81%E5%BC%95%E7%94%A8%E3%80%81%E8%A7%A3%E5%BC%95%E7%94%A8/4.5%20const%E6%8C%87%E9%92%88.html">
+        
+        <span><i class="tn-icon bx bx-note"></i> 4.5 const指针</span>
+    </a>
+
+
+
+
+
+        </li>
+    
+    
+        <li class="item">
+            
+
+    
+    <a class="type-text" href="../%E7%AC%AC%E5%9B%9B%E7%AB%A0%EF%BC%9A%E6%8C%87%E9%92%88%E3%80%81%E5%BC%95%E7%94%A8%E3%80%81%E8%A7%A3%E5%BC%95%E7%94%A8/4.6%20%E5%BC%95%E7%94%A8.html">
+        
+        <span><i class="tn-icon bx bx-note"></i> 4.6 引用</span>
+    </a>
+
+
+
+
+
+        </li>
+    
+    
+        <li class="item">
+            
+
+    
+    <a class="type-text" href="../%E7%AC%AC%E5%9B%9B%E7%AB%A0%EF%BC%9A%E6%8C%87%E9%92%88%E3%80%81%E5%BC%95%E7%94%A8%E3%80%81%E8%A7%A3%E5%BC%95%E7%94%A8/4.7%20%E5%B7%A6%E5%80%BC%E5%BC%95%E7%94%A8%E5%92%8C%E5%8F%B3%E5%80%BC%E5%BC%95%E7%94%A8.html">
+        
+        <span><i class="tn-icon bx bx-note"></i> 4.7 左值引用和右值引用</span>
+    </a>
+
+
+
+
+
+        </li>
+    
 </ul>
 
 
@@ -2309,14 +2389,14 @@ label:
 label:
 	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>, x);	<span class="hljs-comment">// x 没初始化，输出垃圾值</span>
 	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
-}</code></pre><p>同样的逻辑换成 C：<strong>能编译通过</strong>（开启 <code spellcheck="false">-Wall</code> 时 gcc 会提示 <code spellcheck="false">'x' is used uninitialized</code>），但运行时 <code spellcheck="false">x</code> 没有执行过初始化，输出的是一个垃圾值，这比编译报错更危险，因为编译器不会拦住你。</p><p>真遇到这种情况，建议把标签挪到声明前面，让程序跳过来之后先老老实实执行初始化：</p><h4>C++（修正版）<a id="c-修正版" class="toc-anchor" name="c-修正版" href="#c-修正版">#</a></h4><pre><code class="language-text-x-c-src hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+}</code></pre><p>同样的逻辑换成 C：<strong>能编译通过</strong>（开启 <code spellcheck="false">-Wall</code> 时常用的 gcc 编译器会提示 <code spellcheck="false">'x' is used uninitialized</code>），但运行时 <code spellcheck="false">x</code> 没有执行过初始化，输出的是一个垃圾值，这比编译报错更危险，因为编译器不会拦住你。</p><p>真遇到这种情况，建议把标签挪到声明前面，让程序跳过来之后先老老实实执行初始化：</p><h4>C++（修正版）<a id="c-修正版" class="toc-anchor" name="c-修正版" href="#c-修正版">#</a></h4><pre><code class="language-text-x-c-src hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
 <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
 	<span class="hljs-keyword">goto</span> label;			<span class="hljs-comment">// 合法：先跳到 label</span>
 label:
 	<span class="hljs-type">int</span> x = <span class="hljs-number">10</span>;			<span class="hljs-comment">// 初始化在标签后面，不会漏掉</span>
 	std::cout &lt;&lt; x &lt;&lt; <span class="hljs-string">&quot;\n&quot;</span>;
 	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
-}</code></pre><p>运行结果：</p><pre><code class="language-text-x-trilium-auto hljs">10</code></pre><blockquote><p>提醒：其实无论C还是C++都可以用<code spellcheck="false">goto</code>跳入循环之中，但是建议三思后再这样，因为你很难清晰的知道这会不会导致死循环之类的问题。</p></blockquote><h2>小结<a id="小结" class="toc-anchor" name="小结" href="#小结">#</a></h2><p><code spellcheck="false">goto</code>是个很好用也很危险的东西，会让项目变得复杂，建议使用时一定要想明白。</p><p>到这里，第三章的流程控制就全部学完了：3.1 域、3.2 if、3.3 switch、3.4 while/do-while、3.5 for、3.6 goto。下一章开始，我们要进入函数，他与数学中的函数极其相似。</p><p>下一章：<a class="reference-link type-text" href="../%E7%AC%AC%E5%9B%9B%E7%AB%A0%EF%BC%9A%E6%8C%87%E9%92%88%E3%80%81%E5%BC%95%E7%94%A8%E3%80%81%E8%A7%A3%E5%BC%95%E7%94%A8.html"><span><span class="tn-icon bx bx-folder"></span>第四章：指针、引用、解引用</span></a></p><h2>习题<a id="习题" class="toc-anchor" name="习题" href="#习题">#</a></h2><h3>1. 用 goto 实现求和<a id="1-用-goto-实现求和" class="toc-anchor" name="1-用-goto-实现求和" href="#1-用-goto-实现求和">#</a></h3><p>输入一个整数&nbsp;<span class="math-tex">\(n\)</span>（<span class="math-tex">\(1 \le n \le 1000\)</span>），用 <code spellcheck="false">goto</code> 拼出循环（不要用 <code spellcheck="false">while</code> 和 <code spellcheck="false">for</code>），输出 <code spellcheck="false">1+2+...+n</code> 的和。可以参考正文"往回跳"的模板。</p><p>本题推荐最大时长：8分钟</p><p>题目输入案例：<code spellcheck="false">100</code></p><p>输出结果案例：<code spellcheck="false">5050</code></p><details class="trilium-collapsible"><summary>答案</summary><h4>C<a id="c-4" class="toc-anchor" name="c-4" href="#c-4">#</a></h4><pre><code class="language-text-x-csrc hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+}</code></pre><p>运行结果：</p><pre><code class="language-text-x-trilium-auto hljs">10</code></pre><blockquote><p>提醒：其实无论C还是C++都可以用<code spellcheck="false">goto</code>跳入循环之中，但是建议三思后再这样，因为你很难清晰的知道这会不会导致死循环之类的问题。</p></blockquote><h2>小结<a id="小结" class="toc-anchor" name="小结" href="#小结">#</a></h2><p><code spellcheck="false">goto</code>是个很好用也很危险的东西，会让项目变得复杂，建议使用时一定要想明白。</p><p>到这里，第三章的流程控制就全部学完了：3.1 域、3.2 if、3.3 switch、3.4 while/do-while、3.5 for、3.6 goto。下一章开始，我们要进入指针</p><p>下一章：<a class="reference-link type-text" href="../%E7%AC%AC%E5%9B%9B%E7%AB%A0%EF%BC%9A%E6%8C%87%E9%92%88%E3%80%81%E5%BC%95%E7%94%A8%E3%80%81%E8%A7%A3%E5%BC%95%E7%94%A8.html"><span><span class="tn-icon bx bx-folder"></span>第四章：指针、引用、解引用</span></a></p><h2>习题<a id="习题" class="toc-anchor" name="习题" href="#习题">#</a></h2><h3>1. 用 goto 实现求和<a id="1-用-goto-实现求和" class="toc-anchor" name="1-用-goto-实现求和" href="#1-用-goto-实现求和">#</a></h3><p>输入一个整数&nbsp;<span class="math-tex">\(n\)</span>（<span class="math-tex">\(1 \le n \le 1000\)</span>），用 <code spellcheck="false">goto</code> 拼出循环（不要用 <code spellcheck="false">while</code> 和 <code spellcheck="false">for</code>），输出 <code spellcheck="false">1+2+...+n</code> 的和。可以参考正文"往回跳"的模板。</p><p>本题推荐最大时长：8分钟</p><p>题目输入案例：<code spellcheck="false">100</code></p><p>输出结果案例：<code spellcheck="false">5050</code></p><details class="trilium-collapsible"><summary>答案</summary><h4>C<a id="c-4" class="toc-anchor" name="c-4" href="#c-4">#</a></h4><pre><code class="language-text-x-csrc hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
 <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
 	<span class="hljs-type">int</span> n;					<span class="hljs-comment">// 输入的 n</span>
 	<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>;				<span class="hljs-comment">// 从 1 开始</span>

@@ -18,7 +18,7 @@
     
     
     
-    <title>4.1 内存与地址 - C与C++(自制教程)</title>
+    <title>4.3 内存管理 - C与C++(自制教程)</title>
     <script>
         // Load dark/light theme as soon as possible to avoid color flashes.
         let theme = localStorage.getItem("theme");
@@ -44,14 +44,14 @@
     <!-- Facebook Meta Tags -->
     <meta property="og:url" content="">
     <meta property="og:type" content="website">
-    <meta property="og:title" content="4.1 内存与地址 - C与C++(自制教程)">
+    <meta property="og:title" content="4.3 内存管理 - C与C++(自制教程)">
     <meta property="og:description" content="">
     <meta property="og:image" content="">
     <!-- Twitter Meta Tags -->
     <meta name="twitter:card" content="summary_large_image">
     <meta property="twitter:domain" content="">
     <meta property="twitter:url" content="">
-    <meta name="twitter:title" content="4.1 内存与地址 - C与C++(自制教程)">
+    <meta name="twitter:title" content="4.3 内存管理 - C与C++(自制教程)">
     <meta name="twitter:description" content="">
     <meta name="twitter:image" content="">
     <!-- Meta Tags Generated via https://opengraph.dev -->
@@ -1736,7 +1736,7 @@
     
 </head>
 
-<body data-note-id="AGZxDu3uQwLA" class="type-text" data-ancestor-note-id="3f0LOwtZ3I9T">
+<body data-note-id="JLNLATRifXPu" class="type-text" data-ancestor-note-id="3f0LOwtZ3I9T">
 
 <div id="header">
     <button aria-label="切换导航" id="left-pane-toggle-button" class="header-button"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z"></path></svg></button>
@@ -2098,11 +2098,11 @@
 <ul>
     
     
-        <li class="item expanded">
+        <li class="item">
             
 
     
-    <a class="type-text active" href="4.1%20%E5%86%85%E5%AD%98%E4%B8%8E%E5%9C%B0%E5%9D%80.html">
+    <a class="type-text" href="4.1%20%E5%86%85%E5%AD%98%E4%B8%8E%E5%9C%B0%E5%9D%80.html">
         
         <span><i class="tn-icon bx bx-note"></i> 4.1 内存与地址</span>
     </a>
@@ -2130,11 +2130,11 @@
         </li>
     
     
-        <li class="item">
+        <li class="item expanded">
             
 
     
-    <a class="type-text" href="4.3%20%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86.html">
+    <a class="type-text active" href="4.3%20%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86.html">
         
         <span><i class="tn-icon bx bx-note"></i> 4.3 内存管理</span>
     </a>
@@ -2309,62 +2309,224 @@
         <div id="main">
             <div id="content" class="type-text ck-content">
                 
-                    <h1 id="title">4.1 内存与地址</h1>
+                    <h1 id="title">4.3 内存管理</h1>
                 
                     
-                    <p>前面几章里，我们一直直接写变量名：写 <code spellcheck="false">a</code> 就是取它的值，写 <code spellcheck="false">a = 10</code> 就是改它的值，电脑总能准确找到它。可是，它到底在哪？</p><p>还有一件从第一章就开始照抄、却一直没解释的事：<code spellcheck="false">scanf("%d", &amp;x)</code> 里那个 <code spellcheck="false">&amp;</code>，究竟是什么意思？</p><h2>变量缓存在内存里<a id="变量缓存在内存里" class="toc-anchor" name="变量缓存在内存里" href="#变量缓存在内存里">#</a></h2><p>内存可以想象成一长排小格子，每个格子存 1 个字节，每个格子都有自己的16进制编号，这个编号就叫<strong>地址</strong>。</p><p>变量就是“占用了连续几个格子、并且起了个名字”。比如 <code spellcheck="false">int a = 10;</code>：<code spellcheck="false">a</code> 占了 4 个连续的格子，里面装着 10，这 4 个格子的起始编号就是 <code spellcheck="false">a</code> 的地址。</p><figure class="table"><table><thead><tr><th>名字</th><th>值</th><th>内存地址</th><th>占几个格子</th></tr></thead><tbody><tr><td><code spellcheck="false">a</code></td><td>10</td><td>00000096855FF90C</td><td>4</td></tr></tbody></table></figure><p>使用 <code spellcheck="false">a</code> 的时候，实际上编译器把它翻译成00000096855FF90C 4 个字节。</p><h2>取地址：&amp; 运算符<a id="取地址-amp-运算符" class="toc-anchor" name="取地址-amp-运算符" href="#取地址-amp-运算符">#</a></h2><p>在变量名前面加一个 <code spellcheck="false">&amp;</code>，拿到的就不是变量的值，而是它的地址。例子：</p><h4>C<a id="c" class="toc-anchor" name="c" href="#c">#</a></h4><pre><code class="language-text-x-csrc hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+                    <p>前面两节我们把内存地址和指针都摸清了，我们知道，C和C++是及其自由的语言，指针更是如此。</p><p>写 <code spellcheck="false">int a = 10;</code>，编译器自动帮你安排好地方；出了花括号（3.1 学过），它又自动收回去。既不用申请，也不用归还。</p><p>但有一些事情，需要手动操控内存才能做到。</p><h2>两块内存：栈与堆<a id="两块内存-栈与堆" class="toc-anchor" name="两块内存-栈与堆" href="#两块内存-栈与堆">#</a></h2><p>4.1 说内存是一长排小格子。其实这排格子被划分成了好几块区域，我们现在只需要关心其中两块：</p><ul><li data-list-item-id="e887c3f9c3a003438429db40a4ebd9371"><strong>栈</strong>（stack）：函数(如<code spellcheck="false">main</code>)开始时自动分配，出了域自动回收。；</li><li data-list-item-id="ef5e4087f51a82aa16b6f324eb81aa79d"><strong>堆</strong>（heap）：要你自己申请、自己释放，完全归你管。</li></ul><p>使用C语言的内存控制，需要在最顶上加一行<code spellcheck="false">#include &lt;stdlib.h&gt;</code></p><h4>C<a id="c" class="toc-anchor" name="c" href="#c">#</a></h4><pre><code class="language-text-x-csrc hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdlib.h&gt;</span></span>
 <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
-	<span class="hljs-type">int</span> a = <span class="hljs-number">10</span>;					<span class="hljs-comment">// 一个普通的变量</span>
-	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;a 的值：%d\n&quot;</span>, a);			<span class="hljs-comment">// 直接写名字，返回值</span>
-	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;a 的地址：%p\n&quot;</span>, &amp;a);		<span class="hljs-comment">// 加一个 &amp;，返回地址，%p是内存地址的占位符</span>
+	<span class="hljs-type">int</span> a = <span class="hljs-number">10</span>;							<span class="hljs-comment">// 栈上的变量</span>
+	<span class="hljs-type">int</span> *p = <span class="hljs-built_in">malloc</span>(<span class="hljs-built_in">sizeof</span>(<span class="hljs-type">int</span>));		<span class="hljs-comment">// 堆上的一块内存，参数填申请内存大小</span>
+	*p = <span class="hljs-number">20</span>;
+
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;栈上 a 的地址：%p\n&quot;</span>, &amp;a);
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;堆上 *p 的地址：%p\n&quot;</span>, p);
+
+	<span class="hljs-built_in">free</span>(p);
 	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
-}</code></pre><h4>C++<a id="c-1" class="toc-anchor" name="c-1" href="#c-1">#</a></h4><pre><code class="language-text-x-c-src hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+}</code></pre><h4>C++<a id="c-1" class="toc-anchor" name="c-1" href="#c-1">#</a></h4><p>如果C语言想用<code spellcheck="false">malloc</code>等，可以在最顶上加一行<code spellcheck="false">#include &lt;cstdlib&gt;</code>而不是<code spellcheck="false">#include &lt;stdlib.h&gt;</code></p><p>同时，<code spellcheck="false">malloc</code>的值最后其实是一个<code spellcheck="false">void*</code>的类型，所以C可以省略类型转换，但在C++中必须强制类型转换成对应的指针类型。</p><pre><code class="language-text-x-c-src hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;cstdlib&gt;</span></span>
 <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
-	<span class="hljs-type">int</span> a = <span class="hljs-number">10</span>;					<span class="hljs-comment">// 一个普通的变量</span>
-	std::cout &lt;&lt; <span class="hljs-string">&quot;a 的值：&quot;</span> &lt;&lt; a &lt;&lt; <span class="hljs-string">&quot;\n&quot;</span>;		<span class="hljs-comment">// 直接写名字，拿到的是值</span>
-	std::cout &lt;&lt; <span class="hljs-string">&quot;a 的地址：&quot;</span> &lt;&lt; &amp;a &lt;&lt; <span class="hljs-string">&quot;\n&quot;</span>;	<span class="hljs-comment">// 加一个 &amp;，拿到的是门牌号</span>
+	<span class="hljs-type">int</span> a = <span class="hljs-number">10</span>;					<span class="hljs-comment">// 栈上的变量</span>
+	<span class="hljs-type">int</span> *p = (<span class="hljs-type">int</span>*)<span class="hljs-built_in">malloc</span>(<span class="hljs-built_in">sizeof</span>(<span class="hljs-type">int</span>));		<span class="hljs-comment">// 堆上的一块内存</span>
+	*p = <span class="hljs-number">20</span>;
+
+	std::cout &lt;&lt; <span class="hljs-string">&quot;栈上 a 的地址：&quot;</span> &lt;&lt; &amp;a &lt;&lt; <span class="hljs-string">&quot;\n&quot;</span>;
+	std::cout &lt;&lt; <span class="hljs-string">&quot;堆上 *p 的地址：&quot;</span> &lt;&lt; p &lt;&lt; <span class="hljs-string">&quot;\n&quot;</span>;
+
+	<span class="hljs-built_in">free</span>(p);
 	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
-}</code></pre><p>运行结果大致如下：</p><pre><code class="language-text-x-trilium-auto hljs"><span class="hljs-attribute">a</span> 的值：<span class="hljs-number">10</span>
-<span class="hljs-attribute">a</span> 的地址：<span class="hljs-number">00000096855</span>FF90C</code></pre><p><code spellcheck="false">&amp;a</code> 读作“a 的地址”。C 里打印地址用 <code spellcheck="false">%p</code>；C++ 里直接把 <code spellcheck="false">&amp;a</code> 丢给 <code spellcheck="false">std::cout</code> 就行。</p><aside class="admonition note"><p><code spellcheck="false">%p</code> 打印出来的长相各个编译器不完全一样：我打印的是 <code spellcheck="false">00000096855FF90C</code> 这种不带 <code spellcheck="false">0x</code> 的十六进制数，Linux 上一般会带 <code spellcheck="false">0x</code>。但是问题不大，只要能一眼认出来大概率是个内存地址即可。</p></aside><h2>地址每次运行都不一样<a id="地址每次运行都不一样" class="toc-anchor" name="地址每次运行都不一样" href="#地址每次运行都不一样">#</a></h2><p>把同一个程序再运行一次：</p><pre><code class="language-text-x-trilium-auto hljs"><span class="hljs-attribute">a</span> 的值：<span class="hljs-number">10</span>
-<span class="hljs-attribute">a</span> 的地址：<span class="hljs-number">000000</span>F7E23FFE7C</code></pre><p>同一份代码、同一台电脑，两次运行拿到的地址完全不同是很正常的，要看你的系统怎么分配，放在哪里了，一般来说是不可预测地址位置的。</p><h2>一个变量占几个字节：sizeof<a id="一个变量占几个字节-sizeof" class="toc-anchor" name="一个变量占几个字节-sizeof" href="#一个变量占几个字节-sizeof">#</a></h2><p>内存地址也要占用内存，那么占用多大？我们可以试试：</p><h4>C<a id="c-2" class="toc-anchor" name="c-2" href="#c-2">#</a></h4><pre><code class="language-text-x-csrc hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+}</code></pre><p>运行结果：</p><pre><code class="language-text-x-trilium-auto hljs">栈上 <span class="hljs-selector-tag">a</span> 的地址：<span class="hljs-number">000000</span>D0FA9FFCC4
+堆上 *<span class="hljs-selector-tag">p</span> 的地址：<span class="hljs-number">00000220</span>EBA0CBC0</code></pre><p>多跑几次就更清楚了，下面是黑兔的机器连续 4 次的结果：</p><figure class="table"><table><thead><tr><th>第几次</th><th>栈上 a 的地址</th><th>堆上 *p 的地址</th></tr></thead><tbody><tr><td>1</td><td>000000D0FA9FFCC4</td><td>00000220EBA0CBC0</td></tr><tr><td>2</td><td>00000046693FFA54</td><td>000001801B9BCBC0</td></tr><tr><td>3</td><td>0000005F04BFFE34</td><td>000001E846ECCBC0</td></tr><tr><td>4</td><td>000000D90B5FF974</td><td>0000022F2F8ECBC0</td></tr></tbody></table></figure><p>规律很明显：栈地址都在 <code spellcheck="false">000000</code> 那一段，堆地址都在 <code spellcheck="false">000001</code>、<code spellcheck="false">000002</code> 那一段</p><p>两者在进程的地址空间里离得非常远，本来就是两片不同的区域。</p><p>而且每次运行两个地址都在变，和 4.1 讲的“地址每次运行都不一样”是同一个道理。</p><h2>申请内存：malloc<a id="申请内存-malloc" class="toc-anchor" name="申请内存-malloc" href="#申请内存-malloc">#</a></h2><p>堆内存要自己申请。用的工具是 <code spellcheck="false">malloc</code>（memory allocation，内存分配）</p><p>给它一个字节数，它就还你一块那么大的连续内存，返回这块内存的起始地址；内存不够就返回 <code spellcheck="false">NULL</code>。</p><p>先申请一个 <code spellcheck="false">int</code> 试试：</p><pre><code class="language-text-x-csrc hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdlib.h&gt;</span></span>
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+	<span class="hljs-type">int</span> *p = (<span class="hljs-type">int</span>*)<span class="hljs-built_in">malloc</span>(<span class="hljs-built_in">sizeof</span>(<span class="hljs-type">int</span>));		<span class="hljs-comment">// 申请 4 个字节</span>
+	<span class="hljs-keyword">if</span> (p == <span class="hljs-literal">NULL</span>) {				<span class="hljs-comment">// 申请失败会返回 NULL</span>
+		<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;内存申请失败\n&quot;</span>);
+		<span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;
+	}
+
+	*p = <span class="hljs-number">42</span>;					<span class="hljs-comment">// 和普通指针一样解引用</span>
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;*p = %d\n&quot;</span>, *p);
+
+	<span class="hljs-built_in">free</span>(p);					<span class="hljs-comment">// 用完必须还回去</span>
+	p = <span class="hljs-literal">NULL</span>;					<span class="hljs-comment">// 可以顺手置空，防止误用</span>
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre><p>运行结果：</p><pre><code class="language-text-x-trilium-auto hljs">*p <span class="hljs-operator">=</span> <span class="hljs-number">42</span></code></pre><p>四个要点：</p><ul><li data-list-item-id="e948d6d61d9304749c8bfc6aebbb303d5">返回值是 <code spellcheck="false">void*</code>，所以要转成 <code spellcheck="false">int*</code> 才能用。C 里这个转换可以省，C++ 里必须写；</li><li data-list-item-id="ebd5081eec26927c6fa0552aa2eb3015d">不推荐写 <code spellcheck="false">malloc(4)</code>。换台电脑 <code spellcheck="false">int</code> 可能不是 4 个字节，写 <code spellcheck="false">sizeof(int)</code> 就不用担心了；</li><li data-list-item-id="e1fcda44da0f391319317068dede0c24f">申请可能失败，内存不是无限的，所以建议检查 <code spellcheck="false">p == NULL</code>；</li><li data-list-item-id="e925c41a339576281ef4c0d880cca0f92">用完必须还。</li></ul><aside class="admonition note"><p>C99 起 C 支持变长数组 <code spellcheck="false">int a[n];</code>，但它是栈上的：n 大一点直接爆栈，而且 C++ 根本不支持。真要在运行时定长度，还是用 malloc。</p></aside><aside class="admonition warning"><p>注意 <code spellcheck="false">a[i]</code> 这种写法：<code spellcheck="false">a</code> 明明只是个指针，却能像数组一样下标。下一节会具体讲解。</p></aside><h2>calloc：顺便清零<a id="calloc-顺便清零" class="toc-anchor" name="calloc-顺便清零" href="#calloc-顺便清零">#</a></h2><p>malloc 申请出来的内存是“脏”的：里面躺着上一次谁用过之后留下的内容。想拿到干净的内存，用 <code spellcheck="false">calloc</code>（counting allocation）：</p><pre><code class="language-text-x-csrc hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdlib.h&gt;</span></span>
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+	<span class="hljs-type">int</span> *a = (<span class="hljs-type">int</span>*)<span class="hljs-built_in">malloc</span>(<span class="hljs-number">3</span> * <span class="hljs-built_in">sizeof</span>(<span class="hljs-type">int</span>));		<span class="hljs-comment">// 不清零</span>
+	<span class="hljs-type">int</span> *b = (<span class="hljs-type">int</span>*)<span class="hljs-built_in">calloc</span>(<span class="hljs-number">3</span>, <span class="hljs-built_in">sizeof</span>(<span class="hljs-type">int</span>));		<span class="hljs-comment">// 清零</span>
+
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;malloc 的第一个数：%d\n&quot;</span>, a[<span class="hljs-number">0</span>]);
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;calloc 的第一个数：%d\n&quot;</span>, b[<span class="hljs-number">0</span>]);
+
+	<span class="hljs-built_in">free</span>(a);
+	<span class="hljs-built_in">free</span>(b);
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre><p>本机运行结果：</p><pre><code class="language-text-x-trilium-auto hljs"><span class="hljs-attribute">malloc</span> 的第一个数：<span class="hljs-number">5570627</span>
+<span class="hljs-attribute">calloc</span> 的第一个数：<span class="hljs-number">0</span></code></pre><p><code spellcheck="false">calloc(3, sizeof(int))</code> 的意思是“3 个、每个 <code spellcheck="false">sizeof(int)</code> 字节”，它会把整块内存全部填成 0。</p><p>C++ 没有 calloc，不过 <code spellcheck="false">new int[n]()</code> 也能清零，<code spellcheck="false">new</code>稍后讲解：</p><pre><code class="language-text-x-c-src hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+	<span class="hljs-type">int</span> n = <span class="hljs-number">5</span>;
+	<span class="hljs-type">int</span> *a = <span class="hljs-keyword">new</span> <span class="hljs-type">int</span>[n]();			<span class="hljs-comment">// 末尾一对空括号：清零</span>
+	<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; n; i++) std::cout &lt;&lt; a[i] &lt;&lt; <span class="hljs-string">&quot; &quot;</span>;
+	std::cout &lt;&lt; <span class="hljs-string">&quot;\n&quot;</span>;
+	<span class="hljs-keyword">delete</span>[] a;
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre><p>运行结果：</p><pre><code class="language-text-x-trilium-auto hljs"><span class="hljs-symbol">0 </span><span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">0</span></code></pre><h2>realloc：扩容<a id="realloc-扩容" class="toc-anchor" name="realloc-扩容" href="#realloc-扩容">#</a></h2><p>内存申请少了怎么办？<code spellcheck="false">realloc</code>（re-allocation）可以把一块内存变大或变小：</p><pre><code class="language-text-x-csrc hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdlib.h&gt;</span></span>
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+	<span class="hljs-type">int</span> *a = (<span class="hljs-type">int</span>*)<span class="hljs-built_in">malloc</span>(<span class="hljs-number">2</span> * <span class="hljs-built_in">sizeof</span>(<span class="hljs-type">int</span>));
+	<span class="hljs-keyword">if</span> (a == <span class="hljs-literal">NULL</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;
+	a[<span class="hljs-number">0</span>] = <span class="hljs-number">1</span>;
+	a[<span class="hljs-number">1</span>] = <span class="hljs-number">2</span>;
+
+	<span class="hljs-type">int</span> *b = (<span class="hljs-type">int</span>*)<span class="hljs-built_in">realloc</span>(a, <span class="hljs-number">5</span> * <span class="hljs-built_in">sizeof</span>(<span class="hljs-type">int</span>));	<span class="hljs-comment">// 扩容成 5 个 int</span>
+	<span class="hljs-keyword">if</span> (b == <span class="hljs-literal">NULL</span>) { <span class="hljs-built_in">free</span>(a); <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>; }		<span class="hljs-comment">// 失败时旧的 a 还在</span>
+	a = b;						<span class="hljs-comment">// 复制新地址</span>
+
+	<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">2</span>; i &lt; <span class="hljs-number">5</span>; i++) a[i] = i + <span class="hljs-number">1</span>;
+	<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">5</span>; i++) <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d &quot;</span>, a[i]);
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;\n&quot;</span>);
+
+	<span class="hljs-built_in">free</span>(a);
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre><p>运行结果：</p><pre><code class="language-text-x-trilium-auto hljs"><span class="hljs-symbol">1 </span><span class="hljs-number">2</span> <span class="hljs-number">3</span> <span class="hljs-number">4</span> <span class="hljs-number">5</span></code></pre><p>原来装着的 1、2 都还在，realloc 会把旧数据原样带到新的内存空间。</p><p>但它有一个必须知道的行为：<strong>它可能换内存地址</strong>。如果原来那块内存后面没有足够的地方，realloc 会另找一块够大的、把老数据搬过去、再把旧的释放掉，然后返回新地址。所以：</p><ul><li data-list-item-id="e9bed25a57f41ce67b4d2c52b996737db">一定要拿新的地址</li><li data-list-item-id="ecf3634b0c392601d8a746d29d2dc6333">旧指针地址在 realloc 之后就作废了，不能再拿去用。</li></ul><p>下面这个写法非常常见，也非常危险：</p><pre><code class="language-text-x-csrc hljs">p = (<span class="hljs-type">int</span>*)<span class="hljs-built_in">realloc</span>(p, <span class="hljs-number">5</span> * <span class="hljs-built_in">sizeof</span>(<span class="hljs-type">int</span>));		<span class="hljs-comment">// 危险写法</span></code></pre><p>如果这次扩容失败，realloc 返回 <code spellcheck="false">NULL</code>，而 <code spellcheck="false">p</code> 就会被赋成了 <code spellcheck="false">NULL</code></p><p>原来那块内存的地址就此丢失，一直占用内存无法释放，典型的内存泄漏。</p><p>推荐写法就是上面例子的例子，用临时变量确定了不是<code spellcheck="false">NULL</code>再进行赋值。</p><h2>归还内存：free<a id="归还内存-free" class="toc-anchor" name="归还内存-free" href="#归还内存-free">#</a></h2><p><code spellcheck="false">free(p)</code> 把 <code spellcheck="false">malloc</code> / <code spellcheck="false">calloc</code> / <code spellcheck="false">realloc</code> 要来的内存还回去，但有一些问题：</p><ul><li data-list-item-id="ec6a7ec42af371f212d54c7330c7162f1">只能 free 一次；</li><li data-list-item-id="e84e62fe3838e429e126b72400aad30bc">只能 free 申请来的地址：栈上的变量、数组名、<code spellcheck="false">p + 1</code> 都不行；</li><li data-list-item-id="e016af53c1cc5d11f3f34e96900e1c27e"><code spellcheck="false">free(NULL)</code> 是安全的，什么都不做；</li><li data-list-item-id="e1e81c06f1c9544d68ce758301145c85c">free 之后指针本身还在，但它指向的内存已经被释放掉了，这就是 4.2 说的悬垂指针。顺手加一行 <code spellcheck="false">p = NULL;</code>，能省掉后面很多麻烦。</li></ul><p>四条里唯一“安全”的就是第三条，验证一下：</p><pre><code class="language-text-x-csrc hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdlib.h&gt;</span></span>
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+	<span class="hljs-type">int</span> *p = <span class="hljs-literal">NULL</span>;
+	<span class="hljs-built_in">free</span>(p);				<span class="hljs-comment">// 释放空指针是安全的</span>
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;free(NULL) 没事\n&quot;</span>);
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre><p>运行结果：</p><pre><code class="language-text-x-trilium-auto hljs"><span class="hljs-function"><span class="hljs-title">free</span><span class="hljs-params">(NULL)</span></span> 没事</code></pre><h2>C++ 的写法：new 和 delete<a id="c-的写法-new-和-delete" class="toc-anchor" name="c-的写法-new-和-delete" href="#c-的写法-new-和-delete">#</a></h2><p>C++ 有一套自己的内存管理，比 malloc / free 更安全。把单个对象和数组的申请、使用、归还连起来看一遍：</p><pre><code class="language-text-x-c-src hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+	<span class="hljs-type">int</span> *p = <span class="hljs-keyword">new</span> <span class="hljs-built_in">int</span>(<span class="hljs-number">42</span>);			<span class="hljs-comment">// 申请一个 int，顺便放进去 42</span>
+	std::cout &lt;&lt; <span class="hljs-string">&quot;*p = &quot;</span> &lt;&lt; *p &lt;&lt; <span class="hljs-string">&quot;\n&quot;</span>;
+	<span class="hljs-keyword">delete</span> p;				<span class="hljs-comment">// 单个对象配 delete</span>
+
+	<span class="hljs-type">int</span> n = <span class="hljs-number">5</span>;
+	<span class="hljs-type">int</span> *a = <span class="hljs-keyword">new</span> <span class="hljs-type">int</span>[n];			<span class="hljs-comment">// 申请 n 个 int</span>
+	<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; n; i++) a[i] = i * i;
+	<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; n; i++) std::cout &lt;&lt; a[i] &lt;&lt; <span class="hljs-string">&quot; &quot;</span>;
+	std::cout &lt;&lt; <span class="hljs-string">&quot;\n&quot;</span>;
+	<span class="hljs-keyword">delete</span>[] a;				<span class="hljs-comment">// 数组配 delete[]</span>
+
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre><p>运行结果：</p><pre><code class="language-text-x-trilium-auto hljs">*p = 42
+0<span class="hljs-number"> 1 </span>4<span class="hljs-number"> 9 </span>16</code></pre><p>和 malloc / free 的区别：</p><ul><li data-list-item-id="e2f3de44adf63d7500b3e3e201fe561ca"><code spellcheck="false">new int(42)</code> 可以顺便塞个初值，<code spellcheck="false">malloc</code> 不行；</li><li data-list-item-id="ec9ada047d3a6a27f8fb1a2b09022d04e"><code spellcheck="false">new</code> 会调用构造函数、<code spellcheck="false">delete</code> 会调用析构函数，<code spellcheck="false">malloc</code> / <code spellcheck="false">free</code> 不会（等到第六章详细讲解构造函数和析构函数）；</li><li data-list-item-id="ebadb3b4399e483994202b53198c0f4ec"><code spellcheck="false">new</code> 失败不返回 <code spellcheck="false">NULL</code>，而是抛出异常 <code spellcheck="false">std::bad_alloc</code>，所以 C++ 里通常不写 NULL 检查。关于异常，后面会专门讲解。</li></ul><p>谁申请、谁释放，这张表一定要记牢：</p><figure class="table"><table><thead><tr><th>申请</th><th>释放</th><th>用在哪</th></tr></thead><tbody><tr><td><code spellcheck="false">malloc</code> / <code spellcheck="false">calloc</code> / <code spellcheck="false">realloc</code></td><td><code spellcheck="false">free</code></td><td>C 和 C++ 都能用</td></tr><tr><td><code spellcheck="false">new</code></td><td><code spellcheck="false">delete</code></td><td>C++，单个对象</td></tr><tr><td><code spellcheck="false">new[]</code></td><td><code spellcheck="false">delete[]</code></td><td>C++，数组</td></tr></tbody></table></figure><aside class="admonition warning"><p>这三组必须严格配对。<code spellcheck="false">new[]</code> 出来的用 <code spellcheck="false">delete</code> 释放、<code spellcheck="false">malloc</code> 出来的用 <code spellcheck="false">delete</code> 释放，都是未定义行为。C++ 里也能继续用 malloc / free，但不推荐，它不会调用构造函数和析构函数。</p></aside><h2>内存泄漏：申请了不释放<a id="内存泄漏-申请了不释放" class="toc-anchor" name="内存泄漏-申请了不释放" href="#内存泄漏-申请了不释放">#</a></h2><p><strong>第一种：压根没写 free。</strong>最容易发生的地方是循环里：</p><pre><code class="language-text-x-csrc hljs">for (int i <span class="hljs-operator">=</span> <span class="hljs-number">0</span><span class="hljs-comment">; i &lt; 200000; i++) {</span>
+	int *p <span class="hljs-operator">=</span> (int*)malloc(<span class="hljs-number">1024</span>)<span class="hljs-comment">;		// 每轮申请 1KB</span>
+	if (p <span class="hljs-operator">=</span><span class="hljs-operator">=</span> NULL) return <span class="hljs-number">1</span><span class="hljs-comment">;</span>
+	p[<span class="hljs-number">0</span>] <span class="hljs-operator">=</span> i<span class="hljs-comment">;</span>
+}						// p 出了这个域就没了，这些内存没释放</code></pre><p>这段代码跑完，20 万块内存一块都没还。本机实测：进程的工作集是 <strong>204.2 MB</strong>；把 <code spellcheck="false">free(p);</code> 加回去，同样的 20 万次循环，只有 <strong>4.7 MB</strong>。</p><p><strong>第二种：指针被覆盖，没有释放的机会了。</strong></p><pre><code class="language-text-x-csrc hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdlib.h&gt;</span></span>
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+	<span class="hljs-type">int</span> *p = (<span class="hljs-type">int</span>*)<span class="hljs-built_in">malloc</span>(<span class="hljs-built_in">sizeof</span>(<span class="hljs-type">int</span>));
+	*p = <span class="hljs-number">1</span>;
+
+	p = (<span class="hljs-type">int</span>*)<span class="hljs-built_in">malloc</span>(<span class="hljs-built_in">sizeof</span>(<span class="hljs-type">int</span>));		<span class="hljs-comment">// 第一块内存的地址被覆盖了</span>
+	*p = <span class="hljs-number">2</span>;
+
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>, *p);
+	<span class="hljs-built_in">free</span>(p);
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre><p>这里申请了两块内存，但 <code spellcheck="false">p</code> 只有一个。第一次申请的地址被第二次覆盖之后，那块内存就再也找不回来了——它还在占着地方，却谁也够不着。程序照常打印 <code spellcheck="false">2</code>，正常退出，什么异常也没有。</p><p>即便你添加了 <code spellcheck="false">-Wall</code> 编译器也完全不会提醒你。</p><p>泄漏为什么难发现？因为它不报错、不崩溃，程序看起来一切正常，只是内存一直涨。</p><p>写个用完就退的小工具无所谓</p><p>程序进程一结束，操作系统会把它的所有内存都收回去</p><p>但服务器程序一跑几个月，早晚把内存用完。（这也是电脑开久了变卡原因之一，总有程序员内存泄漏导致不重启释放不了内存）</p><h2>更严重的问题<a id="更严重的问题" class="toc-anchor" name="更严重的问题" href="#更严重的问题">#</a></h2><p>忘释放问题仍不算大，这里有一些更大的问题！</p><h3>（1）同一块内存释放两次<a id="1-同一块内存释放两次" class="toc-anchor" name="1-同一块内存释放两次" href="#1-同一块内存释放两次">#</a></h3><pre><code class="language-text-x-csrc hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdlib.h&gt;</span></span>
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+	<span class="hljs-type">int</span> *p = (<span class="hljs-type">int</span>*)<span class="hljs-built_in">malloc</span>(<span class="hljs-built_in">sizeof</span>(<span class="hljs-type">int</span>));
+	*p = <span class="hljs-number">10</span>;
+
+	<span class="hljs-built_in">free</span>(p);
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;第一次 free 完成\n&quot;</span>);
+	<span class="hljs-built_in">free</span>(p);				<span class="hljs-comment">// 危险：同一块内存释放两次</span>
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;第二次 free 完成\n&quot;</span>);
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre><p>运行结果：</p><pre><code class="language-text-x-trilium-auto hljs">（没有任何输出，程序直接挂掉，退出码 <span class="hljs-number">0</span>xC<span class="hljs-number">0000374</span>：堆损坏）</code></pre><p>打开 <code spellcheck="false">-Wall</code>，编译器会提醒你：</p><pre><code class="language-text-x-trilium-auto hljs"><span class="hljs-built_in">warning</span>: pointer <span class="hljs-string">&#x27;p&#x27;</span> used <span class="hljs-keyword">after</span> <span class="hljs-string">&#x27;free&#x27;</span> [-Wuse-<span class="hljs-keyword">after</span>-free]
+note: <span class="hljs-keyword">call</span> <span class="hljs-keyword">to</span> <span class="hljs-string">&#x27;free&#x27;</span> here</code></pre><h3>（2）释放不是申请来的地址<a id="2-释放不是申请来的地址" class="toc-anchor" name="2-释放不是申请来的地址" href="#2-释放不是申请来的地址">#</a></h3><pre><code class="language-text-x-csrc hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdlib.h&gt;</span></span>
 <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
 	<span class="hljs-type">int</span> a = <span class="hljs-number">10</span>;
-	<span class="hljs-type">double</span> d = <span class="hljs-number">3.5</span>;
-	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;int 占 %zu 个字节\n&quot;</span>, <span class="hljs-built_in">sizeof</span>(<span class="hljs-type">int</span>));
-	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;double 占 %zu 个字节\n&quot;</span>, <span class="hljs-built_in">sizeof</span>(<span class="hljs-type">double</span>));
-	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;char 占 %zu 个字节\n&quot;</span>, <span class="hljs-built_in">sizeof</span>(<span class="hljs-type">char</span>));
-	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;一个地址本身占 %zu 个字节\n&quot;</span>, <span class="hljs-built_in">sizeof</span>(<span class="hljs-type">int</span>*));
-	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;变量 a、d 各占 %zu 和 %zu 个字节\n&quot;</span>, <span class="hljs-built_in">sizeof</span>(a), <span class="hljs-built_in">sizeof</span>(d));
+	<span class="hljs-type">int</span> *p = &amp;a;				<span class="hljs-comment">// p 指向栈上的变量</span>
+	<span class="hljs-built_in">free</span>(p);				<span class="hljs-comment">// 危险：这块内存不是 malloc 来的</span>
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre><p>运行结果和上面一样，退出码 <code spellcheck="false">0xC0000374</code>。<code spellcheck="false">-Wall</code> 的提醒更直接：</p><pre><code class="language-text-x-trilium-auto hljs"><span class="hljs-built_in">warning</span>: <span class="hljs-string">&#x27;free&#x27;</span> <span class="hljs-keyword">called</span> <span class="hljs-keyword">on</span> unallocated <span class="hljs-keyword">object</span> <span class="hljs-string">&#x27;a&#x27;</span> [-Wfree-nonheap-<span class="hljs-keyword">object</span>]
+note: declared here</code></pre><h3>（3）释放之后接着用<a id="3-释放之后接着用" class="toc-anchor" name="3-释放之后接着用" href="#3-释放之后接着用">#</a></h3><pre><code class="language-text-x-csrc hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdlib.h&gt;</span></span>
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+	<span class="hljs-type">int</span> *p = (<span class="hljs-type">int</span>*)<span class="hljs-built_in">malloc</span>(<span class="hljs-built_in">sizeof</span>(<span class="hljs-type">int</span>));
+	*p = <span class="hljs-number">10</span>;
+
+	<span class="hljs-built_in">free</span>(p);				<span class="hljs-comment">// 内存已经还回去了</span>
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>, *p);			<span class="hljs-comment">// 危险：还在用那块已经不属于你的内存</span>
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre><p>运行结果：</p><pre><code class="language-text-x-trilium-auto hljs"><span class="hljs-deletion">-1626067504</span></code></pre><p>程序没崩，退出码 0，看起来一切正常，但那个数完全是不可预测。本机连跑四次，分别打印出 <code spellcheck="false">-1909929056</code>、<code spellcheck="false">1526582176</code>、<code spellcheck="false">1274465184</code>、<code spellcheck="false">1666698144</code>，没有一次是 10。</p><p><code spellcheck="false">-Wall</code> 同样会警告：<code spellcheck="false">warning: pointer 'p' used after 'free' [-Wuse-after-free]</code>。</p><h4>疯狂的测试：刚还回去的内存，马上就被别人拿走了<a id="疯狂的测试-刚还回去的内存-马上就被别人拿走了" class="toc-anchor" name="疯狂的测试-刚还回去的内存-马上就被别人拿走了" href="#疯狂的测试-刚还回去的内存-马上就被别人拿走了">#</a></h4><p>要理解（3）为什么危险，看下面这段就懂了：</p><pre><code class="language-text-x-csrc hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdlib.h&gt;</span></span>
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+	<span class="hljs-type">int</span> *p = (<span class="hljs-type">int</span>*)<span class="hljs-built_in">malloc</span>(<span class="hljs-built_in">sizeof</span>(<span class="hljs-type">int</span>));
+	*p = <span class="hljs-number">111</span>;
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;第一次申请：%p，里面是 %d\n&quot;</span>, (<span class="hljs-type">void</span>*)p, *p);
+
+	<span class="hljs-built_in">free</span>(p);					<span class="hljs-comment">// 还回去</span>
+
+	<span class="hljs-type">int</span> *q = (<span class="hljs-type">int</span>*)<span class="hljs-built_in">malloc</span>(<span class="hljs-built_in">sizeof</span>(<span class="hljs-type">int</span>));		<span class="hljs-comment">// 再申请一块</span>
+	*q = <span class="hljs-number">222</span>;
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;第二次申请：%p，里面是 %d\n&quot;</span>, (<span class="hljs-type">void</span>*)q, *q);
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;p 和 q 是同一块吗？%c\n&quot;</span>, (p == q) ? <span class="hljs-string">&quot;Y&quot;</span> : <span class="hljs-string">&quot;N&quot;</span>);
+
+	<span class="hljs-built_in">free</span>(q);
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre><p>运行结果：</p><pre><code class="language-text-x-trilium-auto hljs">第一次申请：<span class="hljs-number">000002</span>AFCBC8EF80，里面是 <span class="hljs-number">111</span>
+第二次申请：<span class="hljs-number">000002</span>AFCBC8EF80，里面是 <span class="hljs-number">222</span>
+<span class="hljs-selector-tag">p</span> 和 <span class="hljs-selector-tag">q</span> 是同一块吗？<span class="hljs-attribute">Y</span></code></pre><p>free 掉的内存会被立刻回收、丢进空闲列表；下一次 malloc 张嘴要同样大小的内存，分配器大概率会把刚收回来的那块原样再给你。本机连跑两次，地址一模一样。</p><p>这就解释了（3）为什么危险：你在 <code spellcheck="false">free(p)</code> 之后读 <code spellcheck="false">*p</code>，读到的其实已经是别人的内存了。别人往那儿写点什么，你的程序就会看到莫名其妙的值，甚至可能因为读到非法地址而直接崩溃。</p><h2>小结<a id="小结" class="toc-anchor" name="小结" href="#小结">#</a></h2><p>内存管理非常强大，我们经常可以用它极致掌控每一个内存开始和结束位置，进行极限压缩内存。</p><p>下一节：<a class="reference-link type-text" href="4.4%20%E6%8C%87%E9%92%88%E4%B8%8E%E6%95%B0%E7%BB%84.html"><span><span class="tn-icon bx bx-note"></span>4.4 指针与数组</span></a></p><h2>习题<a id="习题" class="toc-anchor" name="习题" href="#习题">#</a></h2><h3>1. 猜输出<a id="1-猜输出" class="toc-anchor" name="1-猜输出" href="#1-猜输出">#</a></h3><p>下面这个程序会输出什么？先自己在心里算一遍，再运行验证。</p><pre><code class="language-text-x-csrc hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdlib.h&gt;</span></span>
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+	<span class="hljs-type">int</span> *a = (<span class="hljs-type">int</span>*)<span class="hljs-built_in">malloc</span>(<span class="hljs-number">5</span> * <span class="hljs-built_in">sizeof</span>(<span class="hljs-type">int</span>));
+	<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">5</span>; i++) a[i] = i * i;
+
+	<span class="hljs-type">int</span> *b = (<span class="hljs-type">int</span>*)<span class="hljs-built_in">realloc</span>(a, <span class="hljs-number">10</span> * <span class="hljs-built_in">sizeof</span>(<span class="hljs-type">int</span>));
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d %d\n&quot;</span>, b[<span class="hljs-number">0</span>], b[<span class="hljs-number">4</span>]);
+
+	<span class="hljs-built_in">free</span>(b);
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre><p>本题推荐最大时长：3分钟</p><details class="trilium-collapsible"><summary>答案</summary><p>运行结果：</p><pre><code class="language-text-x-trilium-auto hljs"><span class="hljs-symbol">0 </span><span class="hljs-number">16</span></code></pre><p><code spellcheck="false">realloc</code> 扩容的时候会把老数据带过去：<code spellcheck="false">b[0]</code> 还是 <code spellcheck="false">0 * 0 = 0</code>，<code spellcheck="false">b[4]</code> 还是 <code spellcheck="false">4 * 4 = 16</code>。</p></details><h3>2. 编程题：运行时才知道长度的数组<a id="2-编程题-运行时才知道长度的数组" class="toc-anchor" name="2-编程题-运行时才知道长度的数组" href="#2-编程题-运行时才知道长度的数组">#</a></h3><p>输入第一行一个整数 <code spellcheck="false">n</code>（<code spellcheck="false">1 &lt;= n &lt;= 100000</code>），第二行 <code spellcheck="false">n</code> 个整数。要求用 <code spellcheck="false">malloc</code>（C++ 用 <code spellcheck="false">new[]</code>）申请<strong>正好 n 个 int</strong> 的空间把它们存下来，然后输出最大值和总和。</p><p>本题推荐最大时长：8分钟<br>题目输入案例：<br><code spellcheck="false">5</code><br><code spellcheck="false">3 7 1 9 4</code><br>输出结果案例：<code spellcheck="false">9 24</code></p><details class="trilium-collapsible"><summary>答案</summary><h4>C<a id="c-2" class="toc-anchor" name="c-2" href="#c-2">#</a></h4><pre><code class="language-text-x-csrc hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdlib.h&gt;</span></span>
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+	<span class="hljs-type">int</span> n;
+	<span class="hljs-keyword">if</span> (<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>, &amp;n) != <span class="hljs-number">1</span> || n &lt;= <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+
+	<span class="hljs-type">int</span> *a = (<span class="hljs-type">int</span>*)<span class="hljs-built_in">malloc</span>(n * <span class="hljs-built_in">sizeof</span>(<span class="hljs-type">int</span>));		<span class="hljs-comment">// 申请 n 个 int</span>
+	<span class="hljs-keyword">if</span> (a == <span class="hljs-literal">NULL</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;
+
+	<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; n; i++) <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>, &amp;a[i]);
+
+	<span class="hljs-type">int</span> mx = a[<span class="hljs-number">0</span>];
+	<span class="hljs-type">long</span> <span class="hljs-type">long</span> sum = <span class="hljs-number">0</span>;				<span class="hljs-comment">// 100000 个数相加可能超出 int</span>
+	<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; n; i++) {
+		<span class="hljs-keyword">if</span> (a[i] &gt; mx) mx = a[i];
+		sum += a[i];
+	}
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d %lld\n&quot;</span>, mx, sum);
+
+	<span class="hljs-built_in">free</span>(a);		<span class="hljs-comment">// 一定要释放！检查你的答案有没有全部释放！</span>
 	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
 }</code></pre><h4>C++<a id="c-3" class="toc-anchor" name="c-3" href="#c-3">#</a></h4><pre><code class="language-text-x-c-src hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
 <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
-	<span class="hljs-type">int</span> a = <span class="hljs-number">10</span>;
-	<span class="hljs-type">double</span> d = <span class="hljs-number">3.5</span>;
-	std::cout &lt;&lt; <span class="hljs-string">&quot;int 占 &quot;</span> &lt;&lt; <span class="hljs-built_in">sizeof</span>(<span class="hljs-type">int</span>) &lt;&lt; <span class="hljs-string">&quot; 个字节\n&quot;</span>;
-	std::cout &lt;&lt; <span class="hljs-string">&quot;double 占 &quot;</span> &lt;&lt; <span class="hljs-built_in">sizeof</span>(<span class="hljs-type">double</span>) &lt;&lt; <span class="hljs-string">&quot; 个字节\n&quot;</span>;
-	std::cout &lt;&lt; <span class="hljs-string">&quot;char 占 &quot;</span> &lt;&lt; <span class="hljs-built_in">sizeof</span>(<span class="hljs-type">char</span>) &lt;&lt; <span class="hljs-string">&quot; 个字节\n&quot;</span>;
-	std::cout &lt;&lt; <span class="hljs-string">&quot;一个地址本身占 &quot;</span> &lt;&lt; <span class="hljs-built_in">sizeof</span>(<span class="hljs-type">int</span>*) &lt;&lt; <span class="hljs-string">&quot; 个字节\n&quot;</span>;
-	std::cout &lt;&lt; <span class="hljs-string">&quot;变量 a、d 各占 &quot;</span> &lt;&lt; <span class="hljs-built_in">sizeof</span>(a) &lt;&lt; <span class="hljs-string">&quot; 和 &quot;</span> &lt;&lt; <span class="hljs-built_in">sizeof</span>(d) &lt;&lt; <span class="hljs-string">&quot; 个字节\n&quot;</span>;
+	<span class="hljs-type">int</span> n;
+	std::cin &gt;&gt; n;
+
+	<span class="hljs-type">int</span> *a = <span class="hljs-keyword">new</span> <span class="hljs-type">int</span>[n];
+	<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; n; i++) std::cin &gt;&gt; a[i];
+
+	<span class="hljs-type">int</span> mx = a[<span class="hljs-number">0</span>];
+	<span class="hljs-type">long</span> <span class="hljs-type">long</span> sum = <span class="hljs-number">0</span>;
+	<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; n; i++) {
+		<span class="hljs-keyword">if</span> (a[i] &gt; mx) mx = a[i];
+		sum += a[i];
+	}
+	std::cout &lt;&lt; mx &lt;&lt; <span class="hljs-string">&quot; &quot;</span> &lt;&lt; sum &lt;&lt; <span class="hljs-string">&quot;\n&quot;</span>;
+
+	<span class="hljs-keyword">delete</span>[] a;		<span class="hljs-comment">// 一定要释放！检查你的答案有没有全部释放！</span>
 	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
-}</code></pre><p>运行结果（C 与 C++ 完全一样）：</p><pre><code class="language-text-x-trilium-auto hljs">int 占<span class="hljs-number"> 4 </span>个字节
-double 占<span class="hljs-number"> 8 </span>个字节
-char 占<span class="hljs-number"> 1 </span>个字节
-一个地址本身占<span class="hljs-number"> 8 </span>个字节
-变量 a、d 各占<span class="hljs-number"> 4 </span>和<span class="hljs-number"> 8 </span>个字节</code></pre><p>注意最后两行：一个<strong>地址本身</strong>也是一种数据，也要占地方，一般占 8 个字节（64 位系统）。<code spellcheck="false">sizeof(int*)</code> 里的 <code spellcheck="false">int*</code> 就是下一节要学的“指向 int 的指针”类型。</p><aside class="admonition note"><p>换成 32 位环境，一个地址就只占 4 个字节了。这也是为什么同样的程序在 32 位和 64 位上占的内存不一样。</p></aside><h2>回头看：scanf 里的 &amp; 是什么<a id="回头看-scanf-里的-amp-是什么" class="toc-anchor" name="回头看-scanf-里的-amp-是什么" href="#回头看-scanf-里的-amp-是什么">#</a></h2><p>现在可以回答开头那个问题了。1.3 里我们写过这样的代码：</p><pre><code class="language-text-x-csrc hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
-<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
-	<span class="hljs-type">int</span> x;
-	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;请输入一个整数：&quot;</span>);
-	<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>, &amp;x);			<span class="hljs-comment">// &amp;x 就是&quot;x 的地址&quot;</span>
-	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;x = %d\n&quot;</span>, x);
-	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
-}</code></pre><p>运行结果：</p><pre><code class="language-text-x-trilium-auto hljs">请输入一个整数：<span class="hljs-number">42</span>
-<span class="hljs-attribute">x</span> <span class="hljs-operator">=</span> <span class="hljs-number">42</span></code></pre><p>为什么 <code spellcheck="false">printf</code> 不用 <code spellcheck="false">&amp;</code>，<code spellcheck="false">scanf</code> 却要？因为 <code spellcheck="false">printf("%d", x)</code> 只是把 <code spellcheck="false">x</code> 的值读出来打印；而 <code spellcheck="false">scanf("%d", &amp;x)</code> 是要“把读到的数<strong>写进</strong> <code spellcheck="false">x</code> 的内存”，它必须知道内存地址来修改内存的值。</p><h2>小结<a id="小结" class="toc-anchor" name="小结" href="#小结">#</a></h2><p>简单的讲解了一下内存地址，我们将在下一节开始正式讲解指针引用等。</p><p>下一节：<a class="reference-link type-text" href="4.2%20%E6%8C%87%E9%92%88%E4%B8%8E%E8%A7%A3%E5%BC%95%E7%94%A8.html"><span><span class="tn-icon bx bx-note"></span>4.2 指针与解引用</span></a></p><h2>习题<a id="习题" class="toc-anchor" name="习题" href="#习题">#</a></h2><h3>1. 猜输出<a id="1-猜输出" class="toc-anchor" name="1-猜输出" href="#1-猜输出">#</a></h3><p>下面这个程序会输出什么？先自己在心里算一遍，再运行验证。</p><pre><code class="language-text-x-csrc hljs"><span class="hljs-meta">#include &lt;stdio.h&gt;</span>
-<span class="hljs-function"><span class="hljs-built_in">int</span> <span class="hljs-title">main</span>()</span>{
-	<span class="hljs-built_in">int</span> a = <span class="hljs-number">10</span>;
-	<span class="hljs-built_in">double</span> d = <span class="hljs-number">3.5</span>;
-	printf(<span class="hljs-string">&quot;%zu %zu %zu\n&quot;</span>, <span class="hljs-keyword">sizeof</span>(a), <span class="hljs-keyword">sizeof</span>(d), <span class="hljs-keyword">sizeof</span>(a + d));
-	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
-}</code></pre><p>本题推荐最大时长：3分钟</p><details class="trilium-collapsible"><summary>答案</summary><p>运行结果：</p><pre><code class="language-text-x-trilium-auto hljs"><span class="hljs-symbol">4 </span><span class="hljs-number">8</span> <span class="hljs-number">8</span></code></pre><p>复制到自己电脑运行一下，部分电脑不一致。最后一个<code spellcheck="false">a+d</code>会被隐式转换成double，所以输出的是double的内存占用&nbsp;</p></details><h3>2. 动手观察<a id="2-动手观察" class="toc-anchor" name="2-动手观察" href="#2-动手观察">#</a></h3><p>写一个程序打印某个变量的地址，然后连续运行 5 次，看看地址是否相同。再想一想：如果把自己的地址当成固定值写死在代码里，下次运行会发生什么？</p><p>本题推荐最大时长：3分钟</p><details class="trilium-collapsible" open=""><summary>答案</summary><p>5 次运行拿到的地址都会不一样（本机实测两次分别是 <code spellcheck="false">00000096855FF90C</code> 和 <code spellcheck="false">000000F7E23FFE7C</code>）：地址是操作系统每次启动程序时临时分配的。<br>把地址写死，下一次运行时那个位置多半已经不是你的变量了。</p><p>部分系统甚至能直接读取到别的程序的内存。</p><p>不过大部分现代系统都有做防护，给每个程序做了虚拟内存，防止越界。</p></details>
+}</code></pre></details>
                 
                 
             </div>
@@ -2378,8 +2540,8 @@ char 占<span class="hljs-number"> 1 </span>个字节
                     
 
 <div class="navigation">
-    <a class="previous" href="../%E7%AC%AC%E5%9B%9B%E7%AB%A0%EF%BC%9A%E6%8C%87%E9%92%88%E3%80%81%E5%BC%95%E7%94%A8%E3%80%81%E8%A7%A3%E5%BC%95%E7%94%A8.html">第四章：指针、引用、解引用</a>
-    <a class="next" href="4.2%20%E6%8C%87%E9%92%88%E4%B8%8E%E8%A7%A3%E5%BC%95%E7%94%A8.html">4.2 指针与解引用</a>
+    <a class="previous" href="4.2%20%E6%8C%87%E9%92%88%E4%B8%8E%E8%A7%A3%E5%BC%95%E7%94%A8.html">4.2 指针与解引用</a>
+    <a class="next" href="4.4%20%E6%8C%87%E9%92%88%E4%B8%8E%E6%95%B0%E7%BB%84.html">4.4 指针与数组</a>
 </div>
                 
 
@@ -2394,19 +2556,8 @@ char 占<span class="hljs-number"> 1 </span>个字节
                         
 
 <li>
-    <a href="#变量缓存在内存里">
-        <span>变量缓存在内存里</span>
-    </a>
-
-    
-</li>
-
-                    
-                        
-
-<li>
-    <a href="#取地址-amp-运算符">
-        <span>取地址：&amp;amp; 运算符</span>
+    <a href="#两块内存-栈与堆">
+        <span>两块内存：栈与堆</span>
     </a>
 
     
@@ -2442,8 +2593,8 @@ char 占<span class="hljs-number"> 1 </span>个字节
                         
 
 <li>
-    <a href="#地址每次运行都不一样">
-        <span>地址每次运行都不一样</span>
+    <a href="#申请内存-malloc">
+        <span>申请内存：malloc</span>
     </a>
 
     
@@ -2453,8 +2604,63 @@ char 占<span class="hljs-number"> 1 </span>个字节
                         
 
 <li>
-    <a href="#一个变量占几个字节-sizeof">
-        <span>一个变量占几个字节：sizeof</span>
+    <a href="#calloc-顺便清零">
+        <span>calloc：顺便清零</span>
+    </a>
+
+    
+</li>
+
+                    
+                        
+
+<li>
+    <a href="#realloc-扩容">
+        <span>realloc：扩容</span>
+    </a>
+
+    
+</li>
+
+                    
+                        
+
+<li>
+    <a href="#归还内存-free">
+        <span>归还内存：free</span>
+    </a>
+
+    
+</li>
+
+                    
+                        
+
+<li>
+    <a href="#c-的写法-new-和-delete">
+        <span>C++ 的写法：new 和 delete</span>
+    </a>
+
+    
+</li>
+
+                    
+                        
+
+<li>
+    <a href="#内存泄漏-申请了不释放">
+        <span>内存泄漏：申请了不释放</span>
+    </a>
+
+    
+</li>
+
+                    
+                        
+
+<li>
+    <a href="#更严重的问题">
+        <span>更严重的问题</span>
     </a>
 
     
@@ -2463,8 +2669,8 @@ char 占<span class="hljs-number"> 1 </span>个字节
                 
 
 <li>
-    <a href="#c-2">
-        <span>C</span>
+    <a href="#1-同一块内存释放两次">
+        <span>（1）同一块内存释放两次</span>
     </a>
 
     
@@ -2474,8 +2680,29 @@ char 占<span class="hljs-number"> 1 </span>个字节
                 
 
 <li>
-    <a href="#c-3">
-        <span>C++</span>
+    <a href="#2-释放不是申请来的地址">
+        <span>（2）释放不是申请来的地址</span>
+    </a>
+
+    
+</li>
+
+            
+                
+
+<li>
+    <a href="#3-释放之后接着用">
+        <span>（3）释放之后接着用</span>
+    </a>
+
+    
+        <ul>
+            
+                
+
+<li>
+    <a href="#疯狂的测试-刚还回去的内存-马上就被别人拿走了">
+        <span>疯狂的测试：刚还回去的内存，马上就被别人拿走了</span>
     </a>
 
     
@@ -2486,14 +2713,8 @@ char 占<span class="hljs-number"> 1 </span>个字节
     
 </li>
 
-                    
-                        
-
-<li>
-    <a href="#回头看-scanf-里的-amp-是什么">
-        <span>回头看：scanf 里的 &amp;amp; 是什么</span>
-    </a>
-
+            
+        </ul>
     
 </li>
 
@@ -2533,10 +2754,36 @@ char 占<span class="hljs-number"> 1 </span>个字节
                 
 
 <li>
-    <a href="#2-动手观察">
-        <span>2. 动手观察</span>
+    <a href="#2-编程题-运行时才知道长度的数组">
+        <span>2. 编程题：运行时才知道长度的数组</span>
     </a>
 
+    
+        <ul>
+            
+                
+
+<li>
+    <a href="#c-2">
+        <span>C</span>
+    </a>
+
+    
+</li>
+
+            
+                
+
+<li>
+    <a href="#c-3">
+        <span>C++</span>
+    </a>
+
+    
+</li>
+
+            
+        </ul>
     
 </li>
 

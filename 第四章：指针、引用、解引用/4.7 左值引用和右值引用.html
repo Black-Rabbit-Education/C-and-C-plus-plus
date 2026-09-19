@@ -18,7 +18,7 @@
     
     
     
-    <title>4.1 内存与地址 - C与C++(自制教程)</title>
+    <title>4.7 左值引用和右值引用 - C与C++(自制教程)</title>
     <script>
         // Load dark/light theme as soon as possible to avoid color flashes.
         let theme = localStorage.getItem("theme");
@@ -44,14 +44,14 @@
     <!-- Facebook Meta Tags -->
     <meta property="og:url" content="">
     <meta property="og:type" content="website">
-    <meta property="og:title" content="4.1 内存与地址 - C与C++(自制教程)">
+    <meta property="og:title" content="4.7 左值引用和右值引用 - C与C++(自制教程)">
     <meta property="og:description" content="">
     <meta property="og:image" content="">
     <!-- Twitter Meta Tags -->
     <meta name="twitter:card" content="summary_large_image">
     <meta property="twitter:domain" content="">
     <meta property="twitter:url" content="">
-    <meta name="twitter:title" content="4.1 内存与地址 - C与C++(自制教程)">
+    <meta name="twitter:title" content="4.7 左值引用和右值引用 - C与C++(自制教程)">
     <meta name="twitter:description" content="">
     <meta name="twitter:image" content="">
     <!-- Meta Tags Generated via https://opengraph.dev -->
@@ -1736,7 +1736,7 @@
     
 </head>
 
-<body data-note-id="AGZxDu3uQwLA" class="type-text" data-ancestor-note-id="3f0LOwtZ3I9T">
+<body data-note-id="j2IXmX14eThf" class="type-text" data-ancestor-note-id="3f0LOwtZ3I9T">
 
 <div id="header">
     <button aria-label="切换导航" id="left-pane-toggle-button" class="header-button"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z"></path></svg></button>
@@ -1745,7 +1745,7 @@
         C与C++(自制教程)
     </a>
     
-        <button aria-label="切换目录" id="toc-pane-toggle-button" class="header-button"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M3 9h14V7H3v2zm0 4h14v-2H3v2zm0 4h14v-2H3v2zm16 0h2v-2h-2v2zm0-10V7h2v2h-2zm0 6h2v-2h-2v2z"></path></svg></button>
+        <div class="header-button-placeholder"></div>
     
 </div>
 <div id="split-pane">
@@ -2098,11 +2098,11 @@
 <ul>
     
     
-        <li class="item expanded">
+        <li class="item">
             
 
     
-    <a class="type-text active" href="4.1%20%E5%86%85%E5%AD%98%E4%B8%8E%E5%9C%B0%E5%9D%80.html">
+    <a class="type-text" href="4.1%20%E5%86%85%E5%AD%98%E4%B8%8E%E5%9C%B0%E5%9D%80.html">
         
         <span><i class="tn-icon bx bx-note"></i> 4.1 内存与地址</span>
     </a>
@@ -2194,11 +2194,11 @@
         </li>
     
     
-        <li class="item">
+        <li class="item expanded">
             
 
     
-    <a class="type-text" href="4.7%20%E5%B7%A6%E5%80%BC%E5%BC%95%E7%94%A8%E5%92%8C%E5%8F%B3%E5%80%BC%E5%BC%95%E7%94%A8.html">
+    <a class="type-text active" href="4.7%20%E5%B7%A6%E5%80%BC%E5%BC%95%E7%94%A8%E5%92%8C%E5%8F%B3%E5%80%BC%E5%BC%95%E7%94%A8.html">
         
         <span><i class="tn-icon bx bx-note"></i> 4.7 左值引用和右值引用</span>
     </a>
@@ -2307,64 +2307,11 @@
     </div>
     <div id="right-pane">
         <div id="main">
-            <div id="content" class="type-text ck-content">
+            <div id="content" class="type-text ck-content no-content">
                 
-                    <h1 id="title">4.1 内存与地址</h1>
+                    <h1 id="title">4.7 左值引用和右值引用</h1>
                 
-                    
-                    <p>前面几章里，我们一直直接写变量名：写 <code spellcheck="false">a</code> 就是取它的值，写 <code spellcheck="false">a = 10</code> 就是改它的值，电脑总能准确找到它。可是，它到底在哪？</p><p>还有一件从第一章就开始照抄、却一直没解释的事：<code spellcheck="false">scanf("%d", &amp;x)</code> 里那个 <code spellcheck="false">&amp;</code>，究竟是什么意思？</p><h2>变量缓存在内存里<a id="变量缓存在内存里" class="toc-anchor" name="变量缓存在内存里" href="#变量缓存在内存里">#</a></h2><p>内存可以想象成一长排小格子，每个格子存 1 个字节，每个格子都有自己的16进制编号，这个编号就叫<strong>地址</strong>。</p><p>变量就是“占用了连续几个格子、并且起了个名字”。比如 <code spellcheck="false">int a = 10;</code>：<code spellcheck="false">a</code> 占了 4 个连续的格子，里面装着 10，这 4 个格子的起始编号就是 <code spellcheck="false">a</code> 的地址。</p><figure class="table"><table><thead><tr><th>名字</th><th>值</th><th>内存地址</th><th>占几个格子</th></tr></thead><tbody><tr><td><code spellcheck="false">a</code></td><td>10</td><td>00000096855FF90C</td><td>4</td></tr></tbody></table></figure><p>使用 <code spellcheck="false">a</code> 的时候，实际上编译器把它翻译成00000096855FF90C 4 个字节。</p><h2>取地址：&amp; 运算符<a id="取地址-amp-运算符" class="toc-anchor" name="取地址-amp-运算符" href="#取地址-amp-运算符">#</a></h2><p>在变量名前面加一个 <code spellcheck="false">&amp;</code>，拿到的就不是变量的值，而是它的地址。例子：</p><h4>C<a id="c" class="toc-anchor" name="c" href="#c">#</a></h4><pre><code class="language-text-x-csrc hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
-<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
-	<span class="hljs-type">int</span> a = <span class="hljs-number">10</span>;					<span class="hljs-comment">// 一个普通的变量</span>
-	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;a 的值：%d\n&quot;</span>, a);			<span class="hljs-comment">// 直接写名字，返回值</span>
-	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;a 的地址：%p\n&quot;</span>, &amp;a);		<span class="hljs-comment">// 加一个 &amp;，返回地址，%p是内存地址的占位符</span>
-	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
-}</code></pre><h4>C++<a id="c-1" class="toc-anchor" name="c-1" href="#c-1">#</a></h4><pre><code class="language-text-x-c-src hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
-<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
-	<span class="hljs-type">int</span> a = <span class="hljs-number">10</span>;					<span class="hljs-comment">// 一个普通的变量</span>
-	std::cout &lt;&lt; <span class="hljs-string">&quot;a 的值：&quot;</span> &lt;&lt; a &lt;&lt; <span class="hljs-string">&quot;\n&quot;</span>;		<span class="hljs-comment">// 直接写名字，拿到的是值</span>
-	std::cout &lt;&lt; <span class="hljs-string">&quot;a 的地址：&quot;</span> &lt;&lt; &amp;a &lt;&lt; <span class="hljs-string">&quot;\n&quot;</span>;	<span class="hljs-comment">// 加一个 &amp;，拿到的是门牌号</span>
-	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
-}</code></pre><p>运行结果大致如下：</p><pre><code class="language-text-x-trilium-auto hljs"><span class="hljs-attribute">a</span> 的值：<span class="hljs-number">10</span>
-<span class="hljs-attribute">a</span> 的地址：<span class="hljs-number">00000096855</span>FF90C</code></pre><p><code spellcheck="false">&amp;a</code> 读作“a 的地址”。C 里打印地址用 <code spellcheck="false">%p</code>；C++ 里直接把 <code spellcheck="false">&amp;a</code> 丢给 <code spellcheck="false">std::cout</code> 就行。</p><aside class="admonition note"><p><code spellcheck="false">%p</code> 打印出来的长相各个编译器不完全一样：我打印的是 <code spellcheck="false">00000096855FF90C</code> 这种不带 <code spellcheck="false">0x</code> 的十六进制数，Linux 上一般会带 <code spellcheck="false">0x</code>。但是问题不大，只要能一眼认出来大概率是个内存地址即可。</p></aside><h2>地址每次运行都不一样<a id="地址每次运行都不一样" class="toc-anchor" name="地址每次运行都不一样" href="#地址每次运行都不一样">#</a></h2><p>把同一个程序再运行一次：</p><pre><code class="language-text-x-trilium-auto hljs"><span class="hljs-attribute">a</span> 的值：<span class="hljs-number">10</span>
-<span class="hljs-attribute">a</span> 的地址：<span class="hljs-number">000000</span>F7E23FFE7C</code></pre><p>同一份代码、同一台电脑，两次运行拿到的地址完全不同是很正常的，要看你的系统怎么分配，放在哪里了，一般来说是不可预测地址位置的。</p><h2>一个变量占几个字节：sizeof<a id="一个变量占几个字节-sizeof" class="toc-anchor" name="一个变量占几个字节-sizeof" href="#一个变量占几个字节-sizeof">#</a></h2><p>内存地址也要占用内存，那么占用多大？我们可以试试：</p><h4>C<a id="c-2" class="toc-anchor" name="c-2" href="#c-2">#</a></h4><pre><code class="language-text-x-csrc hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
-<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
-	<span class="hljs-type">int</span> a = <span class="hljs-number">10</span>;
-	<span class="hljs-type">double</span> d = <span class="hljs-number">3.5</span>;
-	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;int 占 %zu 个字节\n&quot;</span>, <span class="hljs-built_in">sizeof</span>(<span class="hljs-type">int</span>));
-	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;double 占 %zu 个字节\n&quot;</span>, <span class="hljs-built_in">sizeof</span>(<span class="hljs-type">double</span>));
-	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;char 占 %zu 个字节\n&quot;</span>, <span class="hljs-built_in">sizeof</span>(<span class="hljs-type">char</span>));
-	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;一个地址本身占 %zu 个字节\n&quot;</span>, <span class="hljs-built_in">sizeof</span>(<span class="hljs-type">int</span>*));
-	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;变量 a、d 各占 %zu 和 %zu 个字节\n&quot;</span>, <span class="hljs-built_in">sizeof</span>(a), <span class="hljs-built_in">sizeof</span>(d));
-	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
-}</code></pre><h4>C++<a id="c-3" class="toc-anchor" name="c-3" href="#c-3">#</a></h4><pre><code class="language-text-x-c-src hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
-<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
-	<span class="hljs-type">int</span> a = <span class="hljs-number">10</span>;
-	<span class="hljs-type">double</span> d = <span class="hljs-number">3.5</span>;
-	std::cout &lt;&lt; <span class="hljs-string">&quot;int 占 &quot;</span> &lt;&lt; <span class="hljs-built_in">sizeof</span>(<span class="hljs-type">int</span>) &lt;&lt; <span class="hljs-string">&quot; 个字节\n&quot;</span>;
-	std::cout &lt;&lt; <span class="hljs-string">&quot;double 占 &quot;</span> &lt;&lt; <span class="hljs-built_in">sizeof</span>(<span class="hljs-type">double</span>) &lt;&lt; <span class="hljs-string">&quot; 个字节\n&quot;</span>;
-	std::cout &lt;&lt; <span class="hljs-string">&quot;char 占 &quot;</span> &lt;&lt; <span class="hljs-built_in">sizeof</span>(<span class="hljs-type">char</span>) &lt;&lt; <span class="hljs-string">&quot; 个字节\n&quot;</span>;
-	std::cout &lt;&lt; <span class="hljs-string">&quot;一个地址本身占 &quot;</span> &lt;&lt; <span class="hljs-built_in">sizeof</span>(<span class="hljs-type">int</span>*) &lt;&lt; <span class="hljs-string">&quot; 个字节\n&quot;</span>;
-	std::cout &lt;&lt; <span class="hljs-string">&quot;变量 a、d 各占 &quot;</span> &lt;&lt; <span class="hljs-built_in">sizeof</span>(a) &lt;&lt; <span class="hljs-string">&quot; 和 &quot;</span> &lt;&lt; <span class="hljs-built_in">sizeof</span>(d) &lt;&lt; <span class="hljs-string">&quot; 个字节\n&quot;</span>;
-	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
-}</code></pre><p>运行结果（C 与 C++ 完全一样）：</p><pre><code class="language-text-x-trilium-auto hljs">int 占<span class="hljs-number"> 4 </span>个字节
-double 占<span class="hljs-number"> 8 </span>个字节
-char 占<span class="hljs-number"> 1 </span>个字节
-一个地址本身占<span class="hljs-number"> 8 </span>个字节
-变量 a、d 各占<span class="hljs-number"> 4 </span>和<span class="hljs-number"> 8 </span>个字节</code></pre><p>注意最后两行：一个<strong>地址本身</strong>也是一种数据，也要占地方，一般占 8 个字节（64 位系统）。<code spellcheck="false">sizeof(int*)</code> 里的 <code spellcheck="false">int*</code> 就是下一节要学的“指向 int 的指针”类型。</p><aside class="admonition note"><p>换成 32 位环境，一个地址就只占 4 个字节了。这也是为什么同样的程序在 32 位和 64 位上占的内存不一样。</p></aside><h2>回头看：scanf 里的 &amp; 是什么<a id="回头看-scanf-里的-amp-是什么" class="toc-anchor" name="回头看-scanf-里的-amp-是什么" href="#回头看-scanf-里的-amp-是什么">#</a></h2><p>现在可以回答开头那个问题了。1.3 里我们写过这样的代码：</p><pre><code class="language-text-x-csrc hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
-<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
-	<span class="hljs-type">int</span> x;
-	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;请输入一个整数：&quot;</span>);
-	<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>, &amp;x);			<span class="hljs-comment">// &amp;x 就是&quot;x 的地址&quot;</span>
-	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;x = %d\n&quot;</span>, x);
-	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
-}</code></pre><p>运行结果：</p><pre><code class="language-text-x-trilium-auto hljs">请输入一个整数：<span class="hljs-number">42</span>
-<span class="hljs-attribute">x</span> <span class="hljs-operator">=</span> <span class="hljs-number">42</span></code></pre><p>为什么 <code spellcheck="false">printf</code> 不用 <code spellcheck="false">&amp;</code>，<code spellcheck="false">scanf</code> 却要？因为 <code spellcheck="false">printf("%d", x)</code> 只是把 <code spellcheck="false">x</code> 的值读出来打印；而 <code spellcheck="false">scanf("%d", &amp;x)</code> 是要“把读到的数<strong>写进</strong> <code spellcheck="false">x</code> 的内存”，它必须知道内存地址来修改内存的值。</p><h2>小结<a id="小结" class="toc-anchor" name="小结" href="#小结">#</a></h2><p>简单的讲解了一下内存地址，我们将在下一节开始正式讲解指针引用等。</p><p>下一节：<a class="reference-link type-text" href="4.2%20%E6%8C%87%E9%92%88%E4%B8%8E%E8%A7%A3%E5%BC%95%E7%94%A8.html"><span><span class="tn-icon bx bx-note"></span>4.2 指针与解引用</span></a></p><h2>习题<a id="习题" class="toc-anchor" name="习题" href="#习题">#</a></h2><h3>1. 猜输出<a id="1-猜输出" class="toc-anchor" name="1-猜输出" href="#1-猜输出">#</a></h3><p>下面这个程序会输出什么？先自己在心里算一遍，再运行验证。</p><pre><code class="language-text-x-csrc hljs"><span class="hljs-meta">#include &lt;stdio.h&gt;</span>
-<span class="hljs-function"><span class="hljs-built_in">int</span> <span class="hljs-title">main</span>()</span>{
-	<span class="hljs-built_in">int</span> a = <span class="hljs-number">10</span>;
-	<span class="hljs-built_in">double</span> d = <span class="hljs-number">3.5</span>;
-	printf(<span class="hljs-string">&quot;%zu %zu %zu\n&quot;</span>, <span class="hljs-keyword">sizeof</span>(a), <span class="hljs-keyword">sizeof</span>(d), <span class="hljs-keyword">sizeof</span>(a + d));
-	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
-}</code></pre><p>本题推荐最大时长：3分钟</p><details class="trilium-collapsible"><summary>答案</summary><p>运行结果：</p><pre><code class="language-text-x-trilium-auto hljs"><span class="hljs-symbol">4 </span><span class="hljs-number">8</span> <span class="hljs-number">8</span></code></pre><p>复制到自己电脑运行一下，部分电脑不一致。最后一个<code spellcheck="false">a+d</code>会被隐式转换成double，所以输出的是double的内存占用&nbsp;</p></details><h3>2. 动手观察<a id="2-动手观察" class="toc-anchor" name="2-动手观察" href="#2-动手观察">#</a></h3><p>写一个程序打印某个变量的地址，然后连续运行 5 次，看看地址是否相同。再想一想：如果把自己的地址当成固定值写死在代码里，下次运行会发生什么？</p><p>本题推荐最大时长：3分钟</p><details class="trilium-collapsible" open=""><summary>答案</summary><p>5 次运行拿到的地址都会不一样（本机实测两次分别是 <code spellcheck="false">00000096855FF90C</code> 和 <code spellcheck="false">000000F7E23FFE7C</code>）：地址是操作系统每次启动程序时临时分配的。<br>把地址写死，下一次运行时那个位置多半已经不是你的变量了。</p><p>部分系统甚至能直接读取到别的程序的内存。</p><p>不过大部分现代系统都有做防护，给每个程序做了虚拟内存，防止越界。</p></details>
+                    <p>此笔记没有内容。</p>
                 
                 
             </div>
@@ -2378,176 +2325,14 @@ char 占<span class="hljs-number"> 1 </span>个字节
                     
 
 <div class="navigation">
-    <a class="previous" href="../%E7%AC%AC%E5%9B%9B%E7%AB%A0%EF%BC%9A%E6%8C%87%E9%92%88%E3%80%81%E5%BC%95%E7%94%A8%E3%80%81%E8%A7%A3%E5%BC%95%E7%94%A8.html">第四章：指针、引用、解引用</a>
-    <a class="next" href="4.2%20%E6%8C%87%E9%92%88%E4%B8%8E%E8%A7%A3%E5%BC%95%E7%94%A8.html">4.2 指针与解引用</a>
+    <a class="previous" href="4.6%20%E5%BC%95%E7%94%A8.html">4.6 引用</a>
+    <a class="next" href="../%E7%AC%AC%E4%BA%94%E7%AB%A0%EF%BC%9A%E5%87%BD%E6%95%B0.html">第五章：函数</a>
 </div>
                 
 
                 
             </footer>
         </div>
-        
-            <div id="toc-pane">
-                <h3>本页内容</h3>
-                <ul id="toc">
-                    
-                        
-
-<li>
-    <a href="#变量缓存在内存里">
-        <span>变量缓存在内存里</span>
-    </a>
-
-    
-</li>
-
-                    
-                        
-
-<li>
-    <a href="#取地址-amp-运算符">
-        <span>取地址：&amp;amp; 运算符</span>
-    </a>
-
-    
-        <ul>
-            
-                
-
-<li>
-    <a href="#c">
-        <span>C</span>
-    </a>
-
-    
-</li>
-
-            
-                
-
-<li>
-    <a href="#c-1">
-        <span>C++</span>
-    </a>
-
-    
-</li>
-
-            
-        </ul>
-    
-</li>
-
-                    
-                        
-
-<li>
-    <a href="#地址每次运行都不一样">
-        <span>地址每次运行都不一样</span>
-    </a>
-
-    
-</li>
-
-                    
-                        
-
-<li>
-    <a href="#一个变量占几个字节-sizeof">
-        <span>一个变量占几个字节：sizeof</span>
-    </a>
-
-    
-        <ul>
-            
-                
-
-<li>
-    <a href="#c-2">
-        <span>C</span>
-    </a>
-
-    
-</li>
-
-            
-                
-
-<li>
-    <a href="#c-3">
-        <span>C++</span>
-    </a>
-
-    
-</li>
-
-            
-        </ul>
-    
-</li>
-
-                    
-                        
-
-<li>
-    <a href="#回头看-scanf-里的-amp-是什么">
-        <span>回头看：scanf 里的 &amp;amp; 是什么</span>
-    </a>
-
-    
-</li>
-
-                    
-                        
-
-<li>
-    <a href="#小结">
-        <span>小结</span>
-    </a>
-
-    
-</li>
-
-                    
-                        
-
-<li>
-    <a href="#习题">
-        <span>习题</span>
-    </a>
-
-    
-        <ul>
-            
-                
-
-<li>
-    <a href="#1-猜输出">
-        <span>1. 猜输出</span>
-    </a>
-
-    
-</li>
-
-            
-                
-
-<li>
-    <a href="#2-动手观察">
-        <span>2. 动手观察</span>
-    </a>
-
-    
-</li>
-
-            
-        </ul>
-    
-</li>
-
-                    
-                </ul>
-            </div>
         
     </div>
 </div>

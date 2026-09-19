@@ -2129,6 +2129,86 @@
 
         </li>
     
+    
+        <li class="item">
+            
+
+    
+    <a class="type-text" href="4.3%20%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86.html">
+        
+        <span><i class="tn-icon bx bx-note"></i> 4.3 内存管理</span>
+    </a>
+
+
+
+
+
+        </li>
+    
+    
+        <li class="item">
+            
+
+    
+    <a class="type-text" href="4.4%20%E6%8C%87%E9%92%88%E4%B8%8E%E6%95%B0%E7%BB%84.html">
+        
+        <span><i class="tn-icon bx bx-note"></i> 4.4 指针与数组</span>
+    </a>
+
+
+
+
+
+        </li>
+    
+    
+        <li class="item">
+            
+
+    
+    <a class="type-text" href="4.5%20const%E6%8C%87%E9%92%88.html">
+        
+        <span><i class="tn-icon bx bx-note"></i> 4.5 const指针</span>
+    </a>
+
+
+
+
+
+        </li>
+    
+    
+        <li class="item">
+            
+
+    
+    <a class="type-text" href="4.6%20%E5%BC%95%E7%94%A8.html">
+        
+        <span><i class="tn-icon bx bx-note"></i> 4.6 引用</span>
+    </a>
+
+
+
+
+
+        </li>
+    
+    
+        <li class="item">
+            
+
+    
+    <a class="type-text" href="4.7%20%E5%B7%A6%E5%80%BC%E5%BC%95%E7%94%A8%E5%92%8C%E5%8F%B3%E5%80%BC%E5%BC%95%E7%94%A8.html">
+        
+        <span><i class="tn-icon bx bx-note"></i> 4.7 左值引用和右值引用</span>
+    </a>
+
+
+
+
+
+        </li>
+    
 </ul>
 
 
@@ -2306,19 +2386,19 @@
 <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
 	<span class="hljs-type">int</span> a = <span class="hljs-number">10</span>;
 	<span class="hljs-type">int</span> *p = <span class="hljs-literal">nullptr</span>;			<span class="hljs-comment">// 先让它指向&quot;空&quot;</span>
-	std::cout &lt;&lt; <span class="hljs-string">&quot;p 是空指针吗？&quot;</span> &lt;&lt; (p == <span class="hljs-literal">nullptr</span> ? <span class="hljs-string">&quot;是&quot;</span> : <span class="hljs-string">&quot;不是&quot;</span>) &lt;&lt; <span class="hljs-string">&quot;\n&quot;</span>;
+	std::cout &lt;&lt; <span class="hljs-string">&quot;p 是空指针吗？&quot;</span> &lt;&lt; (p == <span class="hljs-literal">nullptr</span> ? <span class="hljs-string">&quot;Y&quot;</span> : <span class="hljs-string">&quot;N&quot;</span>) &lt;&lt; <span class="hljs-string">&quot;\n&quot;</span>;
 
 	p = &amp;a;					<span class="hljs-comment">// 再让它指向 a</span>
 	std::cout &lt;&lt; <span class="hljs-string">&quot;现在 *p = &quot;</span> &lt;&lt; *p &lt;&lt; <span class="hljs-string">&quot;\n&quot;</span>;
 	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
-}</code></pre><p>运行结果（两版一样）：</p><pre><code class="language-text-x-trilium-auto hljs"><span class="hljs-selector-tag">p</span> 是空指针吗？是
+}</code></pre><p>运行结果（两版一样）：</p><pre><code class="language-text-x-trilium-auto hljs"><span class="hljs-selector-tag">p</span> 是空指针吗？Y
 现在 *<span class="hljs-selector-tag">p</span> = <span class="hljs-number">10</span></code></pre><p>C 里写 <code spellcheck="false">NULL</code>，C++ 里写 <code spellcheck="false">nullptr</code>（C++11 起）。它们都表示“这个指针哪儿也不指”。C++ 里也还能用 <code spellcheck="false">NULL</code>，但推荐写 <code spellcheck="false">nullptr</code>，因为<code spellcheck="false">nullptr</code>在保障自由度不变的基础下做了很多防护措施。</p><p>空指针不能解引用。真去解引用会怎样？将下列代码复制尝试运行：</p><pre><code class="language-text-x-csrc hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
 <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
 	<span class="hljs-type">int</span> *p = <span class="hljs-literal">NULL</span>;
 	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;程序即将解引用空指针……\n&quot;</span>);
 	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>, *p);			<span class="hljs-comment">// 危险：去读地址 0 上的数据</span>
 	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
-}</code></pre><p>程序在打印第一行之前就被系统干掉了：Windows 上会报“0xC0000005 访问冲突”，Linux／macOS 上是 <code spellcheck="false">Segmentation fault</code>（段错误）。连那句提示都没来得及输出，是因为输出还卡在缓冲区里，没来得及交给屏幕。</p><aside class="admonition warning"><p>解引用之前可以先判断：<code spellcheck="false">if (p != NULL) { ... }</code>。空指针至少是“能检查出来的坏指针”，比下面要讲的野指针友好得多。</p></aside><h2>野指针：没有初始化的指针<a id="野指针-没有初始化的指针" class="toc-anchor" name="野指针-没有初始化的指针" href="#野指针-没有初始化的指针">#</a></h2><p>指针也是变量，声明了不初始化，它里面就是内存残留的垃圾值，这种指针叫<strong>野指针</strong>：</p><pre><code class="language-text-x-csrc hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+}</code></pre><p>Windows 上会报“0xC0000005 访问冲突”，Linux／macOS 上是 <code spellcheck="false">Segmentation fault</code>（段错误）。</p><aside class="admonition warning"><p>解引用之前可以先判断：<code spellcheck="false">if (p != NULL) { ... }</code>。空指针至少是“能检查出来的坏指针”，比下面要讲的野指针友好得多。</p></aside><h2>野指针：没有初始化的指针<a id="野指针-没有初始化的指针" class="toc-anchor" name="野指针-没有初始化的指针" href="#野指针-没有初始化的指针">#</a></h2><p>指针也是变量，声明了不初始化，它里面就是内存残留的垃圾值，这种指针叫<strong>野指针</strong>：</p><pre><code class="language-text-x-csrc hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
 <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
 	<span class="hljs-type">int</span> *p;				<span class="hljs-comment">// 没有初始化：p 里是内存残留的垃圾值</span>
 	*p = <span class="hljs-number">10</span>;			<span class="hljs-comment">// 危险：往一个随机地址写数据</span>
@@ -2347,7 +2427,7 @@ note: <span class="hljs-string">&#x27;x&#x27;</span> declared here</code></pre><
     <span class="hljs-type">int</span> *p = &amp;a;					<span class="hljs-comment">// 一个普通的变量</span>
     <span class="hljs-type">int</span> **pp = &amp;p;					<span class="hljs-comment">// 一个指针变量</span>
     <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;a 的值：%d\n&quot;</span>, **pp);	<span class="hljs-comment">// 输出10</span>
-}</code></pre><p>你以为这就结束了？指向指针的指针同样是一个变量，于是我们可以做出：指向一个指向指针的指针。</p><pre><code class="language-text-x-csrc hljs">int ***ppp <span class="hljs-punctuation">=</span> <span class="hljs-meta">&amp;pp;</span></code></pre><p>这已经足够疯狂了，但是你会发现，这仍然是一个变量！也就是说，我们可以无限下去！</p><p>这个指针嵌套的用法非常少见，不过确实有时候是一个利器！</p><h2>小结<a id="小结" class="toc-anchor" name="小结" href="#小结">#</a></h2><p>指针这一节内容不少，但真正的核心只有四条：</p><ul><li data-list-item-id="e2e6de0ac030e05936e771fbfd514e3fc">指针是存地址的变量：<code spellcheck="false">int *p = &amp;a;</code> 让 <code spellcheck="false">p</code> 指向 <code spellcheck="false">a</code>；</li><li data-list-item-id="ede54c9585a220d1fda5598bbf03637b3"><code spellcheck="false">&amp;</code> 取地址、<code spellcheck="false">*</code> 解引用，它们是一对反操作；解引用之后既能读也能写；</li><li data-list-item-id="e46690b1e241331ba50b4dc1bea6ad444">指针的类型决定解引用时怎么解释内存；指针自己也有地址；<code spellcheck="false">void*</code> 能存但不能直接解引用；</li><li data-list-item-id="eb7ec9d20ff4f4176aa1888f90058f18b">空指针、野指针、悬垂指针，崩溃基本都来自这三位，动手解引用之前先问一句“它到底指向哪儿”。</li></ul><p>下一节：</p><h2>习题<a id="习题" class="toc-anchor" name="习题" href="#习题">#</a></h2><h3>1. 猜输出<a id="1-猜输出" class="toc-anchor" name="1-猜输出" href="#1-猜输出">#</a></h3><p>下面这个程序会输出什么？</p><pre><code class="language-text-x-csrc hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+}</code></pre><p>你以为这就结束了？指向指针的指针同样是一个变量，于是我们可以做出：指向一个指向指针的指针。</p><pre><code class="language-text-x-csrc hljs">int ***ppp <span class="hljs-punctuation">=</span> <span class="hljs-meta">&amp;pp;</span></code></pre><p>这已经足够疯狂了，但是你会发现，这仍然是一个变量！也就是说，我们可以无限下去！</p><p>这个指针嵌套的用法非常少见，不过确实有时候是一个利器！</p><h2>小结<a id="小结" class="toc-anchor" name="小结" href="#小结">#</a></h2><p>指针这一节内容不少，但真正的核心只有四条：</p><ul><li data-list-item-id="e2e6de0ac030e05936e771fbfd514e3fc">指针是存地址的变量：<code spellcheck="false">int *p = &amp;a;</code> 让 <code spellcheck="false">p</code> 指向 <code spellcheck="false">a</code>；</li><li data-list-item-id="ede54c9585a220d1fda5598bbf03637b3"><code spellcheck="false">&amp;</code> 取地址、<code spellcheck="false">*</code> 解引用，它们是一对反操作；解引用之后既能读也能写；</li><li data-list-item-id="e46690b1e241331ba50b4dc1bea6ad444">指针的类型决定解引用时怎么解释内存；指针自己也有地址；<code spellcheck="false">void*</code> 能存但不能直接解引用；</li><li data-list-item-id="eb7ec9d20ff4f4176aa1888f90058f18b">空指针、野指针、悬垂指针，崩溃基本都来自这三位。</li></ul><p>下一节：<a class="reference-link type-text" href="4.3%20%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86.html"><span><span class="tn-icon bx bx-note"></span>4.3 内存管理</span></a></p><h2>习题<a id="习题" class="toc-anchor" name="习题" href="#习题">#</a></h2><h3>1. 猜输出<a id="1-猜输出" class="toc-anchor" name="1-猜输出" href="#1-猜输出">#</a></h3><p>下面这个程序会输出什么？</p><pre><code class="language-text-x-csrc hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
 <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
 	<span class="hljs-type">int</span> a = <span class="hljs-number">5</span>;
 	<span class="hljs-type">int</span> *p = &amp;a;
@@ -2398,7 +2478,7 @@ note: <span class="hljs-string">&#x27;x&#x27;</span> declared here</code></pre><
 
 <div class="navigation">
     <a class="previous" href="4.1%20%E5%86%85%E5%AD%98%E4%B8%8E%E5%9C%B0%E5%9D%80.html">4.1 内存与地址</a>
-    <a class="next" href="../%E7%AC%AC%E4%BA%94%E7%AB%A0%EF%BC%9A%E5%87%BD%E6%95%B0.html">第五章：函数</a>
+    <a class="next" href="4.3%20%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86.html">4.3 内存管理</a>
 </div>
                 
 

@@ -594,9 +594,120 @@
 							"isExpanded": false,
 							"type": "text",
 							"mime": "text/html",
-							"attributes": [],
+							"attributes": [
+								{
+									"type": "relation",
+									"name": "internalLink",
+									"value": "JLNLATRifXPu",
+									"isInheritable": false,
+									"position": 10
+								}
+							],
 							"format": "html",
 							"dataFileName": "4.2 指针与解引用.html",
+							"attachments": []
+						},
+						{
+							"isClone": false,
+							"noteId": "JLNLATRifXPu",
+							"notePath": [
+								"3f0LOwtZ3I9T",
+								"oFmuforPqFHr",
+								"JLNLATRifXPu"
+							],
+							"title": "4.3 内存管理",
+							"notePosition": 30,
+							"prefix": null,
+							"isExpanded": false,
+							"type": "text",
+							"mime": "text/html",
+							"attributes": [
+								{
+									"type": "relation",
+									"name": "internalLink",
+									"value": "NGxCDPqaYD95",
+									"isInheritable": false,
+									"position": 10
+								}
+							],
+							"format": "html",
+							"dataFileName": "4.3 内存管理.html",
+							"attachments": []
+						},
+						{
+							"isClone": false,
+							"noteId": "NGxCDPqaYD95",
+							"notePath": [
+								"3f0LOwtZ3I9T",
+								"oFmuforPqFHr",
+								"NGxCDPqaYD95"
+							],
+							"title": "4.4 指针与数组",
+							"notePosition": 40,
+							"prefix": null,
+							"isExpanded": false,
+							"type": "text",
+							"mime": "text/html",
+							"attributes": [],
+							"format": "html",
+							"dataFileName": "4.4 指针与数组.html",
+							"attachments": []
+						},
+						{
+							"isClone": false,
+							"noteId": "w6AjV4SNOBSA",
+							"notePath": [
+								"3f0LOwtZ3I9T",
+								"oFmuforPqFHr",
+								"w6AjV4SNOBSA"
+							],
+							"title": "4.5 const指针",
+							"notePosition": 50,
+							"prefix": null,
+							"isExpanded": false,
+							"type": "text",
+							"mime": "text/html",
+							"attributes": [],
+							"format": "html",
+							"dataFileName": "4.5 const指针.html",
+							"attachments": []
+						},
+						{
+							"isClone": false,
+							"noteId": "zWp4TLaSZTMn",
+							"notePath": [
+								"3f0LOwtZ3I9T",
+								"oFmuforPqFHr",
+								"zWp4TLaSZTMn"
+							],
+							"title": "4.6 引用",
+							"notePosition": 60,
+							"prefix": null,
+							"isExpanded": false,
+							"type": "text",
+							"mime": "text/html",
+							"attributes": [],
+							"format": "html",
+							"dataFileName": "4.6 引用.html",
+							"attachments": []
+						},
+						{
+							"isClone": false,
+							"noteId": "j2IXmX14eThf",
+							"notePath": [
+								"3f0LOwtZ3I9T",
+								"oFmuforPqFHr",
+								"j2IXmX14eThf"
+							],
+							"title": "4.7 左值引用和右值引用",
+							"notePosition": 70,
+							"prefix": null,
+							"isExpanded": false,
+							"type": "text",
+							"mime": "text/html",
+							"attributes": [],
+							"format": "html",
+							"dataFileName": "4.7 左值引用和右值引用.html",
 							"attachments": []
 						}
 					]
