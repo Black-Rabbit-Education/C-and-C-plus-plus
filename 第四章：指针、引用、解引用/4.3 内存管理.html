@@ -2277,6 +2277,90 @@
 
         </li>
     
+    
+        <li class="item">
+            
+
+    
+    <a class="type-text" href="../%E7%AC%AC%E4%BA%94%E7%AB%A0%EF%BC%9A%E5%87%BD%E6%95%B0/5.4%20%E5%87%BD%E6%95%B0%E4%B8%8E%E6%8C%87%E9%92%88.html">
+        
+        <span><i class="tn-icon bx bx-note"></i> 5.4 函数与指针</span>
+    </a>
+
+
+
+
+
+        </li>
+    
+    
+        <li class="item">
+            
+
+    
+    <a class="type-text" href="../%E7%AC%AC%E4%BA%94%E7%AB%A0%EF%BC%9A%E5%87%BD%E6%95%B0/5.5%20%E5%8C%BF%E5%90%8D%E5%87%BD%E6%95%B0.html">
+        
+        <span><i class="tn-icon bx bx-note"></i> 5.5 匿名函数</span>
+    </a>
+
+
+
+
+
+        </li>
+    
+</ul>
+
+
+        </li>
+    
+    
+        <li class="submenu-item">
+            
+
+    
+    <a class="type-text" href="../%E7%AC%AC%E5%85%AD%E7%AB%A0%EF%BC%9A%E5%A4%8D%E5%90%88%E7%B1%BB%E5%9E%8B.html">
+        <button class="collapse-button" aria-label="展开"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></button>
+        <span><i class="tn-icon bx bx-folder"></i> 第六章：复合类型</span>
+    </a>
+
+
+
+
+<ul>
+    
+    
+        <li class="item">
+            
+
+    
+    <a class="type-text" href="../%E7%AC%AC%E5%85%AD%E7%AB%A0%EF%BC%9A%E5%A4%8D%E5%90%88%E7%B1%BB%E5%9E%8B/6.1%20%E6%9E%9A%E4%B8%BE.html">
+        
+        <span><i class="tn-icon bx bx-note"></i> 6.1 枚举</span>
+    </a>
+
+
+
+
+
+        </li>
+    
+    
+        <li class="item">
+            
+
+    
+    <a class="type-text" href="../%E7%AC%AC%E5%85%AD%E7%AB%A0%EF%BC%9A%E5%A4%8D%E5%90%88%E7%B1%BB%E5%9E%8B/6.2%20%E7%B1%BB(%E7%BB%93%E6%9E%84%E4%BD%93%E3%80%81%E5%AF%B9%E8%B1%A1).html">
+        
+        <span><i class="tn-icon bx bx-note"></i> 6.2 类(结构体、对象)</span>
+    </a>
+
+
+
+
+
+        </li>
+    
 </ul>
 
 
@@ -2287,9 +2371,9 @@
             
 
     
-    <a class="type-text" href="../%E7%AC%AC%E5%85%AD%E7%AB%A0%EF%BC%9A%E7%B1%BB%E3%80%81%E7%BB%93%E6%9E%84%E4%BD%93%E3%80%81%E5%AF%B9%E8%B1%A1.html">
+    <a class="type-text" href="../%E7%AC%AC%E4%B8%83%E7%AB%A0%EF%BC%9A%E5%AE%8F.html">
         
-        <span><i class="tn-icon bx bx-note"></i> 第六章：类、结构体、对象</span>
+        <span><i class="tn-icon bx bx-note"></i> 第七章：宏</span>
     </a>
 
 
@@ -2312,7 +2396,7 @@
                     <h1 id="title">4.3 内存管理</h1>
                 
                     
-                    <p>前面两节我们把内存地址和指针都摸清了，我们知道，C和C++是及其自由的语言，指针更是如此。</p><p>写 <code spellcheck="false">int a = 10;</code>，编译器自动帮你安排好地方；出了花括号（3.1 学过），它又自动收回去。既不用申请，也不用归还。</p><p>但有一些事情，需要手动操控内存才能做到。</p><h2>两块内存：栈与堆<a id="两块内存-栈与堆" class="toc-anchor" name="两块内存-栈与堆" href="#两块内存-栈与堆">#</a></h2><p>4.1 说内存是一长排小格子。其实这排格子被划分成了好几块区域，我们现在只需要关心其中两块：</p><ul><li data-list-item-id="e887c3f9c3a003438429db40a4ebd9371"><strong>栈</strong>（stack）：函数(如<code spellcheck="false">main</code>)开始时自动分配，出了域自动回收。；</li><li data-list-item-id="ef5e4087f51a82aa16b6f324eb81aa79d"><strong>堆</strong>（heap）：要你自己申请、自己释放，完全归你管。</li></ul><p>使用C语言的内存控制，需要在最顶上加一行<code spellcheck="false">#include &lt;stdlib.h&gt;</code></p><h4>C<a id="c" class="toc-anchor" name="c" href="#c">#</a></h4><pre><code class="language-text-x-csrc hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+                    <p>前面两节我们把内存地址和指针都摸清了，我们知道，C和C++是及其自由的语言，指针更是如此。</p><p>写 <code spellcheck="false">int a = 10;</code>，编译器自动帮你安排好地方。</p><p>但有一些事情，需要手动操控内存才能做到。</p><h2>两块内存：栈与堆<a id="两块内存-栈与堆" class="toc-anchor" name="两块内存-栈与堆" href="#两块内存-栈与堆">#</a></h2><p>4.1 说内存是一长排小格子。其实这排格子被划分成了好几块区域，我们现在只需要关心其中两块：</p><ul><li data-list-item-id="e887c3f9c3a003438429db40a4ebd9371"><strong>栈</strong>（stack）：函数(如<code spellcheck="false">main</code>)开始时自动分配，出了域自动回收。；</li><li data-list-item-id="ef5e4087f51a82aa16b6f324eb81aa79d"><strong>堆</strong>（heap）：要你自己申请、自己释放，完全归你管。</li></ul><p>使用C语言的内存控制，需要在最顶上加一行<code spellcheck="false">#include &lt;stdlib.h&gt;</code></p><h4>C<a id="c" class="toc-anchor" name="c" href="#c">#</a></h4><pre><code class="language-text-x-csrc hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
 <span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdlib.h&gt;</span></span>
 <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
 	<span class="hljs-type">int</span> a = <span class="hljs-number">10</span>;							<span class="hljs-comment">// 栈上的变量</span>
@@ -2413,7 +2497,7 @@
 
 	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
 }</code></pre><p>运行结果：</p><pre><code class="language-text-x-trilium-auto hljs">*p = 42
-0<span class="hljs-number"> 1 </span>4<span class="hljs-number"> 9 </span>16</code></pre><p>和 malloc / free 的区别：</p><ul><li data-list-item-id="e2f3de44adf63d7500b3e3e201fe561ca"><code spellcheck="false">new int(42)</code> 可以顺便塞个初值，<code spellcheck="false">malloc</code> 不行；</li><li data-list-item-id="ec9ada047d3a6a27f8fb1a2b09022d04e"><code spellcheck="false">new</code> 会调用构造函数、<code spellcheck="false">delete</code> 会调用析构函数，<code spellcheck="false">malloc</code> / <code spellcheck="false">free</code> 不会（等到第六章详细讲解构造函数和析构函数）；</li><li data-list-item-id="ebadb3b4399e483994202b53198c0f4ec"><code spellcheck="false">new</code> 失败不返回 <code spellcheck="false">NULL</code>，而是抛出异常 <code spellcheck="false">std::bad_alloc</code>，所以 C++ 里通常不写 NULL 检查。关于异常，后面会专门讲解。</li></ul><p>谁申请、谁释放，这张表一定要记牢：</p><figure class="table"><table><thead><tr><th>申请</th><th>释放</th><th>用在哪</th></tr></thead><tbody><tr><td><code spellcheck="false">malloc</code> / <code spellcheck="false">calloc</code> / <code spellcheck="false">realloc</code></td><td><code spellcheck="false">free</code></td><td>C 和 C++ 都能用</td></tr><tr><td><code spellcheck="false">new</code></td><td><code spellcheck="false">delete</code></td><td>C++，单个对象</td></tr><tr><td><code spellcheck="false">new[]</code></td><td><code spellcheck="false">delete[]</code></td><td>C++，数组</td></tr></tbody></table></figure><aside class="admonition warning"><p>这三组必须严格配对。<code spellcheck="false">new[]</code> 出来的用 <code spellcheck="false">delete</code> 释放、<code spellcheck="false">malloc</code> 出来的用 <code spellcheck="false">delete</code> 释放，都是未定义行为。C++ 里也能继续用 malloc / free，但不推荐，它不会调用构造函数和析构函数。</p></aside><h2>内存泄漏：申请了不释放<a id="内存泄漏-申请了不释放" class="toc-anchor" name="内存泄漏-申请了不释放" href="#内存泄漏-申请了不释放">#</a></h2><p><strong>第一种：压根没写 free。</strong>最容易发生的地方是循环里：</p><pre><code class="language-text-x-csrc hljs">for (int i <span class="hljs-operator">=</span> <span class="hljs-number">0</span><span class="hljs-comment">; i &lt; 200000; i++) {</span>
+0<span class="hljs-number"> 1 </span>4<span class="hljs-number"> 9 </span>16</code></pre><p>和 malloc / free 的区别：</p><ul><li data-list-item-id="e2f3de44adf63d7500b3e3e201fe561ca"><code spellcheck="false">new int(42)</code> 可以顺便塞个初值，<code spellcheck="false">malloc</code> 不行；</li><li data-list-item-id="ec9ada047d3a6a27f8fb1a2b09022d04e"><code spellcheck="false">new</code> 会调用构造函数、<code spellcheck="false">delete</code> 会调用析构函数，<code spellcheck="false">malloc</code> / <code spellcheck="false">free</code> 不会（等到第六章详细讲解构造函数和析构函数）；</li><li data-list-item-id="ebadb3b4399e483994202b53198c0f4ec"><code spellcheck="false">new</code> 失败不返回 <code spellcheck="false">NULL</code>，而是抛出异常 <code spellcheck="false">std::bad_alloc</code>，所以 C++ 里通常不写 NULL 检查。关于异常，后面会专门讲解。</li></ul><p>谁申请、谁释放：</p><figure class="table"><table><thead><tr><th>申请</th><th>释放</th><th>用在哪</th></tr></thead><tbody><tr><td><code spellcheck="false">malloc</code> / <code spellcheck="false">calloc</code> / <code spellcheck="false">realloc</code></td><td><code spellcheck="false">free</code></td><td>C 和 C++ 都能用</td></tr><tr><td><code spellcheck="false">new</code></td><td><code spellcheck="false">delete</code></td><td>C++，单个对象</td></tr><tr><td><code spellcheck="false">new[]</code></td><td><code spellcheck="false">delete[]</code></td><td>C++，数组</td></tr></tbody></table></figure><aside class="admonition warning"><p>这三组必须严格配对。<code spellcheck="false">new[]</code> 出来的用 <code spellcheck="false">delete</code> 释放、<code spellcheck="false">malloc</code> 出来的用 <code spellcheck="false">delete</code> 释放，都是未定义行为。C++ 里也能继续用 malloc / free，但不推荐，它不会调用构造函数和析构函数。(后续复合类型将会详解构造函数和析构函数)</p></aside><h2>内存泄漏：申请了不释放<a id="内存泄漏-申请了不释放" class="toc-anchor" name="内存泄漏-申请了不释放" href="#内存泄漏-申请了不释放">#</a></h2><p><strong>第一种：压根没写 free。</strong>最容易发生的地方是循环里：</p><pre><code class="language-text-x-csrc hljs">for (int i <span class="hljs-operator">=</span> <span class="hljs-number">0</span><span class="hljs-comment">; i &lt; 200000; i++) {</span>
 	int *p <span class="hljs-operator">=</span> (int*)malloc(<span class="hljs-number">1024</span>)<span class="hljs-comment">;		// 每轮申请 1KB</span>
 	if (p <span class="hljs-operator">=</span><span class="hljs-operator">=</span> NULL) return <span class="hljs-number">1</span><span class="hljs-comment">;</span>
 	p[<span class="hljs-number">0</span>] <span class="hljs-operator">=</span> i<span class="hljs-comment">;</span>
@@ -2440,7 +2524,7 @@
 	<span class="hljs-built_in">free</span>(p);				<span class="hljs-comment">// 危险：同一块内存释放两次</span>
 	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;第二次 free 完成\n&quot;</span>);
 	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
-}</code></pre><p>运行结果：</p><pre><code class="language-text-x-trilium-auto hljs">（没有任何输出，程序直接挂掉，退出码 <span class="hljs-number">0</span>xC<span class="hljs-number">0000374</span>：堆损坏）</code></pre><p>打开 <code spellcheck="false">-Wall</code>，编译器会提醒你：</p><pre><code class="language-text-x-trilium-auto hljs"><span class="hljs-built_in">warning</span>: pointer <span class="hljs-string">&#x27;p&#x27;</span> used <span class="hljs-keyword">after</span> <span class="hljs-string">&#x27;free&#x27;</span> [-Wuse-<span class="hljs-keyword">after</span>-free]
+}</code></pre><p>运行结果报错：</p><pre><code class="language-text-x-trilium-auto hljs">退出码 <span class="hljs-number">0</span>xC<span class="hljs-number">0000374</span>：堆损坏</code></pre><p>打开 <code spellcheck="false">-Wall</code>，编译器会提醒你：</p><pre><code class="language-text-x-trilium-auto hljs"><span class="hljs-built_in">warning</span>: pointer <span class="hljs-string">&#x27;p&#x27;</span> used <span class="hljs-keyword">after</span> <span class="hljs-string">&#x27;free&#x27;</span> [-Wuse-<span class="hljs-keyword">after</span>-free]
 note: <span class="hljs-keyword">call</span> <span class="hljs-keyword">to</span> <span class="hljs-string">&#x27;free&#x27;</span> here</code></pre><h3>（2）释放不是申请来的地址<a id="2-释放不是申请来的地址" class="toc-anchor" name="2-释放不是申请来的地址" href="#2-释放不是申请来的地址">#</a></h3><pre><code class="language-text-x-csrc hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
 <span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdlib.h&gt;</span></span>
 <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
@@ -2458,7 +2542,7 @@ note: declared here</code></pre><h3>（3）释放之后接着用<a id="3-释放�
 	<span class="hljs-built_in">free</span>(p);				<span class="hljs-comment">// 内存已经还回去了</span>
 	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>, *p);			<span class="hljs-comment">// 危险：还在用那块已经不属于你的内存</span>
 	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
-}</code></pre><p>运行结果：</p><pre><code class="language-text-x-trilium-auto hljs"><span class="hljs-deletion">-1626067504</span></code></pre><p>程序没崩，退出码 0，看起来一切正常，但那个数完全是不可预测。本机连跑四次，分别打印出 <code spellcheck="false">-1909929056</code>、<code spellcheck="false">1526582176</code>、<code spellcheck="false">1274465184</code>、<code spellcheck="false">1666698144</code>，没有一次是 10。</p><p><code spellcheck="false">-Wall</code> 同样会警告：<code spellcheck="false">warning: pointer 'p' used after 'free' [-Wuse-after-free]</code>。</p><h4>疯狂的测试：刚还回去的内存，马上就被别人拿走了<a id="疯狂的测试-刚还回去的内存-马上就被别人拿走了" class="toc-anchor" name="疯狂的测试-刚还回去的内存-马上就被别人拿走了" href="#疯狂的测试-刚还回去的内存-马上就被别人拿走了">#</a></h4><p>要理解（3）为什么危险，看下面这段就懂了：</p><pre><code class="language-text-x-csrc hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+}</code></pre><p>运行结果：</p><pre><code class="language-text-x-trilium-auto hljs"><span class="hljs-deletion">-1626067504</span></code></pre><p>程序没崩，退出码 0，看起来一切正常，但那个数完全是不可预测。本机连跑四次，分别打印出 <code spellcheck="false">-1909929056</code>、<code spellcheck="false">1526582176</code>、<code spellcheck="false">1274465184</code>、<code spellcheck="false">1666698144</code>，没有一次是 10。</p><p><code spellcheck="false">-Wall</code> 同样会警告：<code spellcheck="false">warning: pointer 'p' used after 'free' [-Wuse-after-free]</code>。</p><h4>疯狂的测试：刚还回去的内存，马上就被别人拿走了<a id="疯狂的测试-刚还回去的内存-马上就被别人拿走了" class="toc-anchor" name="疯狂的测试-刚还回去的内存-马上就被别人拿走了" href="#疯狂的测试-刚还回去的内存-马上就被别人拿走了">#</a></h4><p>要理解（3）为什么危险，看下面这段案例：</p><pre><code class="language-text-x-csrc hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
 <span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdlib.h&gt;</span></span>
 <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
 	<span class="hljs-type">int</span> *p = (<span class="hljs-type">int</span>*)<span class="hljs-built_in">malloc</span>(<span class="hljs-built_in">sizeof</span>(<span class="hljs-type">int</span>));
@@ -2470,7 +2554,7 @@ note: declared here</code></pre><h3>（3）释放之后接着用<a id="3-释放�
 	<span class="hljs-type">int</span> *q = (<span class="hljs-type">int</span>*)<span class="hljs-built_in">malloc</span>(<span class="hljs-built_in">sizeof</span>(<span class="hljs-type">int</span>));		<span class="hljs-comment">// 再申请一块</span>
 	*q = <span class="hljs-number">222</span>;
 	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;第二次申请：%p，里面是 %d\n&quot;</span>, (<span class="hljs-type">void</span>*)q, *q);
-	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;p 和 q 是同一块吗？%c\n&quot;</span>, (p == q) ? <span class="hljs-string">&quot;Y&quot;</span> : <span class="hljs-string">&quot;N&quot;</span>);
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;p 和 q 是同一块吗？%c\n&quot;</span>, (p == q) ? <span class="hljs-string">&#x27;Y&#x27;</span> : <span class="hljs-string">&#x27;N&#x27;</span>);
 
 	<span class="hljs-built_in">free</span>(q);
 	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;

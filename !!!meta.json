@@ -811,6 +811,44 @@
 							"format": "html",
 							"dataFileName": "5.3 递归.html",
 							"attachments": []
+						},
+						{
+							"isClone": false,
+							"noteId": "sAfYrSXROmON",
+							"notePath": [
+								"3f0LOwtZ3I9T",
+								"JfIF2zF6C1HJ",
+								"sAfYrSXROmON"
+							],
+							"title": "5.4 函数与指针",
+							"notePosition": 40,
+							"prefix": null,
+							"isExpanded": false,
+							"type": "text",
+							"mime": "text/html",
+							"attributes": [],
+							"format": "html",
+							"dataFileName": "5.4 函数与指针.html",
+							"attachments": []
+						},
+						{
+							"isClone": false,
+							"noteId": "4AjUTy8ir4IY",
+							"notePath": [
+								"3f0LOwtZ3I9T",
+								"JfIF2zF6C1HJ",
+								"4AjUTy8ir4IY"
+							],
+							"title": "5.5 匿名函数",
+							"notePosition": 50,
+							"prefix": null,
+							"isExpanded": false,
+							"type": "text",
+							"mime": "text/html",
+							"attributes": [],
+							"format": "html",
+							"dataFileName": "5.5 匿名函数.html",
+							"attachments": []
 						}
 					]
 				},
@@ -821,15 +859,82 @@
 						"3f0LOwtZ3I9T",
 						"YFTnOCSzvXad"
 					],
-					"title": "第六章：类、结构体、对象",
+					"title": "第六章：复合类型",
 					"notePosition": 70,
+					"prefix": null,
+					"isExpanded": false,
+					"type": "text",
+					"mime": "text/html",
+					"attributes": [
+						{
+							"type": "relation",
+							"name": "internalLink",
+							"value": "iV8O86EU6TYC",
+							"isInheritable": false,
+							"position": 10
+						}
+					],
+					"format": "html",
+					"dataFileName": "第六章：复合类型.html",
+					"attachments": [],
+					"dirFileName": "第六章：复合类型",
+					"children": [
+						{
+							"isClone": false,
+							"noteId": "iV8O86EU6TYC",
+							"notePath": [
+								"3f0LOwtZ3I9T",
+								"YFTnOCSzvXad",
+								"iV8O86EU6TYC"
+							],
+							"title": "6.1 枚举",
+							"notePosition": 10,
+							"prefix": null,
+							"isExpanded": false,
+							"type": "text",
+							"mime": "text/html",
+							"attributes": [],
+							"format": "html",
+							"dataFileName": "6.1 枚举.html",
+							"attachments": []
+						},
+						{
+							"isClone": false,
+							"noteId": "JQyokJnp01xf",
+							"notePath": [
+								"3f0LOwtZ3I9T",
+								"YFTnOCSzvXad",
+								"JQyokJnp01xf"
+							],
+							"title": "6.2 类(结构体、对象)",
+							"notePosition": 20,
+							"prefix": null,
+							"isExpanded": false,
+							"type": "text",
+							"mime": "text/html",
+							"attributes": [],
+							"format": "html",
+							"dataFileName": "6.2 类(结构体、对象).html",
+							"attachments": []
+						}
+					]
+				},
+				{
+					"isClone": false,
+					"noteId": "23oJwkXG1Bmg",
+					"notePath": [
+						"3f0LOwtZ3I9T",
+						"23oJwkXG1Bmg"
+					],
+					"title": "第七章：宏",
+					"notePosition": 80,
 					"prefix": null,
 					"isExpanded": false,
 					"type": "text",
 					"mime": "text/html",
 					"attributes": [],
 					"format": "html",
-					"dataFileName": "第六章：类、结构体、对象.html",
+					"dataFileName": "第七章：宏.html",
 					"attachments": []
 				}
 			]

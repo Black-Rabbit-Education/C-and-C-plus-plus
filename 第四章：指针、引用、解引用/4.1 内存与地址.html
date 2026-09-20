@@ -2277,6 +2277,90 @@
 
         </li>
     
+    
+        <li class="item">
+            
+
+    
+    <a class="type-text" href="../%E7%AC%AC%E4%BA%94%E7%AB%A0%EF%BC%9A%E5%87%BD%E6%95%B0/5.4%20%E5%87%BD%E6%95%B0%E4%B8%8E%E6%8C%87%E9%92%88.html">
+        
+        <span><i class="tn-icon bx bx-note"></i> 5.4 函数与指针</span>
+    </a>
+
+
+
+
+
+        </li>
+    
+    
+        <li class="item">
+            
+
+    
+    <a class="type-text" href="../%E7%AC%AC%E4%BA%94%E7%AB%A0%EF%BC%9A%E5%87%BD%E6%95%B0/5.5%20%E5%8C%BF%E5%90%8D%E5%87%BD%E6%95%B0.html">
+        
+        <span><i class="tn-icon bx bx-note"></i> 5.5 匿名函数</span>
+    </a>
+
+
+
+
+
+        </li>
+    
+</ul>
+
+
+        </li>
+    
+    
+        <li class="submenu-item">
+            
+
+    
+    <a class="type-text" href="../%E7%AC%AC%E5%85%AD%E7%AB%A0%EF%BC%9A%E5%A4%8D%E5%90%88%E7%B1%BB%E5%9E%8B.html">
+        <button class="collapse-button" aria-label="展开"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></button>
+        <span><i class="tn-icon bx bx-folder"></i> 第六章：复合类型</span>
+    </a>
+
+
+
+
+<ul>
+    
+    
+        <li class="item">
+            
+
+    
+    <a class="type-text" href="../%E7%AC%AC%E5%85%AD%E7%AB%A0%EF%BC%9A%E5%A4%8D%E5%90%88%E7%B1%BB%E5%9E%8B/6.1%20%E6%9E%9A%E4%B8%BE.html">
+        
+        <span><i class="tn-icon bx bx-note"></i> 6.1 枚举</span>
+    </a>
+
+
+
+
+
+        </li>
+    
+    
+        <li class="item">
+            
+
+    
+    <a class="type-text" href="../%E7%AC%AC%E5%85%AD%E7%AB%A0%EF%BC%9A%E5%A4%8D%E5%90%88%E7%B1%BB%E5%9E%8B/6.2%20%E7%B1%BB(%E7%BB%93%E6%9E%84%E4%BD%93%E3%80%81%E5%AF%B9%E8%B1%A1).html">
+        
+        <span><i class="tn-icon bx bx-note"></i> 6.2 类(结构体、对象)</span>
+    </a>
+
+
+
+
+
+        </li>
+    
 </ul>
 
 
@@ -2287,9 +2371,9 @@
             
 
     
-    <a class="type-text" href="../%E7%AC%AC%E5%85%AD%E7%AB%A0%EF%BC%9A%E7%B1%BB%E3%80%81%E7%BB%93%E6%9E%84%E4%BD%93%E3%80%81%E5%AF%B9%E8%B1%A1.html">
+    <a class="type-text" href="../%E7%AC%AC%E4%B8%83%E7%AB%A0%EF%BC%9A%E5%AE%8F.html">
         
-        <span><i class="tn-icon bx bx-note"></i> 第六章：类、结构体、对象</span>
+        <span><i class="tn-icon bx bx-note"></i> 第七章：宏</span>
     </a>
 
 
@@ -2364,7 +2448,7 @@ char 占<span class="hljs-number"> 1 </span>个字节
 	<span class="hljs-built_in">double</span> d = <span class="hljs-number">3.5</span>;
 	printf(<span class="hljs-string">&quot;%zu %zu %zu\n&quot;</span>, <span class="hljs-keyword">sizeof</span>(a), <span class="hljs-keyword">sizeof</span>(d), <span class="hljs-keyword">sizeof</span>(a + d));
 	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
-}</code></pre><p>本题推荐最大时长：3分钟</p><details class="trilium-collapsible"><summary>答案</summary><p>运行结果：</p><pre><code class="language-text-x-trilium-auto hljs"><span class="hljs-symbol">4 </span><span class="hljs-number">8</span> <span class="hljs-number">8</span></code></pre><p>复制到自己电脑运行一下，部分电脑不一致。最后一个<code spellcheck="false">a+d</code>会被隐式转换成double，所以输出的是double的内存占用&nbsp;</p></details><h3>2. 动手观察<a id="2-动手观察" class="toc-anchor" name="2-动手观察" href="#2-动手观察">#</a></h3><p>写一个程序打印某个变量的地址，然后连续运行 5 次，看看地址是否相同。再想一想：如果把自己的地址当成固定值写死在代码里，下次运行会发生什么？</p><p>本题推荐最大时长：3分钟</p><details class="trilium-collapsible" open=""><summary>答案</summary><p>5 次运行拿到的地址都会不一样（本机实测两次分别是 <code spellcheck="false">00000096855FF90C</code> 和 <code spellcheck="false">000000F7E23FFE7C</code>）：地址是操作系统每次启动程序时临时分配的。<br>把地址写死，下一次运行时那个位置多半已经不是你的变量了。</p><p>部分系统甚至能直接读取到别的程序的内存。</p><p>不过大部分现代系统都有做防护，给每个程序做了虚拟内存，防止越界。</p></details>
+}</code></pre><p>本题推荐最大时长：3分钟</p><details class="trilium-collapsible"><summary>答案</summary><p>运行结果：</p><pre><code class="language-text-x-trilium-auto hljs"><span class="hljs-symbol">4 </span><span class="hljs-number">8</span> <span class="hljs-number">8</span></code></pre><p>复制到自己电脑运行一下，部分电脑不一致。最后一个<code spellcheck="false">a+d</code>会被隐式转换成double，所以输出的是double的内存占用&nbsp;</p></details><h3>2. 动手观察<a id="2-动手观察" class="toc-anchor" name="2-动手观察" href="#2-动手观察">#</a></h3><p>写一个程序打印某个变量的地址，然后连续运行 5 次，看看地址是否相同。再想一想：如果把自己的地址当成固定值写死在代码里，下次运行会发生什么？</p><p>本题推荐最大时长：3分钟</p><details class="trilium-collapsible"><summary>答案</summary><p>5 次运行拿到的地址都会不一样（本机实测两次分别是 <code spellcheck="false">00000096855FF90C</code> 和 <code spellcheck="false">000000F7E23FFE7C</code>）：地址是操作系统每次启动程序时临时分配的。<br>把地址写死，下一次运行时那个位置多半已经不是你的变量了。</p><p>部分系统甚至能直接读取到别的程序的内存。</p><p>不过大部分现代系统都有做防护，给每个程序做了虚拟内存，防止越界。</p></details>
                 
                 
             </div>
