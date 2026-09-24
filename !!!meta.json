@@ -648,7 +648,15 @@
 							"isExpanded": false,
 							"type": "text",
 							"mime": "text/html",
-							"attributes": [],
+							"attributes": [
+								{
+									"type": "relation",
+									"name": "internalLink",
+									"value": "w6AjV4SNOBSA",
+									"isInheritable": false,
+									"position": 10
+								}
+							],
 							"format": "html",
 							"dataFileName": "4.4 指针与数组.html",
 							"attachments": []
@@ -667,7 +675,15 @@
 							"isExpanded": false,
 							"type": "text",
 							"mime": "text/html",
-							"attributes": [],
+							"attributes": [
+								{
+									"type": "relation",
+									"name": "internalLink",
+									"value": "zWp4TLaSZTMn",
+									"isInheritable": false,
+									"position": 10
+								}
+							],
 							"format": "html",
 							"dataFileName": "4.5 const指针.html",
 							"attachments": []
@@ -820,7 +836,7 @@
 								"JfIF2zF6C1HJ",
 								"sAfYrSXROmON"
 							],
-							"title": "5.4 函数与指针",
+							"title": "5.4 函数、指针、数组",
 							"notePosition": 40,
 							"prefix": null,
 							"isExpanded": false,
@@ -828,7 +844,7 @@
 							"mime": "text/html",
 							"attributes": [],
 							"format": "html",
-							"dataFileName": "5.4 函数与指针.html",
+							"dataFileName": "5.4 函数、指针、数组.html",
 							"attachments": []
 						},
 						{
@@ -927,7 +943,7 @@
 						"23oJwkXG1Bmg"
 					],
 					"title": "第七章：宏",
-					"notePosition": 80,
+					"notePosition": 90,
 					"prefix": null,
 					"isExpanded": false,
 					"type": "text",
@@ -935,6 +951,24 @@
 					"attributes": [],
 					"format": "html",
 					"dataFileName": "第七章：宏.html",
+					"attachments": []
+				},
+				{
+					"isClone": false,
+					"noteId": "9Knly80hb2dR",
+					"notePath": [
+						"3f0LOwtZ3I9T",
+						"9Knly80hb2dR"
+					],
+					"title": "第八章：泛型编程",
+					"notePosition": 100,
+					"prefix": null,
+					"isExpanded": false,
+					"type": "text",
+					"mime": "text/html",
+					"attributes": [],
+					"format": "html",
+					"dataFileName": "第八章：泛型编程.html",
 					"attachments": []
 				}
 			]

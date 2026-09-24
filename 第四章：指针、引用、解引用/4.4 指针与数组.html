@@ -1745,7 +1745,7 @@
         C与C++(自制教程)
     </a>
     
-        <div class="header-button-placeholder"></div>
+        <button aria-label="切换目录" id="toc-pane-toggle-button" class="header-button"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M3 9h14V7H3v2zm0 4h14v-2H3v2zm0 4h14v-2H3v2zm16 0h2v-2h-2v2zm0-10V7h2v2h-2zm0 6h2v-2h-2v2z"></path></svg></button>
     
 </div>
 <div id="split-pane">
@@ -2282,9 +2282,9 @@
             
 
     
-    <a class="type-text" href="../%E7%AC%AC%E4%BA%94%E7%AB%A0%EF%BC%9A%E5%87%BD%E6%95%B0/5.4%20%E5%87%BD%E6%95%B0%E4%B8%8E%E6%8C%87%E9%92%88.html">
+    <a class="type-text" href="../%E7%AC%AC%E4%BA%94%E7%AB%A0%EF%BC%9A%E5%87%BD%E6%95%B0/5.4%20%E5%87%BD%E6%95%B0%E3%80%81%E6%8C%87%E9%92%88%E3%80%81%E6%95%B0%E7%BB%84.html">
         
-        <span><i class="tn-icon bx bx-note"></i> 5.4 函数与指针</span>
+        <span><i class="tn-icon bx bx-note"></i> 5.4 函数、指针、数组</span>
     </a>
 
 
@@ -2382,6 +2382,22 @@
 
         </li>
     
+    
+        <li class="item">
+            
+
+    
+    <a class="type-text" href="../%E7%AC%AC%E5%85%AB%E7%AB%A0%EF%BC%9A%E6%B3%9B%E5%9E%8B%E7%BC%96%E7%A8%8B.html">
+        
+        <span><i class="tn-icon bx bx-note"></i> 第八章：泛型编程</span>
+    </a>
+
+
+
+
+
+        </li>
+    
 </ul>
 
 
@@ -2396,7 +2412,232 @@
                     <h1 id="title">4.4 指针与数组</h1>
                 
                     
-                    <p>上一节我们有讲到指针与数组的东西，这一节我们来揭秘。</p><p>指针与数组配合比较复杂，建议多自己运行一下自己的想法看看。</p><p>&nbsp;</p>
+                    <p>上一节留了一个疑问：<code spellcheck="false">malloc</code> 出来的明明只是个指针，为什么能写 <code spellcheck="false">a[i]</code>，这节进行详解。</p><p>指针与数组的关系非常紧密，配合起来也比较复杂，建议多自己动手运行一下自己的想法看看。</p><h2>数组名就是第一个元素的地址<a id="数组名就是第一个元素的地址" class="toc-anchor" name="数组名就是第一个元素的地址" href="#数组名就是第一个元素的地址">#</a></h2><p>先看一个最普通的数组，把数组名和第一个元素的地址一起打印出来：</p><h4>C<a id="c" class="toc-anchor" name="c" href="#c">#</a></h4><pre><code class="language-text-x-c-src hljs"><span class="hljs-comment">#include &lt;stdio.h&gt;</span>
+<span class="hljs-keyword">int</span> main(){
+	<span class="hljs-keyword">int</span> a[<span class="hljs-number">3</span>] = {<span class="hljs-number">10</span>, <span class="hljs-number">20</span>, <span class="hljs-number">30</span>};
+	<span class="hljs-keyword">printf</span>(<span class="hljs-string">&quot;a     = <span class="hljs-variable">%p</span>\n&quot;</span>, a);		<span class="hljs-regexp">//</span> 数组名
+	<span class="hljs-keyword">printf</span>(<span class="hljs-string">&quot;&amp;a[0] = <span class="hljs-variable">%p</span>\n&quot;</span>, &amp;a[<span class="hljs-number">0</span>]);		<span class="hljs-regexp">//</span> 第一个元素的地址
+	<span class="hljs-keyword">printf</span>(<span class="hljs-string">&quot;a[0]  = <span class="hljs-variable">%d</span>\n&quot;</span>, a[<span class="hljs-number">0</span>]);
+	<span class="hljs-keyword">printf</span>(<span class="hljs-string">&quot;*a    = <span class="hljs-variable">%d</span>\n&quot;</span>, *a);			<span class="hljs-regexp">//</span> 把数组名当成指针解引用
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre><h4>C++<a id="c-1" class="toc-anchor" name="c-1" href="#c-1">#</a></h4><pre><code class="language-text-x-c-src hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+	<span class="hljs-type">int</span> a[<span class="hljs-number">3</span>] = {<span class="hljs-number">10</span>, <span class="hljs-number">20</span>, <span class="hljs-number">30</span>};
+	std::cout &lt;&lt; <span class="hljs-string">&quot;a     = &quot;</span> &lt;&lt; a &lt;&lt; <span class="hljs-string">&quot;\n&quot;</span>;		<span class="hljs-comment">// 数组名</span>
+	std::cout &lt;&lt; <span class="hljs-string">&quot;&amp;a[0] = &quot;</span> &lt;&lt; &amp;a[<span class="hljs-number">0</span>] &lt;&lt; <span class="hljs-string">&quot;\n&quot;</span>;	<span class="hljs-comment">// 第一个元素的地址</span>
+	std::cout &lt;&lt; <span class="hljs-string">&quot;a[0]  = &quot;</span> &lt;&lt; a[<span class="hljs-number">0</span>] &lt;&lt; <span class="hljs-string">&quot;\n&quot;</span>;
+	std::cout &lt;&lt; <span class="hljs-string">&quot;*a    = &quot;</span> &lt;&lt; *a &lt;&lt; <span class="hljs-string">&quot;\n&quot;</span>;		<span class="hljs-comment">// 把数组名当成指针解引用</span>
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre><p>运行结果：</p><pre><code class="language-text-x-trilium-auto hljs"><span class="hljs-selector-tag">a</span>     = <span class="hljs-number">00000052</span>F2BFFB94
+&amp;<span class="hljs-selector-tag">a</span><span class="hljs-selector-attr">[0]</span> = <span class="hljs-number">00000052</span>F2BFFB94
+<span class="hljs-selector-tag">a</span><span class="hljs-selector-attr">[0]</span>  = <span class="hljs-number">10</span>
+*<span class="hljs-selector-tag">a</span>    = <span class="hljs-number">10</span></code></pre><p>两行地址一模一样：<code spellcheck="false">a</code> 就是 <code spellcheck="false">&amp;a[0]</code>。</p><p>也就是说，指针数组，直接写数组名其实只能获取到第一个元素。</p><p>既然数组名就是地址，指针自然能指向它：</p><pre><code class="language-text-x-c-src hljs"><span class="hljs-attribute">int</span> a[<span class="hljs-number">3</span>] = {<span class="hljs-number">10</span>, <span class="hljs-number">20</span>, <span class="hljs-number">30</span>};
+<span class="hljs-attribute">int</span> *p = a;		// 和 int *p = &amp;a[<span class="hljs-number">0</span>]; 完全一样</code></pre><p>这样一来 <code spellcheck="false">p</code> 就指向了 <code spellcheck="false">a</code> 的第一个元素，<code spellcheck="false">p[0]</code> 就是 <code spellcheck="false">a[0]</code>。</p><aside class="admonition note"><p>数组名在大多数场合会自动变成首元素地址，这一步标准里的名字叫“数组到指针的转换”（俗称退化）。最常见的有两个例外：<code spellcheck="false">sizeof(a)</code> 和 <code spellcheck="false">&amp;a</code>，下面都会讲到。</p></aside><h2>下标就是指针运算<a id="下标就是指针运算" class="toc-anchor" name="下标就是指针运算" href="#下标就是指针运算">#</a></h2><p><code spellcheck="false">a[i]</code> 到底是怎么找到第&nbsp;<span class="math-tex">\(i\)</span>&nbsp;个元素的？编译器会把它翻译成 <code spellcheck="false">*(a + i)</code>：先让地址往后走&nbsp;<span class="math-tex">\(i\)</span>&nbsp;个元素，再解引用。</p><pre><code class="language-text-x-c-src hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+	<span class="hljs-type">int</span> a[<span class="hljs-number">3</span>] = {<span class="hljs-number">10</span>, <span class="hljs-number">20</span>, <span class="hljs-number">30</span>};
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;a[2]     = %d\n&quot;</span>, a[<span class="hljs-number">2</span>]);
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;*(a + 2) = %d\n&quot;</span>, *(a + <span class="hljs-number">2</span>));
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;2[a]     = %d\n&quot;</span>, <span class="hljs-number">2</span>[a]);			<span class="hljs-comment">// 只是好玩，别这么写</span>
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;&amp;a[2]    = %p\n&quot;</span>, (<span class="hljs-type">void</span>*)&amp;a[<span class="hljs-number">2</span>]);
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;a + 2    = %p\n&quot;</span>, (<span class="hljs-type">void</span>*)(a + <span class="hljs-number">2</span>));
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre><p>运行结果：</p><pre><code class="language-text-x-trilium-auto hljs"><span class="hljs-selector-tag">a</span><span class="hljs-selector-attr">[2]</span>     = <span class="hljs-number">30</span>
+*(<span class="hljs-selector-tag">a</span> + <span class="hljs-number">2</span>) = <span class="hljs-number">30</span>
+<span class="hljs-number">2</span><span class="hljs-selector-attr">[a]</span>     = <span class="hljs-number">30</span>
+&amp;<span class="hljs-selector-tag">a</span><span class="hljs-selector-attr">[2]</span>    = <span class="hljs-number">000000</span>D83FBFFE2C
+<span class="hljs-selector-tag">a</span> + <span class="hljs-number">2</span>    = <span class="hljs-number">000000</span>D83FBFFE2C</code></pre><p>前三行都是 30，说明 <code spellcheck="false">a[2]</code> 和 <code spellcheck="false">*(a + 2)</code> 完全等价；连 <code spellcheck="false">2[a]</code> 都能用，因为加法可以交换，<code spellcheck="false">*(2 + a)</code> 一样成立。</p><p>后两行也一样：<code spellcheck="false">&amp;a[2]</code> 就是 <code spellcheck="false">a + 2</code>，都是第三个元素的地址。</p><p>现在回头看 4.3 的疑问就通了：<code spellcheck="false">[]</code> 这个运算符本来就是给指针准备的，数组名先退化成指针，再被 <code spellcheck="false">[]</code> 运算。所以指针也能用下标：</p><pre><code class="language-text-x-c-src hljs"><span class="hljs-keyword">int</span> *p = a;
+<span class="hljs-keyword">printf</span>(<span class="hljs-string">&quot;<span class="hljs-variable">%d</span>&quot;</span>, p[<span class="hljs-number">1</span>]);		<span class="hljs-regexp">//</span> 就是 a[<span class="hljs-number">1</span>]</code></pre><p><code spellcheck="false">malloc</code> 出来的指针能写 <code spellcheck="false">a[i]</code>，也是同一个道理。</p><aside class="admonition warning"><p><code spellcheck="false">2[a]</code> 这种写法虽然可以这么写，但没啥人看得懂，也不好快速看明白代码含义，不建议任何实际项目中这么写。不可为了无意义的炫技丢失代码可读性。</p></aside><h2>指针加 1<a id="指针加-1" class="toc-anchor" name="指针加-1" href="#指针加-1">#</a></h2><p>这里有一个问题：指针加 1，不是地址加 1。</p><pre><code class="language-text-x-c-src hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+	<span class="hljs-type">int</span> a[<span class="hljs-number">4</span>] = {<span class="hljs-number">10</span>, <span class="hljs-number">20</span>, <span class="hljs-number">30</span>, <span class="hljs-number">40</span>};
+	<span class="hljs-type">int</span> *p = a;
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;p            = %p\n&quot;</span>, p);
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;p + 1        = %p\n&quot;</span>, (p + <span class="hljs-number">1</span>));
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;p + 2        = %p\n&quot;</span>, (p + <span class="hljs-number">2</span>));
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;(char*)p + 1 = %p\n&quot;</span>, ((<span class="hljs-type">char</span>*)p + <span class="hljs-number">1</span>));
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;(char*)(p+1) - (char*)p = %d 个字节\n&quot;</span>, (<span class="hljs-type">char</span>*)(p + <span class="hljs-number">1</span>) - (<span class="hljs-type">char</span>*)p);
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;(p + 3) - p             = %d 个元素\n&quot;</span>, (p + <span class="hljs-number">3</span>) - p);
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre><p>运行结果：</p><pre><code class="language-text-x-trilium-auto hljs"><span class="hljs-selector-tag">p</span>            = <span class="hljs-number">0000006</span>A2C7FFAE0
+<span class="hljs-selector-tag">p</span> + <span class="hljs-number">1</span>        = <span class="hljs-number">0000006</span>A2C7FFAE4
+<span class="hljs-selector-tag">p</span> + <span class="hljs-number">2</span>        = <span class="hljs-number">0000006</span>A2C7FFAE8
+(char*)<span class="hljs-selector-tag">p</span> + <span class="hljs-number">1</span> = <span class="hljs-number">0000006</span>A2C7FFAE1
+(char*)(p+<span class="hljs-number">1</span>) - (char*)<span class="hljs-selector-tag">p</span> = <span class="hljs-number">4</span> 个字节
+(<span class="hljs-selector-tag">p</span> + <span class="hljs-number">3</span>) - <span class="hljs-selector-tag">p</span>             = <span class="hljs-number">3</span> 个元素</code></pre><p><code spellcheck="false">p</code> 和 <code spellcheck="false">p + 1</code> 的地址差了 4，因为 <code spellcheck="false">int</code> 占 4 个字节：<code spellcheck="false">p + 1</code> 的意思是下一个 <code spellcheck="false">int</code> 元素在哪。换成 <code spellcheck="false">char*</code> 来加，才是加 1 个字节。</p><p>所以指针的加减法，每一个单位是它指向的类型大小：</p><figure class="table"><table><thead><tr><th>指针类型</th><th>p + 1 前进多少</th></tr></thead><tbody><tr><td><code spellcheck="false">char*</code></td><td>1 个字节</td></tr><tr><td><code spellcheck="false">int*</code></td><td>4 个字节</td></tr><tr><td><code spellcheck="false">double*</code></td><td>8 个字节</td></tr><tr><td><code spellcheck="false">int**</code></td><td>8 个字节（指针自己占 8 字节）</td></tr></tbody></table></figure><p>最后：两个指针相减，得到的不是字节数，而是中间隔了几个元素。</p><aside class="admonition note"><p>指针的加减只有在同一块数组里才有意义。拿两个不相干变量的地址相减，结果是未定义的，谁也不能保证会发生什么，不要这么写！</p></aside><h2>用指针遍历数组<a id="用指针遍历数组" class="toc-anchor" name="用指针遍历数组" href="#用指针遍历数组">#</a></h2><p>有了上面的规则，遍历一个数组就有了三种写法，输出完全一样：</p><pre><code class="language-text-x-c-src hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+	<span class="hljs-type">int</span> a[<span class="hljs-number">5</span>] = {<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>};
+	<span class="hljs-type">int</span> n = <span class="hljs-number">5</span>;
+
+	<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; n; i++) <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d &quot;</span>, a[i]);
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;\n&quot;</span>);
+
+	<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; n; i++) <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d &quot;</span>, *(a + i));
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;\n&quot;</span>);
+
+	<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> *p = a; p &lt; a + n; p++) <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d &quot;</span>, *p);
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;\n&quot;</span>);
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre><p>运行结果：</p><pre><code class="language-text-x-trilium-auto hljs"><span class="hljs-symbol">1 </span><span class="hljs-number">2</span> <span class="hljs-number">3</span> <span class="hljs-number">4</span> <span class="hljs-number">5</span>
+<span class="hljs-symbol">1 </span><span class="hljs-number">2</span> <span class="hljs-number">3</span> <span class="hljs-number">4</span> <span class="hljs-number">5</span>
+<span class="hljs-symbol">1 </span><span class="hljs-number">2</span> <span class="hljs-number">3</span> <span class="hljs-number">4</span> <span class="hljs-number">5</span></code></pre><p>第一种是正常的下标；第二种只是把下标运算手动算出来；第三种直接让指针指向下一个，循环条件写成 <code spellcheck="false">p &lt; a + n</code>。</p><p>注意这里的 <code spellcheck="false">a + n</code>：它指向最后一个元素的后一个位置。这个位置可以用于算、用于比较，但不能解引用：</p><pre><code class="language-text-x-c-src hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+	<span class="hljs-type">int</span> a[<span class="hljs-number">3</span>] = {<span class="hljs-number">10</span>, <span class="hljs-number">20</span>, <span class="hljs-number">30</span>};
+	<span class="hljs-type">int</span> *end = a + <span class="hljs-number">3</span>;			<span class="hljs-comment">// 合法：末尾后一个位置</span>
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;a + 3 的地址是 %p\n&quot;</span>, (<span class="hljs-type">void</span>*)end);
+	<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> *p = a; p &lt; end; p++)		<span class="hljs-comment">// 用 a + n 当循环终点，正好不越界</span>
+		<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d &quot;</span>, *p);
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;\n&quot;</span>);
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre><p>运行结果：</p><pre><code class="language-text-x-trilium-auto hljs"><span class="hljs-attribute">a</span> + <span class="hljs-number">3</span> 的地址是 <span class="hljs-number">000000</span>F2FCFFFC20
+<span class="hljs-attribute">10</span> <span class="hljs-number">20</span> <span class="hljs-number">30</span></code></pre><p>可要是写成 <code spellcheck="false">*(a + 3)</code>，就是越界读取了。2.5 说过越界不会报错，这里也一样：</p><pre><code class="language-text-x-c-src hljs"><span class="hljs-attribute">int</span> a[<span class="hljs-number">3</span>] = {<span class="hljs-number">10</span>, <span class="hljs-number">20</span>, <span class="hljs-number">30</span>};
+<span class="hljs-attribute">int</span> *p = a;
+<span class="hljs-attribute">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>, *(p + <span class="hljs-number">3</span>));		// 越界解引用：读了数组旁边的内存</code></pre><p>既不崩溃也不报警，只是打印出一个毫无规律的数字。连跑 5 次，分别是 <code spellcheck="false">-1784676788</code>、<code spellcheck="false">1233124076</code>、<code spellcheck="false">46136556</code>、<code spellcheck="false">1323301148</code>、<code spellcheck="false">687864460</code>。</p><p>这类错误编译器不管（打开 <code spellcheck="false">-Wall</code> 也常常不管），因为它只看指针的类型，不看它到底指向哪儿。</p><h2>*p++ 和 (*p)++ 不等价<a id="p-和-p-不等价" class="toc-anchor" name="p-和-p-不等价" href="#p-和-p-不等价">#</a></h2><pre><code class="language-text-x-c-src hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+	<span class="hljs-type">int</span> a[<span class="hljs-number">4</span>] = {<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>};
+	<span class="hljs-type">int</span> *p = a;
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;*p++  读出来：&quot;</span>);
+	<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">4</span>; i++) <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d &quot;</span>, *p++);	<span class="hljs-comment">// 先取地址值，再前进</span>
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;\n&quot;</span>);
+
+	<span class="hljs-type">int</span> b[<span class="hljs-number">4</span>] = {<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>};
+	<span class="hljs-type">int</span> *q = b;
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;(*q)++ 读出来：&quot;</span>);
+	<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">4</span>; i++) <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d &quot;</span>, (*q)++);	<span class="hljs-comment">// 先取元素值，再把这个元素值加 1</span>
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;\n&quot;</span>);
+
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;b 现在是：&quot;</span>);
+	<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">4</span>; i++) <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d &quot;</span>, b[i]);
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;\n&quot;</span>);
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre><p>运行结果：</p><pre><code class="language-text-x-trilium-auto hljs">*<span class="hljs-selector-tag">p</span>++  读出来：<span class="hljs-number">1</span> <span class="hljs-number">2</span> <span class="hljs-number">3</span> <span class="hljs-number">4</span>
+(*<span class="hljs-selector-tag">q</span>)++ 读出来：<span class="hljs-number">1</span> <span class="hljs-number">2</span> <span class="hljs-number">3</span> <span class="hljs-number">4</span>
+<span class="hljs-selector-tag">b</span> 现在是：<span class="hljs-number">5</span> <span class="hljs-number">2</span> <span class="hljs-number">3</span> <span class="hljs-number">4</span></code></pre><p>第一个循环里的 <code spellcheck="false">*p++</code> 每轮做两件事：先取出 <code spellcheck="false">*p</code> 进行输出，再然后用<code spellcheck="false">++</code>运算符再本行代码结束后把 <code spellcheck="false">p</code> 地址+1，所以依次打印 1 2 3 4，指针最后停在末尾。</p><p>第二个循环里的 <code spellcheck="false">(*q)++</code> 是先取出 <code spellcheck="false">*q</code> 的值，再把它指向的那个元素加 1。<code spellcheck="false">q</code> 一直指着 <code spellcheck="false">b[0]</code>，所以每轮打印的正是 <code spellcheck="false">b[0]</code> 当时的值（1、2、3、4），循环结束时 <code spellcheck="false">b[0]</code> 被加了 4 次，变成 5。</p><p>所以要注意程序运行的顺序。</p><h2>数组名不是指针变量<a id="数组名不是指针变量" class="toc-anchor" name="数组名不是指针变量" href="#数组名不是指针变量">#</a></h2><p>数组名和指针长得像、用起来也像，但有三点不一样。</p><h3>1. sizeof 的结果不同<a id="1-sizeof-的结果不同" class="toc-anchor" name="1-sizeof-的结果不同" href="#1-sizeof-的结果不同">#</a></h3><pre><code class="language-text-x-c-src hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+	<span class="hljs-type">int</span> a[<span class="hljs-number">5</span>] = {<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>};
+	<span class="hljs-type">int</span> *p = a;
+
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;sizeof(a) = %d\n&quot;</span>, <span class="hljs-built_in">sizeof</span>(a));			<span class="hljs-comment">// 整个数组占用大小</span>
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;sizeof(p) = %d\n&quot;</span>, <span class="hljs-built_in">sizeof</span>(p));			<span class="hljs-comment">// 只是一个地址</span>
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;元素个数  = %d\n&quot;</span>, <span class="hljs-built_in">sizeof</span>(a) / <span class="hljs-built_in">sizeof</span>(a[<span class="hljs-number">0</span>]));
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre><p>运行结果：</p><pre><code class="language-text-x-trilium-auto hljs"><span class="hljs-function"><span class="hljs-title">sizeof</span><span class="hljs-params">(a)</span></span> = <span class="hljs-number">20</span>
+<span class="hljs-function"><span class="hljs-title">sizeof</span><span class="hljs-params">(p)</span></span> = <span class="hljs-number">8</span>
+元素个数  = <span class="hljs-number">5</span></code></pre><h3>2. 数组名不能被赋值<a id="2-数组名不能被赋值" class="toc-anchor" name="2-数组名不能被赋值" href="#2-数组名不能被赋值">#</a></h3><pre><code class="language-text-x-c-src hljs"><span class="hljs-attribute">int</span> a[<span class="hljs-number">3</span>] = {<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>};
+<span class="hljs-attribute">int</span> b[<span class="hljs-number">3</span>];
+<span class="hljs-attribute">b</span> = a;			// 错误：数组名不能被赋值</code></pre><p>报错案例：</p><pre><code class="language-text-x-trilium-auto hljs">error: assignment to expression with<span class="hljs-built_in"> array </span>type</code></pre><p>同样：</p><pre><code class="language-text-x-c-src hljs">a = p;			// 错误：还是 assignment to expression with<span class="hljs-built_in"> array </span>type
+a++;			// 错误：lvalue required as increment operand</code></pre><p>数组名不是变量，它只是编译器用来找到一整块内存的名字，所以不能出现在 <code spellcheck="false">=</code> 左边，自然也不能使用<code spellcheck="false">++</code>。</p><h3>3. &amp;a 和 a 的类型不一样<a id="3-amp-a-和-a-的类型不一样" class="toc-anchor" name="3-amp-a-和-a-的类型不一样" href="#3-amp-a-和-a-的类型不一样">#</a></h3><pre><code class="language-text-x-c-src hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+	<span class="hljs-type">int</span> a[<span class="hljs-number">3</span>] = {<span class="hljs-number">10</span>, <span class="hljs-number">20</span>, <span class="hljs-number">30</span>};
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;a       = %p\n&quot;</span>, a);
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;a + 1   = %p\n&quot;</span>, a + <span class="hljs-number">1</span>);
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;&amp;a      = %p\n&quot;</span>, &amp;a);
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;&amp;a + 1  = %p\n&quot;</span>, &amp;a + <span class="hljs-number">1</span>);
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;(char*)(a + 1)   - (char*)a   = %d 个字节\n&quot;</span>, (<span class="hljs-type">char</span>*)(a + <span class="hljs-number">1</span>) - (<span class="hljs-type">char</span>*)a);
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;(char*)(&amp;a + 1)  - (char*)&amp;a  = %d 个字节\n&quot;</span>, (<span class="hljs-type">char</span>*)(&amp;a + <span class="hljs-number">1</span>) - (<span class="hljs-type">char</span>*)&amp;a);
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre><p>运行结果：</p><pre><code class="language-text-x-trilium-auto hljs"><span class="hljs-selector-tag">a</span>       = <span class="hljs-number">000000901</span>DBFF964
+<span class="hljs-selector-tag">a</span> + <span class="hljs-number">1</span>   = <span class="hljs-number">000000901</span>DBFF968
+&amp;<span class="hljs-selector-tag">a</span>      = <span class="hljs-number">000000901</span>DBFF964
+&amp;<span class="hljs-selector-tag">a</span> + <span class="hljs-number">1</span>  = <span class="hljs-number">000000901</span>DBFF970
+(char*)(<span class="hljs-selector-tag">a</span> + <span class="hljs-number">1</span>)   - (char*)<span class="hljs-selector-tag">a</span>   = <span class="hljs-number">4</span> 个字节
+(char*)(&amp;<span class="hljs-selector-tag">a</span> + <span class="hljs-number">1</span>)  - (char*)&amp;<span class="hljs-selector-tag">a</span>  = <span class="hljs-number">12</span> 个字节</code></pre><p>地址值一样，但加 1 的结果差了 3 倍：<code spellcheck="false">a</code> 退化成 <code spellcheck="false">int*</code>，加 1 走 4 个字节</p><p><code spellcheck="false">&amp;a</code> 的类型是“指向 3 个 int 的数组”的指针，写成 <code spellcheck="false">int (*)[3]</code>，加 1 会跨过整个数组 12 个字节。</p><figure class="table"><table><thead><tr><th>写法</th><th>类型</th><th>+1 跨过多少</th></tr></thead><tbody><tr><td><code spellcheck="false">a</code></td><td><code spellcheck="false">int*</code></td><td>4 个字节</td></tr><tr><td><code spellcheck="false">&amp;a</code></td><td><code spellcheck="false">int (*)[3]</code></td><td>12 个字节</td></tr><tr><td><code spellcheck="false">&amp;a[0]</code></td><td><code spellcheck="false">int*</code></td><td>4 个字节</td></tr></tbody></table></figure><h2>指针数组与数组指针<a id="指针数组与数组指针" class="toc-anchor" name="指针数组与数组指针" href="#指针数组与数组指针">#</a></h2><p>这个有点小绕，但是看看案例就知道了</p><pre><code class="language-text-x-c-src hljs"><span class="hljs-comment">#include &lt;stdio.h&gt;</span>
+<span class="hljs-keyword">int</span> main(){
+	<span class="hljs-keyword">int</span> <span class="hljs-keyword">x</span> = <span class="hljs-number">1</span>, <span class="hljs-keyword">y</span> = <span class="hljs-number">2</span>, z = <span class="hljs-number">3</span>;
+	<span class="hljs-keyword">int</span> *arr[<span class="hljs-number">3</span>] = {&amp;<span class="hljs-keyword">x</span>, &amp;<span class="hljs-keyword">y</span>, &amp;z};		<span class="hljs-regexp">//</span> 指针数组：<span class="hljs-number">3</span> 个指针
+	<span class="hljs-keyword">int</span> a[<span class="hljs-number">3</span>] = {<span class="hljs-number">10</span>, <span class="hljs-number">20</span>, <span class="hljs-number">30</span>};
+	<span class="hljs-keyword">int</span> (*p)[<span class="hljs-number">3</span>] = &amp;a;			<span class="hljs-regexp">//</span> 数组指针：指向“<span class="hljs-number">3</span> 个 <span class="hljs-keyword">int</span> 的数组”
+
+	<span class="hljs-keyword">printf</span>(<span class="hljs-string">&quot;sizeof(arr) = <span class="hljs-variable">%d</span>\n&quot;</span>, sizeof(arr));
+	<span class="hljs-keyword">printf</span>(<span class="hljs-string">&quot;sizeof(p)   = <span class="hljs-variable">%d</span>\n&quot;</span>, sizeof(p));
+	<span class="hljs-keyword">printf</span>(<span class="hljs-string">&quot;*arr[1]     = <span class="hljs-variable">%d</span>\n&quot;</span>, *arr[<span class="hljs-number">1</span>]);
+	<span class="hljs-keyword">printf</span>(<span class="hljs-string">&quot;(*p)[1]     = <span class="hljs-variable">%d</span>\n&quot;</span>, (*p)[<span class="hljs-number">1</span>]);
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre><p>运行结果：</p><pre><code class="language-text-x-trilium-auto hljs"><span class="hljs-function"><span class="hljs-title">sizeof</span><span class="hljs-params">(arr)</span></span> = <span class="hljs-number">24</span>
+<span class="hljs-function"><span class="hljs-title">sizeof</span><span class="hljs-params">(p)</span></span>   = <span class="hljs-number">8</span>
+*arr<span class="hljs-selector-attr">[1]</span>     = <span class="hljs-number">2</span>
+(*p)<span class="hljs-selector-attr">[1]</span>     = <span class="hljs-number">20</span></code></pre><p><code spellcheck="false">int *arr[3]</code>：<code spellcheck="false">arr</code> 是一个数组，里面装了 3 个 <code spellcheck="false">int*</code>，所以 <code spellcheck="false">sizeof</code> 是 24</p><p><code spellcheck="false">int (*p)[3]</code>：<code spellcheck="false">p</code> 是一个指针，指向“3 个 int 的数组”，所以 <code spellcheck="false">sizeof</code> 是 8。</p><p>指针数组最常用的地方，是存一堆长度不一样的字符串，这样字符串内存占用不需要一大段连续的空间。</p><h4>C<a id="c-2" class="toc-anchor" name="c-2" href="#c-2">#</a></h4><pre><code class="language-text-x-c-src hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+	<span class="hljs-comment">// 几乎可以理解为用指针创建了一个二维数组</span>
+	<span class="hljs-type">char</span> *names[<span class="hljs-number">3</span>] = {<span class="hljs-string">&quot;Alice&quot;</span>, <span class="hljs-string">&quot;Bob&quot;</span>, <span class="hljs-string">&quot;Cindy&quot;</span>};	<span class="hljs-comment">// 指针数组：3 个字符串的地址</span>
+
+	<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">3</span>; i++) <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%s\n&quot;</span>, names[i]);
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre><h4>C++<a id="c-3" class="toc-anchor" name="c-3" href="#c-3">#</a></h4><pre><code class="language-text-x-c-src hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+	<span class="hljs-comment">// 几乎可以理解为用指针创建了一个二维数组</span>
+	<span class="hljs-type">const</span> <span class="hljs-type">char</span> *names[<span class="hljs-number">3</span>] = {<span class="hljs-string">&quot;Alice&quot;</span>, <span class="hljs-string">&quot;Bob&quot;</span>, <span class="hljs-string">&quot;Cindy&quot;</span>};	<span class="hljs-comment">// 指针数组：3 个字符串的地址</span>
+
+	<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">3</span>; i++) std::cout &lt;&lt; names[i] &lt;&lt; <span class="hljs-string">&quot;\n&quot;</span>;
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre><p>运行结果：</p><pre><code class="language-text-x-trilium-auto hljs"><span class="hljs-attribute">Alice
+Bob
+Cindy</span></code></pre><aside class="admonition note"><p>注意 C++ 写的是 <code spellcheck="false">const char *</code>：字符串字面量(字符串常量)，加上 <code spellcheck="false">const</code> 才是正确写法。<code spellcheck="false">const</code> 和指针将会在下节详解。</p></aside><h2>二维数组：一行也是一个数组<a id="二维数组-一行也是一个数组" class="toc-anchor" name="二维数组-一行也是一个数组" href="#二维数组-一行也是一个数组">#</a></h2><pre><code class="language-text-x-c-src hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+	<span class="hljs-type">int</span> g[<span class="hljs-number">2</span>][<span class="hljs-number">3</span>] = {
+		{<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>},
+		{<span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>}
+	};
+
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;g[1][2]     = %d\n&quot;</span>, g[<span class="hljs-number">1</span>][<span class="hljs-number">2</span>]);
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;*(*(g+1)+2) = %d\n&quot;</span>, *(*(g + <span class="hljs-number">1</span>) + <span class="hljs-number">2</span>));
+
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;g        = %p\n&quot;</span>, (<span class="hljs-type">void</span>*)g);
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;g + 1    = %p\n&quot;</span>, (<span class="hljs-type">void</span>*)(g + <span class="hljs-number">1</span>));		<span class="hljs-comment">// 跨过一整行</span>
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;g[0]     = %p\n&quot;</span>, (<span class="hljs-type">void</span>*)g[<span class="hljs-number">0</span>]);
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;g[0] + 1 = %p\n&quot;</span>, (<span class="hljs-type">void</span>*)(g[<span class="hljs-number">0</span>] + <span class="hljs-number">1</span>));		<span class="hljs-comment">// 只跨过一个 int</span>
+
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;(char*)(g + 1)    - (char*)g    = %d 个字节\n&quot;</span>, (<span class="hljs-type">char</span>*)(g + <span class="hljs-number">1</span>) - (<span class="hljs-type">char</span>*)g);
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;(char*)(g[0] + 1) - (char*)g[0] = %d 个字节\n&quot;</span>, (<span class="hljs-type">char</span>*)(g[<span class="hljs-number">0</span>] + <span class="hljs-number">1</span>) - (<span class="hljs-type">char</span>*)g[<span class="hljs-number">0</span>]);
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre><p>运行结果：</p><pre><code class="language-text-x-trilium-auto hljs"><span class="hljs-selector-tag">g</span><span class="hljs-selector-attr">[1]</span><span class="hljs-selector-attr">[2]</span>     = <span class="hljs-number">6</span>
+*(*(g+<span class="hljs-number">1</span>)+<span class="hljs-number">2</span>) = <span class="hljs-number">6</span>
+<span class="hljs-selector-tag">g</span>        = <span class="hljs-number">00000096961</span>FFAA0
+<span class="hljs-selector-tag">g</span> + <span class="hljs-number">1</span>    = <span class="hljs-number">00000096961</span>FFAAC
+<span class="hljs-selector-tag">g</span><span class="hljs-selector-attr">[0]</span>     = <span class="hljs-number">00000096961</span>FFAA0
+<span class="hljs-selector-tag">g</span><span class="hljs-selector-attr">[0]</span> + <span class="hljs-number">1</span> = <span class="hljs-number">00000096961</span>FFAA4
+(char*)(<span class="hljs-selector-tag">g</span> + <span class="hljs-number">1</span>)    - (char*)<span class="hljs-selector-tag">g</span>    = <span class="hljs-number">12</span> 个字节
+(char*)(<span class="hljs-selector-tag">g</span><span class="hljs-selector-attr">[0]</span> + <span class="hljs-number">1</span>) - (char*)<span class="hljs-selector-tag">g</span><span class="hljs-selector-attr">[0]</span> = <span class="hljs-number">4</span> 个字节</code></pre><p>二维数组其实不是一张表，而是数组的数组：<code spellcheck="false">g</code> 是 2 个元素的数组，每个元素都是一个 <code spellcheck="false">int[3]</code>。</p><p>所以 <code spellcheck="false">g</code> 退化成的是“指向 int[3] 的指针”（<code spellcheck="false">int (*)[3]</code>），<code spellcheck="false">g + 1</code> 跨过一整行 12 个字节；而 <code spellcheck="false">g[0]</code> 是那一行的数组，退化成 <code spellcheck="false">int*</code>，加 1 走 4 个字节。</p><p>下标展开就是：<code spellcheck="false">g[i][j]</code> 等价于 <code spellcheck="false">*(*(g + i) + j)</code>，先找到第 i 行，再在这一行里找第 j 个。</p><p>顺着这个思路，用“行指针”遍历也不难读：</p><pre><code class="language-text-x-c-src hljs"><span class="hljs-meta">#include &lt;<span class="hljs-string">stdio.h</span>&gt;</span>
+<span class="hljs-type">int</span> main(){
+	<span class="hljs-type">int</span> g[<span class="hljs-number">2</span>][<span class="hljs-number">3</span>] = {
+		{<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>},
+		{<span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>}
+	};
+
+	<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> (*<span class="hljs-built_in">row</span>)[<span class="hljs-number">3</span>] = g; <span class="hljs-built_in">row</span> &lt; g + <span class="hljs-number">2</span>; <span class="hljs-built_in">row</span>++) {	<span class="hljs-comment">// row 是指向“一整行”的指针</span>
+		<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> *q = *<span class="hljs-built_in">row</span>; q &lt; *<span class="hljs-built_in">row</span> + <span class="hljs-number">3</span>; q++) {	<span class="hljs-comment">// *row 是一行数组，退化成 int*</span>
+			printf(<span class="hljs-string">&quot;%d &quot;</span>, *q);
+		}
+		printf(<span class="hljs-string">&quot;\n&quot;</span>);
+	}
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre><p>运行结果：</p><pre><code class="language-text-x-trilium-auto hljs"><span class="hljs-symbol">1 </span><span class="hljs-number">2</span> <span class="hljs-number">3</span>
+<span class="hljs-symbol">4 </span><span class="hljs-number">5</span> <span class="hljs-number">6</span></code></pre><p><code spellcheck="false">row</code> 每次跨过一整行，<code spellcheck="false">*row</code> 就是那一行的 <code spellcheck="false">int*</code>，再往里走就是一个个元素。</p><aside class="admonition warning"><p>但这种写法不行：<code spellcheck="false">int *p = g;</code>， gcc 报错 <code spellcheck="false">error: initialization of 'int *' from incompatible pointer type 'int (*)[3]'</code>，C++ 里同样是错误：<code spellcheck="false">error: cannot convert 'int (*)[3]' to 'int*' in initialization</code>。因为 <code spellcheck="false">g</code> 的类型是 <code spellcheck="false">int (*)[3]</code>，不是 <code spellcheck="false">int*</code>。</p></aside><p>想用一个一维指针扫过整张表，可以从第一个元素开始：</p><pre><code class="language-text-x-c-src hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+	<span class="hljs-type">int</span> g[<span class="hljs-number">2</span>][<span class="hljs-number">3</span>] = {
+		{<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>},
+		{<span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>}
+	};
+	<span class="hljs-type">int</span> *p = &amp;g[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>];		<span class="hljs-comment">// 从第一个元素开始，把整张表当一维看</span>
+
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d %d %d\n&quot;</span>, p[<span class="hljs-number">0</span>], p[<span class="hljs-number">3</span>], p[<span class="hljs-number">5</span>]);
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre><p>运行结果：</p><pre><code class="language-text-x-trilium-auto hljs"><span class="hljs-symbol">1 </span><span class="hljs-number">4</span> <span class="hljs-number">6</span></code></pre><p>二维数组的元素也是连着的，所以 <code spellcheck="false">p[3]</code> 正好是第二行的第一个元素（<code spellcheck="false">g[1][0]</code>）。</p><h2>字符数组与字符指针<a id="字符数组与字符指针" class="toc-anchor" name="字符数组与字符指针" href="#字符数组与字符指针">#</a></h2><p>2.5 说过字符串就是字符数组。其实字符串还有一种用指针的写法，两者区别很大。</p><pre><code class="language-text-x-c-src hljs"><span class="hljs-comment">#include &lt;stdio.h&gt;</span>
+<span class="hljs-keyword">int</span> main(){
+	char s[] = <span class="hljs-string">&quot;hello&quot;</span>;		<span class="hljs-regexp">//</span> 数组：自己拷了一份，可以改
+	char *p = <span class="hljs-string">&quot;hello&quot;</span>;		<span class="hljs-regexp">//</span> 指针：指向只读的字符串字面量
+
+	<span class="hljs-keyword">printf</span>(<span class="hljs-string">&quot;sizeof(s) = <span class="hljs-variable">%d</span>\n&quot;</span>, sizeof(s));		<span class="hljs-regexp">//</span> h e l l o \<span class="hljs-number">0</span>
+	<span class="hljs-keyword">printf</span>(<span class="hljs-string">&quot;sizeof(p) = <span class="hljs-variable">%d</span>\n&quot;</span>, sizeof(p));		<span class="hljs-regexp">//</span> 只是一个地址
+
+	s[<span class="hljs-number">0</span>] = <span class="hljs-string">&#x27;H&#x27;</span>;			<span class="hljs-regexp">//</span> 合法：改的是自己的数组
+	<span class="hljs-keyword">printf</span>(<span class="hljs-string">&quot;s = <span class="hljs-variable">%s</span>\n&quot;</span>, s);
+	<span class="hljs-keyword">printf</span>(<span class="hljs-string">&quot;p = <span class="hljs-variable">%s</span>\n&quot;</span>, p);
+	<span class="hljs-regexp">//</span> p[<span class="hljs-number">0</span>] = <span class="hljs-string">&#x27;H&#x27;</span>;			<span class="hljs-regexp">//</span> 危险：改字面量，运行时崩溃
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre><p>运行结果：</p><pre><code class="language-text-x-trilium-auto hljs"><span class="hljs-function"><span class="hljs-title">sizeof</span><span class="hljs-params">(s)</span></span> = <span class="hljs-number">6</span>
+<span class="hljs-function"><span class="hljs-title">sizeof</span><span class="hljs-params">(p)</span></span> = <span class="hljs-number">8</span>
+s = Hello
+<span class="hljs-selector-tag">p</span> = hello</code></pre><p><code spellcheck="false">char s[] = "hello";</code> 是把自己的 6 个字符（含结尾的 \0）拷进数组里，所以 <code spellcheck="false">sizeof(s)</code> 是 6，而且可以随便改；<code spellcheck="false">char *p = "hello";</code> 只是存了字面量的地址，<code spellcheck="false">sizeof(p)</code> 是 8 (地址变量内存占用是8，前面讲过的)，而且这份字面量放在只读区，不能改。</p><pre><code class="language-text-x-c-src hljs"><span class="hljs-type">char</span> *p = <span class="hljs-string">&quot;hello&quot;</span>;
+p[<span class="hljs-number">0</span>] = <span class="hljs-string">&#x27;H&#x27;</span>;			<span class="hljs-comment">// 危险：字面量在只读区</span></code></pre><p>程序大概率会当场崩溃，退出码 <code spellcheck="false">0xC0000005</code>（访问冲突）</p><p>这和 4.2 里解引用空指针是同一个错误码。</p><aside class="admonition note"><p>在 IDE 的输出面板里运行、或者把输出重定向到文件时，崩溃前那句提示还卡在缓冲区里，会跟着程序一起消失；直接在控制台窗口里运行才看得到它。</p></aside><aside class="admonition note"><p>C++ 对这件事管得更严， g++ 编译器给出警告：<code spellcheck="false">warning: ISO C++ forbids converting a string constant to 'char*' [-Wwrite-strings]</code>，有的编译器直接当错误处理。规范写法是 <code spellcheck="false">const char *p = "hello";</code>，原因下一节就明白。</p></aside><h2>小结<a id="小结" class="toc-anchor" name="小结" href="#小结">#</a></h2><p>指针与数组有非常多人会写出复杂的、难以读懂的代码，建议多尝试，这样对指针和数组运行逻辑才会有一个相对清晰的认知。</p><p>下一节：<a class="reference-link type-text" href="4.5%20const%E6%8C%87%E9%92%88.html"><span><span class="tn-icon bx bx-note"></span>4.5 const指针</span></a></p>
                 
                 
             </div>
@@ -2418,6 +2659,212 @@
                 
             </footer>
         </div>
+        
+            <div id="toc-pane">
+                <h3>本页内容</h3>
+                <ul id="toc">
+                    
+                        
+
+<li>
+    <a href="#数组名就是第一个元素的地址">
+        <span>数组名就是第一个元素的地址</span>
+    </a>
+
+    
+        <ul>
+            
+                
+
+<li>
+    <a href="#c">
+        <span>C</span>
+    </a>
+
+    
+</li>
+
+            
+                
+
+<li>
+    <a href="#c-1">
+        <span>C++</span>
+    </a>
+
+    
+</li>
+
+            
+        </ul>
+    
+</li>
+
+                    
+                        
+
+<li>
+    <a href="#下标就是指针运算">
+        <span>下标就是指针运算</span>
+    </a>
+
+    
+</li>
+
+                    
+                        
+
+<li>
+    <a href="#指针加-1">
+        <span>指针加 1</span>
+    </a>
+
+    
+</li>
+
+                    
+                        
+
+<li>
+    <a href="#用指针遍历数组">
+        <span>用指针遍历数组</span>
+    </a>
+
+    
+</li>
+
+                    
+                        
+
+<li>
+    <a href="#p-和-p-不等价">
+        <span>*p++ 和 (*p)++ 不等价</span>
+    </a>
+
+    
+</li>
+
+                    
+                        
+
+<li>
+    <a href="#数组名不是指针变量">
+        <span>数组名不是指针变量</span>
+    </a>
+
+    
+        <ul>
+            
+                
+
+<li>
+    <a href="#1-sizeof-的结果不同">
+        <span>1. sizeof 的结果不同</span>
+    </a>
+
+    
+</li>
+
+            
+                
+
+<li>
+    <a href="#2-数组名不能被赋值">
+        <span>2. 数组名不能被赋值</span>
+    </a>
+
+    
+</li>
+
+            
+                
+
+<li>
+    <a href="#3-amp-a-和-a-的类型不一样">
+        <span>3. &amp;amp;a 和 a 的类型不一样</span>
+    </a>
+
+    
+</li>
+
+            
+        </ul>
+    
+</li>
+
+                    
+                        
+
+<li>
+    <a href="#指针数组与数组指针">
+        <span>指针数组与数组指针</span>
+    </a>
+
+    
+        <ul>
+            
+                
+
+<li>
+    <a href="#c-2">
+        <span>C</span>
+    </a>
+
+    
+</li>
+
+            
+                
+
+<li>
+    <a href="#c-3">
+        <span>C++</span>
+    </a>
+
+    
+</li>
+
+            
+        </ul>
+    
+</li>
+
+                    
+                        
+
+<li>
+    <a href="#二维数组-一行也是一个数组">
+        <span>二维数组：一行也是一个数组</span>
+    </a>
+
+    
+</li>
+
+                    
+                        
+
+<li>
+    <a href="#字符数组与字符指针">
+        <span>字符数组与字符指针</span>
+    </a>
+
+    
+</li>
+
+                    
+                        
+
+<li>
+    <a href="#小结">
+        <span>小结</span>
+    </a>
+
+    
+</li>
+
+                    
+                </ul>
+            </div>
         
     </div>
 </div>
