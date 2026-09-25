@@ -533,7 +533,7 @@
 						"3f0LOwtZ3I9T",
 						"oFmuforPqFHr"
 					],
-					"title": "第四章：指针、引用、解引用",
+					"title": "第四章：指针与引用",
 					"notePosition": 50,
 					"prefix": null,
 					"isExpanded": true,
@@ -549,9 +549,9 @@
 						}
 					],
 					"format": "html",
-					"dataFileName": "第四章：指针、引用、解引用.html",
+					"dataFileName": "第四章：指针与引用.html",
 					"attachments": [],
-					"dirFileName": "第四章：指针、引用、解引用",
+					"dirFileName": "第四章：指针与引用",
 					"children": [
 						{
 							"isClone": false,
@@ -702,7 +702,15 @@
 							"isExpanded": false,
 							"type": "text",
 							"mime": "text/html",
-							"attributes": [],
+							"attributes": [
+								{
+									"type": "relation",
+									"name": "internalLink",
+									"value": "j2IXmX14eThf",
+									"isInheritable": false,
+									"position": 10
+								}
+							],
 							"format": "html",
 							"dataFileName": "4.6 引用.html",
 							"attachments": []
@@ -721,7 +729,15 @@
 							"isExpanded": false,
 							"type": "text",
 							"mime": "text/html",
-							"attributes": [],
+							"attributes": [
+								{
+									"type": "relation",
+									"name": "internalLink",
+									"value": "JfIF2zF6C1HJ",
+									"isInheritable": false,
+									"position": 10
+								}
+							],
 							"format": "html",
 							"dataFileName": "4.7 左值引用和右值引用.html",
 							"attachments": []

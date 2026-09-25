@@ -1745,7 +1745,7 @@
         C与C++(自制教程)
     </a>
     
-        <div class="header-button-placeholder"></div>
+        <button aria-label="切换目录" id="toc-pane-toggle-button" class="header-button"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M3 9h14V7H3v2zm0 4h14v-2H3v2zm0 4h14v-2H3v2zm16 0h2v-2h-2v2zm0-10V7h2v2h-2zm0 6h2v-2h-2v2z"></path></svg></button>
     
 </div>
 <div id="split-pane">
@@ -2087,9 +2087,9 @@
             
 
     
-    <a class="type-text" href="../%E7%AC%AC%E5%9B%9B%E7%AB%A0%EF%BC%9A%E6%8C%87%E9%92%88%E3%80%81%E5%BC%95%E7%94%A8%E3%80%81%E8%A7%A3%E5%BC%95%E7%94%A8.html">
+    <a class="type-text" href="../%E7%AC%AC%E5%9B%9B%E7%AB%A0%EF%BC%9A%E6%8C%87%E9%92%88%E4%B8%8E%E5%BC%95%E7%94%A8.html">
         <button class="collapse-button" aria-label="展开"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></button>
-        <span><i class="tn-icon bx bx-folder"></i> 第四章：指针、引用、解引用</span>
+        <span><i class="tn-icon bx bx-folder"></i> 第四章：指针与引用</span>
     </a>
 
 
@@ -2407,11 +2407,38 @@
     </div>
     <div id="right-pane">
         <div id="main">
-            <div id="content" class="type-text ck-content no-content">
+            <div id="content" class="type-text ck-content">
                 
                     <h1 id="title">4.7 左值引用和右值引用</h1>
                 
-                    <p>此笔记没有内容。</p>
+                    
+                    <p>这一节将上节的问题解决，同时教学左右值引用的区别。这一节同样是C++才有的内容。</p><p>另外补个名字：上一节学的 <code spellcheck="false">int &amp;r</code>，全名其实叫<strong>左值引用</strong>。这一节额外教学一个<strong>右值引用</strong>。</p><h2>左值和右值<a id="左值和右值" class="toc-anchor" name="左值和右值" href="#左值和右值">#</a></h2><ul><li data-list-item-id="e01cb8bac8cb638af2cadf3b7a159f373"><strong>左值</strong>（lvalue）：能取地址，有内存占用；</li><li data-list-item-id="e25439795c0ae6916c307e11a5371660f"><strong>右值</strong>（rvalue）：临时的、没名字的、用完就扔的。</li></ul><p>判定是左值还是右值有暴力的办法：<strong>能不能对它用 </strong><code spellcheck="false"><strong>&amp;</strong></code>。</p><pre><code class="language-text-x-c-src hljs"><span class="hljs-type">int</span> a = <span class="hljs-number">10</span>;
+std::cout &lt;&lt; &amp;a &lt;&lt; <span class="hljs-string">&quot;\n&quot;</span>;	<span class="hljs-comment">// 合法：a 有名字</span>
+std::cout &lt;&lt; &amp;<span class="hljs-number">10</span> &lt;&lt; <span class="hljs-string">&quot;\n&quot;</span>;	<span class="hljs-comment">// 非法：10 是个临时值</span></code></pre><p>第二行编译错误：</p><pre><code class="language-text-x-trilium-auto hljs"><span class="hljs-keyword">error: </span>lvalue required as unary &#x27;&amp;&#x27; operand</code></pre><p>常见的表达式可以这样归类（下表里的 <code spellcheck="false">a</code> 是一个 <code spellcheck="false">int</code> 变量，<code spellcheck="false">p</code> 是一个 <code spellcheck="false">int*</code>）：</p><figure class="table"><table><thead><tr><th>表达式</th><th>左值还是右值</th><th>为什么</th></tr></thead><tbody><tr><td><code spellcheck="false">a</code></td><td>左值</td><td>有名字，能取地址</td></tr><tr><td><code spellcheck="false">10、3.14</code></td><td>右值</td><td>字面量(常量)，没有内存地址</td></tr><tr><td><code spellcheck="false">a + 1</code></td><td>右值</td><td>算出来的临时结果，没有内存地址</td></tr><tr><td><code spellcheck="false">++a</code></td><td>左值</td><td>a不会因为自增加就失去内存占用和内存地址。</td></tr><tr><td><code spellcheck="false">a++</code></td><td>右值</td><td><p>实际运行原理是，<code spellcheck="false">a++</code> 编译器会创造临时副本，这里表达式只会返回临时副本。</p><p>而临时副本是个常量，没有地址没有申请内存，所以自然是返回右值</p></td></tr><tr><td><code spellcheck="false">"hello"</code></td><td>左值</td><td>字符串字面量在只读区里有固定位置，有内存占用和内存地址</td></tr><tr><td><code spellcheck="false">*(p + 1)</code></td><td>左值</td><td>解引用出来的就是那块内存本身，自然有内存占用和内存地址</td></tr></tbody></table></figure><p><code spellcheck="false">++a</code> 和 <code spellcheck="false">a++</code> 不一样这件事，用取地址一试就出来：</p><pre><code class="language-text-x-c-src hljs">std::cout &lt;&lt; &amp;(++a) &lt;&lt; <span class="hljs-string">&quot;\n&quot;</span>;	<span class="hljs-comment">// 合法：前置 ++ 交回的是 a 自己</span>
+std::cout &lt;&lt; &amp;(a++) &lt;&lt; <span class="hljs-string">&quot;\n&quot;</span>;	<span class="hljs-comment">// 非法：后置 ++ 交出去的是个临时副本</span></code></pre><p>后一行编译错误：</p><pre><code class="language-text-x-trilium-auto hljs"><span class="hljs-keyword">error: </span>lvalue required as unary &#x27;&amp;&#x27; operand</code></pre><aside class="admonition note"><p>左值 / 右值在标准里还有更细的分类（C++11 起分成 “glvalue / prvalue / xvalue” 等等各种）。之后讲解标准库会详细讲解。</p></aside><h2>左值引用：只能绑左值<a id="左值引用-只能绑左值" class="toc-anchor" name="左值引用-只能绑左值" href="#左值引用-只能绑左值">#</a></h2><p>上一节的 <code spellcheck="false">int &amp;r</code> 就是左值引用，它能绑定的目标：</p><pre><code class="language-text-x-c-src hljs"><span class="hljs-built_in">int</span> a = <span class="hljs-number">10</span>;
+<span class="hljs-built_in">int</span> &amp;r = a;				<span class="hljs-comment">// a 是左值</span>
+<span class="hljs-built_in">int</span> &amp;r = <span class="hljs-number">10</span>;			<span class="hljs-comment">// 不行</span>
+<span class="hljs-built_in">int</span> &amp;r = a + <span class="hljs-number">1</span>;			<span class="hljs-comment">// 也不行</span></code></pre><p>后两行都是同一条报错：</p><pre><code class="language-text-x-trilium-auto hljs"><span class="hljs-keyword">error: </span>cannot bind non-const lvalue reference of type &#x27;int&amp;&#x27; to an rvalue of type &#x27;int&#x27;</code></pre><p>无法引用的原因就是，左值引用要的是可以被改动的值，无法被改动这个左值引用也就没有意义了，所以编译器选择给你报错。</p><p>但加上 <code spellcheck="false">const</code> 就可以，因为 <code spellcheck="false">const</code> 是常量、是只读不改的，用临时值也不会改动，所以完全没问题。上一节的问题答案就在这。</p><h2>右值引用：两个 &amp;<a id="右值引用-两个-amp" class="toc-anchor" name="右值引用-两个-amp" href="#右值引用-两个-amp">#</a></h2><p>C++11 起，可以用两个 <code spellcheck="false">&amp;</code> 声明一个专门引用右值的引用：</p><pre><code class="language-text-x-c-src hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+	<span class="hljs-type">int</span> &amp;&amp;rr = <span class="hljs-number">10</span>;			<span class="hljs-comment">// 右值引用</span>
+	std::cout &lt;&lt; <span class="hljs-string">&quot;rr = &quot;</span> &lt;&lt; rr &lt;&lt; <span class="hljs-string">&quot;\n&quot;</span>;
+
+	rr = <span class="hljs-number">99</span>;			<span class="hljs-comment">// 引用之后，甚至可以修改值</span>
+	std::cout &lt;&lt; <span class="hljs-string">&quot;改完 rr = &quot;</span> &lt;&lt; rr &lt;&lt; <span class="hljs-string">&quot;\n&quot;</span>;
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre><p>运行结果：</p><pre><code class="language-text-x-trilium-auto hljs"><span class="hljs-attribute">rr</span> <span class="hljs-operator">=</span> <span class="hljs-number">10</span>
+改完 rr <span class="hljs-operator">=</span> <span class="hljs-number">99</span></code></pre><p><code spellcheck="false">10</code> 本来用完就丢失，但被 <code spellcheck="false">rr</code> 引用后，生命周期就变成 <code spellcheck="false">rr</code> 结束为止。</p><p>右值引用，它绑不了左值：</p><pre><code class="language-text-x-c-src hljs"><span class="hljs-built_in">int</span> a = <span class="hljs-number">10</span>;
+<span class="hljs-built_in">int</span> &amp;&amp;rr = a;			<span class="hljs-comment">// 不行</span></code></pre><pre><code class="language-text-x-trilium-auto hljs"><span class="hljs-keyword">error: </span>cannot bind rvalue reference of type &#x27;int&amp;&amp;&#x27; to lvalue of type &#x27;int&#x27;</code></pre><p>如果有需要绑定，等到日后详解标准库会给出方案。</p><h2>右值引用是个左值<a id="右值引用是个左值" class="toc-anchor" name="右值引用是个左值" href="#右值引用是个左值">#</a></h2><p>这有些绕，建议自己多运行看看：</p><pre><code class="language-text-x-c-src hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+	<span class="hljs-type">int</span> &amp;&amp;rr = <span class="hljs-number">10</span>;			<span class="hljs-comment">// rr 的类型是 int&amp;&amp;</span>
+	<span class="hljs-type">int</span> &amp;lr = rr;			<span class="hljs-comment">// 但 rr 有内存占用，它是左值，所以能左值引用</span>
+	lr = <span class="hljs-number">99</span>;
+
+	std::cout &lt;&lt; <span class="hljs-string">&quot;rr = &quot;</span> &lt;&lt; rr &lt;&lt; <span class="hljs-string">&quot;\n&quot;</span>;
+	std::cout &lt;&lt; <span class="hljs-string">&quot;&amp;rr = &quot;</span> &lt;&lt; &amp;rr &lt;&lt; <span class="hljs-string">&quot;, &amp;lr = &quot;</span> &lt;&lt; &amp;lr &lt;&lt; <span class="hljs-string">&quot;\n&quot;</span>;
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre><p>运行结果：</p><pre><code class="language-text-x-trilium-auto hljs"><span class="hljs-attr">rr</span> <span class="hljs-operator">=</span> <span class="hljs-number">99</span>
+<span class="hljs-variable">&amp;rr</span> = <span class="hljs-number">0xa6f75ff89c</span>, <span class="hljs-variable">&amp;lr</span> = <span class="hljs-number">0xa6f75ff89c</span></code></pre><p>两个地址一模一样，证明 <code spellcheck="false">lr</code> 引用的就是 <code spellcheck="false">rr</code> 那块内存。</p><p>所以：<strong>判断左值还是右值，看的是这个表达式能不能取地址、有没有内存占用，不是看它的类型写了几个 </strong><code spellcheck="false"><strong>&amp;</strong></code>。</p><h2>小结<a id="小结" class="toc-anchor" name="小结" href="#小结">#</a></h2><p>判断左右值其实就是看有没有占用和有没有地址。</p><p>关于右值引用的意义，同样会在后续标准库中学习到，现在仅需学会使用即可。</p><p>下一章：<a class="reference-link type-text" href="../%E7%AC%AC%E4%BA%94%E7%AB%A0%EF%BC%9A%E5%87%BD%E6%95%B0.html"><span><span class="tn-icon bx bx-folder"></span>第五章：函数</span></a></p>
                 
                 
             </div>
@@ -2433,6 +2460,68 @@
                 
             </footer>
         </div>
+        
+            <div id="toc-pane">
+                <h3>本页内容</h3>
+                <ul id="toc">
+                    
+                        
+
+<li>
+    <a href="#左值和右值">
+        <span>左值和右值</span>
+    </a>
+
+    
+</li>
+
+                    
+                        
+
+<li>
+    <a href="#左值引用-只能绑左值">
+        <span>左值引用：只能绑左值</span>
+    </a>
+
+    
+</li>
+
+                    
+                        
+
+<li>
+    <a href="#右值引用-两个-amp">
+        <span>右值引用：两个 &amp;amp;</span>
+    </a>
+
+    
+</li>
+
+                    
+                        
+
+<li>
+    <a href="#右值引用是个左值">
+        <span>右值引用是个左值</span>
+    </a>
+
+    
+</li>
+
+                    
+                        
+
+<li>
+    <a href="#小结">
+        <span>小结</span>
+    </a>
+
+    
+</li>
+
+                    
+                </ul>
+            </div>
         
     </div>
 </div>
