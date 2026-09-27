@@ -182,7 +182,7 @@
 					"title": "第二章：基本变量类型",
 					"notePosition": 20,
 					"prefix": null,
-					"isExpanded": false,
+					"isExpanded": true,
 					"type": "text",
 					"mime": "text/html",
 					"attributes": [
@@ -536,7 +536,7 @@
 					"title": "第四章：指针与引用",
 					"notePosition": 50,
 					"prefix": null,
-					"isExpanded": true,
+					"isExpanded": false,
 					"type": "text",
 					"mime": "text/html",
 					"attributes": [
@@ -754,7 +754,7 @@
 					"title": "第五章：函数",
 					"notePosition": 60,
 					"prefix": null,
-					"isExpanded": false,
+					"isExpanded": true,
 					"type": "text",
 					"mime": "text/html",
 					"attributes": [
@@ -846,13 +846,13 @@
 						},
 						{
 							"isClone": false,
-							"noteId": "sAfYrSXROmON",
+							"noteId": "9yO0TOgTLAXG",
 							"notePath": [
 								"3f0LOwtZ3I9T",
 								"JfIF2zF6C1HJ",
-								"sAfYrSXROmON"
+								"9yO0TOgTLAXG"
 							],
-							"title": "5.4 函数、指针、数组",
+							"title": "5.4 函数传参与返回值",
 							"notePosition": 40,
 							"prefix": null,
 							"isExpanded": false,
@@ -860,7 +860,45 @@
 							"mime": "text/html",
 							"attributes": [],
 							"format": "html",
-							"dataFileName": "5.4 函数、指针、数组.html",
+							"dataFileName": "5.4 函数传参与返回值.html",
+							"attachments": []
+						},
+						{
+							"isClone": false,
+							"noteId": "sAfYrSXROmON",
+							"notePath": [
+								"3f0LOwtZ3I9T",
+								"JfIF2zF6C1HJ",
+								"sAfYrSXROmON"
+							],
+							"title": "5.5 函数指针",
+							"notePosition": 50,
+							"prefix": null,
+							"isExpanded": false,
+							"type": "text",
+							"mime": "text/html",
+							"attributes": [],
+							"format": "html",
+							"dataFileName": "5.5 函数指针.html",
+							"attachments": []
+						},
+						{
+							"isClone": false,
+							"noteId": "UOHAWvW6Sgdz",
+							"notePath": [
+								"3f0LOwtZ3I9T",
+								"JfIF2zF6C1HJ",
+								"UOHAWvW6Sgdz"
+							],
+							"title": "5.6 内联函数",
+							"notePosition": 60,
+							"prefix": null,
+							"isExpanded": false,
+							"type": "text",
+							"mime": "text/html",
+							"attributes": [],
+							"format": "html",
+							"dataFileName": "5.6 内联函数.html",
 							"attachments": []
 						},
 						{
@@ -871,15 +909,15 @@
 								"JfIF2zF6C1HJ",
 								"4AjUTy8ir4IY"
 							],
-							"title": "5.5 匿名函数",
-							"notePosition": 50,
+							"title": "5.7 匿名函数(lambda表达式)",
+							"notePosition": 70,
 							"prefix": null,
 							"isExpanded": false,
 							"type": "text",
 							"mime": "text/html",
 							"attributes": [],
 							"format": "html",
-							"dataFileName": "5.5 匿名函数.html",
+							"dataFileName": "5.7 匿名函数(lambda表达式).html",
 							"attachments": []
 						}
 					]
