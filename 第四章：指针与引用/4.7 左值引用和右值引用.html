@@ -2209,6 +2209,22 @@
 
         </li>
     
+    
+        <li class="item">
+            
+
+    
+    <a class="type-text" href="4.8%20%E7%A7%BB%E5%8A%A8%E8%AF%AD%E4%B9%89.html">
+        
+        <span><i class="tn-icon bx bx-note"></i> 4.8 移动语义</span>
+    </a>
+
+
+
+
+
+        </li>
+    
 </ul>
 
 
@@ -2470,7 +2486,7 @@ std::cout &lt;&lt; &amp;(a++) &lt;&lt; <span class="hljs-string">&quot;\n&quot;<
 	std::cout &lt;&lt; <span class="hljs-string">&quot;&amp;rr = &quot;</span> &lt;&lt; &amp;rr &lt;&lt; <span class="hljs-string">&quot;, &amp;lr = &quot;</span> &lt;&lt; &amp;lr &lt;&lt; <span class="hljs-string">&quot;\n&quot;</span>;
 	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
 }</code></pre><p>运行结果：</p><pre><code class="language-text-x-trilium-auto hljs"><span class="hljs-attr">rr</span> <span class="hljs-operator">=</span> <span class="hljs-number">99</span>
-<span class="hljs-variable">&amp;rr</span> = <span class="hljs-number">0xa6f75ff89c</span>, <span class="hljs-variable">&amp;lr</span> = <span class="hljs-number">0xa6f75ff89c</span></code></pre><p>两个地址一模一样，证明 <code spellcheck="false">lr</code> 引用的就是 <code spellcheck="false">rr</code> 那块内存。</p><p>所以：<strong>判断左值还是右值，看的是这个表达式能不能取地址、有没有内存占用，不是看它的类型写了几个 </strong><code spellcheck="false"><strong>&amp;</strong></code>。</p><h2>小结<a id="小结" class="toc-anchor" name="小结" href="#小结">#</a></h2><p>判断左右值其实就是看有没有占用和有没有地址。</p><p>关于右值引用的意义，同样会在后续标准库中学习到，现在仅需学会使用即可。</p><p>下一章：<a class="reference-link type-text" href="../%E7%AC%AC%E4%BA%94%E7%AB%A0%EF%BC%9A%E5%87%BD%E6%95%B0.html"><span><span class="tn-icon bx bx-folder"></span>第五章：函数</span></a></p>
+<span class="hljs-variable">&amp;rr</span> = <span class="hljs-number">0xa6f75ff89c</span>, <span class="hljs-variable">&amp;lr</span> = <span class="hljs-number">0xa6f75ff89c</span></code></pre><p>两个地址一模一样，证明 <code spellcheck="false">lr</code> 引用的就是 <code spellcheck="false">rr</code> 那块内存。</p><p>所以：<strong>判断左值还是右值，看的是这个表达式能不能取地址、有没有内存占用，不是看它的类型写了几个 </strong><code spellcheck="false"><strong>&amp;</strong></code>。</p><h2>小结<a id="小结" class="toc-anchor" name="小结" href="#小结">#</a></h2><p>判断左右值其实就是看有没有占用和有没有地址。</p><p>关于右值引用的意义，同样会在后续标准库中学习到，现在仅需学会使用即可。</p><p>下一节：<a class="reference-link type-text" href="4.8%20%E7%A7%BB%E5%8A%A8%E8%AF%AD%E4%B9%89.html"><span><span class="tn-icon bx bx-note"></span>4.8 移动语义</span></a></p>
                 
                 
             </div>
@@ -2485,7 +2501,7 @@ std::cout &lt;&lt; &amp;(a++) &lt;&lt; <span class="hljs-string">&quot;\n&quot;<
 
 <div class="navigation">
     <a class="previous" href="4.6%20%E5%BC%95%E7%94%A8.html">4.6 引用</a>
-    <a class="next" href="../%E7%AC%AC%E4%BA%94%E7%AB%A0%EF%BC%9A%E5%87%BD%E6%95%B0.html">第五章：函数</a>
+    <a class="next" href="4.8%20%E7%A7%BB%E5%8A%A8%E8%AF%AD%E4%B9%89.html">4.8 移动语义</a>
 </div>
                 
 
