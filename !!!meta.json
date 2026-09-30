@@ -536,7 +536,7 @@
 					"title": "第四章：指针与引用",
 					"notePosition": 50,
 					"prefix": null,
-					"isExpanded": true,
+					"isExpanded": false,
 					"type": "text",
 					"mime": "text/html",
 					"attributes": [
@@ -866,7 +866,15 @@
 							"isExpanded": false,
 							"type": "text",
 							"mime": "text/html",
-							"attributes": [],
+							"attributes": [
+								{
+									"type": "relation",
+									"name": "internalLink",
+									"value": "9yO0TOgTLAXG",
+									"isInheritable": false,
+									"position": 10
+								}
+							],
 							"format": "html",
 							"dataFileName": "5.3 递归.html",
 							"attachments": []
@@ -885,7 +893,15 @@
 							"isExpanded": false,
 							"type": "text",
 							"mime": "text/html",
-							"attributes": [],
+							"attributes": [
+								{
+									"type": "relation",
+									"name": "internalLink",
+									"value": "sAfYrSXROmON",
+									"isInheritable": false,
+									"position": 10
+								}
+							],
 							"format": "html",
 							"dataFileName": "5.4 函数传参与返回值.html",
 							"attachments": []
@@ -898,7 +914,7 @@
 								"JfIF2zF6C1HJ",
 								"sAfYrSXROmON"
 							],
-							"title": "5.5 函数指针",
+							"title": "5.5 函数与指针",
 							"notePosition": 50,
 							"prefix": null,
 							"isExpanded": false,
@@ -906,7 +922,7 @@
 							"mime": "text/html",
 							"attributes": [],
 							"format": "html",
-							"dataFileName": "5.5 函数指针.html",
+							"dataFileName": "5.5 函数与指针.html",
 							"attachments": []
 						},
 						{

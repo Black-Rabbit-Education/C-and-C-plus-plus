@@ -18,7 +18,7 @@
     
     
     
-    <title>5.5 函数指针 - C与C++(自制教程)</title>
+    <title>5.5 函数与指针 - C与C++(自制教程)</title>
     <script>
         // Load dark/light theme as soon as possible to avoid color flashes.
         let theme = localStorage.getItem("theme");
@@ -44,14 +44,14 @@
     <!-- Facebook Meta Tags -->
     <meta property="og:url" content="">
     <meta property="og:type" content="website">
-    <meta property="og:title" content="5.5 函数指针 - C与C++(自制教程)">
+    <meta property="og:title" content="5.5 函数与指针 - C与C++(自制教程)">
     <meta property="og:description" content="">
     <meta property="og:image" content="">
     <!-- Twitter Meta Tags -->
     <meta name="twitter:card" content="summary_large_image">
     <meta property="twitter:domain" content="">
     <meta property="twitter:url" content="">
-    <meta name="twitter:title" content="5.5 函数指针 - C与C++(自制教程)">
+    <meta name="twitter:title" content="5.5 函数与指针 - C与C++(自制教程)">
     <meta name="twitter:description" content="">
     <meta name="twitter:image" content="">
     <!-- Meta Tags Generated via https://opengraph.dev -->
@@ -1745,7 +1745,7 @@
         C与C++(自制教程)
     </a>
     
-        <div class="header-button-placeholder"></div>
+        <button aria-label="切换目录" id="toc-pane-toggle-button" class="header-button"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M3 9h14V7H3v2zm0 4h14v-2H3v2zm0 4h14v-2H3v2zm16 0h2v-2h-2v2zm0-10V7h2v2h-2zm0 6h2v-2h-2v2z"></path></svg></button>
     
 </div>
 <div id="split-pane">
@@ -2314,9 +2314,9 @@
             
 
     
-    <a class="type-text active" href="5.5%20%E5%87%BD%E6%95%B0%E6%8C%87%E9%92%88.html">
+    <a class="type-text active" href="5.5%20%E5%87%BD%E6%95%B0%E4%B8%8E%E6%8C%87%E9%92%88.html">
         
-        <span><i class="tn-icon bx bx-note"></i> 5.5 函数指针</span>
+        <span><i class="tn-icon bx bx-note"></i> 5.5 函数与指针</span>
     </a>
 
 
@@ -2457,10 +2457,148 @@
         <div id="main">
             <div id="content" class="type-text ck-content">
                 
-                    <h1 id="title">5.5 函数指针</h1>
+                    <h1 id="title">5.5 函数与指针</h1>
                 
                     
-                    <p>没错，又是指针，他与函数有非常多联动！</p><p>比如帮你返回数组，帮你修改传进来的参数，就像<code spellcheck="false">scanf</code>那样。</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><h2>回调函数<a id="回调函数" class="toc-anchor" name="回调函数" href="#回调函数">#</a></h2>
+                    <p>没错，又是指针，他与函数有非常多联动！</p><h2>数组传参<a id="数组传参" class="toc-anchor" name="数组传参" href="#数组传参">#</a></h2><p>传参当然可以是数组，但有一些注意事项。</p><p>数组名在传参时会退化成指针：数组作为参数，传过去的只是一份地址，形参收到的是指针，不是数组本身。</p><p>先看两个等价的写法：</p><pre><code class="language-text-x-c-src hljs"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">f</span><span class="hljs-params">(<span class="hljs-type">int</span> a[])</span></span>{
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>, <span class="hljs-built_in">sizeof</span>(a));
+}
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">f</span><span class="hljs-params">(<span class="hljs-type">int</span> *a)</span></span>{
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>, <span class="hljs-built_in">sizeof</span>(a));
+}</code></pre><p>这两种写法在编译器眼里是同一个函数，形参被统一改写成 <code spellcheck="false">int *a</code>。也就是说 <code spellcheck="false">int a[]</code> 里的 <code spellcheck="false">[]</code> 只是个记号，方括号里写不写数字都不影响类型。</p><p>这个改写带来一个最经典的坑：在函数里 <code spellcheck="false">sizeof</code> 数组参数，得到的是指针的大小，不是数组的大小。</p><pre><code class="language-text-x-c-src hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">printArr</span><span class="hljs-params">(<span class="hljs-type">int</span> a[])</span></span>{
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;sizeof(a) = %d\n&quot;</span>, <span class="hljs-built_in">sizeof</span>(a));
+}
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+	<span class="hljs-type">int</span> a[<span class="hljs-number">5</span>] = {<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>};
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;sizeof(a) = %d\n&quot;</span>, <span class="hljs-built_in">sizeof</span>(a));
+
+	<span class="hljs-built_in">printArr</span>(a);
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre><p>运行结果：</p><pre><code class="language-text-x-trilium-auto hljs"><span class="hljs-function"><span class="hljs-title">sizeof</span><span class="hljs-params">(a)</span></span> = <span class="hljs-number">20</span>
+<span class="hljs-function"><span class="hljs-title">sizeof</span><span class="hljs-params">(a)</span></span> = <span class="hljs-number">8</span></code></pre><p><code spellcheck="false">sizeof(a) / sizeof(a[0])</code> 求元素个数的技巧，在这里不可用(这也是为什么<code spellcheck="false">main</code>函数的第一个参数是参数数量)。</p><p>好在编译器认得出这个错误，加上 <code spellcheck="false">-Wall</code> 会直接点出来：</p><pre><code class="language-text-x-trilium-auto hljs">warning: &#x27;sizeof&#x27; on<span class="hljs-built_in"> array </span>function parameter &#x27;a&#x27; will<span class="hljs-built_in"> return </span>size of &#x27;int *&#x27; [-Wsizeof-array-argument]</code></pre><p>既然函数自己量不出长度，就得由调用方把长度一起传进来。这是 C 里传数组的标准做法：</p><pre><code class="language-text-x-c-src hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">printArr</span><span class="hljs-params">(<span class="hljs-type">int</span> a[], <span class="hljs-type">int</span> len)</span></span>{
+	<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; len; i++){
+		<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d &quot;</span>, a[i]);
+	}
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;\n&quot;</span>);
+}
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+	<span class="hljs-type">int</span> a[<span class="hljs-number">5</span>] = {<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>};
+
+	<span class="hljs-built_in">printArr</span>(a, <span class="hljs-built_in">sizeof</span>(a)/(sizeofa[<span class="hljs-number">0</span>]));
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre><p>运行结果：</p><pre><code class="language-text-x-trilium-auto hljs"><span class="hljs-symbol">1 </span><span class="hljs-number">2</span> <span class="hljs-number">3</span> <span class="hljs-number">4</span> <span class="hljs-number">5</span> </code></pre><p>另外，数组参数不需要从第 0 个元素开始传。既然它本质上是个指针，那 <code spellcheck="false">&amp;a[2]</code> 也能传，函数就只看见从那里开始的一段：</p><pre><code class="language-text-x-c-src hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">printArr</span><span class="hljs-params">(<span class="hljs-type">int</span> *a, <span class="hljs-type">int</span> len)</span></span>{
+	<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; len; i++){
+		<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d &quot;</span>, a[i]);
+	}
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;\n&quot;</span>);
+}
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+	<span class="hljs-type">int</span> a[<span class="hljs-number">5</span>] = {<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>};
+
+	<span class="hljs-built_in">printArr</span>(&amp;a[<span class="hljs-number">2</span>], <span class="hljs-number">3</span>);		<span class="hljs-comment">// 只传后面三个</span>
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre><p>运行结果：</p><pre><code class="language-text-x-trilium-auto hljs"><span class="hljs-symbol">3 </span><span class="hljs-number">4</span> <span class="hljs-number">5</span> </code></pre><h3>二维数组传参<a id="二维数组传参" class="toc-anchor" name="二维数组传参" href="#二维数组传参">#</a></h3><p>一维数组退化成 <code spellcheck="false">int*</code>，二维数组呢？4.4 讲过，二维数组是"数组的数组"，<code spellcheck="false">g</code> 的类型是 <code spellcheck="false">int (*)[3]</code>（指向一整行的指针）。所以它作为参数时，退化得到的是行指针，而不是 <code spellcheck="false">int**</code>：</p><pre><code class="language-text-x-c-src hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">printTable</span><span class="hljs-params">(<span class="hljs-type">int</span> t[][<span class="hljs-number">3</span>], <span class="hljs-type">int</span> rows)</span></span>{
+	<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; rows; i++){
+		<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j = <span class="hljs-number">0</span>; j &lt; <span class="hljs-number">3</span>; j++){
+			<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d &quot;</span>, t[i][j]);
+		}
+		<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;\n&quot;</span>);
+	}
+}
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+	<span class="hljs-type">int</span> g[<span class="hljs-number">2</span>][<span class="hljs-number">3</span>] = {
+		{<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>},
+		{<span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>}
+	};
+
+	<span class="hljs-built_in">printTable</span>(g, <span class="hljs-number">2</span>);
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre><p>运行结果：</p><pre><code class="language-text-x-trilium-auto hljs"><span class="hljs-symbol">1 </span><span class="hljs-number">2</span> <span class="hljs-number">3</span> 
+<span class="hljs-symbol">4 </span><span class="hljs-number">5</span> <span class="hljs-number">6</span> </code></pre><p>这里的 <code spellcheck="false">int t[][3]</code> 等价于 <code spellcheck="false">int (*t)[3]</code>，第一维可以省略（反正会退化成指针），但第二维必须固定死，而且要和实参的列数一致，因为编译器要用它算出 <code spellcheck="false">t + 1</code> 该跨多少字节读取数据。</p><p>下面这几种写法都是错的，编译报错：</p><pre><code class="language-text-x-trilium-auto hljs"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">f</span>(<span class="hljs-params"><span class="hljs-built_in">int</span> a[<span class="hljs-number">5</span>]</span>)</span>;          <span class="hljs-comment">// 合法！方括号里的 5 会被忽略，和 int a[] 一样</span>
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">f</span>(<span class="hljs-params"><span class="hljs-built_in">int</span> a[]</span>)  -&gt; <span class="hljs-built_in">int</span> *a
+<span class="hljs-keyword">void</span> <span class="hljs-title">f</span>(<span class="hljs-params"><span class="hljs-built_in">int</span> a[][<span class="hljs-number">3</span>]</span>) -&gt; <span class="hljs-title">int</span> (<span class="hljs-params">*a</span>)[3]
+
+<span class="hljs-keyword">void</span> <span class="hljs-title">f</span>(<span class="hljs-params"><span class="hljs-built_in">int</span> a[][<span class="hljs-number">4</span>]</span>)</span>;        <span class="hljs-comment">// 调用时传 int[2][3] 报错</span>
+error: passing argument <span class="hljs-number">1</span> of <span class="hljs-string">&#x27;printTable&#x27;</span> <span class="hljs-keyword">from</span> incompatible pointer type [-Wincompatible-pointer-types]
+note: expected <span class="hljs-string">&#x27;int (*)[4]&#x27;</span> but argument <span class="hljs-keyword">is</span> of type <span class="hljs-string">&#x27;int (*)[3]&#x27;</span>
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">f</span>(<span class="hljs-params"><span class="hljs-built_in">int</span> **t</span>)</span>;           <span class="hljs-comment">// 传二维数组也报错</span>
+error: passing argument <span class="hljs-number">1</span> of <span class="hljs-string">&#x27;printTable&#x27;</span> <span class="hljs-keyword">from</span> incompatible pointer type [-Wincompatible-pointer-types]
+note: expected <span class="hljs-string">&#x27;int **&#x27;</span> but argument <span class="hljs-keyword">is</span> of type <span class="hljs-string">&#x27;int (*)[3]&#x27;</span></code></pre><p>第一行的 <code spellcheck="false">int a[5]</code> 是个特例：方括号里的数字被编译器直接丢掉，和 <code spellcheck="false">int a[]</code> 完全一样，所以不报错。</p><p>C++ 这一节的内容和 C 完全一样，数组照样退化成指针，<code spellcheck="false">sizeof</code> 照样失效。</p><pre><code class="language-text-x-c-src hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">printArr</span><span class="hljs-params">(<span class="hljs-type">int</span> a[], <span class="hljs-type">int</span> len)</span></span>{
+	std::cout &lt;&lt; <span class="hljs-string">&quot;sizeof(a) = &quot;</span> &lt;&lt; <span class="hljs-built_in">sizeof</span>(a) &lt;&lt; <span class="hljs-string">&quot;\n&quot;</span>;
+	<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; len; i++){
+		std::cout &lt;&lt; a[i] &lt;&lt; <span class="hljs-string">&quot; &quot;</span>;
+	}
+	std::cout &lt;&lt; <span class="hljs-string">&quot;\n&quot;</span>;
+}
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+	<span class="hljs-type">int</span> a[<span class="hljs-number">5</span>] = {<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>};
+	std::cout &lt;&lt; <span class="hljs-string">&quot;sizeof(a) = &quot;</span> &lt;&lt; <span class="hljs-built_in">sizeof</span>(a) &lt;&lt; <span class="hljs-string">&quot;\n&quot;</span>;
+
+	<span class="hljs-built_in">printArr</span>(a, <span class="hljs-number">5</span>);
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre><p>运行结果：</p><pre><code class="language-text-x-trilium-auto hljs"><span class="hljs-attribute">sizeof</span>(a) = <span class="hljs-number">20</span>
+<span class="hljs-attribute">sizeof</span>(a) = <span class="hljs-number">8</span>
+<span class="hljs-attribute">1</span> <span class="hljs-number">2</span> <span class="hljs-number">3</span> <span class="hljs-number">4</span> <span class="hljs-number">5</span> </code></pre><p>注意警告里写的是 <code spellcheck="false">In function ‘void printArr(int*, int)’</code>，编译器会直接提示你完全一致。</p><h2>返回数组<a id="返回数组" class="toc-anchor" name="返回数组" href="#返回数组">#</a></h2><p>函数不能返回一个数组。原因就是前面说的数组名不能被赋值。</p><p>数组不能返回，指向数组的指针可以。</p><h2>方案一：传参修改参数<a id="方案一-传参修改参数" class="toc-anchor" name="方案一-传参修改参数" href="#方案一-传参修改参数">#</a></h2><p>让调用方把自己的数组传进来，函数负责往里填。这是工程里最常用的做法，因为它不占额外内存、不用管释放、反复调用也不会互相干扰：</p><pre><code class="language-text-x-c-src hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">fills</span><span class="hljs-params">(<span class="hljs-type">int</span> src[], <span class="hljs-type">int</span> dst[], <span class="hljs-type">int</span> len)</span></span>{
+	<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; len; i++){
+		dst[i] = src[i] * <span class="hljs-number">2</span>;
+	}
+}
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+	<span class="hljs-type">int</span> a[<span class="hljs-number">3</span>] = {<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>};
+	<span class="hljs-type">int</span> b[<span class="hljs-number">3</span>];
+
+	<span class="hljs-built_in">fills</span>(a, b, <span class="hljs-number">3</span>);		<span class="hljs-comment">// 结果填进 b</span>
+
+	<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">3</span>; i++){
+		<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d &quot;</span>, b[i]);
+	}
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;\n&quot;</span>);
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre><p>运行结果：</p><pre><code class="language-text-x-trilium-auto hljs"><span class="hljs-symbol">2 </span><span class="hljs-number">4</span> <span class="hljs-number">6</span> </code></pre><h3>方案二：申请内存，使变量再堆内存上<a id="方案二-申请内存-使变量再堆内存上" class="toc-anchor" name="方案二-申请内存-使变量再堆内存上" href="#方案二-申请内存-使变量再堆内存上">#</a></h3><pre><code class="language-text-x-c-src hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdlib.h&gt;</span></span>
+
+<span class="hljs-function"><span class="hljs-type">int</span> *<span class="hljs-title">getArr</span><span class="hljs-params">(<span class="hljs-type">int</span> n)</span></span>{
+	<span class="hljs-type">int</span> *a = (<span class="hljs-type">int</span>*)<span class="hljs-built_in">malloc</span>(n * <span class="hljs-built_in">sizeof</span>(<span class="hljs-type">int</span>));	<span class="hljs-comment">// 堆上的内存，函数返回后依然有效，只是需要自己释放</span>
+	<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; n; i++){
+		a[i] = (i + <span class="hljs-number">1</span>) * <span class="hljs-number">10</span>;
+	}
+	<span class="hljs-keyword">return</span> a;
+}
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+	<span class="hljs-type">int</span> *p = <span class="hljs-built_in">getArr</span>(<span class="hljs-number">3</span>);
+
+	<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">3</span>; i++){
+		<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d &quot;</span>, p[i]);
+	}
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;\n&quot;</span>);
+
+	<span class="hljs-built_in">free</span>(p);		<span class="hljs-comment">// 谁申请谁释放</span>
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre><p>运行结果：</p><pre><code class="language-text-x-trilium-auto hljs"><span class="hljs-symbol">10 </span><span class="hljs-number">20</span> <span class="hljs-number">30</span> </code></pre><p>堆上的内存不受函数返回影响，所以能安全地传出来，代价是必须记得 <code spellcheck="false">free</code>，否则就是 4.3 说的内存泄漏。它的好处是长度不固定：想要几个就申请几个，静态数组做不到这一点。</p><p>小结一下这三种返回法的取舍：</p><figure class="table"><table><tbody><tr><td>做法</td><td>数据存在哪</td><td>什么时候用</td></tr><tr><td>返回局部数组的指针</td><td>已销毁的栈</td><td>❌ 永远不要用</td></tr><tr><td><code spellcheck="false">static</code> 数组</td><td>静态区</td><td>全局只此一份的数据</td></tr><tr><td>调用方传入数组</td><td>调用方的栈</td><td>✅ 最常用</td></tr><tr><td><code spellcheck="false">malloc</code> 出来的数组</td><td>堆</td><td>长度运行时才确定，且要跨函数长期存活</td></tr></tbody></table></figure><p>C++ 里也是一样的。<code spellcheck="false">int *getArr()</code> returning a local array 的警告措辞略有不同：</p><pre><code class="language-text-x-trilium-auto hljs">C   : <span class="hljs-built_in">warning</span>: <span class="hljs-keyword">function</span> <span class="hljs-keyword">returns</span> address <span class="hljs-keyword">of</span> <span class="hljs-keyword">local</span> variable [-Wreturn-<span class="hljs-keyword">local</span>-addr]
+C++ : <span class="hljs-built_in">warning</span>: address <span class="hljs-keyword">of</span> <span class="hljs-keyword">local</span> variable <span class="hljs-string">&#x27;a&#x27;</span> returned [-Wreturn-<span class="hljs-keyword">local</span>-addr]
+      note: declared here
+      <span class="hljs-number">4</span> |         <span class="hljs-type">int</span> a[<span class="hljs-number">3</span>] = {<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>};</code></pre><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><h2>回调函数<a id="回调函数" class="toc-anchor" name="回调函数" href="#回调函数">#</a></h2>
                 
                 
             </div>
@@ -2482,6 +2620,87 @@
                 
             </footer>
         </div>
+        
+            <div id="toc-pane">
+                <h3>本页内容</h3>
+                <ul id="toc">
+                    
+                        
+
+<li>
+    <a href="#数组传参">
+        <span>数组传参</span>
+    </a>
+
+    
+        <ul>
+            
+                
+
+<li>
+    <a href="#二维数组传参">
+        <span>二维数组传参</span>
+    </a>
+
+    
+</li>
+
+            
+        </ul>
+    
+</li>
+
+                    
+                        
+
+<li>
+    <a href="#返回数组">
+        <span>返回数组</span>
+    </a>
+
+    
+</li>
+
+                    
+                        
+
+<li>
+    <a href="#方案一-传参修改参数">
+        <span>方案一：传参修改参数</span>
+    </a>
+
+    
+        <ul>
+            
+                
+
+<li>
+    <a href="#方案二-申请内存-使变量再堆内存上">
+        <span>方案二：申请内存，使变量再堆内存上</span>
+    </a>
+
+    
+</li>
+
+            
+        </ul>
+    
+</li>
+
+                    
+                        
+
+<li>
+    <a href="#回调函数">
+        <span>回调函数</span>
+    </a>
+
+    
+</li>
+
+                    
+                </ul>
+            </div>
         
     </div>
 </div>

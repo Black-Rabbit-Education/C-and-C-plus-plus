@@ -2314,9 +2314,9 @@
             
 
     
-    <a class="type-text" href="5.5%20%E5%87%BD%E6%95%B0%E6%8C%87%E9%92%88.html">
+    <a class="type-text" href="5.5%20%E5%87%BD%E6%95%B0%E4%B8%8E%E6%8C%87%E9%92%88.html">
         
-        <span><i class="tn-icon bx bx-note"></i> 5.5 函数指针</span>
+        <span><i class="tn-icon bx bx-note"></i> 5.5 函数与指针</span>
     </a>
 
 
@@ -2460,7 +2460,7 @@
                     <h1 id="title">5.3 递归</h1>
                 
                     
-                    <p>递归就是让函数反复调用自己，不断进入函数，然后不断回来，其实就这么简单，不过它的思考难度和设计递归难度较大，以至于让我需要单独写一节分享思路。</p><p>递归用到的比较少，也很难以理解别人或者过去的自己写的递归函数，所以一般来说，不建议新手用太多的递归。</p><h2>什么是递归<a id="什么是递归" class="toc-anchor" name="什么是递归" href="#什么是递归">#</a></h2><p>递归就是：一个函数在执行的过程中，直接或者间接地把自己又调用了一次。</p><p>这件事听起来很吓人，但你在数学里其实早就用过它了。阶乘的数学定义是这样的：</p><p><span class="math-tex">\(0!=1\)</span>，并且当&nbsp;<span class="math-tex">\(n&gt;0\)</span>&nbsp;时&nbsp;<span class="math-tex">\(n!=n\times(n-1)!\)</span></p><p>看，等号右边又出现了阶乘自己。数学允许"用自己定义自己"，只要每一次都比上一次小一号，最后能落到一个不用再算下去的情况（<span class="math-tex">\(0!=1\)</span>）。我们可以用递归实现：</p><pre><code class="language-text-x-c-src hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+                    <p>递归就是让函数反复调用自己，不断进入函数，然后不断回来，其实就这么简单，不过它的思考难度和设计递归难度较大，以至于让我需要单独写一节进行讲解。</p><p>递归用到的比较少，也难以理解别人或者过去的自己写的递归函数，所以一般来说，不建议新手用太多的递归。</p><h2>什么是递归<a id="什么是递归" class="toc-anchor" name="什么是递归" href="#什么是递归">#</a></h2><p>递归就是：一个函数在执行的过程中，直接或者间接地把自己又调用了一次。</p><p>这件事听起来很吓人，但你在数学里其实早就用过它了。阶乘的数学定义是这样的：</p><p><span class="math-tex">\(0!=1\)</span>，并且当&nbsp;<span class="math-tex">\(n&gt;0\)</span>&nbsp;时&nbsp;<span class="math-tex">\(n!=n\times(n-1)!\)</span></p><p>看，等号右边又出现了阶乘自己。数学允许"用自己定义自己"，只要每一次都比上一次小一号，最后能落到一个不用再算下去的情况（<span class="math-tex">\(0!=1\)</span>）。我们可以用递归实现：</p><pre><code class="language-text-x-c-src hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
 
 <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">fact</span><span class="hljs-params">(<span class="hljs-type">int</span> n)</span></span>{
 	<span class="hljs-keyword">if</span>(n &lt;= <span class="hljs-number">1</span>){			<span class="hljs-comment">// 终止条件：0! 和 1! 都是 1</span>
@@ -2640,7 +2640,7 @@ C -&gt; <span class="hljs-selector-tag">B</span>
 <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
 	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>, <span class="hljs-built_in">f</span>(<span class="hljs-number">1</span>));
 	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
-}</code></pre><p>这段代码能编译通过（GCC 编译器还会好心提示 <code spellcheck="false">warning: infinite recursion detected [-Winfinite-recursion]</code>），但一运行程序就直接崩溃：Windows 上退出码是 0xC00000FD（十进制 -1073741571），也就是<strong>栈溢出</strong>。机器给每一层递归都开了一份工作台，越堆越多，最后把栈空间用完了。</p><h3>坑 2：终止条件永远到不了<a id="坑-2-终止条件永远到不了" class="toc-anchor" name="坑-2-终止条件永远到不了" href="#坑-2-终止条件永远到不了">#</a></h3><p>比如终止条件写的是 <code spellcheck="false">if(n == 1)</code>，但每次调用传下去的却是 <code spellcheck="false">n + 1</code>；又或者用浮点数做 <code spellcheck="false">==</code> 比较，永远达不到那个结束的值。</p><h3>坑 3：递归层数太深<a id="坑-3-递归层数太深" class="toc-anchor" name="坑-3-递归层数太深" href="#坑-3-递归层数太深">#</a></h3><p>递归不是不能用，而是不能太深。实测案例环境（MinW-w64 GCC 15.2，默认设置）：</p><figure class="table"><table><thead><tr><th>递归函数长什么样</th><th>大约撑到第几层就崩溃</th></tr></thead><tbody><tr><td>函数体几乎不占空间（只有一个 int 参数）</td><td>约 43100 层</td></tr><tr><td>函数体里有一个 400 字节的局部数组</td><td>约 4600 层</td></tr></tbody></table></figure><p>可以看出两件事：递归深度一般只能在几万层这个量级；函数里的局部变量越多、越大，能递归的层数就越少。所以拿递归去处理一个长度为十万的数组，大部分机器是会直接崩掉的。</p><aside class="admonition tip"><p>想亲手看看自己电脑的极限，可以写一个只会无限调用自己的函数，在里面把层数打印出来（记得用 <code spellcheck="false">printf</code>而不是<code spellcheck="false">std::cout</code>，否则崩溃时看不到输出，具体原因后续讲解），然后一层层数下去，直到程序崩掉为止。换一台电脑、换一个编译器，数字可能会变，但量级是差不多的。</p></aside><h3>坑 4：在递归里用全局变量<a id="坑-4-在递归里用全局变量" class="toc-anchor" name="坑-4-在递归里用全局变量" href="#坑-4-在递归里用全局变量">#</a></h3><p>全局变量是所有层共用同一份的，于是有了下列代码：</p><pre><code class="language-text-x-c-src hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+}</code></pre><p>这段代码能编译通过（GCC 编译器还会好心提示 <code spellcheck="false">warning: infinite recursion detected [-Winfinite-recursion]</code>），但一运行程序就直接崩溃：Windows 上退出码是 0xC00000FD（十进制 -1073741571），也就是<strong>栈溢出</strong>。机器给每一层递归都开了一份工作台，越堆越多，最后把栈空间用完了。</p><h3>坑 2：终止条件永远到不了<a id="坑-2-终止条件永远到不了" class="toc-anchor" name="坑-2-终止条件永远到不了" href="#坑-2-终止条件永远到不了">#</a></h3><p>比如终止条件写的是 <code spellcheck="false">if(n == 1)</code>，但每次调用传下去的却是 <code spellcheck="false">n + 1</code>；又或者用浮点数做 <code spellcheck="false">==</code> 比较，永远达不到那个结束的值。</p><h3>坑 3：递归层数太深<a id="坑-3-递归层数太深" class="toc-anchor" name="坑-3-递归层数太深" href="#坑-3-递归层数太深">#</a></h3><p>递归不是不能用，而是不能太深。实测案例环境（MinGW-w64 GCC 15.2，默认设置）：</p><figure class="table"><table><thead><tr><th>递归函数长什么样</th><th>大约撑到第几层就崩溃</th></tr></thead><tbody><tr><td>函数体几乎不占空间（只有一个 int 参数）</td><td>约 43100 层</td></tr><tr><td>函数体里有一个 400 字节的局部数组</td><td>约 4600 层</td></tr></tbody></table></figure><p>可以看出两件事：递归深度一般只能在几万层这个量级；函数里的局部变量越多、越大，能递归的层数就越少。所以拿递归去处理一个长度为十万的数组，大部分机器是会直接崩掉的。</p><aside class="admonition tip"><p>想亲手看看自己电脑的极限，可以写一个只会无限调用自己的函数，在里面把层数打印出来，然后一层层数下去，直到程序崩掉为止。换一台电脑、换一个编译器，数字可能会变，但量级是差不多的。</p></aside><h3>坑 4：在递归里用全局变量<a id="坑-4-在递归里用全局变量" class="toc-anchor" name="坑-4-在递归里用全局变量" href="#坑-4-在递归里用全局变量">#</a></h3><p>全局变量是所有层共用同一份的，于是有了下列代码：</p><pre><code class="language-text-x-c-src hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
 
 <span class="hljs-type">int</span> tmp;			<span class="hljs-comment">// 全局变量，所有层共用同一个</span>
 
@@ -2656,7 +2656,7 @@ C -&gt; <span class="hljs-selector-tag">B</span>
 <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
 	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>, <span class="hljs-built_in">f</span>(<span class="hljs-number">4</span>));	<span class="hljs-comment">// 本以为等于 1+2+3+4 = 10</span>
 	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
-}</code></pre><p>本以为是&nbsp;<span class="math-tex">\(1+2+3+4=10\)</span>，实际输出 7。因为内层调用把 tmp 改掉之后，外层再读到的已经不是自己写进去的值了。</p><p>所以全局变量也要慎用。</p><h2>小结<a id="小结" class="toc-anchor" name="小结" href="#小结">#</a></h2><p>这一节的内容较难，建议自己反复尝试。</p><h2>习题<a id="习题" class="toc-anchor" name="习题" href="#习题">#</a></h2><h3>1.递归求和<a id="1-递归求和" class="toc-anchor" name="1-递归求和" href="#1-递归求和">#</a></h3><p>编写递归函数 <code spellcheck="false">sum(int n)</code>，计算并返回&nbsp;<span class="math-tex">\(1+2+\cdots+n\)</span>。输入一个整数 n，输出这个和。</p><p>输入的数字为整数，且&nbsp;<span class="math-tex">\(1\le n\le 1000\)</span>。</p><p>本题推荐最大时长：8分钟</p><p>题目输入案例：<code spellcheck="false">100</code></p><p>输出结果案例：<code spellcheck="false">5050</code></p><details class="trilium-collapsible"><summary>答案</summary><h4>C<a id="c" class="toc-anchor" name="c" href="#c">#</a></h4><pre><code class="language-text-x-c-src hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+}</code></pre><p>本以为是&nbsp;<span class="math-tex">\(1+2+3+4=10\)</span>，实际输出 7。因为内层调用把 tmp 改掉之后，外层再读到的已经不是自己写进去的值了。</p><p>所以全局变量也要慎用。</p><h2>小结<a id="小结" class="toc-anchor" name="小结" href="#小结">#</a></h2><p>这一节的内容较难，建议自己反复尝试，尽力去理解运行原理。</p><p>下一节：<a class="reference-link type-text" href="5.4%20%E5%87%BD%E6%95%B0%E4%BC%A0%E5%8F%82%E4%B8%8E%E8%BF%94%E5%9B%9E%E5%80%BC.html"><span><span class="tn-icon bx bx-note"></span>5.4 函数传参与返回值</span></a></p><h2>习题<a id="习题" class="toc-anchor" name="习题" href="#习题">#</a></h2><h3>1.递归求和<a id="1-递归求和" class="toc-anchor" name="1-递归求和" href="#1-递归求和">#</a></h3><p>编写递归函数 <code spellcheck="false">sum(int n)</code>，计算并返回&nbsp;<span class="math-tex">\(1+2+\cdots+n\)</span>。输入一个整数 n，输出这个和。</p><p>输入的数字为整数，且&nbsp;<span class="math-tex">\(1\le n\le 1000\)</span>。</p><p>本题推荐最大时长：8分钟</p><p>题目输入案例：<code spellcheck="false">100</code></p><p>输出结果案例：<code spellcheck="false">5050</code></p><details class="trilium-collapsible"><summary>答案</summary><h4>C<a id="c" class="toc-anchor" name="c" href="#c">#</a></h4><pre><code class="language-text-x-c-src hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
 
 <span class="hljs-comment">// 求 1 + 2 + ... + n</span>
 <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">sum</span><span class="hljs-params">(<span class="hljs-type">int</span> n)</span></span>{
@@ -2817,7 +2817,7 @@ C -&gt; <span class="hljs-selector-tag">B</span>
 	std::cin &gt;&gt; n;
 	std::cout &lt;&lt; <span class="hljs-built_in">climb</span>(n) &lt;&lt; <span class="hljs-string">&quot;\n&quot;</span>;
 	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
-}</code></pre></details><h3>6.递归实现排序<a id="6-递归实现排序" class="toc-anchor" name="6-递归实现排序" href="#6-递归实现排序">#</a></h3><p>输入10个整数&nbsp;<span class="math-tex">\(n\)</span>（<span class="math-tex">\(2 \le n \le 100000\)</span>），然后将它们用递归的方式从大到小排序。</p><p>本题推荐最大时长：50分钟</p><p>提示：本题解法非常多，而且难度较大，建议用画图等草稿来辅助完成任务。</p><p>题目输入案例：<code spellcheck="false">3 1 4 1 5 9 2 6 5 3</code></p><p>输出结果案例：<code spellcheck="false">9 6 5 5 4 3 3 2 1 1</code></p><details class="trilium-collapsible" open=""><summary>答案</summary><p>3.5 里那道排序题，是把"从大到小"这条规则直接写死在比较的那一行（<code spellcheck="false">if (a[j] &lt; a[j + 1])</code>）里；这一题要求用<strong>递归</strong>，同时把规则做成<strong>回调</strong>。</p><h4>思路<a id="思路" class="toc-anchor" name="思路" href="#思路">#</a></h4><p>我们先想好两个东西：</p><ul><li data-list-item-id="e1293e1ad0d8aaebe2195e516e387a5db"><strong>终止条件</strong>：<code spellcheck="false">n &lt;= 1</code>，剩下 0 个或 1 个数时，它天然就是排好的，不用再排。</li><li data-list-item-id="eeff6f90569ca1488419cb72c7167c6af"><strong>递推关系</strong>：在 <code spellcheck="false">a[0] ~ a[n-1]</code> 里找出"最该排在最后面"的那个数，把它换到末尾；剩下的 <code spellcheck="false">n-1</code> 个数交给下一次调用来排。</li></ul><p>每一层都让问题规模减 1，迟早会落到终止条件上。</p><h4>C<a id="c-10" class="toc-anchor" name="c-10" href="#c-10">#</a></h4><pre><code class="language-text-x-csrc hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+}</code></pre></details><h3>6.递归实现排序<a id="6-递归实现排序" class="toc-anchor" name="6-递归实现排序" href="#6-递归实现排序">#</a></h3><p>输入10个整数&nbsp;<span class="math-tex">\(n\)</span>（<span class="math-tex">\(2 \le n \le 100000\)</span>），然后将它们用递归的方式从大到小排序。</p><p>本题推荐最大时长：50分钟</p><p>提示：本题解法非常多，而且难度较大，建议用画图等草稿来辅助完成任务。</p><p>题目输入案例：<code spellcheck="false">3 1 4 1 5 9 2 6 5 3</code></p><p>输出结果案例：<code spellcheck="false">9 6 5 5 4 3 3 2 1 1</code></p><details class="trilium-collapsible"><summary>答案</summary><p>本题仅提供冒泡排序的答案。</p><h4>C<a id="c-10" class="toc-anchor" name="c-10" href="#c-10">#</a></h4><pre><code class="language-text-x-csrc hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
 
 <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">for_max</span><span class="hljs-params">(<span class="hljs-type">int</span> i, <span class="hljs-type">int</span> j, <span class="hljs-type">int</span> list[<span class="hljs-number">10</span>])</span> </span>{ <span class="hljs-comment">// 用于排序第i个数字，不断递归出最大值</span>
     <span class="hljs-keyword">if</span> (j == <span class="hljs-number">10</span>) <span class="hljs-keyword">return</span> list[i];	<span class="hljs-comment">// 终止条件</span>
@@ -3270,17 +3270,6 @@ C -&gt; <span class="hljs-selector-tag">B</span>
 
     
         <ul>
-            
-                
-
-<li>
-    <a href="#思路">
-        <span>思路</span>
-    </a>
-
-    
-</li>
-
             
                 
 

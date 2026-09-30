@@ -2314,9 +2314,9 @@
             
 
     
-    <a class="type-text" href="5.5%20%E5%87%BD%E6%95%B0%E6%8C%87%E9%92%88.html">
+    <a class="type-text" href="5.5%20%E5%87%BD%E6%95%B0%E4%B8%8E%E6%8C%87%E9%92%88.html">
         
-        <span><i class="tn-icon bx bx-note"></i> 5.5 函数指针</span>
+        <span><i class="tn-icon bx bx-note"></i> 5.5 函数与指针</span>
     </a>
 
 
@@ -2463,7 +2463,7 @@
                     <p><span>函数的声明和定义跟声明变量一样，也是可以分开的。</span></p><p><span>这一小节主要讲解更多关于声明和定义的东西。</span></p><h2><span>声明与定义可以分开</span><a id="声明与定义可以分开" class="toc-anchor" name="声明与定义可以分开" href="#声明与定义可以分开">#</a></h2><p><span>函数也有声明和定义的区分。</span></p><p><span>声明语法：</span></p><div><div><div><div><pre><code class="language-text-x-csrc hljs">返回类型 函数名称(函数参数)<span class="hljs-comment">;</span></code></pre></div></div></div><svg></svg><svg></svg></div><p><span>定义语法：</span></p><div><div><div><div><pre><code class="language-text-x-csrc hljs">返回类型 函数名称(函数参数){
 	语句...
 	[<span class="hljs-keyword">return</span> 表达式;]
-}</code></pre></div></div></div><svg></svg><svg></svg></div><p><span>声明只是告诉编译器：“有这样一个函数，它叫什么名字、返回什么类型、要什么参数。”</span><br><span>定义则是真正把函数体写出来，告诉编译器这个函数具体怎么做事。</span></p><p><span>分开后你可以像下面这样操作：</span></p><pre><code class="language-text-x-csrc hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+}</code></pre></div></div></div><svg></svg><svg></svg></div><p><span>声明只是告诉编译器：有一个函数，它叫什么名字、返回什么类型、要什么参数。</span><br><span>定义则是写出这个函数具体要执行哪些代码。</span></p><p><span>分开后你可以像下面这样操作：</span></p><pre><code class="language-text-x-csrc hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
 <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">add</span><span class="hljs-params">(<span class="hljs-type">int</span> a, <span class="hljs-type">int</span> b)</span></span>;		<span class="hljs-comment">// 声明</span>
 <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
 	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d&quot;</span>,<span class="hljs-built_in">add</span>(<span class="hljs-number">1</span>,<span class="hljs-number">3</span>));	<span class="hljs-comment">// 调用</span>
@@ -2472,7 +2472,7 @@
 
 <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">add</span> <span class="hljs-params">(<span class="hljs-type">int</span> a, <span class="hljs-type">int</span> b)</span></span>{ 	<span class="hljs-comment">// 定义</span>
 	<span class="hljs-keyword">return</span> a + b;
-}</code></pre><div><svg></svg><svg></svg></div><p><span>有时，这样看起来会舒心不少。</span></p><p><span>只要在调用前函数被声明即可。</span></p><p><span>声明中的参数名可以省略，只写类型也可以：</span></p><pre><code class="language-text-x-csrc hljs"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">add</span><span class="hljs-params">(<span class="hljs-type">int</span>, <span class="hljs-type">int</span>)</span></span>;		<span class="hljs-comment">// 合法声明</span></code></pre><div><svg></svg><svg></svg></div><p><span>但定义中如果要使用参数，就必须写参数名。</span></p><p><span>等到我们后续学习宏、学习头文件的时候，我们将会经常使用这种方案来更清晰地理顺代码。通常会把函数声明放在头文件里，把函数定义放在源文件里。</span></p><aside class="admonition note"><p><span>一个函数可以声明很多次，但只能定义一次。</span><br><span>如果函数定义写在调用它的代码前面，那么定义本身也起到了声明的作用，可以不再单独声明。</span></p></aside><h2><span>函数的参数详解</span><a id="函数的参数详解" class="toc-anchor" name="函数的参数详解" href="#函数的参数详解">#</a></h2><h3>&nbsp;<a id="nbsp" class="toc-anchor" name="nbsp" href="#nbsp">#</a></h3><div><figure class="table"><table><thead><tr><th><span>名字</span></th><th><span>作用</span></th></tr></thead><tbody><tr><td><code spellcheck="false">va_list</code></td><td><span>定义一个参数读取器</span></td></tr><tr><td><code spellcheck="false">va_start</code></td><td><span>开始读取，第二个参数写最后一个固定参数</span></td></tr><tr><td><code spellcheck="false">va_arg</code></td><td><span>读取下一个参数，第二个参数写类型</span></td></tr><tr><td><code spellcheck="false">va_end</code></td><td><span>结束读取，和 </span><code spellcheck="false">va_start</code><span> 配对</span></td></tr></tbody></table></figure><p>C++如果是写的<code spellcheck="false"><span>#include &lt;</span>cstdarg<span>&gt;</span></code>，那么可以在前面加一个<code spellcheck="false">std::</code>调用C++改过的类型或者函数等，比如<code spellcheck="false">std::va_list</code></p><p>上面说不建议写出<code spellcheck="false">f(…)</code>的原因就是，<code spellcheck="false">va_start</code>不好方便获取锚点，不方便进一步获取后续参数。</p><p><span>关于更多后续会详细介绍。</span></p></div><h2>全局变量<a id="全局变量" class="toc-anchor" name="全局变量" href="#全局变量">#</a></h2><p>全局变量我们前面学过，有时候也可以做全局变量给函数传参，比如：</p><pre><code class="language-text-x-csrc hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+}</code></pre><div><svg></svg><svg></svg></div><p><span>有时，这样看起来会舒心不少。</span></p><p><span>只要在调用前函数被声明即可。</span></p><p><span>声明中的参数名可以省略，只写类型也可以：</span></p><pre><code class="language-text-x-csrc hljs"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">add</span><span class="hljs-params">(<span class="hljs-type">int</span>, <span class="hljs-type">int</span>)</span></span>;		<span class="hljs-comment">// 合法声明</span></code></pre><div><svg></svg><svg></svg></div><p><span>但定义中如果要使用参数，就必须写参数名。</span></p><p><span>等到我们后续学习宏、学习头文件的时候，我们将会经常使用这种方案来更清晰地理顺代码。通常会把函数声明放在头文件里，把函数定义放在源文件里。</span></p><aside class="admonition note"><p><span>一个函数可以声明很多次，但只能定义一次。</span><br><span>如果函数定义写在调用它的代码前面，那么定义本身也起到了声明的作用，可以不再单独声明。</span></p></aside><h2>全局变量<a id="全局变量" class="toc-anchor" name="全局变量" href="#全局变量">#</a></h2><p>全局变量我们前面学过，有时候也可以做全局变量给函数传参，比如：</p><pre><code class="language-text-x-csrc hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
 <span class="hljs-type">int</span> a = <span class="hljs-number">10</span>;
 <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">add</span><span class="hljs-params">(<span class="hljs-type">int</span> b)</span></span>{
 	a+=b;<span class="hljs-comment">// 将全局变量加上一个数</span>
@@ -2482,7 +2482,7 @@
 	<span class="hljs-built_in">add</span>(b);
 	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d&quot;</span>,a);<span class="hljs-comment">// 输出20</span>
 	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
-}</code></pre><h2><span>C++的函数重载</span><a id="c-的函数重载" class="toc-anchor" name="c-的函数重载" href="#c-的函数重载">#</a></h2><p><span>有时候，有些函数功能几乎一样，只是参数不同，这时就可以使用函数重载。比如针对不同数据类型的勾股定理函数就是一个很好的应用场景。</span></p><p><span>C++ 允许在同一作用域中，定义多个同名函数，只要它们的参数列表不同。这就是函数重载。</span></p><p><span>例如：</span></p><div><div><div><div><pre><code class="language-text-x-c-src hljs"><span class="hljs-meta">#include &lt;iostream&gt;</span>
+}</code></pre><h2><span>C++的函数重载</span><a id="c-的函数重载" class="toc-anchor" name="c-的函数重载" href="#c-的函数重载">#</a></h2><p><span>有时候，有些函数功能几乎一样，只是参数不同，这时就可以使用函数重载。比如针对不同数据类型的勾股定理函数或两数相加函数等就是一个很好的应用场景。</span></p><p><span>C++ 允许在同一作用域中，定义多个同名函数，只要它们的参数列表不同。这就是函数重载。</span></p><p><span>例如：</span></p><div><div><div><div><pre><code class="language-text-x-c-src hljs"><span class="hljs-meta">#include &lt;iostream&gt;</span>
 <span class="hljs-type">int</span> <span class="hljs-keyword">add</span>(<span class="hljs-type">int</span> a, <span class="hljs-type">int</span> b){
 	<span class="hljs-keyword">return</span> a + b;
 }
@@ -2492,6 +2492,7 @@
 <span class="hljs-type">int</span> <span class="hljs-keyword">add</span>(<span class="hljs-type">int</span> a, <span class="hljs-type">int</span> b, <span class="hljs-type">int</span> c){
 	<span class="hljs-keyword">return</span> a + b + c;
 }
+<span class="hljs-type">int</span> 
 <span class="hljs-type">int</span> main(){
 	std::cout &lt;&lt; <span class="hljs-keyword">add</span>(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>) &lt;&lt; &quot;\n&quot;;		// 调用 <span class="hljs-type">int</span> <span class="hljs-keyword">add</span>(<span class="hljs-type">int</span>, <span class="hljs-type">int</span>)
 	std::cout &lt;&lt; <span class="hljs-keyword">add</span>(<span class="hljs-number">1.5</span>, <span class="hljs-number">2.5</span>) &lt;&lt; &quot;\n&quot;;	// 调用 <span class="hljs-type">double</span> <span class="hljs-keyword">add</span>(<span class="hljs-type">double</span>, <span class="hljs-type">double</span>)
@@ -2540,32 +2541,6 @@
         <span>声明与定义可以分开</span>
     </a>
 
-    
-</li>
-
-                    
-                        
-
-<li>
-    <a href="#函数的参数详解">
-        <span>函数的参数详解</span>
-    </a>
-
-    
-        <ul>
-            
-                
-
-<li>
-    <a href="#nbsp">
-        <span>&amp;nbsp;</span>
-    </a>
-
-    
-</li>
-
-            
-        </ul>
     
 </li>
 

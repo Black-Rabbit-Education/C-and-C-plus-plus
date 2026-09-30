@@ -2314,9 +2314,9 @@
             
 
     
-    <a class="type-text" href="5.5%20%E5%87%BD%E6%95%B0%E6%8C%87%E9%92%88.html">
+    <a class="type-text" href="5.5%20%E5%87%BD%E6%95%B0%E4%B8%8E%E6%8C%87%E9%92%88.html">
         
-        <span><i class="tn-icon bx bx-note"></i> 5.5 函数指针</span>
+        <span><i class="tn-icon bx bx-note"></i> 5.5 函数与指针</span>
     </a>
 
 
@@ -2487,9 +2487,9 @@
 <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">g</span><span class="hljs-params">(<span class="hljs-type">int</span> a = <span class="hljs-number">1</span>, <span class="hljs-type">int</span> b = <span class="hljs-number">2</span>, <span class="hljs-type">int</span> c = <span class="hljs-number">3</span>)</span></span>;	<span class="hljs-comment">// 合法</span></code></pre><div><svg></svg><svg></svg></div><p><span>错误写法：</span></p><pre><code class="language-text-x-c-src hljs"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">h</span><span class="hljs-params">(<span class="hljs-type">int</span> a = <span class="hljs-number">1</span>, <span class="hljs-type">int</span> b, <span class="hljs-type">int</span> c = <span class="hljs-number">3</span>)</span></span>;	<span class="hljs-comment">// 错误：b 没有默认值，右边的 c 却有默认值</span>
 <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">k</span><span class="hljs-params">(<span class="hljs-type">int</span> a, <span class="hljs-type">int</span> b = <span class="hljs-number">1</span>, <span class="hljs-type">int</span> c)</span></span>;		<span class="hljs-comment">// 错误：c 在 b 右边，却没有默认值</span></code></pre><div><svg></svg><svg></svg></div><p><span>因为调用函数时，实参是从左往右依次传入的，不能跳过中间某个参数只填后面的参数。</span></p><p><span>例如：</span></p><pre><code class="language-text-x-c-src hljs"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">f</span><span class="hljs-params">(<span class="hljs-type">int</span> a, <span class="hljs-type">int</span> b = <span class="hljs-number">2</span>, <span class="hljs-type">int</span> c = <span class="hljs-number">3</span>)</span></span>;</code></pre><div><svg></svg><svg></svg></div><p><span>可以这样调用：</span></p><pre><code class="language-text-x-c-src hljs"><span class="hljs-attribute">f</span>(<span class="hljs-number">1</span>);		// 等价于 f(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>)
 <span class="hljs-attribute">f</span>(<span class="hljs-number">1</span>, <span class="hljs-number">5</span>);	// 等价于 f(<span class="hljs-number">1</span>, <span class="hljs-number">5</span>, <span class="hljs-number">3</span>)
-<span class="hljs-attribute">f</span>(<span class="hljs-number">1</span>, <span class="hljs-number">5</span>, <span class="hljs-number">8</span>);</code></pre><div><svg></svg><svg></svg></div><p><span>但不能只填 </span><code spellcheck="false">a</code><span> 和 </span><code spellcheck="false">c</code><span>，跳过 </span><code spellcheck="false">b</code><span>。</span></p><h3><span>可变参数函数</span><a id="可变参数函数" class="toc-anchor" name="可变参数函数" href="#可变参数函数">#</a></h3><p><span>有时候，我们不知道调用函数时到底会传多少个参数。比如 </span><code spellcheck="false">printf</code><span> 就是一个可变参函数，可以输出一个值，也可以输出很多个值：</span></p><pre><code class="language-text-x-c-src hljs"><span class="hljs-keyword">printf</span>(<span class="hljs-string">&quot;<span class="hljs-variable">%d</span>&quot;</span>, <span class="hljs-number">1</span>);
+<span class="hljs-attribute">f</span>(<span class="hljs-number">1</span>, <span class="hljs-number">5</span>, <span class="hljs-number">8</span>);</code></pre><div><svg></svg><svg></svg></div><p><span>但不能只填 </span><code spellcheck="false">a</code><span> 和 </span><code spellcheck="false">c</code><span>，跳过 </span><code spellcheck="false">b</code><span>。</span></p><h2><span>可变参数函数</span><a id="可变参数函数" class="toc-anchor" name="可变参数函数" href="#可变参数函数">#</a></h2><p><span>有时候，我们不知道调用函数时到底会传多少个参数。比如 </span><code spellcheck="false">printf</code><span> 就是一个可变参函数，可以输出一个值，也可以输出很多个值：</span></p><pre><code class="language-text-x-c-src hljs"><span class="hljs-keyword">printf</span>(<span class="hljs-string">&quot;<span class="hljs-variable">%d</span>&quot;</span>, <span class="hljs-number">1</span>);
 <span class="hljs-keyword">printf</span>(<span class="hljs-string">&quot;<span class="hljs-variable">%d</span> <span class="hljs-variable">%d</span>&quot;</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>);
-<span class="hljs-keyword">printf</span>(<span class="hljs-string">&quot;<span class="hljs-variable">%d</span> <span class="hljs-variable">%d</span> <span class="hljs-variable">%d</span>&quot;</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>);</code></pre><div><svg></svg><svg></svg></div><p><span>像这种参数个数可以变化的函数，就叫<strong>可变参数函数</strong>。</span><br><span>C 和 C++ 都支持用省略号 </span><code spellcheck="false">...</code><span> 来表示可变参数。</span></p><h4><span>语法</span><a id="语法" class="toc-anchor" name="语法" href="#语法">#</a></h4><pre><code class="language-text-x-c-src hljs">返回类型 函数名(至少一个固定参数, <span class="hljs-params">...</span>);</code></pre><div><svg></svg><svg></svg></div><p><span>规则：</span></p><ul><li data-list-item-id="eff5b87dd7849fb91729abe9a89929b05"><code spellcheck="false">...</code><span> 必须放在参数列表最后。</span></li><li data-list-item-id="ee8be1b534028742fc1b8d76a5bff7ebc"><span>前面至少要有一个固定参数。</span></li><li data-list-item-id="e08c19ed2b35916c198026fd0d414240a"><span>不建议写成 </span><code spellcheck="false">int f(...);</code><span>。</span></li></ul><p><span>例如：</span></p><pre><code class="language-text-x-c-src hljs"><span class="hljs-built_in">int</span> <span class="hljs-keyword">sum</span>(<span class="hljs-built_in">int</span> <span class="hljs-keyword">count</span>, ...);</code></pre><div><svg></svg><svg></svg></div><p><span>这里的 </span><code spellcheck="false">count</code><span> 是固定参数，用来告诉函数后面有几个数。</span></p><h3><span>获取可变参数</span><a id="获取可变参数" class="toc-anchor" name="获取可变参数" href="#获取可变参数">#</a></h3><p><span>想要获取可变参数，你需要添加一行新的代码。</span></p><p><span>如果你是C语言，你需要添加</span><code spellcheck="false"><span>#include &lt;</span>stdarg.h<span>&gt;</span></code></p><p><span>如果你是C++，你可以选择使用C的代码或者</span><code spellcheck="false"><span>#include &lt;</span>cstdarg<span>&gt;</span></code></p><p>示例代码：</p><pre><code class="language-text-x-csrc hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+<span class="hljs-keyword">printf</span>(<span class="hljs-string">&quot;<span class="hljs-variable">%d</span> <span class="hljs-variable">%d</span> <span class="hljs-variable">%d</span>&quot;</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>);</code></pre><div><svg></svg><svg></svg></div><p><span>像这种参数个数可以变化的函数，就叫<strong>可变参数函数</strong>。</span><br><span>C 和 C++ 都支持用省略号 </span><code spellcheck="false">...</code><span> 来表示可变参数。</span></p><h3><span>语法</span><a id="语法" class="toc-anchor" name="语法" href="#语法">#</a></h3><pre><code class="language-text-x-c-src hljs">返回类型 函数名(至少一个固定参数, <span class="hljs-params">...</span>);</code></pre><div><svg></svg><svg></svg></div><p><span>规则：</span></p><ul><li data-list-item-id="eff5b87dd7849fb91729abe9a89929b05"><code spellcheck="false">...</code><span> 必须放在参数列表最后。</span></li><li data-list-item-id="ee8be1b534028742fc1b8d76a5bff7ebc"><span>前面至少要有一个固定参数。</span></li><li data-list-item-id="e08c19ed2b35916c198026fd0d414240a"><span>不建议写成 </span><code spellcheck="false">int f(...);</code><span>。</span></li></ul><p><span>例如：</span></p><pre><code class="language-text-x-c-src hljs"><span class="hljs-built_in">int</span> <span class="hljs-keyword">sum</span>(<span class="hljs-built_in">int</span> <span class="hljs-keyword">count</span>, ...);</code></pre><div><svg></svg><svg></svg></div><p><span>这里的 </span><code spellcheck="false">count</code><span> 是固定参数，用来告诉函数后面有几个数。</span></p><h3><span>获取可变参数</span><a id="获取可变参数" class="toc-anchor" name="获取可变参数" href="#获取可变参数">#</a></h3><p><span>想要获取可变参数，你需要添加一行新的代码。</span></p><p><span>如果你是C语言，你需要添加</span><code spellcheck="false"><span>#include &lt;</span>stdarg.h<span>&gt;</span></code></p><p><span>如果你是C++，你可以选择使用C的代码或者</span><code spellcheck="false"><span>#include &lt;</span>cstdarg<span>&gt;</span></code></p><p>示例代码：</p><pre><code class="language-text-x-csrc hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
 <span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdarg.h&gt;</span></span>
 
 <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">sum</span><span class="hljs-params">(<span class="hljs-type">int</span> count, ...)</span></span>{
@@ -2509,7 +2509,7 @@
     <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>, <span class="hljs-built_in">sum</span>(<span class="hljs-number">3</span>, <span class="hljs-number">10</span>, <span class="hljs-number">20</span>, <span class="hljs-number">30</span>));  <span class="hljs-comment">// 输出 60</span>
     <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>, <span class="hljs-built_in">sum</span>(<span class="hljs-number">4</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>));  <span class="hljs-comment">// 输出 10</span>
     <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
-}</code></pre><p><span>四个关键东西：</span></p><h2>&nbsp;引用传参与函数重载<a id="nbsp-引用传参与函数重载" class="toc-anchor" name="nbsp-引用传参与函数重载" href="#nbsp-引用传参与函数重载">#</a></h2><p>把三种引用写成三个同名函数：</p><pre><code class="language-text-x-c-src hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+}</code></pre><p>我们要多学四个东西：</p><ul><li data-list-item-id="2529578b074a4474887584d65edcc0f0"><code spellcheck="false">va_list</code><span>：一个变量类型，用于记录当前读到哪儿了。</span></li><li data-list-item-id="c80edf9895aa423a88a0f672acd54078"><code spellcheck="false">va_start</code><span>：一个函数，用于初始化这个读取器，从哪个固定参数后面开始读，由你告诉它。</span></li><li data-list-item-id="dc2e023291f144139615a75c124d08d0"><code spellcheck="false">va_arg</code><span>：一个函数，用于读下一个参数，要告诉它这个参数是什么类型。</span></li><li data-list-item-id="589ccd8332af493ba06a90f59aa7f32d"><code spellcheck="false">va_end</code><span>：一个函数，用于读完参数收尾，和 </span><code spellcheck="false"><span>va_start</span></code><span> 成对出现。</span></li></ul><h2>&nbsp;引用传参与函数重载<a id="nbsp-引用传参与函数重载" class="toc-anchor" name="nbsp-引用传参与函数重载" href="#nbsp-引用传参与函数重载">#</a></h2><p>把三种引用写成三个同名函数：</p><pre><code class="language-text-x-c-src hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
 <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">f</span><span class="hljs-params">(<span class="hljs-type">int</span>&amp; x)</span> </span>{ std::cout &lt;&lt; <span class="hljs-string">&quot;f(int&amp;)：绑到左值，x = &quot;</span> &lt;&lt; x &lt;&lt; <span class="hljs-string">&quot;\n&quot;</span>; }
 <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">f</span><span class="hljs-params">(<span class="hljs-type">const</span> <span class="hljs-type">int</span>&amp; x)</span> </span>{ std::cout &lt;&lt; <span class="hljs-string">&quot;f(const int&amp;)：绑到只读的左值，x = &quot;</span> &lt;&lt; x &lt;&lt; <span class="hljs-string">&quot;\n&quot;</span>; }
 <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">f</span><span class="hljs-params">(<span class="hljs-type">int</span>&amp;&amp; x)</span> </span>{ std::cout &lt;&lt; <span class="hljs-string">&quot;f(int&amp;&amp;)：绑到右值，x = &quot;</span> &lt;&lt; x &lt;&lt; <span class="hljs-string">&quot;\n&quot;</span>; }
@@ -2525,7 +2525,71 @@
 }</code></pre><p>运行结果：</p><pre><code class="language-text-x-trilium-auto hljs"><span class="hljs-function"><span class="hljs-title">f</span><span class="hljs-params">(int&amp;)</span></span>：绑到左值，<span class="hljs-attribute">x</span> = <span class="hljs-number">1</span>
 <span class="hljs-function"><span class="hljs-title">f</span><span class="hljs-params">(const int&amp;)</span></span>：绑到只读的左值，<span class="hljs-attribute">x</span> = <span class="hljs-number">2</span>
 <span class="hljs-function"><span class="hljs-title">f</span><span class="hljs-params">(int&amp;&amp;)</span></span>：绑到右值，<span class="hljs-attribute">x</span> = <span class="hljs-number">10</span>
-<span class="hljs-function"><span class="hljs-title">f</span><span class="hljs-params">(int&amp;&amp;)</span></span>：绑到右值，<span class="hljs-attribute">x</span> = <span class="hljs-number">2</span></code></pre><p>整理一下：</p><figure class="table"><table><thead><tr><th>调用</th><th>选中哪个</th><th>为什么</th></tr></thead><tbody><tr><td><code spellcheck="false">f(a)</code></td><td><code spellcheck="false">f(int&amp;)</code></td><td>普通左值</td></tr><tr><td><code spellcheck="false">f(b)</code></td><td><code spellcheck="false">f(const int&amp;)</code></td><td><code spellcheck="false">b</code> 是 <code spellcheck="false">const</code></td></tr><tr><td><code spellcheck="false">f(10)</code>、<code spellcheck="false">f(a + 1)</code></td><td><code spellcheck="false">f(int&amp;&amp;)</code></td><td>右值优先选右值引用</td></tr></tbody></table></figure><p>这是右值引用的一个主要用途：让函数能分清参数是一个还要继续用的变量还是一个用完就扔的临时值。</p><p>对后者，就可以放心地直接抢它的内存，函数不会再去复制他的值然后申请新的内存。</p><h2>函数引用返回<a id="函数引用返回" class="toc-anchor" name="函数引用返回" href="#函数引用返回">#</a></h2><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p>
+<span class="hljs-function"><span class="hljs-title">f</span><span class="hljs-params">(int&amp;&amp;)</span></span>：绑到右值，<span class="hljs-attribute">x</span> = <span class="hljs-number">2</span></code></pre><p>整理一下：</p><figure class="table"><table><thead><tr><th>调用</th><th>选中哪个</th><th>为什么</th></tr></thead><tbody><tr><td><code spellcheck="false">f(a)</code></td><td><code spellcheck="false">f(int&amp;)</code></td><td>普通左值</td></tr><tr><td><code spellcheck="false">f(b)</code></td><td><code spellcheck="false">f(const int&amp;)</code></td><td><code spellcheck="false">b</code> 是 <code spellcheck="false">const</code></td></tr><tr><td><code spellcheck="false">f(10)</code>、<code spellcheck="false">f(a + 1)</code></td><td><code spellcheck="false">f(int&amp;&amp;)</code></td><td>右值优先选右值引用</td></tr></tbody></table></figure><p>这是右值引用的一个主要用途：让函数能分清参数是一个还要继续用的变量还是一个用完就消失的临时值。</p><p>对后者，就可以放心地直接获取它的内存，函数不会再去复制它的值然后申请新的内存。</p><h2>函数引用返回<a id="函数引用返回" class="toc-anchor" name="函数引用返回" href="#函数引用返回">#</a></h2><p>返回值的位置也能写引用类型，比如 <code spellcheck="false">int&amp;</code>。这样返回的就不是一份拷贝，而是某个变量本身，也就是它的别名。</p><p>看例子：</p><pre><code class="language-text-x-c-src hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+
+<span class="hljs-type">int</span> g = <span class="hljs-number">10</span>;
+
+<span class="hljs-function"><span class="hljs-type">int</span>&amp; <span class="hljs-title">getG</span><span class="hljs-params">()</span></span>{
+	<span class="hljs-keyword">return</span> g;		<span class="hljs-comment">// 返回的是 g 本身，不是拷贝</span>
+}
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+	<span class="hljs-built_in">getG</span>() = <span class="hljs-number">99</span>;	<span class="hljs-comment">// 返回的是引用，可以直接当左值用</span>
+	std::cout &lt;&lt; g &lt;&lt; <span class="hljs-string">&quot;\n&quot;</span>;
+
+	<span class="hljs-type">int</span>&amp; r = <span class="hljs-built_in">getG</span>();	<span class="hljs-comment">// 也可以给引用赋值</span>
+	r = <span class="hljs-number">5</span>;
+	std::cout &lt;&lt; g &lt;&lt; <span class="hljs-string">&quot;\n&quot;</span>;
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre><p>输出：</p><pre><code class="language-text-x-trilium-auto hljs">99
+5</code></pre><p><code spellcheck="false">getG() = 99;</code> 语法合法，因为它是一个左值，只要是左值就可以被赋值。</p><p>要是把返回类型改成 <code spellcheck="false">int</code>，返回的就只是一份临时拷贝，这行会直接编译报错：</p><pre><code class="language-text-x-c-src hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+
+<span class="hljs-type">int</span> g = <span class="hljs-number">10</span>;
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">getG</span><span class="hljs-params">()</span></span>{
+	<span class="hljs-keyword">return</span> g;
+}
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+	<span class="hljs-built_in">getG</span>() = <span class="hljs-number">99</span>;
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre><pre><code class="language-text-x-trilium-auto hljs"><span class="hljs-keyword">error: </span>lvalue required as left operand of assignment</code></pre><p>但返回引用有个坑：<strong>无法把局部变量的引用返回出去</strong>。</p><pre><code class="language-text-x-c-src hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+
+<span class="hljs-function"><span class="hljs-type">int</span>&amp; <span class="hljs-title">bad</span><span class="hljs-params">()</span></span>{
+	<span class="hljs-type">int</span> x = <span class="hljs-number">10</span>;
+	<span class="hljs-keyword">return</span> x;		<span class="hljs-comment">// 危险：x 在函数返回时就销毁了</span>
+}
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+	<span class="hljs-type">int</span> v = <span class="hljs-built_in">bad</span>();
+	std::cout &lt;&lt; v &lt;&lt; <span class="hljs-string">&quot;\n&quot;</span>;
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre><p>g++ 会给出警告：</p><pre><code class="language-text-x-trilium-auto hljs">warning: reference <span class="hljs-built_in">to</span> <span class="hljs-built_in">local</span> <span class="hljs-built_in">variable</span> <span class="hljs-string">&#x27;x&#x27;</span> returned [-Wreturn-<span class="hljs-built_in">local</span>-addr]</code></pre><p><code spellcheck="false">x</code> 是栈上的局部变量，函数一返回就释放了，引用指向一块已经释放的内存，这就叫<strong>悬垂引用</strong>。</p><p>这个例子编译只有警告，运行会直接崩溃。</p><h3>引用返回的实际用途<a id="引用返回的实际用途" class="toc-anchor" name="引用返回的实际用途" href="#引用返回的实际用途">#</a></h3><p>有很多非常好用的用途，但都在后续讲解类的重载运算符时讲解，这里只讲一个案例。</p><p>有时我们需要每次获取或修改某个值的时候，执行一些特定的操作，引用返回就非常好用：</p><pre><code class="language-text-x-trilium-auto hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+<span class="hljs-type">int</span> g;
+
+<span class="hljs-function"><span class="hljs-type">int</span> &amp;<span class="hljs-title">getG</span><span class="hljs-params">(<span class="hljs-type">int</span> &amp;value)</span></span>{
+	value++;	<span class="hljs-comment">// 比如这里就是我们想要执行的某个操作</span>
+	<span class="hljs-keyword">return</span> g;
+}
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+	<span class="hljs-type">int</span> a = <span class="hljs-number">10</span>;
+	<span class="hljs-built_in">getG</span>(a) = <span class="hljs-number">2</span>;	<span class="hljs-comment">// 本行执行结束后，g=2,a=11</span>
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre><h2>指针传参<a id="指针传参" class="toc-anchor" name="指针传参" href="#指针传参">#</a></h2><p>指针也能当参数，指针本质与引用其实差不多。</p><p>指针与引用同样都可以让函数修改实参而不仅仅只是形参。</p><pre><code class="language-text-x-c-src hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">swap</span><span class="hljs-params">(<span class="hljs-type">int</span>* a, <span class="hljs-type">int</span>* b)</span></span>{
+	*a ^= *b;
+	*b ^= *a;
+	*a ^= *b;
+}
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+	<span class="hljs-type">int</span> x = <span class="hljs-number">1</span>, y = <span class="hljs-number">2</span>;
+	<span class="hljs-built_in">swap</span>(&amp;x, &amp;y);	<span class="hljs-comment">// 传进去的是地址</span>
+	std::cout &lt;&lt; x &lt;&lt; <span class="hljs-string">&quot; &quot;</span> &lt;&lt; y &lt;&lt; <span class="hljs-string">&quot;\n&quot;</span>;
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre><p>输出：</p><pre><code class="language-text-x-trilium-auto hljs"><span class="hljs-symbol">2 </span><span class="hljs-number">1</span></code></pre><p><code spellcheck="false">swap</code> 形参拷贝的是地址，所以<code spellcheck="false">*a</code>和<code spellcheck="false">*b</code>无论是形参还是实参，它们指向的地址都是一样的！</p><h2>小结<a id="小结" class="toc-anchor" name="小结" href="#小结">#</a></h2><p>这些传参技巧，在我们实际项目中非常好用，比如你的<code spellcheck="false">scanf</code>函数就是使用了可变参数列表和传指针的方案。</p><p>下一节：<a class="reference-link type-text" href="5.5%20%E5%87%BD%E6%95%B0%E4%B8%8E%E6%8C%87%E9%92%88.html"><span><span class="tn-icon bx bx-note"></span>5.5 函数与指针</span></a></p>
                 
                 
             </div>
@@ -2540,7 +2604,7 @@
 
 <div class="navigation">
     <a class="previous" href="5.3%20%E9%80%92%E5%BD%92.html">5.3 递归</a>
-    <a class="next" href="5.5%20%E5%87%BD%E6%95%B0%E6%8C%87%E9%92%88.html">5.5 函数指针</a>
+    <a class="next" href="5.5%20%E5%87%BD%E6%95%B0%E4%B8%8E%E6%8C%87%E9%92%88.html">5.5 函数与指针</a>
 </div>
                 
 
@@ -2584,7 +2648,12 @@
 </li>
 
             
-                
+        </ul>
+    
+</li>
+
+                    
+                        
 
 <li>
     <a href="#可变参数函数">
@@ -2601,11 +2670,6 @@
         <span>语法</span>
     </a>
 
-    
-</li>
-
-            
-        </ul>
     
 </li>
 
@@ -2642,6 +2706,43 @@
 <li>
     <a href="#函数引用返回">
         <span>函数引用返回</span>
+    </a>
+
+    
+        <ul>
+            
+                
+
+<li>
+    <a href="#引用返回的实际用途">
+        <span>引用返回的实际用途</span>
+    </a>
+
+    
+</li>
+
+            
+        </ul>
+    
+</li>
+
+                    
+                        
+
+<li>
+    <a href="#指针传参">
+        <span>指针传参</span>
+    </a>
+
+    
+</li>
+
+                    
+                        
+
+<li>
+    <a href="#小结">
+        <span>小结</span>
     </a>
 
     
