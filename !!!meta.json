@@ -536,7 +536,7 @@
 					"title": "第四章：指针与引用",
 					"notePosition": 50,
 					"prefix": null,
-					"isExpanded": false,
+					"isExpanded": true,
 					"type": "text",
 					"mime": "text/html",
 					"attributes": [
@@ -920,7 +920,15 @@
 							"isExpanded": false,
 							"type": "text",
 							"mime": "text/html",
-							"attributes": [],
+							"attributes": [
+								{
+									"type": "relation",
+									"name": "internalLink",
+									"value": "UOHAWvW6Sgdz",
+									"isInheritable": false,
+									"position": 10
+								}
+							],
 							"format": "html",
 							"dataFileName": "5.5 函数与指针.html",
 							"attachments": []

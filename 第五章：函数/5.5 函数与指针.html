@@ -2466,7 +2466,7 @@
 
 <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">f</span><span class="hljs-params">(<span class="hljs-type">int</span> *a)</span></span>{
 	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>, <span class="hljs-built_in">sizeof</span>(a));
-}</code></pre><p>这两种写法在编译器眼里是同一个函数，形参被统一改写成 <code spellcheck="false">int *a</code>。也就是说 <code spellcheck="false">int a[]</code> 里的 <code spellcheck="false">[]</code> 只是个记号，方括号里写不写数字都不影响类型。</p><p>这个改写带来一个最经典的坑：在函数里 <code spellcheck="false">sizeof</code> 数组参数，得到的是指针的大小，不是数组的大小。</p><pre><code class="language-text-x-c-src hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+}</code></pre><p>这两种写法在编译器眼里是同一个函数，形参被统一改写成 <code spellcheck="false">int *a</code>。也就是说 <code spellcheck="false">int a[]</code> 里的 <code spellcheck="false">[]</code> 只是个记号，方括号里写不写数字都不影响类型。</p><p>这个改写带来一个经典的问题：在函数里 <code spellcheck="false">sizeof</code> 数组参数，得到的是指针的大小，不是数组的大小。</p><pre><code class="language-text-x-c-src hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
 
 <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">printArr</span><span class="hljs-params">(<span class="hljs-type">int</span> a[])</span></span>{
 	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;sizeof(a) = %d\n&quot;</span>, <span class="hljs-built_in">sizeof</span>(a));
@@ -2479,7 +2479,7 @@
 	<span class="hljs-built_in">printArr</span>(a);
 	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
 }</code></pre><p>运行结果：</p><pre><code class="language-text-x-trilium-auto hljs"><span class="hljs-function"><span class="hljs-title">sizeof</span><span class="hljs-params">(a)</span></span> = <span class="hljs-number">20</span>
-<span class="hljs-function"><span class="hljs-title">sizeof</span><span class="hljs-params">(a)</span></span> = <span class="hljs-number">8</span></code></pre><p><code spellcheck="false">sizeof(a) / sizeof(a[0])</code> 求元素个数的技巧，在这里不可用(这也是为什么<code spellcheck="false">main</code>函数的第一个参数是参数数量)。</p><p>好在编译器认得出这个错误，加上 <code spellcheck="false">-Wall</code> 会直接点出来：</p><pre><code class="language-text-x-trilium-auto hljs">warning: &#x27;sizeof&#x27; on<span class="hljs-built_in"> array </span>function parameter &#x27;a&#x27; will<span class="hljs-built_in"> return </span>size of &#x27;int *&#x27; [-Wsizeof-array-argument]</code></pre><p>既然函数自己量不出长度，就得由调用方把长度一起传进来。这是 C 里传数组的标准做法：</p><pre><code class="language-text-x-c-src hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+<span class="hljs-function"><span class="hljs-title">sizeof</span><span class="hljs-params">(a)</span></span> = <span class="hljs-number">8</span></code></pre><p><code spellcheck="false">sizeof(a) / sizeof(a[0])</code> 求元素个数的技巧，在这里不可用(这也是为什么<code spellcheck="false">main</code>函数的第一个参数是参数数量)。</p><p>好在编译器认得出这个错误，加上 <code spellcheck="false">-Wall</code> 会直接报错：</p><pre><code class="language-text-x-trilium-auto hljs">warning: &#x27;sizeof&#x27; on<span class="hljs-built_in"> array </span>function parameter &#x27;a&#x27; will<span class="hljs-built_in"> return </span>size of &#x27;int *&#x27; [-Wsizeof-array-argument]</code></pre><p>既然函数自己量不出长度，就得由调用方把长度一起传进来。这是 C 里传数组的标准做法：</p><pre><code class="language-text-x-c-src hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
 
 <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">printArr</span><span class="hljs-params">(<span class="hljs-type">int</span> a[], <span class="hljs-type">int</span> len)</span></span>{
 	<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; len; i++){
@@ -2491,7 +2491,7 @@
 <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
 	<span class="hljs-type">int</span> a[<span class="hljs-number">5</span>] = {<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>};
 
-	<span class="hljs-built_in">printArr</span>(a, <span class="hljs-built_in">sizeof</span>(a)/(sizeofa[<span class="hljs-number">0</span>]));
+	<span class="hljs-built_in">printArr</span>(a, <span class="hljs-built_in">sizeof</span>(a)/(<span class="hljs-keyword">sizeof</span> a[<span class="hljs-number">0</span>]));
 	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
 }</code></pre><p>运行结果：</p><pre><code class="language-text-x-trilium-auto hljs"><span class="hljs-symbol">1 </span><span class="hljs-number">2</span> <span class="hljs-number">3</span> <span class="hljs-number">4</span> <span class="hljs-number">5</span> </code></pre><p>另外，数组参数不需要从第 0 个元素开始传。既然它本质上是个指针，那 <code spellcheck="false">&amp;a[2]</code> 也能传，函数就只看见从那里开始的一段：</p><pre><code class="language-text-x-c-src hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
 
@@ -2535,7 +2535,7 @@
 error: passing argument <span class="hljs-number">1</span> of <span class="hljs-string">&#x27;printTable&#x27;</span> <span class="hljs-keyword">from</span> incompatible pointer type [-Wincompatible-pointer-types]
 note: expected <span class="hljs-string">&#x27;int (*)[4]&#x27;</span> but argument <span class="hljs-keyword">is</span> of type <span class="hljs-string">&#x27;int (*)[3]&#x27;</span>
 
-<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">f</span>(<span class="hljs-params"><span class="hljs-built_in">int</span> **t</span>)</span>;           <span class="hljs-comment">// 传二维数组也报错</span>
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">f</span>(<span class="hljs-params"><span class="hljs-built_in">int</span> **t</span>)</span>;           <span class="hljs-comment">// 传二维数组时报错</span>
 error: passing argument <span class="hljs-number">1</span> of <span class="hljs-string">&#x27;printTable&#x27;</span> <span class="hljs-keyword">from</span> incompatible pointer type [-Wincompatible-pointer-types]
 note: expected <span class="hljs-string">&#x27;int **&#x27;</span> but argument <span class="hljs-keyword">is</span> of type <span class="hljs-string">&#x27;int (*)[3]&#x27;</span></code></pre><p>第一行的 <code spellcheck="false">int a[5]</code> 是个特例：方括号里的数字被编译器直接丢掉，和 <code spellcheck="false">int a[]</code> 完全一样，所以不报错。</p><p>C++ 这一节的内容和 C 完全一样，数组照样退化成指针，<code spellcheck="false">sizeof</code> 照样失效。</p><pre><code class="language-text-x-c-src hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
 
@@ -2555,7 +2555,7 @@ note: expected <span class="hljs-string">&#x27;int **&#x27;</span> but argument 
 	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
 }</code></pre><p>运行结果：</p><pre><code class="language-text-x-trilium-auto hljs"><span class="hljs-attribute">sizeof</span>(a) = <span class="hljs-number">20</span>
 <span class="hljs-attribute">sizeof</span>(a) = <span class="hljs-number">8</span>
-<span class="hljs-attribute">1</span> <span class="hljs-number">2</span> <span class="hljs-number">3</span> <span class="hljs-number">4</span> <span class="hljs-number">5</span> </code></pre><p>注意警告里写的是 <code spellcheck="false">In function ‘void printArr(int*, int)’</code>，编译器会直接提示你完全一致。</p><h2>返回数组<a id="返回数组" class="toc-anchor" name="返回数组" href="#返回数组">#</a></h2><p>函数不能返回一个数组。原因就是前面说的数组名不能被赋值。</p><p>数组不能返回，指向数组的指针可以。</p><h2>方案一：传参修改参数<a id="方案一-传参修改参数" class="toc-anchor" name="方案一-传参修改参数" href="#方案一-传参修改参数">#</a></h2><p>让调用方把自己的数组传进来，函数负责往里填。这是工程里最常用的做法，因为它不占额外内存、不用管释放、反复调用也不会互相干扰：</p><pre><code class="language-text-x-c-src hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+<span class="hljs-attribute">1</span> <span class="hljs-number">2</span> <span class="hljs-number">3</span> <span class="hljs-number">4</span> <span class="hljs-number">5</span> </code></pre><p>注意警告里写的是 <code spellcheck="false">In function ‘void printArr(int*, int)’</code>，编译器会直接提示你完全一致。</p><h2>返回数组<a id="返回数组" class="toc-anchor" name="返回数组" href="#返回数组">#</a></h2><p>函数不能返回一个数组。原因就是前面说的数组名不能被赋值。</p><p>数组不能返回，指向数组的指针可以。</p><h3>方案一：传参修改参数<a id="方案一-传参修改参数" class="toc-anchor" name="方案一-传参修改参数" href="#方案一-传参修改参数">#</a></h3><p>让调用方把自己的数组传进来，函数负责往里填。这是工程里最常用的做法，因为它不占额外内存、不用管释放、反复调用也不会互相干扰：</p><pre><code class="language-text-x-c-src hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
 
 <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">fills</span><span class="hljs-params">(<span class="hljs-type">int</span> src[], <span class="hljs-type">int</span> dst[], <span class="hljs-type">int</span> len)</span></span>{
 	<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; len; i++){
@@ -2593,12 +2593,103 @@ note: expected <span class="hljs-string">&#x27;int **&#x27;</span> but argument 
 	}
 	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;\n&quot;</span>);
 
-	<span class="hljs-built_in">free</span>(p);		<span class="hljs-comment">// 谁申请谁释放</span>
+	<span class="hljs-built_in">free</span>(p);		<span class="hljs-comment">// 记得释放</span>
 	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
-}</code></pre><p>运行结果：</p><pre><code class="language-text-x-trilium-auto hljs"><span class="hljs-symbol">10 </span><span class="hljs-number">20</span> <span class="hljs-number">30</span> </code></pre><p>堆上的内存不受函数返回影响，所以能安全地传出来，代价是必须记得 <code spellcheck="false">free</code>，否则就是 4.3 说的内存泄漏。它的好处是长度不固定：想要几个就申请几个，静态数组做不到这一点。</p><p>小结一下这三种返回法的取舍：</p><figure class="table"><table><tbody><tr><td>做法</td><td>数据存在哪</td><td>什么时候用</td></tr><tr><td>返回局部数组的指针</td><td>已销毁的栈</td><td>❌ 永远不要用</td></tr><tr><td><code spellcheck="false">static</code> 数组</td><td>静态区</td><td>全局只此一份的数据</td></tr><tr><td>调用方传入数组</td><td>调用方的栈</td><td>✅ 最常用</td></tr><tr><td><code spellcheck="false">malloc</code> 出来的数组</td><td>堆</td><td>长度运行时才确定，且要跨函数长期存活</td></tr></tbody></table></figure><p>C++ 里也是一样的。<code spellcheck="false">int *getArr()</code> returning a local array 的警告措辞略有不同：</p><pre><code class="language-text-x-trilium-auto hljs">C   : <span class="hljs-built_in">warning</span>: <span class="hljs-keyword">function</span> <span class="hljs-keyword">returns</span> address <span class="hljs-keyword">of</span> <span class="hljs-keyword">local</span> variable [-Wreturn-<span class="hljs-keyword">local</span>-addr]
+}</code></pre><p>运行结果：</p><pre><code class="language-text-x-trilium-auto hljs"><span class="hljs-symbol">10 </span><span class="hljs-number">20</span> <span class="hljs-number">30</span> </code></pre><p>堆上的内存不受函数返回影响，所以能安全地传出来，代价是必须记得 <code spellcheck="false">free</code>，否则就是 4.3 说的内存泄漏。它的好处是长度不固定：想要几个就申请几个，静态数组做不到这一点。</p><p>小结一下这三种返回法的取舍：</p><figure class="table"><table><tbody><tr><td>做法</td><td>数据存在哪</td></tr><tr><td>返回局部数组的指针</td><td>已销毁的栈</td></tr><tr><td><code spellcheck="false">static</code> 数组</td><td>静态区</td></tr><tr><td>调用方传入数组</td><td>调用方的栈</td></tr><tr><td><code spellcheck="false">malloc</code> 出来的数组</td><td>堆</td></tr></tbody></table></figure><p>C++ 里也是一样的。<code spellcheck="false">int *getArr()</code> returning a local array 的警告措辞略有不同：</p><pre><code class="language-text-x-trilium-auto hljs">C   : <span class="hljs-built_in">warning</span>: <span class="hljs-keyword">function</span> <span class="hljs-keyword">returns</span> address <span class="hljs-keyword">of</span> <span class="hljs-keyword">local</span> variable [-Wreturn-<span class="hljs-keyword">local</span>-addr]
 C++ : <span class="hljs-built_in">warning</span>: address <span class="hljs-keyword">of</span> <span class="hljs-keyword">local</span> variable <span class="hljs-string">&#x27;a&#x27;</span> returned [-Wreturn-<span class="hljs-keyword">local</span>-addr]
       note: declared here
-      <span class="hljs-number">4</span> |         <span class="hljs-type">int</span> a[<span class="hljs-number">3</span>] = {<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>};</code></pre><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><h2>回调函数<a id="回调函数" class="toc-anchor" name="回调函数" href="#回调函数">#</a></h2>
+      <span class="hljs-number">4</span> |         <span class="hljs-type">int</span> a[<span class="hljs-number">3</span>] = {<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>};</code></pre><h2>函数指针<a id="函数指针" class="toc-anchor" name="函数指针" href="#函数指针">#</a></h2><p>指针，其实还可以直接指向函数。</p><p>函数编译完之后，是一段在内存里的机器码，和变量一样有自己的地址。函数名（不带括号）本身就是这个地址，所以我们可以用一个指针把它存起来。</p><p>函数指针的类型由两部分决定：返回值类型和参数列表。声明它和声明普通指针差不多，只是要多加一对括号：</p><pre><code class="language-text-x-c-src hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">add</span><span class="hljs-params">(<span class="hljs-type">int</span> a, <span class="hljs-type">int</span> b)</span></span>{
+	<span class="hljs-keyword">return</span> a + b;
+}
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+	<span class="hljs-built_in">int</span> (*p)(<span class="hljs-type">int</span>, <span class="hljs-type">int</span>);		<span class="hljs-comment">// 声明一个函数指针</span>
+	p = add;				<span class="hljs-comment">// 把 add 的地址存进去</span>
+
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>, <span class="hljs-built_in">p</span>(<span class="hljs-number">3</span>, <span class="hljs-number">4</span>));	<span class="hljs-comment">// 通过指针调用</span>
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>, <span class="hljs-built_in">add</span>(<span class="hljs-number">3</span>, <span class="hljs-number">4</span>));	<span class="hljs-comment">// 直接调用，结果一样</span>
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre><p>运行结果：</p><pre><code class="language-text-x-trilium-auto hljs">7
+7</code></pre><p><code spellcheck="false">int (*p)(int, int)</code> 这一行要这么读：<code spellcheck="false">(*p)</code> 里的括号先把 <code spellcheck="false">*</code> 和 <code spellcheck="false">p</code> 捆在一起，说明 p 是一个指针；最前面的 <code spellcheck="false">int</code> 是被指向函数的返回值类型；最后面的 <code spellcheck="false">(int, int)</code> 是它的参数。所以 p 是一个 指向 (接收两个 int 参数、返回 int 的函数) 的指针。</p><p>这对括号是必须的。要是写成 <code spellcheck="false">int *p(int, int)</code>，编译器会理解成 声明一个函数 p，接收两个 int，返回 <code spellcheck="false">int*</code> ，因为 <code spellcheck="false">*</code> 会先和 <code spellcheck="false">int</code> 结合。加了括号，<code spellcheck="false">*</code> 才先和 p 结合。</p><p>赋值和调用也有两套等价的写法：<code spellcheck="false">p = add</code> 和 <code spellcheck="false">p = &amp;add</code> 一样，<code spellcheck="false">p(3, 4)</code> 和 <code spellcheck="false">(*p)(3, 4)</code> 也一样。习惯上更常用不加 <code spellcheck="false">&amp;</code>、不加 <code spellcheck="false">*</code> 的写法，更省事。</p><p>函数指针的类型必须和函数完全一致，返回值、参数个数、参数类型一个都不能差。不一致，编译器直接报错：</p><pre><code class="language-text-x-c-src hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">add</span><span class="hljs-params">(<span class="hljs-type">int</span> a, <span class="hljs-type">int</span> b)</span></span>{ <span class="hljs-keyword">return</span> a + b; }
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">sayHi</span><span class="hljs-params">()</span></span>{ <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;hi\n&quot;</span>); }
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+	<span class="hljs-built_in">int</span> (*p)(<span class="hljs-type">int</span>, <span class="hljs-type">int</span>);
+	p = sayHi;		<span class="hljs-comment">// 类型对不上：sayHi 没有参数，也没有返回值</span>
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre><p>报错：</p><pre><code class="language-text-x-trilium-auto hljs"><span class="hljs-keyword">error: </span>assignment to &#x27;int (*)(int,  int)&#x27; from incompatible pointer type &#x27;void (*)(void)&#x27; [-Wincompatible-pointer-types]</code></pre><p>C++ 里函数指针的写法、调用和 C 完全一样，只有报错的措辞略有不同，这里就不再重复贴一遍了。</p><h2>回调函数<a id="回调函数" class="toc-anchor" name="回调函数" href="#回调函数">#</a></h2><p>函数指针最大的用处，是把它当成参数传给另一个函数。被调用的函数在运行到一半的时候，会回过头来调用你传进去的函数，所以叫回调。</p><p>案例：</p><pre><code class="language-text-x-c-src hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">add</span><span class="hljs-params">(<span class="hljs-type">int</span> a, <span class="hljs-type">int</span> b)</span></span>{ <span class="hljs-keyword">return</span> a + b; }
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">mul</span><span class="hljs-params">(<span class="hljs-type">int</span> a, <span class="hljs-type">int</span> b)</span></span>{ <span class="hljs-keyword">return</span> a * b; }
+
+<span class="hljs-comment">// op 是函数指针，指向接收两个 int、返回 int 的函数</span>
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">compute</span><span class="hljs-params">(<span class="hljs-type">int</span> a, <span class="hljs-type">int</span> b, <span class="hljs-type">int</span> (*op)(<span class="hljs-type">int</span>, <span class="hljs-type">int</span>))</span></span>{
+	<span class="hljs-keyword">return</span> <span class="hljs-built_in">op</span>(a, b);
+}
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>, <span class="hljs-built_in">compute</span>(<span class="hljs-number">3</span>, <span class="hljs-number">4</span>, add));	<span class="hljs-comment">// 3 + 4</span>
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>, <span class="hljs-built_in">compute</span>(<span class="hljs-number">3</span>, <span class="hljs-number">4</span>, mul));	<span class="hljs-comment">// 3 * 4</span>
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre><p>运行结果：</p><pre><code class="language-text-x-trilium-auto hljs">7
+12</code></pre><p>compute 并不需要知道要执行哪个函数，只需要调用对应的函数就行了</p><h2>小结<a id="小结" class="toc-anchor" name="小结" href="#小结">#</a></h2><p>函数指针是一个比较方便的语法，大型项目的时候，就不需要做太多的函数重载了，不需要去判断多次需要调用哪个函数。</p><p>下一节：<a class="reference-link type-text" href="5.6%20%E5%86%85%E8%81%94%E5%87%BD%E6%95%B0.html"><span><span class="tn-icon bx bx-note"></span>5.6 内联函数</span></a></p><h2>习题<a id="习题" class="toc-anchor" name="习题" href="#习题">#</a></h2><h3>1.函数指针做计算器<a id="1-函数指针做计算器" class="toc-anchor" name="1-函数指针做计算器" href="#1-函数指针做计算器">#</a></h3><p>编写 <code spellcheck="false">add</code>、<code spellcheck="false">sub</code>、<code spellcheck="false">mul</code> 三个函数，分别返回两个数的和、差、积。再声明一个函数指针 <code spellcheck="false">int (*p)(int, int)</code>，根据读入的运算符让它指向对应的函数，输出两个数的运算结果。</p><p>输入的数字为整数，运算符只会是 <code spellcheck="false">+</code>、<code spellcheck="false">-</code>、<code spellcheck="false">*</code> 之一。</p><p>本题推荐最大时长：10分钟</p><p>题目输入案例：<code spellcheck="false">10 5 +</code></p><p>输出结果案例：<code spellcheck="false">15</code></p><details class="trilium-collapsible"><summary>答案</summary><h4>C<a id="c" class="toc-anchor" name="c" href="#c">#</a></h4><pre><code class="language-text-x-c-src hljs"><span class="hljs-comment">#include &lt;stdio.h&gt;</span>
+
+<span class="hljs-keyword">int</span> add(<span class="hljs-keyword">int</span> a, <span class="hljs-keyword">int</span> b){ <span class="hljs-keyword">return</span> a + b; }
+<span class="hljs-keyword">int</span> <span class="hljs-function"><span class="hljs-keyword">sub</span></span>(<span class="hljs-keyword">int</span> a, <span class="hljs-keyword">int</span> b){ <span class="hljs-keyword">return</span> a - b; }
+<span class="hljs-keyword">int</span> mul(<span class="hljs-keyword">int</span> a, <span class="hljs-keyword">int</span> b){ <span class="hljs-keyword">return</span> a * b; }
+
+<span class="hljs-keyword">int</span> main(){
+	<span class="hljs-keyword">int</span> a, b;
+	char op;
+	<span class="hljs-keyword">int</span> (*p)(<span class="hljs-keyword">int</span>, <span class="hljs-keyword">int</span>);
+
+	<span class="hljs-keyword">if</span>(scanf(<span class="hljs-string">&quot;<span class="hljs-variable">%d</span> <span class="hljs-variable">%d</span> <span class="hljs-variable">%c</span>&quot;</span>, &amp;a, &amp;b, &amp;op) != <span class="hljs-number">3</span>){
+		<span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;
+	}
+
+	<span class="hljs-keyword">if</span>(op == <span class="hljs-string">&#x27;+&#x27;</span>){
+		p = add;
+	}<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(op == <span class="hljs-string">&#x27;-&#x27;</span>){
+		p = <span class="hljs-function"><span class="hljs-keyword">sub</span></span>;
+	}<span class="hljs-keyword">else</span>{
+		p = mul;
+	}
+
+	<span class="hljs-keyword">printf</span>(<span class="hljs-string">&quot;<span class="hljs-variable">%d</span>\n&quot;</span>, p(a, b));
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre><h4>C++<a id="c-1" class="toc-anchor" name="c-1" href="#c-1">#</a></h4><pre><code class="language-text-x-c-src hljs"><span class="hljs-comment">#include &lt;iostream&gt;</span>
+
+<span class="hljs-keyword">int</span> add(<span class="hljs-keyword">int</span> a, <span class="hljs-keyword">int</span> b){ <span class="hljs-keyword">return</span> a + b; }
+<span class="hljs-keyword">int</span> <span class="hljs-function"><span class="hljs-keyword">sub</span></span>(<span class="hljs-keyword">int</span> a, <span class="hljs-keyword">int</span> b){ <span class="hljs-keyword">return</span> a - b; }
+<span class="hljs-keyword">int</span> mul(<span class="hljs-keyword">int</span> a, <span class="hljs-keyword">int</span> b){ <span class="hljs-keyword">return</span> a * b; }
+
+<span class="hljs-keyword">int</span> main(){
+	<span class="hljs-keyword">int</span> a, b;
+	char op;
+	<span class="hljs-keyword">int</span> (*p)(<span class="hljs-keyword">int</span>, <span class="hljs-keyword">int</span>);
+
+	std::cin &gt;&gt; a &gt;&gt; b &gt;&gt; op;
+
+	<span class="hljs-keyword">if</span>(op == <span class="hljs-string">&#x27;+&#x27;</span>){
+		p = add;
+	}<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(op == <span class="hljs-string">&#x27;-&#x27;</span>){
+		p = <span class="hljs-function"><span class="hljs-keyword">sub</span></span>;
+	}<span class="hljs-keyword">else</span>{
+		p = mul;
+	}
+
+	std::cout &lt;&lt; p(a, b) &lt;&lt; <span class="hljs-string">&quot;\n&quot;</span>;
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre></details>
                 
                 
             </div>
@@ -2659,10 +2750,9 @@ C++ : <span class="hljs-built_in">warning</span>: address <span class="hljs-keyw
     </a>
 
     
-</li>
-
-                    
-                        
+        <ul>
+            
+                
 
 <li>
     <a href="#方案一-传参修改参数">
@@ -2670,7 +2760,8 @@ C++ : <span class="hljs-built_in">warning</span>: address <span class="hljs-keyw
     </a>
 
     
-        <ul>
+</li>
+
             
                 
 
@@ -2691,10 +2782,84 @@ C++ : <span class="hljs-built_in">warning</span>: address <span class="hljs-keyw
                         
 
 <li>
+    <a href="#函数指针">
+        <span>函数指针</span>
+    </a>
+
+    
+</li>
+
+                    
+                        
+
+<li>
     <a href="#回调函数">
         <span>回调函数</span>
     </a>
 
+    
+</li>
+
+                    
+                        
+
+<li>
+    <a href="#小结">
+        <span>小结</span>
+    </a>
+
+    
+</li>
+
+                    
+                        
+
+<li>
+    <a href="#习题">
+        <span>习题</span>
+    </a>
+
+    
+        <ul>
+            
+                
+
+<li>
+    <a href="#1-函数指针做计算器">
+        <span>1.函数指针做计算器</span>
+    </a>
+
+    
+        <ul>
+            
+                
+
+<li>
+    <a href="#c">
+        <span>C</span>
+    </a>
+
+    
+</li>
+
+            
+                
+
+<li>
+    <a href="#c-1">
+        <span>C++</span>
+    </a>
+
+    
+</li>
+
+            
+        </ul>
+    
+</li>
+
+            
+        </ul>
     
 </li>
 
