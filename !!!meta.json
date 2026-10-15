@@ -536,7 +536,7 @@
 					"title": "第四章：指针与引用",
 					"notePosition": 50,
 					"prefix": null,
-					"isExpanded": true,
+					"isExpanded": false,
 					"type": "text",
 					"mime": "text/html",
 					"attributes": [
@@ -947,7 +947,15 @@
 							"isExpanded": false,
 							"type": "text",
 							"mime": "text/html",
-							"attributes": [],
+							"attributes": [
+								{
+									"type": "relation",
+									"name": "internalLink",
+									"value": "4AjUTy8ir4IY",
+									"isInheritable": false,
+									"position": 10
+								}
+							],
 							"format": "html",
 							"dataFileName": "5.6 内联函数.html",
 							"attachments": []
@@ -983,7 +991,7 @@
 					"title": "第六章：复合类型",
 					"notePosition": 70,
 					"prefix": null,
-					"isExpanded": false,
+					"isExpanded": true,
 					"type": "text",
 					"mime": "text/html",
 					"attributes": [
@@ -1037,6 +1045,101 @@
 							"format": "html",
 							"dataFileName": "6.2 类(结构体、对象).html",
 							"attachments": []
+						},
+						{
+							"isClone": false,
+							"noteId": "SEgcuIkpzRuR",
+							"notePath": [
+								"3f0LOwtZ3I9T",
+								"YFTnOCSzvXad",
+								"SEgcuIkpzRuR"
+							],
+							"title": "6.3 类的访问修饰符与继承",
+							"notePosition": 30,
+							"prefix": null,
+							"isExpanded": false,
+							"type": "text",
+							"mime": "text/html",
+							"attributes": [],
+							"format": "html",
+							"dataFileName": "6.3 类的访问修饰符与继承.html",
+							"attachments": []
+						},
+						{
+							"isClone": false,
+							"noteId": "UNr1YSfqh333",
+							"notePath": [
+								"3f0LOwtZ3I9T",
+								"YFTnOCSzvXad",
+								"UNr1YSfqh333"
+							],
+							"title": "6.4 静态修饰符",
+							"notePosition": 40,
+							"prefix": null,
+							"isExpanded": false,
+							"type": "text",
+							"mime": "text/html",
+							"attributes": [],
+							"format": "html",
+							"dataFileName": "6.4 静态修饰符.html",
+							"attachments": []
+						},
+						{
+							"isClone": false,
+							"noteId": "fy0F7maCAUgg",
+							"notePath": [
+								"3f0LOwtZ3I9T",
+								"YFTnOCSzvXad",
+								"fy0F7maCAUgg"
+							],
+							"title": "6.5 构造函数和析构函数",
+							"notePosition": 50,
+							"prefix": null,
+							"isExpanded": false,
+							"type": "text",
+							"mime": "text/html",
+							"attributes": [],
+							"format": "html",
+							"dataFileName": "6.5 构造函数和析构函数.html",
+							"attachments": []
+						},
+						{
+							"isClone": false,
+							"noteId": "EXq0smobbwiI",
+							"notePath": [
+								"3f0LOwtZ3I9T",
+								"YFTnOCSzvXad",
+								"EXq0smobbwiI"
+							],
+							"title": "6.6 虚函数",
+							"notePosition": 60,
+							"prefix": null,
+							"isExpanded": false,
+							"type": "text",
+							"mime": "text/html",
+							"attributes": [],
+							"format": "html",
+							"dataFileName": "6.6 虚函数.html",
+							"attachments": []
+						},
+						{
+							"isClone": false,
+							"noteId": "MQfCXNDyDbeq",
+							"notePath": [
+								"3f0LOwtZ3I9T",
+								"YFTnOCSzvXad",
+								"MQfCXNDyDbeq"
+							],
+							"title": "6.7 运算符重载",
+							"notePosition": 70,
+							"prefix": null,
+							"isExpanded": false,
+							"type": "text",
+							"mime": "text/html",
+							"attributes": [],
+							"format": "html",
+							"dataFileName": "6.7 运算符重载.html",
+							"attachments": []
 						}
 					]
 				},
@@ -1047,7 +1150,7 @@
 						"3f0LOwtZ3I9T",
 						"23oJwkXG1Bmg"
 					],
-					"title": "第七章：宏",
+					"title": "第七章：预处理",
 					"notePosition": 90,
 					"prefix": null,
 					"isExpanded": false,
@@ -1055,7 +1158,7 @@
 					"mime": "text/html",
 					"attributes": [],
 					"format": "html",
-					"dataFileName": "第七章：宏.html",
+					"dataFileName": "第七章：预处理.html",
 					"attachments": []
 				},
 				{
