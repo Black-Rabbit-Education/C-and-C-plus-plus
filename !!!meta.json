@@ -951,32 +951,13 @@
 								{
 									"type": "relation",
 									"name": "internalLink",
-									"value": "4AjUTy8ir4IY",
+									"value": "YFTnOCSzvXad",
 									"isInheritable": false,
 									"position": 10
 								}
 							],
 							"format": "html",
 							"dataFileName": "5.6 内联函数.html",
-							"attachments": []
-						},
-						{
-							"isClone": false,
-							"noteId": "4AjUTy8ir4IY",
-							"notePath": [
-								"3f0LOwtZ3I9T",
-								"JfIF2zF6C1HJ",
-								"4AjUTy8ir4IY"
-							],
-							"title": "5.7 匿名函数(lambda表达式)",
-							"notePosition": 70,
-							"prefix": null,
-							"isExpanded": false,
-							"type": "text",
-							"mime": "text/html",
-							"attributes": [],
-							"format": "html",
-							"dataFileName": "5.7 匿名函数(lambda表达式).html",
 							"attachments": []
 						}
 					]
@@ -1035,7 +1016,7 @@
 								"YFTnOCSzvXad",
 								"JQyokJnp01xf"
 							],
-							"title": "6.2 类(结构体、对象)",
+							"title": "6.2 结构体(类、对象)",
 							"notePosition": 20,
 							"prefix": null,
 							"isExpanded": false,
@@ -1043,7 +1024,7 @@
 							"mime": "text/html",
 							"attributes": [],
 							"format": "html",
-							"dataFileName": "6.2 类(结构体、对象).html",
+							"dataFileName": "6.2 结构体(类、对象).html",
 							"attachments": []
 						},
 						{
@@ -1054,7 +1035,7 @@
 								"YFTnOCSzvXad",
 								"SEgcuIkpzRuR"
 							],
-							"title": "6.3 类的访问修饰符与继承",
+							"title": "6.3 结构体的访问控制与继承",
 							"notePosition": 30,
 							"prefix": null,
 							"isExpanded": false,
@@ -1062,7 +1043,7 @@
 							"mime": "text/html",
 							"attributes": [],
 							"format": "html",
-							"dataFileName": "6.3 类的访问修饰符与继承.html",
+							"dataFileName": "6.3 结构体的访问控制与继承.html",
 							"attachments": []
 						},
 						{
@@ -1140,6 +1121,25 @@
 							"format": "html",
 							"dataFileName": "6.7 运算符重载.html",
 							"attachments": []
+						},
+						{
+							"isClone": false,
+							"noteId": "HjvdidhLNcgM",
+							"notePath": [
+								"3f0LOwtZ3I9T",
+								"YFTnOCSzvXad",
+								"HjvdidhLNcgM"
+							],
+							"title": "6.8 匿名函数",
+							"notePosition": 80,
+							"prefix": null,
+							"isExpanded": false,
+							"type": "text",
+							"mime": "text/html",
+							"attributes": [],
+							"format": "html",
+							"dataFileName": "6.8 匿名函数.html",
+							"attachments": []
 						}
 					]
 				},
@@ -1159,7 +1159,67 @@
 					"attributes": [],
 					"format": "html",
 					"dataFileName": "第七章：预处理.html",
-					"attachments": []
+					"attachments": [],
+					"dirFileName": "第七章：预处理",
+					"children": [
+						{
+							"isClone": false,
+							"noteId": "1PVHMQBCaP4b",
+							"notePath": [
+								"3f0LOwtZ3I9T",
+								"23oJwkXG1Bmg",
+								"1PVHMQBCaP4b"
+							],
+							"title": "7.1 库",
+							"notePosition": 10,
+							"prefix": null,
+							"isExpanded": false,
+							"type": "text",
+							"mime": "text/html",
+							"attributes": [],
+							"format": "html",
+							"dataFileName": "7.1 库.html",
+							"attachments": []
+						},
+						{
+							"isClone": false,
+							"noteId": "Ty1I72NwRmtd",
+							"notePath": [
+								"3f0LOwtZ3I9T",
+								"23oJwkXG1Bmg",
+								"Ty1I72NwRmtd"
+							],
+							"title": "7.2 宏定义",
+							"notePosition": 20,
+							"prefix": null,
+							"isExpanded": false,
+							"type": "text",
+							"mime": "text/html",
+							"attributes": [],
+							"format": "html",
+							"dataFileName": "7.2 宏定义.html",
+							"attachments": []
+						},
+						{
+							"isClone": false,
+							"noteId": "Fb1ll7fDnqBN",
+							"notePath": [
+								"3f0LOwtZ3I9T",
+								"23oJwkXG1Bmg",
+								"Fb1ll7fDnqBN"
+							],
+							"title": "7.3 条件编译",
+							"notePosition": 30,
+							"prefix": null,
+							"isExpanded": false,
+							"type": "text",
+							"mime": "text/html",
+							"attributes": [],
+							"format": "html",
+							"dataFileName": "7.3 条件编译.html",
+							"attachments": []
+						}
+					]
 				},
 				{
 					"isClone": false,
@@ -1171,13 +1231,73 @@
 					"title": "第八章：泛型编程",
 					"notePosition": 100,
 					"prefix": null,
-					"isExpanded": false,
+					"isExpanded": true,
 					"type": "text",
 					"mime": "text/html",
 					"attributes": [],
 					"format": "html",
 					"dataFileName": "第八章：泛型编程.html",
-					"attachments": []
+					"attachments": [],
+					"dirFileName": "第八章：泛型编程",
+					"children": [
+						{
+							"isClone": false,
+							"noteId": "dO7DdqWeDtTZ",
+							"notePath": [
+								"3f0LOwtZ3I9T",
+								"9Knly80hb2dR",
+								"dO7DdqWeDtTZ"
+							],
+							"title": "8.1 auto",
+							"notePosition": 10,
+							"prefix": null,
+							"isExpanded": false,
+							"type": "text",
+							"mime": "text/html",
+							"attributes": [],
+							"format": "html",
+							"dataFileName": "8.1 auto.html",
+							"attachments": []
+						},
+						{
+							"isClone": false,
+							"noteId": "25h3F0Znc2pe",
+							"notePath": [
+								"3f0LOwtZ3I9T",
+								"9Knly80hb2dR",
+								"25h3F0Znc2pe"
+							],
+							"title": "8.2 匿名函数(lambda表达式)",
+							"notePosition": 20,
+							"prefix": null,
+							"isExpanded": false,
+							"type": "text",
+							"mime": "text/html",
+							"attributes": [],
+							"format": "html",
+							"dataFileName": "8.2 匿名函数(lambda表达式).html",
+							"attachments": []
+						},
+						{
+							"isClone": false,
+							"noteId": "tTIWqM7Yiqwp",
+							"notePath": [
+								"3f0LOwtZ3I9T",
+								"9Knly80hb2dR",
+								"tTIWqM7Yiqwp"
+							],
+							"title": "8.3 模板",
+							"notePosition": 30,
+							"prefix": null,
+							"isExpanded": false,
+							"type": "text",
+							"mime": "text/html",
+							"attributes": [],
+							"format": "html",
+							"dataFileName": "8.3 模板.html",
+							"attachments": []
+						}
+					]
 				}
 			]
 		},
