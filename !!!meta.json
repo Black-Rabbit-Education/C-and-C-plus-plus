@@ -781,7 +781,7 @@
 					"title": "第五章：函数",
 					"notePosition": 60,
 					"prefix": null,
-					"isExpanded": true,
+					"isExpanded": false,
 					"type": "text",
 					"mime": "text/html",
 					"attributes": [
@@ -972,7 +972,7 @@
 					"title": "第六章：复合类型",
 					"notePosition": 70,
 					"prefix": null,
-					"isExpanded": true,
+					"isExpanded": false,
 					"type": "text",
 					"mime": "text/html",
 					"attributes": [
@@ -1003,7 +1003,15 @@
 							"isExpanded": false,
 							"type": "text",
 							"mime": "text/html",
-							"attributes": [],
+							"attributes": [
+								{
+									"type": "relation",
+									"name": "internalLink",
+									"value": "JQyokJnp01xf",
+									"isInheritable": false,
+									"position": 10
+								}
+							],
 							"format": "html",
 							"dataFileName": "6.1 枚举.html",
 							"attachments": []
@@ -1022,7 +1030,15 @@
 							"isExpanded": false,
 							"type": "text",
 							"mime": "text/html",
-							"attributes": [],
+							"attributes": [
+								{
+									"type": "relation",
+									"name": "internalLink",
+									"value": "SEgcuIkpzRuR",
+									"isInheritable": false,
+									"position": 10
+								}
+							],
 							"format": "html",
 							"dataFileName": "6.2 结构体(类、对象).html",
 							"attachments": []
@@ -1041,7 +1057,22 @@
 							"isExpanded": false,
 							"type": "text",
 							"mime": "text/html",
-							"attributes": [],
+							"attributes": [
+								{
+									"type": "relation",
+									"name": "internalLink",
+									"value": "UNr1YSfqh333",
+									"isInheritable": false,
+									"position": 10
+								},
+								{
+									"type": "relation",
+									"name": "internalLink",
+									"value": "EXq0smobbwiI",
+									"isInheritable": false,
+									"position": 20
+								}
+							],
 							"format": "html",
 							"dataFileName": "6.3 结构体的访问控制与继承.html",
 							"attachments": []
@@ -1060,7 +1091,15 @@
 							"isExpanded": false,
 							"type": "text",
 							"mime": "text/html",
-							"attributes": [],
+							"attributes": [
+								{
+									"type": "relation",
+									"name": "internalLink",
+									"value": "fy0F7maCAUgg",
+									"isInheritable": false,
+									"position": 10
+								}
+							],
 							"format": "html",
 							"dataFileName": "6.4 静态修饰符.html",
 							"attachments": []
@@ -1079,7 +1118,15 @@
 							"isExpanded": false,
 							"type": "text",
 							"mime": "text/html",
-							"attributes": [],
+							"attributes": [
+								{
+									"type": "relation",
+									"name": "internalLink",
+									"value": "EXq0smobbwiI",
+									"isInheritable": false,
+									"position": 10
+								}
+							],
 							"format": "html",
 							"dataFileName": "6.5 构造函数和析构函数.html",
 							"attachments": []
@@ -1098,7 +1145,15 @@
 							"isExpanded": false,
 							"type": "text",
 							"mime": "text/html",
-							"attributes": [],
+							"attributes": [
+								{
+									"type": "relation",
+									"name": "internalLink",
+									"value": "MQfCXNDyDbeq",
+									"isInheritable": false,
+									"position": 10
+								}
+							],
 							"format": "html",
 							"dataFileName": "6.6 虚函数.html",
 							"attachments": []
@@ -1117,28 +1172,17 @@
 							"isExpanded": false,
 							"type": "text",
 							"mime": "text/html",
-							"attributes": [],
+							"attributes": [
+								{
+									"type": "relation",
+									"name": "internalLink",
+									"value": "1PVHMQBCaP4b",
+									"isInheritable": false,
+									"position": 10
+								}
+							],
 							"format": "html",
 							"dataFileName": "6.7 运算符重载.html",
-							"attachments": []
-						},
-						{
-							"isClone": false,
-							"noteId": "HjvdidhLNcgM",
-							"notePath": [
-								"3f0LOwtZ3I9T",
-								"YFTnOCSzvXad",
-								"HjvdidhLNcgM"
-							],
-							"title": "6.8 匿名函数",
-							"notePosition": 80,
-							"prefix": null,
-							"isExpanded": false,
-							"type": "text",
-							"mime": "text/html",
-							"attributes": [],
-							"format": "html",
-							"dataFileName": "6.8 匿名函数.html",
 							"attachments": []
 						}
 					]
@@ -1231,7 +1275,7 @@
 					"title": "第八章：泛型编程",
 					"notePosition": 100,
 					"prefix": null,
-					"isExpanded": true,
+					"isExpanded": false,
 					"type": "text",
 					"mime": "text/html",
 					"attributes": [],

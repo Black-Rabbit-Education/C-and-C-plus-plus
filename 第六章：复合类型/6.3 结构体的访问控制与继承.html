@@ -1745,7 +1745,7 @@
         C与C++(自制教程)
     </a>
     
-        <div class="header-button-placeholder"></div>
+        <button aria-label="切换目录" id="toc-pane-toggle-button" class="header-button"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M3 9h14V7H3v2zm0 4h14v-2H3v2zm0 4h14v-2H3v2zm16 0h2v-2h-2v2zm0-10V7h2v2h-2zm0 6h2v-2h-2v2z"></path></svg></button>
     
 </div>
 <div id="split-pane">
@@ -2473,22 +2473,6 @@
 
         </li>
     
-    
-        <li class="item">
-            
-
-    
-    <a class="type-text" href="6.8%20%E5%8C%BF%E5%90%8D%E5%87%BD%E6%95%B0.html">
-        
-        <span><i class="tn-icon bx bx-note"></i> 6.8 匿名函数</span>
-    </a>
-
-
-
-
-
-        </li>
-    
 </ul>
 
 
@@ -2639,11 +2623,196 @@
     </div>
     <div id="right-pane">
         <div id="main">
-            <div id="content" class="type-text ck-content no-content">
+            <div id="content" class="type-text ck-content">
                 
                     <h1 id="title">6.3 结构体的访问控制与继承</h1>
                 
-                    <p>此笔记没有内容。</p>
+                    
+                    <p>这一节的东西全是 C++ 独有的，C 里既没有继承，也没有访问控制，所以这一节只有 C++ 的代码。</p><h2>子类<a id="子类" class="toc-anchor" name="子类" href="#子类">#</a></h2><p>6.2 说过，结构体能打包不同类型的数据。但光打包还不够。游戏里的 NPC 有很多种：有的会飞、有的会跳。会飞的 NPC 除了有普通 NPC 的血条、位置，还多个“飞行高度”。难道要把血条、位置这些成员，在每一种 NPC 里都重新抄一遍吗？</p><p>继承就是来解决这个的：<strong>新的类可以从旧的类那里，继承它所有的成员，再往上加自己的</strong>。旧的那个叫父类（也叫基类），新的叫子类（也叫派生类）。</p><p>基础语法如下：</p><pre><code class="language-text-x-c-src hljs"><span class="hljs-class"><span class="hljs-keyword">class</span> 子类名 : 继承方式 父类名 </span>{
+	新增的成员;
+	...
+};</code></pre><p>几个案例：</p><pre><code class="language-text-x-c-src hljs"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">NPC</span> </span>{						// 父类：普通 NPC
+public:
+	<span class="hljs-keyword">int</span> hp;						<span class="hljs-regexp">//</span> 血条
+	<span class="hljs-keyword">int</span> <span class="hljs-keyword">x</span>;						<span class="hljs-regexp">//</span> 位置 <span class="hljs-keyword">x</span>
+};
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">FlyingNPC</span><span class="hljs-attr"> : public</span> <span class="hljs-title">NPC</span> </span>{	// 子类：会飞的 NPC
+public:
+	<span class="hljs-keyword">int</span> height;					<span class="hljs-regexp">//</span> 飞行高度
+};</code></pre><p>子类 <code spellcheck="false">FlyingNPC</code> 只写了 <code spellcheck="false">height</code> 一个成员，但把整个程序跑起来，它却能访问 <code spellcheck="false">hp</code> 和 <code spellcheck="false">x</code></p><p>因为这两个是从 <code spellcheck="false">NPC</code> 继承来的。把上面这段补上 <code spellcheck="false">main</code>，复制运行看看：</p><pre><code class="language-text-x-c-src hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">NPC</span> {						<span class="hljs-comment">// 父类：普通 NPC</span>
+<span class="hljs-keyword">public</span>:
+	<span class="hljs-type">int</span> hp;						<span class="hljs-comment">// 血条</span>
+	<span class="hljs-type">int</span> x;						<span class="hljs-comment">// 位置 x</span>
+};
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">FlyingNPC</span> : <span class="hljs-keyword">public</span> NPC {	<span class="hljs-comment">// 子类：会飞的 NPC，继承 NPC</span>
+<span class="hljs-keyword">public</span>:
+	<span class="hljs-type">int</span> height;					<span class="hljs-comment">// 飞行高度，子类新增的成员</span>
+};
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+	FlyingNPC bird;				<span class="hljs-comment">// 声明一个会飞的 NPC</span>
+	bird.hp = <span class="hljs-number">100</span>;				<span class="hljs-comment">// 继承来的成员，直接用</span>
+	bird.x = <span class="hljs-number">3</span>;					<span class="hljs-comment">// 继承来的成员</span>
+	bird.height = <span class="hljs-number">10</span>;			<span class="hljs-comment">// 子类自己的成员</span>
+	std::cout &lt;&lt; bird.hp &lt;&lt; <span class="hljs-string">&quot; &quot;</span> &lt;&lt; bird.x &lt;&lt; <span class="hljs-string">&quot; &quot;</span> &lt;&lt; bird.height;
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre><p>运行结果：</p><pre><code class="language-text-x-trilium-auto hljs"><span class="hljs-symbol">100 </span><span class="hljs-number">3</span> <span class="hljs-number">10</span></code></pre><p><code spellcheck="false">bird</code> 一共能访问三个成员：<code spellcheck="false">hp</code>、<code spellcheck="false">x</code> 是继承来的，<code spellcheck="false">height</code> 是额外的。子类 = 父类的所有成员 + 自己新增的成员。</p><h3>语法详解<a id="语法详解" class="toc-anchor" name="语法详解" href="#语法详解">#</a></h3><h4>子类名和父类名<a id="子类名和父类名" class="toc-anchor" name="子类名和父类名" href="#子类名和父类名">#</a></h4><p>就是类名，命名规则和变量名一样（2.1 讲过）。父类可以是个普通类，也可以本身是个子类</p><p>子类还能继续当父类，一层层继承下去。</p><h4>继承方式<a id="继承方式" class="toc-anchor" name="继承方式" href="#继承方式">#</a></h4><p><code spellcheck="false">class A : public B</code> 里的 <code spellcheck="false">public</code>，就是继承方式，意思是“公开继承”。除了 <code spellcheck="false">public</code>，还有 <code spellcheck="false">protected</code> 和 <code spellcheck="false">private</code> 两种，具体区别我们马上会了解到。</p><h4>新增的成员<a id="新增的成员" class="toc-anchor" name="新增的成员" href="#新增的成员">#</a></h4><p>子类花括号里写的，是它自己的新成员。可以再加成员变量，也能再加成员函数，跟 6.2 里写类是一模一样的。</p><h2>访问控制符<a id="访问控制符" class="toc-anchor" name="访问控制符" href="#访问控制符">#</a></h2><p><code spellcheck="false">public</code>：公开，谁都能访问。</p><p><code spellcheck="false">private</code>：私有，只有这个类自己的成员函数能访问，外面不行，子类也不行。</p><p><code spellcheck="false">protected</code>：保护，自己和子类能访问，外面不行。</p><p>光看字面不好懂，直接上代码。先看 <code spellcheck="false">private</code> 到底有什么用：</p><pre><code class="language-text-x-c-src hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Account</span> {				<span class="hljs-comment">// 银行账户</span>
+<span class="hljs-keyword">private</span>:
+	<span class="hljs-type">int</span> money;				<span class="hljs-comment">// 余额：私有的</span>
+<span class="hljs-keyword">public</span>:
+	<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">set</span><span class="hljs-params">(<span class="hljs-type">int</span> m)</span></span>{		<span class="hljs-comment">// 公开的函数：设置余额</span>
+		<span class="hljs-keyword">if</span>(m &gt;= <span class="hljs-number">0</span>){			<span class="hljs-comment">// 检查：不许设成负数</span>
+			money = m;
+		}
+	}
+	<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">get</span><span class="hljs-params">()</span></span>{				<span class="hljs-comment">// 公开的函数：查余额</span>
+		<span class="hljs-keyword">return</span> money;
+	}
+};
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+	Account a;
+	<span class="hljs-comment">// a.money = -100;		// 报错：私有成员，外面无法访问</span>
+	a.<span class="hljs-built_in">set</span>(<span class="hljs-number">100</span>);				<span class="hljs-comment">// 只能走公开的成员函数</span>
+	std::cout &lt;&lt; a.<span class="hljs-built_in">get</span>();	<span class="hljs-comment">// 输出 100</span>
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre><p>运行结果：</p><pre><code class="language-text-x-trilium-auto hljs">100</code></pre><p><code spellcheck="false">money</code> 是私有的，外面 <code spellcheck="false">a.money = -100</code> 这种直接赋值，编译直接不给过。想改余额，只能用 <code spellcheck="false">set()</code> ，而 <code spellcheck="false">set()</code> 里有检查（不许设成负数）。这就是私有最大的好处：<strong>把数据保护起来，只允许通过你规定的合法方式访问，防止外面乱改</strong>。</p><p>这种做法，叫封装。</p><p>那 <code spellcheck="false">protected</code> 又是干嘛的？看这个例子：</p><pre><code class="language-text-x-c-src hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">NPC</span> {
+<span class="hljs-keyword">protected</span>:
+	<span class="hljs-type">int</span> hp;							<span class="hljs-comment">// 保护成员：子类能碰，外面不能</span>
+<span class="hljs-keyword">public</span>:
+	<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">setHp</span><span class="hljs-params">(<span class="hljs-type">int</span> h)</span></span>{ hp = h; }	<span class="hljs-comment">// 公开的门：设置 hp</span>
+	<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">getHp</span><span class="hljs-params">()</span></span>{ <span class="hljs-keyword">return</span> hp; }		<span class="hljs-comment">// 公开的门：读取 hp</span>
+};
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">FlyingNPC</span> : <span class="hljs-keyword">public</span> NPC {
+<span class="hljs-keyword">public</span>:
+	<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">doubleHp</span><span class="hljs-params">()</span></span>{				<span class="hljs-comment">// 子类自己的成员函数</span>
+		hp = hp * <span class="hljs-number">2</span>;				<span class="hljs-comment">// 直接访问父类的 protected，合法</span>
+	}
+};
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+	FlyingNPC bird;
+	bird.<span class="hljs-built_in">setHp</span>(<span class="hljs-number">50</span>);					<span class="hljs-comment">// 外面用公开的门，设 hp = 50</span>
+	bird.<span class="hljs-built_in">doubleHp</span>();				<span class="hljs-comment">// 子类内部把 hp 翻倍</span>
+	std::cout &lt;&lt; bird.<span class="hljs-built_in">getHp</span>();		<span class="hljs-comment">// 输出 100</span>
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre><p>运行结果：</p><pre><code class="language-text-x-trilium-auto hljs">100</code></pre><p>要是把 <code spellcheck="false">hp</code> 改成 <code spellcheck="false">private</code> 会怎样？子类也访问不到它了：</p><pre><code class="language-text-x-c-src hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">NPC</span> {
+<span class="hljs-keyword">private</span>:
+	<span class="hljs-type">int</span> hp;
+<span class="hljs-keyword">public</span>:
+	<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">setHp</span><span class="hljs-params">(<span class="hljs-type">int</span> h)</span></span>{ hp = h; }
+	<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">getHp</span><span class="hljs-params">()</span></span>{ <span class="hljs-keyword">return</span> hp; }
+};
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">FlyingNPC</span> : <span class="hljs-keyword">public</span> NPC {
+<span class="hljs-keyword">public</span>:
+	<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">doubleHp</span><span class="hljs-params">()</span></span>{
+		hp = hp * <span class="hljs-number">2</span>;	<span class="hljs-comment">// 报错：父类的 private，子类也访问不到</span>
+	}
+};
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre><p>编译报错：</p><pre><code class="language-text-x-trilium-auto hljs"><span class="hljs-keyword">error: </span>&#x27;int NPC::hp&#x27; is private within this context</code></pre><p>继承方式还有 <code spellcheck="false">protected</code> 和 <code spellcheck="false">private</code>:父类的成员被子类继承后“能访问到什么程度”，取决于两个地方：成员本身的访问符，加上继承方式，两者取更严的那个。</p><p>三种继承方式的效果如下：</p><figure class="table"><table><tbody><tr><td>继承方式</td><td>父类的 public 成员</td><td>父类的 protected 成员</td><td>父类的 private 成员</td></tr><tr><td>public 继承</td><td>在子类里还是 public</td><td>在子类里是 protected</td><td>子类访问不到</td></tr><tr><td>protected 继承</td><td>在子类里是 protected</td><td>在子类里是 protected</td><td>子类访问不到</td></tr><tr><td>private 继承</td><td>在子类里是 private</td><td>在子类里是 private</td><td>子类访问不到</td></tr></tbody></table></figure><p>最常用的就是 <code spellcheck="false">public</code> 继承：父类的 <code spellcheck="false">public</code> 还是 <code spellcheck="false">public</code>，<code spellcheck="false">protected</code> 还是 <code spellcheck="false">protected</code>，<code spellcheck="false">private</code> 依旧谁都碰不到。<code spellcheck="false">protected</code> 和 <code spellcheck="false">private</code> 继承用得很少，你只要知道有这么回事就行。</p><aside class="admonition note"><p>父类的 <code spellcheck="false">private</code> 成员，其实被子类“继承”下来了，子类对象的内存里确实有这块地方，只是“没权限访问”。</p></aside><h2>多态<a id="多态" class="toc-anchor" name="多态" href="#多态">#</a></h2><p>继承最妙的地方，其实不止是少写几行代码的事情。</p><p><strong>子类对象能当父类用</strong>。会飞的 NPC 也是 NPC，所以 <code spellcheck="false">FlyingNPC</code> 的对象，能交给 <code spellcheck="false">NPC*</code> 指针（专有名词：<strong>向上转型</strong>）：</p><pre><code class="language-text-x-c-src hljs"><span class="hljs-comment">#include &lt;iostream&gt;</span>
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">NPC</span> </span>{
+public:
+	<span class="hljs-keyword">int</span> hp;
+};
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">FlyingNPC</span><span class="hljs-attr"> : public</span> <span class="hljs-title">NPC</span> </span>{
+public:
+	<span class="hljs-keyword">int</span> height;
+};
+
+<span class="hljs-keyword">int</span> main(){
+	FlyingNPC bird;
+	bird.hp = <span class="hljs-number">100</span>;
+	bird.height = <span class="hljs-number">10</span>;
+
+	NPC* p = &amp;bird;			<span class="hljs-regexp">//</span> 子类对象，交给父类指针
+	std::cout &lt;&lt; p-&gt;hp;		<span class="hljs-regexp">//</span> 父类指针能访问父类的成员，输出 <span class="hljs-number">100</span>
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre><p>运行结果：</p><pre><code class="language-text-x-trilium-auto hljs">100</code></pre><p>反过来不行，NPC 不一定会飞，所以不能把父类对象交给子类指针。</p><p>而且父类指针只能访问父类有的成员：<code spellcheck="false">p</code> 是 <code spellcheck="false">NPC*</code>，只能 <code spellcheck="false">p-&gt;hp</code>，不能 <code spellcheck="false">p-&gt;height</code>（<code spellcheck="false">NPC</code> 里没有 <code spellcheck="false">height</code>）。</p><p>延申出一个问题：<strong>子类定义了和父类同名的函数，会发生什么？</strong></p><pre><code class="language-text-x-c-src hljs"><span class="hljs-comment">#include &lt;iostream&gt;</span>
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">NPC</span> </span>{
+public:
+	void <span class="hljs-keyword">say</span>(){ std::cout &lt;&lt; <span class="hljs-string">&quot;我是普通NPC\n&quot;</span>; }
+};
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">FlyingNPC</span><span class="hljs-attr"> : public</span> <span class="hljs-title">NPC</span> </span>{
+public:
+	void <span class="hljs-keyword">say</span>(){ std::cout &lt;&lt; <span class="hljs-string">&quot;我是会飞的NPC\n&quot;</span>; }	// 和父类同名
+};
+
+<span class="hljs-keyword">int</span> main(){
+	FlyingNPC bird;
+	bird.say();			<span class="hljs-regexp">//</span> 子类对象：调子类自己的 <span class="hljs-keyword">say</span>
+
+	NPC* p = &amp;bird;		<span class="hljs-regexp">//</span> 换成父类指针
+	p-&gt;<span class="hljs-keyword">say</span>();			<span class="hljs-regexp">//</span> 父类指针：调的仍是父类的 <span class="hljs-keyword">say</span>
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre><p>运行结果：</p><pre><code class="language-text-x-trilium-auto hljs">我是会飞的NPC
+我是普通NPC</code></pre><p><code spellcheck="false">bird.say()</code> 调的是子类的版本，子类把父类的同名函数覆盖了。但换成父类指针 <code spellcheck="false">p-&gt;say()</code>，调用的却是父类的版本。</p><p>因为普通成员函数是编译时就定好调用哪个的，所以它只看指针的类型（<code spellcheck="false">p</code> 是 <code spellcheck="false">NPC*</code>，就调 <code spellcheck="false">NPC</code> 的 <code spellcheck="false">say</code>），不看指针实际指向谁。</p><p>这就引出一个问题：如果我想让“父类指针指向不同子类时，自动调各自的 <code spellcheck="false">say</code>”，也就是真正的多态（一个接口，多种形态），这需要虚函数。(<a class="reference-link type-text" href="6.6%20%E8%99%9A%E5%87%BD%E6%95%B0.html"><span><span class="tn-icon bx bx-note"></span>6.6 虚函数</span></a>讲解)</p><h2>小结<a id="小结" class="toc-anchor" name="小结" href="#小结">#</a></h2><p>私有成员外面和子类都碰不到，保护成员子类能碰、外面不能；子类对象还能当父类用，这是多态的根基，而真正的多态要等 6.6 的虚函数。</p><p>下一节，我们要学一个会共享的修饰符。</p><p>下一节：<a class="reference-link type-text" href="6.4%20%E9%9D%99%E6%80%81%E4%BF%AE%E9%A5%B0%E7%AC%A6.html"><span><span class="tn-icon bx bx-note"></span>6.4 静态修饰符</span></a></p><h2>习题<a id="习题" class="toc-anchor" name="习题" href="#习题">#</a></h2><h3>1. 猜输出<a id="1-猜输出" class="toc-anchor" name="1-猜输出" href="#1-猜输出">#</a></h3><p>不运行代码，猜猜下面程序输出什么，再运行验证：</p><pre><code class="language-text-x-c-src hljs"><span class="hljs-comment">#include &lt;iostream&gt;</span>
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">A</span> </span>{
+public:
+	<span class="hljs-keyword">int</span> <span class="hljs-keyword">x</span>;
+};
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">B</span><span class="hljs-attr"> : public</span> <span class="hljs-title">A</span> </span>{
+public:
+	<span class="hljs-keyword">int</span> <span class="hljs-keyword">y</span>;
+};
+
+<span class="hljs-keyword">int</span> main(){
+	B b;
+	b.x = <span class="hljs-number">1</span>;
+	b.y = <span class="hljs-number">2</span>;
+	A* p = &amp;b;
+	std::cout &lt;&lt; p-&gt;<span class="hljs-keyword">x</span>;
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre><p>本题推荐最大时长：3分钟</p><details class="trilium-collapsible"><summary>答案</summary><p>输出 <code spellcheck="false">1</code>。<code spellcheck="false">B</code> 继承 <code spellcheck="false">A</code>，<code spellcheck="false">b</code> 里既有 <code spellcheck="false">x</code> 又有 <code spellcheck="false">y</code>；<code spellcheck="false">b.x = 1</code> 之后，把 <code spellcheck="false">b</code> 交给父类指针 <code spellcheck="false">p</code>（<code spellcheck="false">A* p = &amp;b</code>），<code spellcheck="false">p-&gt;x</code> 取的就是那个 <code spellcheck="false">x</code>，也就是 1。</p></details><h3>2. 长大一岁<a id="2-长大一岁" class="toc-anchor" name="2-长大一岁" href="#2-长大一岁">#</a></h3><p>定义一个父类 <code spellcheck="false">Animal</code>，它有一个 <code spellcheck="false">protected</code> 成员 <code spellcheck="false">age</code>（年龄），以及两个公开成员函数：<code spellcheck="false">setAge</code> 用来设置年龄（如果传进来的数小于 0，就不设置）、<code spellcheck="false">getAge</code> 用来读取年龄。再定义一个子类 <code spellcheck="false">Dog</code> 继承 <code spellcheck="false">Animal</code>，加一个公开成员函数 <code spellcheck="false">grow</code>，把 <code spellcheck="false">age</code> 加 1。</p><p>读入一个整数 <code spellcheck="false">n</code> 作为初始年龄，先 <code spellcheck="false">setAge(n)</code>，再 <code spellcheck="false">grow()</code>，最后输出 <code spellcheck="false">getAge()</code>。</p><p>输入的数字为整数，且&nbsp;<span class="math-tex">\((0 \le n \le 100)\)</span>。</p><p>本题推荐最大时长：10分钟</p><p>题目输入案例：<code spellcheck="false">3</code></p><p>输出结果案例：<code spellcheck="false">4</code></p><details class="trilium-collapsible"><summary>答案</summary><h4>讲解<a id="讲解" class="toc-anchor" name="讲解" href="#讲解">#</a></h4><p>这题把三个知识点串起来：继承（<code spellcheck="false">Dog</code> 继承 <code spellcheck="false">Animal</code>，白拿 <code spellcheck="false">age</code>、<code spellcheck="false">setAge</code>、<code spellcheck="false">getAge</code>）、<code spellcheck="false">protected</code> 成员（子类 <code spellcheck="false">grow</code> 里能直接 <code spellcheck="false">age = age + 1</code>）、封装（外面只能用 <code spellcheck="false">setAge</code> 这扇门，门里还要检查负数）。因为继承和访问控制是 C++ 独有的，这题只有 C++ 一版。</p><h4>C++<a id="c" class="toc-anchor" name="c" href="#c">#</a></h4><pre><code class="language-text-x-c-src hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Animal</span> {
+<span class="hljs-keyword">protected</span>:
+	<span class="hljs-type">int</span> age;							<span class="hljs-comment">// 保护成员：年龄</span>
+<span class="hljs-keyword">public</span>:
+	<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">setAge</span><span class="hljs-params">(<span class="hljs-type">int</span> a)</span></span>{					<span class="hljs-comment">// 公开的门：设置年龄</span>
+		<span class="hljs-keyword">if</span>(a &gt;= <span class="hljs-number">0</span>){						<span class="hljs-comment">// 检查：不许负数</span>
+			age = a;
+		}
+	}
+	<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">getAge</span><span class="hljs-params">()</span></span>{ <span class="hljs-keyword">return</span> age; }			<span class="hljs-comment">// 公开的门：读年龄</span>
+};
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Dog</span> : <span class="hljs-keyword">public</span> Animal {
+<span class="hljs-keyword">public</span>:
+	<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">grow</span><span class="hljs-params">()</span></span>{						<span class="hljs-comment">// 子类新增：长大一岁</span>
+		age = age + <span class="hljs-number">1</span>;					<span class="hljs-comment">// 直接访问父类的 protected 成员</span>
+	}
+};
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+	<span class="hljs-type">int</span> n;
+	std::cin &gt;&gt; n;						<span class="hljs-comment">// 读入初始年龄</span>
+	Dog d;
+	d.<span class="hljs-built_in">setAge</span>(n);						<span class="hljs-comment">// 用公开的门设置</span>
+	d.<span class="hljs-built_in">grow</span>();							<span class="hljs-comment">// 长大一岁</span>
+	std::cout &lt;&lt; d.<span class="hljs-built_in">getAge</span>();			<span class="hljs-comment">// 输出</span>
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre></details>
                 
                 
             </div>
@@ -2665,6 +2834,172 @@
                 
             </footer>
         </div>
+        
+            <div id="toc-pane">
+                <h3>本页内容</h3>
+                <ul id="toc">
+                    
+                        
+
+<li>
+    <a href="#子类">
+        <span>子类</span>
+    </a>
+
+    
+        <ul>
+            
+                
+
+<li>
+    <a href="#语法详解">
+        <span>语法详解</span>
+    </a>
+
+    
+        <ul>
+            
+                
+
+<li>
+    <a href="#子类名和父类名">
+        <span>子类名和父类名</span>
+    </a>
+
+    
+</li>
+
+            
+                
+
+<li>
+    <a href="#继承方式">
+        <span>继承方式</span>
+    </a>
+
+    
+</li>
+
+            
+                
+
+<li>
+    <a href="#新增的成员">
+        <span>新增的成员</span>
+    </a>
+
+    
+</li>
+
+            
+        </ul>
+    
+</li>
+
+            
+        </ul>
+    
+</li>
+
+                    
+                        
+
+<li>
+    <a href="#访问控制符">
+        <span>访问控制符</span>
+    </a>
+
+    
+</li>
+
+                    
+                        
+
+<li>
+    <a href="#多态">
+        <span>多态</span>
+    </a>
+
+    
+</li>
+
+                    
+                        
+
+<li>
+    <a href="#小结">
+        <span>小结</span>
+    </a>
+
+    
+</li>
+
+                    
+                        
+
+<li>
+    <a href="#习题">
+        <span>习题</span>
+    </a>
+
+    
+        <ul>
+            
+                
+
+<li>
+    <a href="#1-猜输出">
+        <span>1. 猜输出</span>
+    </a>
+
+    
+</li>
+
+            
+                
+
+<li>
+    <a href="#2-长大一岁">
+        <span>2. 长大一岁</span>
+    </a>
+
+    
+        <ul>
+            
+                
+
+<li>
+    <a href="#讲解">
+        <span>讲解</span>
+    </a>
+
+    
+</li>
+
+            
+                
+
+<li>
+    <a href="#c">
+        <span>C++</span>
+    </a>
+
+    
+</li>
+
+            
+        </ul>
+    
+</li>
+
+            
+        </ul>
+    
+</li>
+
+                    
+                </ul>
+            </div>
         
     </div>
 </div>

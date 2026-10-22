@@ -2473,22 +2473,6 @@
 
         </li>
     
-    
-        <li class="item">
-            
-
-    
-    <a class="type-text" href="6.8%20%E5%8C%BF%E5%90%8D%E5%87%BD%E6%95%B0.html">
-        
-        <span><i class="tn-icon bx bx-note"></i> 6.8 匿名函数</span>
-    </a>
-
-
-
-
-
-        </li>
-    
 </ul>
 
 
@@ -2644,7 +2628,176 @@
                     <h1 id="title">6.1 枚举</h1>
                 
                     
-                    <h2>基本语法<a id="基本语法" class="toc-anchor" name="基本语法" href="#基本语法">#</a></h2><h2>枚举与 switch<a id="枚举与-switch" class="toc-anchor" name="枚举与-switch" href="#枚举与-switch">#</a></h2>
+                    <p>写代码的时候，有些数字是有特殊含义的。比如星期，1 是星期一、2 是星期二等等，数字含义上午写的时候只有你和上帝看得懂，下午就只有上帝能看懂了。</p><p>枚举就是用来处理此类问题的。</p><h2>基本语法<a id="基本语法" class="toc-anchor" name="基本语法" href="#基本语法">#</a></h2><p>这一个语法，C++ 与 C 几乎没有任何区别，唯一的小区别在声明变量的时候。</p><p>枚举的基础语法如下，我们用<code spellcheck="false">[]</code>表示可选的语法：</p><pre><code class="language-text-x-c-src hljs">enum 枚举类型名 {
+	成员名<span class="hljs-number">1</span> [=整数值],
+	成员名<span class="hljs-number">2</span> [=整数值],
+	...
+};</code></pre><p>几个案例：</p><pre><code class="language-text-x-c-src hljs"><span class="hljs-class"><span class="hljs-keyword">enum</span> <span class="hljs-title">Color</span> </span>{			<span class="hljs-comment">// 不写值，从 0 开始自动编号</span>
+	RED,				<span class="hljs-comment">// 0</span>
+	GREEN,				<span class="hljs-comment">// 1</span>
+	BLUE				<span class="hljs-comment">// 2</span>
+};
+
+<span class="hljs-class"><span class="hljs-keyword">enum</span> <span class="hljs-title">Day</span> </span>{				<span class="hljs-comment">// 指定了第一个，后面的自动加 1</span>
+	MON = <span class="hljs-number">1</span>,			<span class="hljs-comment">// 1</span>
+	TUE,				<span class="hljs-comment">// 2</span>
+	WED,				<span class="hljs-comment">// 3</span>
+	THU,				<span class="hljs-comment">// 4</span>
+	FRI,				<span class="hljs-comment">// 5</span>
+	SAT,				<span class="hljs-comment">// 6</span>
+	SUN=<span class="hljs-number">10</span>				<span class="hljs-comment">// 10,所以你也可以选择继续指定</span>
+};</code></pre><h3>语法详解<a id="语法详解" class="toc-anchor" name="语法详解" href="#语法详解">#</a></h3><h4>枚举类型名<a id="枚举类型名" class="toc-anchor" name="枚举类型名" href="#枚举类型名">#</a></h4><p><code spellcheck="false">enum</code> 后面跟着的，是我们给这个新类型起的名字，语法和变量名一模一样（2.1 描述：只能由字母、数字、下划线组成，不能是关键字，区分大小写）。</p><p><code spellcheck="false">enum Color { ... }</code> 这里的意思是：我要定义一个叫 <code spellcheck="false">Color</code> 的新类型，它只可能取花括号里那几个值。</p><h4>成员与编号<a id="成员与编号" class="toc-anchor" name="成员与编号" href="#成员与编号">#</a></h4><p>花括号里每一行是一个“枚举成员”。编译器会给它们自动编号：<strong>从 0 开始，从上往下，每个加 1</strong>；如果需要切换切点，可以指定，比如 <code spellcheck="false">MON = 1</code>；某个成员没写值，就等于它上一个成员加 1。验证一下，把成员的值打印出来：</p><pre><code class="language-text-x-c-src hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+
+<span class="hljs-keyword">enum</span> <span class="hljs-title class_">Color</span> {
+	RED,
+	GREEN,
+	BLUE
+};
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d %d %d&quot;</span>, RED, GREEN, BLUE);	<span class="hljs-comment">// 打印三个成员的值</span>
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre><p>运行结果：</p><pre><code class="language-text-x-trilium-auto hljs"><span class="hljs-symbol">0 </span><span class="hljs-number">1</span> <span class="hljs-number">2</span></code></pre><p>你可能会问，为什么能用 <code spellcheck="false">%d</code> 打印它？因为它并没有创建新的值，它只是在你写代码的时候给你一个记号让你更方便，实际编译后，你的代码不会添加任何成本。</p><h4>声明枚举变量<a id="声明枚举变量" class="toc-anchor" name="声明枚举变量" href="#声明枚举变量">#</a></h4><p>我们只是创造了一个变量类型，还要用它还得声明变量。这里就是 C 和 C++ 唯一的小区别了。C 里声明变量时，前面要再写一个 <code spellcheck="false">enum</code>：</p><pre><code class="language-text-x-c-src hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+
+<span class="hljs-keyword">enum</span> <span class="hljs-title class_">Color</span> {
+	RED,
+	GREEN,
+	BLUE
+};
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+	<span class="hljs-keyword">enum</span> <span class="hljs-title class_">Color</span> c = GREEN;	<span class="hljs-comment">// C 里声明变量要写 enum</span>
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d&quot;</span>, c);		<span class="hljs-comment">// 打印 c，得到 1</span>
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre><p>运行结果：</p><pre><code class="language-text-x-trilium-auto hljs">1</code></pre><p>C++ 里不用写 <code spellcheck="false">enum</code>，直接用 <code spellcheck="false">Color</code> 就行：</p><pre><code class="language-text-x-c-src hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+
+<span class="hljs-keyword">enum</span> <span class="hljs-title class_">Color</span> {
+	RED,
+	GREEN,
+	BLUE
+};
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+	Color c = GREEN;		<span class="hljs-comment">// C++ 声明变量不用写 enum</span>
+	std::cout &lt;&lt; c;			<span class="hljs-comment">// 打印 c，得到 1</span>
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre><p>运行结果同样是 <code spellcheck="false">1</code>。</p><p>反过来，在 C 里你要是偷懒不写 <code spellcheck="false">enum</code>，直接写 <code spellcheck="false">Color c = RED;</code>，编译就会报错（关键的一行）：</p><pre><code class="language-text-x-trilium-auto hljs"><span class="hljs-keyword">error: </span>unknown type name &#x27;Color&#x27;; use &#x27;enum&#x27; keyword to refer to the type</code></pre><aside class="admonition note"><p>会 C 又会 C++ 的好处之一：在 C++ 里两种写法都合法，<code spellcheck="false">enum Color c</code> 和 <code spellcheck="false">Color c</code> 都能用；但反过来，C 只认 <code spellcheck="false">enum Color</code>。</p></aside><h2>枚举与 switch<a id="枚举与-switch" class="toc-anchor" name="枚举与-switch" href="#枚举与-switch">#</a></h2><p>3.3 说过，<code spellcheck="false">switch</code> 的 <code spellcheck="false">case</code> 后面必须是“编译期就能确定的整数常量”。枚举成员恰好就是这种常量</p><p>它编译的时候就已经是个整数了。所以 <code spellcheck="false">case</code> 后面可以直接写枚举成员的名字，比写 <code spellcheck="false">0</code>、<code spellcheck="false">1</code>、<code spellcheck="false">2</code> 这种数字清楚多了。拿红绿灯举个例子，把下面代码复制运行，输入 0、1、2 试试：</p><h4>C<a id="c" class="toc-anchor" name="c" href="#c">#</a></h4><pre><code class="language-text-x-c-src hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+
+<span class="hljs-keyword">enum</span> <span class="hljs-title class_">Light</span> {
+	RED,		<span class="hljs-comment">// 0 红灯</span>
+	YELLOW,		<span class="hljs-comment">// 1 黄灯</span>
+	GREEN		<span class="hljs-comment">// 2 绿灯</span>
+};
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+	<span class="hljs-type">int</span> n;
+	<span class="hljs-keyword">if</span>(<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>, &amp;n) != <span class="hljs-number">1</span>){	<span class="hljs-comment">// 读入一个数字</span>
+		<span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;
+	}
+	<span class="hljs-keyword">switch</span> (n) {
+		<span class="hljs-keyword">case</span> RED:				<span class="hljs-comment">// 等价于 case 0</span>
+			<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;停\n&quot;</span>);
+			<span class="hljs-keyword">break</span>;
+		<span class="hljs-keyword">case</span> YELLOW:			<span class="hljs-comment">// 等价于 case 1</span>
+			<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;等\n&quot;</span>);
+			<span class="hljs-keyword">break</span>;
+		<span class="hljs-keyword">case</span> GREEN:				<span class="hljs-comment">// 等价于 case 2</span>
+			<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;行\n&quot;</span>);
+			<span class="hljs-keyword">break</span>;
+		<span class="hljs-keyword">default</span>:
+			<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;输入错误\n&quot;</span>);
+	}
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre><h4>C++<a id="c-1" class="toc-anchor" name="c-1" href="#c-1">#</a></h4><pre><code class="language-text-x-c-src hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+
+<span class="hljs-keyword">enum</span> <span class="hljs-title class_">Light</span> {
+	RED,		<span class="hljs-comment">// 0 红灯</span>
+	YELLOW,		<span class="hljs-comment">// 1 黄灯</span>
+	GREEN		<span class="hljs-comment">// 2 绿灯</span>
+};
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+	<span class="hljs-type">int</span> n;
+	std::cin &gt;&gt; n;				<span class="hljs-comment">// 读入一个数字</span>
+	<span class="hljs-keyword">switch</span> (n) {
+		<span class="hljs-keyword">case</span> RED:				<span class="hljs-comment">// 等价于 case 0</span>
+			std::cout &lt;&lt; <span class="hljs-string">&quot;停\n&quot;</span>;
+			<span class="hljs-keyword">break</span>;
+		<span class="hljs-keyword">case</span> YELLOW:			<span class="hljs-comment">// 等价于 case 1</span>
+			std::cout &lt;&lt; <span class="hljs-string">&quot;等\n&quot;</span>;
+			<span class="hljs-keyword">break</span>;
+		<span class="hljs-keyword">case</span> GREEN:				<span class="hljs-comment">// 等价于 case 2</span>
+			std::cout &lt;&lt; <span class="hljs-string">&quot;行\n&quot;</span>;
+			<span class="hljs-keyword">break</span>;
+		<span class="hljs-keyword">default</span>:
+			std::cout &lt;&lt; <span class="hljs-string">&quot;输入错误\n&quot;</span>;
+	}
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre><p>输入 <code spellcheck="false">0</code> 输出 <code spellcheck="false">停</code>，输入 <code spellcheck="false">1</code> 输出 <code spellcheck="false">等</code>，输入 <code spellcheck="false">2</code> 输出 <code spellcheck="false">行</code>。</p><p>注意看，这里的 <code spellcheck="false">case RED</code> 和 <code spellcheck="false">case 0</code> 完全等价</p><p><code spellcheck="false">RED</code> 编译后就是 0。但写 <code spellcheck="false">case RED</code>，一眼就知道这个分支在判断“红灯”</p><p>写 <code spellcheck="false">case 0</code>，你还得回头翻枚举的定义，才知道 0 代表什么。</p><h2>小结<a id="小结" class="toc-anchor" name="小结" href="#小结">#</a></h2><p>这一节学了枚举：用 <code spellcheck="false">enum</code> 给一组整数起上名字，编译器自动从 0 编号，也能自己指定。它本质就是整数，所以能 <code spellcheck="false">printf("%d")</code>、能参与运算、能当 <code spellcheck="false">switch</code> 的 <code spellcheck="false">case</code>。唯一要记的是 C 里声明要写 <code spellcheck="false">enum</code>，C++ 不用。</p><p>下一节，我们要把不同类型的数据打包成一个整体，那就是结构体。</p><p>下一节：<a class="reference-link type-text" href="6.2%20%E7%BB%93%E6%9E%84%E4%BD%93(%E7%B1%BB%E3%80%81%E5%AF%B9%E8%B1%A1).html"><span><span class="tn-icon bx bx-note"></span>6.2 结构体(类、对象)</span></a></p><h2>习题<a id="习题" class="toc-anchor" name="习题" href="#习题">#</a></h2><h3>1. 猜输出<a id="1-猜输出" class="toc-anchor" name="1-猜输出" href="#1-猜输出">#</a></h3><p>不运行代码，猜猜下面程序输出什么，再运行验证：</p><pre><code class="language-text-x-c-src hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+
+<span class="hljs-keyword">enum</span> <span class="hljs-title class_">Fruit</span> {
+	APPLE,		<span class="hljs-comment">// 0</span>
+	BANANA,		<span class="hljs-comment">// 1</span>
+	ORANGE = <span class="hljs-number">5</span>,	<span class="hljs-comment">// 5</span>
+	GRAPE		<span class="hljs-comment">// ?</span>
+};
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d&quot;</span>, GRAPE);
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre><p>本题推荐最大时长：3分钟</p><details class="trilium-collapsible"><summary>答案</summary><p>输出是 <code spellcheck="false">6</code>。<code spellcheck="false">APPLE</code> 是 0、<code spellcheck="false">BANANA</code> 是 1，<code spellcheck="false">ORANGE</code> 被指定成 5，所以它后面的 <code spellcheck="false">GRAPE</code> 就是 5 + 1 = 6。</p></details><h3>2. 奖牌等级<a id="2-奖牌等级" class="toc-anchor" name="2-奖牌等级" href="#2-奖牌等级">#</a></h3><p>定义一个枚举 <code spellcheck="false">Rank</code>，成员 <code spellcheck="false">BRONZE = 1</code>、<code spellcheck="false">SILVER</code>、<code spellcheck="false">GOLD</code>。读入一个整数，1 输出 <code spellcheck="false">铜牌</code>、2 输出 <code spellcheck="false">银牌</code>、3 输出 <code spellcheck="false">金牌</code>，其他数字输出 <code spellcheck="false">无此等级</code>。要求用 <code spellcheck="false">switch</code>，<code spellcheck="false">case</code> 后面写枚举成员。</p><p>本题推荐最大时长：10分钟</p><p>题目输入案例：<code spellcheck="false">2</code></p><p>输出结果案例：<code spellcheck="false">银牌</code></p><details class="trilium-collapsible"><summary>答案</summary><h4>讲解<a id="讲解" class="toc-anchor" name="讲解" href="#讲解">#</a></h4><p>这题就是把“显式指定编号”和“枚举 + switch”两个知识点合起来：<code spellcheck="false">BRONZE = 1</code> 之后，<code spellcheck="false">SILVER</code>、<code spellcheck="false">GOLD</code> 自动变成 2、3，再拿去当 <code spellcheck="false">case</code> 就行。</p><h4>C<a id="c-2" class="toc-anchor" name="c-2" href="#c-2">#</a></h4><pre><code class="language-text-x-c-src hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+
+<span class="hljs-keyword">enum</span> <span class="hljs-title class_">Rank</span> {
+	BRONZE = <span class="hljs-number">1</span>,		<span class="hljs-comment">// 1 铜牌</span>
+	SILVER,			<span class="hljs-comment">// 2 银牌</span>
+	GOLD			<span class="hljs-comment">// 3 金牌</span>
+};
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+	<span class="hljs-type">int</span> n;
+	<span class="hljs-keyword">if</span>(<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>, &amp;n) != <span class="hljs-number">1</span>){	<span class="hljs-comment">// 读入一个数字</span>
+		<span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;
+	}
+	<span class="hljs-keyword">switch</span> (n) {
+		<span class="hljs-keyword">case</span> BRONZE:			<span class="hljs-comment">// 等价于 case 1</span>
+			<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;铜牌\n&quot;</span>);
+			<span class="hljs-keyword">break</span>;
+		<span class="hljs-keyword">case</span> SILVER:			<span class="hljs-comment">// 等价于 case 2</span>
+			<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;银牌\n&quot;</span>);
+			<span class="hljs-keyword">break</span>;
+		<span class="hljs-keyword">case</span> GOLD:				<span class="hljs-comment">// 等价于 case 3</span>
+			<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;金牌\n&quot;</span>);
+			<span class="hljs-keyword">break</span>;
+		<span class="hljs-keyword">default</span>:
+			<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;无此等级\n&quot;</span>);
+	}
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre><h4>C++<a id="c-3" class="toc-anchor" name="c-3" href="#c-3">#</a></h4><pre><code class="language-text-x-c-src hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+
+<span class="hljs-keyword">enum</span> <span class="hljs-title class_">Rank</span> {
+	BRONZE = <span class="hljs-number">1</span>,		<span class="hljs-comment">// 1 铜牌</span>
+	SILVER,			<span class="hljs-comment">// 2 银牌</span>
+	GOLD			<span class="hljs-comment">// 3 金牌</span>
+};
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+	<span class="hljs-type">int</span> n;
+	std::cin &gt;&gt; n;				<span class="hljs-comment">// 读入一个数字</span>
+	<span class="hljs-keyword">switch</span> (n) {
+		<span class="hljs-keyword">case</span> BRONZE:			<span class="hljs-comment">// 等价于 case 1</span>
+			std::cout &lt;&lt; <span class="hljs-string">&quot;铜牌\n&quot;</span>;
+			<span class="hljs-keyword">break</span>;
+		<span class="hljs-keyword">case</span> SILVER:			<span class="hljs-comment">// 等价于 case 2</span>
+			std::cout &lt;&lt; <span class="hljs-string">&quot;银牌\n&quot;</span>;
+			<span class="hljs-keyword">break</span>;
+		<span class="hljs-keyword">case</span> GOLD:				<span class="hljs-comment">// 等价于 case 3</span>
+			std::cout &lt;&lt; <span class="hljs-string">&quot;金牌\n&quot;</span>;
+			<span class="hljs-keyword">break</span>;
+		<span class="hljs-keyword">default</span>:
+			std::cout &lt;&lt; <span class="hljs-string">&quot;无此等级\n&quot;</span>;
+	}
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre></details>
                 
                 
             </div>
@@ -2679,6 +2832,58 @@
     </a>
 
     
+        <ul>
+            
+                
+
+<li>
+    <a href="#语法详解">
+        <span>语法详解</span>
+    </a>
+
+    
+        <ul>
+            
+                
+
+<li>
+    <a href="#枚举类型名">
+        <span>枚举类型名</span>
+    </a>
+
+    
+</li>
+
+            
+                
+
+<li>
+    <a href="#成员与编号">
+        <span>成员与编号</span>
+    </a>
+
+    
+</li>
+
+            
+                
+
+<li>
+    <a href="#声明枚举变量">
+        <span>声明枚举变量</span>
+    </a>
+
+    
+</li>
+
+            
+        </ul>
+    
+</li>
+
+            
+        </ul>
+    
 </li>
 
                     
@@ -2689,6 +2894,117 @@
         <span>枚举与 switch</span>
     </a>
 
+    
+        <ul>
+            
+                
+
+<li>
+    <a href="#c">
+        <span>C</span>
+    </a>
+
+    
+</li>
+
+            
+                
+
+<li>
+    <a href="#c-1">
+        <span>C++</span>
+    </a>
+
+    
+</li>
+
+            
+        </ul>
+    
+</li>
+
+                    
+                        
+
+<li>
+    <a href="#小结">
+        <span>小结</span>
+    </a>
+
+    
+</li>
+
+                    
+                        
+
+<li>
+    <a href="#习题">
+        <span>习题</span>
+    </a>
+
+    
+        <ul>
+            
+                
+
+<li>
+    <a href="#1-猜输出">
+        <span>1. 猜输出</span>
+    </a>
+
+    
+</li>
+
+            
+                
+
+<li>
+    <a href="#2-奖牌等级">
+        <span>2. 奖牌等级</span>
+    </a>
+
+    
+        <ul>
+            
+                
+
+<li>
+    <a href="#讲解">
+        <span>讲解</span>
+    </a>
+
+    
+</li>
+
+            
+                
+
+<li>
+    <a href="#c-2">
+        <span>C</span>
+    </a>
+
+    
+</li>
+
+            
+                
+
+<li>
+    <a href="#c-3">
+        <span>C++</span>
+    </a>
+
+    
+</li>
+
+            
+        </ul>
+    
+</li>
+
+            
+        </ul>
     
 </li>
 

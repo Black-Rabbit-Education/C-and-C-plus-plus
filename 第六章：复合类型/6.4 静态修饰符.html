@@ -1745,7 +1745,7 @@
         C与C++(自制教程)
     </a>
     
-        <div class="header-button-placeholder"></div>
+        <button aria-label="切换目录" id="toc-pane-toggle-button" class="header-button"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M3 9h14V7H3v2zm0 4h14v-2H3v2zm0 4h14v-2H3v2zm16 0h2v-2h-2v2zm0-10V7h2v2h-2zm0 6h2v-2h-2v2z"></path></svg></button>
     
 </div>
 <div id="split-pane">
@@ -2473,22 +2473,6 @@
 
         </li>
     
-    
-        <li class="item">
-            
-
-    
-    <a class="type-text" href="6.8%20%E5%8C%BF%E5%90%8D%E5%87%BD%E6%95%B0.html">
-        
-        <span><i class="tn-icon bx bx-note"></i> 6.8 匿名函数</span>
-    </a>
-
-
-
-
-
-        </li>
-    
 </ul>
 
 
@@ -2639,11 +2623,152 @@
     </div>
     <div id="right-pane">
         <div id="main">
-            <div id="content" class="type-text ck-content no-content">
+            <div id="content" class="type-text ck-content">
                 
                     <h1 id="title">6.4 静态修饰符</h1>
                 
-                    <p>此笔记没有内容。</p>
+                    
+                    <p>静态修饰符，其实就是共享某一个变量。</p><h2>静态局部变量<a id="静态局部变量" class="toc-anchor" name="静态局部变量" href="#静态局部变量">#</a></h2><p>先给基础语法，我们用 <code spellcheck="false">[]</code> 表示可选的语法：</p><pre><code class="language-text-x-c-src hljs">static 变量类型 变量名 [<span class="hljs-operator">=</span>初始值]<span class="hljs-comment">;</span></code></pre><p>案例：</p><pre><code class="language-text-x-c-src hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">count</span><span class="hljs-params">()</span></span>{
+	<span class="hljs-type">int</span> n = <span class="hljs-number">0</span>;			<span class="hljs-comment">// 每次进来都重新创建</span>
+	n = n + <span class="hljs-number">1</span>;
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>, n);
+}
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+	<span class="hljs-built_in">count</span>();	<span class="hljs-comment">// 第 1 次调用</span>
+	<span class="hljs-built_in">count</span>();	<span class="hljs-comment">// 第 2 次调用</span>
+	<span class="hljs-built_in">count</span>();	<span class="hljs-comment">// 第 3 次调用</span>
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre><p>运行结果：</p><pre><code class="language-text-x-trilium-auto hljs">1
+1
+1</code></pre><p>明明调用了三次，怎么三次都打 1？因为 <code spellcheck="false">n</code> 是普通局部变量：每次进 <code spellcheck="false">count</code> 函数，都会<strong>重新创建一个 n 并初始化为 0</strong>，加 1 变成 1，打印 1，然后函数结束、n 被销毁(释放)。</p><p>现在我们加上静态修饰符，再次运行：</p><pre><code class="language-text-x-c-src hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">count</span><span class="hljs-params">()</span></span>{
+	<span class="hljs-type">static</span> <span class="hljs-type">int</span> n = <span class="hljs-number">0</span>;	<span class="hljs-comment">// 只初始化这一次</span>
+	n = n + <span class="hljs-number">1</span>;
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>, n);
+}
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+	<span class="hljs-built_in">count</span>();	<span class="hljs-comment">// 第 1 次调用</span>
+	<span class="hljs-built_in">count</span>();	<span class="hljs-comment">// 第 2 次调用</span>
+	<span class="hljs-built_in">count</span>();	<span class="hljs-comment">// 第 3 次调用</span>
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre><p>运行结果：</p><pre><code class="language-text-x-trilium-auto hljs">1
+2
+3</code></pre><p>只多了一个 <code spellcheck="false">static</code>，这次输出 1、2、3，说明确实没有立马被释放。</p><h2>静态成员变量<a id="静态成员变量" class="toc-anchor" name="静态成员变量" href="#静态成员变量">#</a></h2><p><code spellcheck="false">static</code> 不只往函数里塞，还能往类里塞。类里的 <code spellcheck="false">static</code> 成员，最大的特点是：<strong>所有对象共享同一份</strong>。</p><p>基础语法如下：</p><pre><code class="language-text-x-c-src hljs"><span class="hljs-class"><span class="hljs-keyword">class</span> 类名 </span>{
+public:
+	static 类型 成员名;		<span class="hljs-regexp">//</span> 所有对象共享这一份
+};
+类型 类名::成员名 = 初始值;	<span class="hljs-regexp">//</span> 必须在类外定义并初始化</code></pre><p>几个案例：</p><pre><code class="language-text-x-c-src hljs"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Student</span> </span>{
+public:
+	<span class="hljs-keyword">int</span> id;			<span class="hljs-regexp">//</span> 每个对象各有一份
+	static <span class="hljs-keyword">int</span> total;	<span class="hljs-regexp">//</span> 所有对象共享同一份
+};
+<span class="hljs-keyword">int</span> Student::total = <span class="hljs-number">0</span>;</code></pre><p>复制完整程序跑一遍，重点看 <code spellcheck="false">s1.total</code> 和 <code spellcheck="false">s2.total</code> 是不是同一个：</p><pre><code class="language-text-x-c-src hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Student</span> {
+<span class="hljs-keyword">public</span>:
+	<span class="hljs-type">int</span> id;			<span class="hljs-comment">// 每个对象各有一份</span>
+	<span class="hljs-type">static</span> <span class="hljs-type">int</span> total;	<span class="hljs-comment">// 所有对象共享同一份</span>
+};
+
+<span class="hljs-type">int</span> Student::total = <span class="hljs-number">0</span>;	<span class="hljs-comment">// static 成员要在类外定义并初始化</span>
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+	Student s1, s2;
+	s<span class="hljs-number">1.</span>id = <span class="hljs-number">1</span>;
+	s<span class="hljs-number">2.</span>id = <span class="hljs-number">2</span>;
+	s<span class="hljs-number">1.</span>total = <span class="hljs-number">100</span>;			<span class="hljs-comment">// 通过 s1 修改 total</span>
+	std::cout &lt;&lt; s<span class="hljs-number">2.</span>total;	<span class="hljs-comment">// 通过 s2 读，得到同一个 100</span>
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre><p>运行结果：</p><pre><code class="language-text-x-trilium-auto hljs">100</code></pre><p><code spellcheck="false">total</code> 是 <code spellcheck="false">static</code> 成员，整个类<strong>只有一份</strong>，所以 <code spellcheck="false">s1.total = 100</code> 之后，<code spellcheck="false">s2.total</code> 读到的也是 100。</p><h3>语法详解<a id="语法详解" class="toc-anchor" name="语法详解" href="#语法详解">#</a></h3><h4>类外定义<a id="类外定义" class="toc-anchor" name="类外定义" href="#类外定义">#</a></h4><p><code spellcheck="false">static</code> 成员变量有个特殊的情况：<strong>类里只能声明，不能定义</strong>。想要给他分配内存，需要类外写一行 <code spellcheck="false">int Student::total = 0;</code>（注意，这一句前面<strong>不要再写 </strong><code spellcheck="false"><strong>static</strong></code>），通常放在 <code spellcheck="false">main</code> 前面。</p><h4>忘了定义会怎样<a id="忘了定义会怎样" class="toc-anchor" name="忘了定义会怎样" href="#忘了定义会怎样">#</a></h4><p>如果只在类里声明、忘了在类外定义，编译能过，但<strong>链接</strong>阶段会报错：</p><pre><code class="language-text-x-c-src hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Student</span> {
+<span class="hljs-keyword">public</span>:
+	<span class="hljs-type">static</span> <span class="hljs-type">int</span> total;	<span class="hljs-comment">// 只在类里声明了，没在类外定义</span>
+};
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+	Student::total = <span class="hljs-number">5</span>;	<span class="hljs-comment">// 链接时报错：找不到定义</span>
+	std::cout &lt;&lt; Student::total;
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre><p>编译报错（关键的一行）：</p><pre><code class="language-text-x-trilium-auto hljs">undefined <span class="hljs-keyword">reference</span> <span class="hljs-keyword">to</span> `Student::total&#x27;</code></pre><p><code spellcheck="false">static int total;</code> 实际上只是声明了，告诉了编译器有一个叫<code spellcheck="false">total</code>的成员，并不分配内存。</p><p>忘了定义，链接时找不到它，就会报错 <code spellcheck="false">undefined reference</code>。</p><h4>用类名直接访问<a id="用类名直接访问" class="toc-anchor" name="用类名直接访问" href="#用类名直接访问">#</a></h4><p><code spellcheck="false">static</code> 成员属于"类本身"而不属于某个对象，所以可以不通过对象，直接用 <code spellcheck="false">类名::成员</code> 来访问，<code spellcheck="false">Student::total = 5;</code> 其实就时直接访问。那个 <code spellcheck="false">::</code> 叫"作用域解析运算符"，意思是从 <code spellcheck="false">Student</code> 这个类里取出 <code spellcheck="false">total</code>。</p><p>你其实早就见过它了，<code spellcheck="false">std::cout</code> 里的 <code spellcheck="false">::</code> 也是它，从 <code spellcheck="false">std</code> 这个"命名空间"里取 <code spellcheck="false">cout</code>。</p><h2>静态成员函数<a id="静态成员函数" class="toc-anchor" name="静态成员函数" href="#静态成员函数">#</a></h2><p>成员函数也能加 <code spellcheck="false">static</code>。它的特点是：<strong>不依赖任何具体对象，直接用类名调用</strong>。</p><p>基础语法如下：</p><pre><code class="language-text-x-c-src hljs"><span class="hljs-class"><span class="hljs-keyword">class</span> 类名 </span>{
+public:
+	static 返回类型 函数名(参数){
+		...
+	}
+};</code></pre><p>复制跑一遍：</p><pre><code class="language-text-x-c-src hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Student</span> {
+<span class="hljs-keyword">public</span>:
+	<span class="hljs-type">static</span> <span class="hljs-type">int</span> total;
+	<span class="hljs-function"><span class="hljs-type">static</span> <span class="hljs-type">void</span> <span class="hljs-title">show</span><span class="hljs-params">()</span></span>{		<span class="hljs-comment">// static 成员函数</span>
+		std::cout &lt;&lt; total;	<span class="hljs-comment">// 能访问 static 成员</span>
+	}
+};
+
+<span class="hljs-type">int</span> Student::total = <span class="hljs-number">100</span>;
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+	Student::<span class="hljs-built_in">show</span>();	<span class="hljs-comment">// 不用创建对象，直接用类名调用</span>
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre><p>运行结果：</p><pre><code class="language-text-x-trilium-auto hljs">100</code></pre><p>普通成员函数需要有一个对象实例才能用，有一个对象的变量才能调用，但静态函数不需要</p><h3>语法详解<a id="语法详解-1" class="toc-anchor" name="语法详解-1" href="#语法详解-1">#</a></h3><h4>不能访问非 static 成员<a id="不能访问非-static-成员" class="toc-anchor" name="不能访问非-static-成员" href="#不能访问非-static-成员">#</a></h4><p><code spellcheck="false">static</code> 成员函数<strong>不能用非 </strong><code spellcheck="false"><strong>static</strong></code><strong> 的成员</strong>。因为它不绑定任何对象，自然也不知道你要的是哪一个成员：</p><pre><code class="language-text-x-c-src hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Student</span> {
+<span class="hljs-keyword">public</span>:
+	<span class="hljs-type">int</span> id;			<span class="hljs-comment">// 非 static 成员</span>
+	<span class="hljs-function"><span class="hljs-type">static</span> <span class="hljs-type">void</span> <span class="hljs-title">show</span><span class="hljs-params">()</span></span>{
+		std::cout &lt;&lt; id;	<span class="hljs-comment">// 想访问 id</span>
+	}
+};
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+	Student::<span class="hljs-built_in">show</span>();
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre><p>编译报错：</p><pre><code class="language-text-x-trilium-auto hljs"><span class="hljs-keyword">error: </span>invalid use of member &#x27;Student::id&#x27; in static member function</code></pre><h2>小结<a id="小结" class="toc-anchor" name="小结" href="#小结">#</a></h2><p>静态修饰符主要用于共享，与访问控制无关，二者可以同时使用，如：<code spellcheck="false">public static int b</code></p><p>下一节：<a class="reference-link type-text" href="6.5%20%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E5%92%8C%E6%9E%90%E6%9E%84%E5%87%BD%E6%95%B0.html"><span><span class="tn-icon bx bx-note"></span>6.5 构造函数和析构函数</span></a></p><h2>习题<a id="习题" class="toc-anchor" name="习题" href="#习题">#</a></h2><h3>1. 猜输出<a id="1-猜输出" class="toc-anchor" name="1-猜输出" href="#1-猜输出">#</a></h3><p>不运行代码，猜猜下面程序输出什么，再运行验证：</p><pre><code class="language-text-x-c-src hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">A</span> {
+<span class="hljs-keyword">public</span>:
+	<span class="hljs-type">static</span> <span class="hljs-type">int</span> n;
+};
+
+<span class="hljs-type">int</span> A::n = <span class="hljs-number">0</span>;
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+	A x, y;
+	x.n = <span class="hljs-number">10</span>;
+	std::cout &lt;&lt; y.n;
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre><p>本题推荐最大时长：3分钟</p><details class="trilium-collapsible"><summary>答案</summary><p>输出是 <code spellcheck="false">10</code>。<code spellcheck="false">n</code> 是 <code spellcheck="false">static</code> 成员，<code spellcheck="false">x</code> 和 <code spellcheck="false">y</code> 共享同一个，所以 <code spellcheck="false">x.n = 10</code> 之后，<code spellcheck="false">y.n</code> 读到的也是 10。</p></details><h3>2. 计数器函数<a id="2-计数器函数" class="toc-anchor" name="2-计数器函数" href="#2-计数器函数">#</a></h3><p>写一个函数 <code spellcheck="false">next()</code>，它不带参数，第 1 次被调用时返回 1，第 2 次返回 2，第 3 次返回 3……每调用一次，返回值就比上一次大 1。写好后，在主函数里调用它三次并把结果打印出来。提示：在函数里用一个 <code spellcheck="false">static</code> 局部变量。</p><p>本题不需要输入，程序自己调用三次并输出。</p><p>本题推荐最大时长：8分钟</p><p>输出结果案例：<code spellcheck="false">1 2 3</code></p><details class="trilium-collapsible"><summary>答案</summary><h4>讲解<a id="讲解" class="toc-anchor" name="讲解" href="#讲解">#</a></h4><p>关键是那个 <code spellcheck="false">static</code> 局部变量：它只初始化一次，之后每次调用都接着上一次的值继续加 1，函数才"记得住"数到几了。如果漏了 <code spellcheck="false">static</code>，三次都会返回 1。</p><h4>C<a id="c" class="toc-anchor" name="c" href="#c">#</a></h4><pre><code class="language-text-x-c-src hljs"><span class="hljs-comment">#include &lt;stdio.h&gt;</span>
+
+<span class="hljs-keyword">int</span> <span class="hljs-keyword">next</span>(){
+	static <span class="hljs-keyword">int</span> n = <span class="hljs-number">0</span>;	<span class="hljs-regexp">//</span> 只初始化一次，之后记住上一次的值
+	n = n + <span class="hljs-number">1</span>;
+	<span class="hljs-keyword">return</span> n;
+}
+
+<span class="hljs-keyword">int</span> main(){
+	<span class="hljs-keyword">printf</span>(<span class="hljs-string">&quot;<span class="hljs-variable">%d</span> &quot;</span>, <span class="hljs-keyword">next</span>());	<span class="hljs-regexp">//</span> 第 <span class="hljs-number">1</span> 次，返回 <span class="hljs-number">1</span>
+	<span class="hljs-keyword">printf</span>(<span class="hljs-string">&quot;<span class="hljs-variable">%d</span> &quot;</span>, <span class="hljs-keyword">next</span>());	<span class="hljs-regexp">//</span> 第 <span class="hljs-number">2</span> 次，返回 <span class="hljs-number">2</span>
+	<span class="hljs-keyword">printf</span>(<span class="hljs-string">&quot;<span class="hljs-variable">%d</span>&quot;</span>, <span class="hljs-keyword">next</span>());	<span class="hljs-regexp">//</span> 第 <span class="hljs-number">3</span> 次，返回 <span class="hljs-number">3</span>
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre><h4>C++<a id="c-1" class="toc-anchor" name="c-1" href="#c-1">#</a></h4><pre><code class="language-text-x-c-src hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">next</span><span class="hljs-params">()</span></span>{
+	<span class="hljs-type">static</span> <span class="hljs-type">int</span> n = <span class="hljs-number">0</span>;	<span class="hljs-comment">// 只初始化一次，之后记住上一次的值</span>
+	n = n + <span class="hljs-number">1</span>;
+	<span class="hljs-keyword">return</span> n;
+}
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+	std::cout &lt;&lt; <span class="hljs-built_in">next</span>() &lt;&lt; <span class="hljs-string">&quot; &quot;</span>;	<span class="hljs-comment">// 第 1 次，返回 1</span>
+	std::cout &lt;&lt; <span class="hljs-built_in">next</span>() &lt;&lt; <span class="hljs-string">&quot; &quot;</span>;	<span class="hljs-comment">// 第 2 次，返回 2</span>
+	std::cout &lt;&lt; <span class="hljs-built_in">next</span>();		<span class="hljs-comment">// 第 3 次，返回 3</span>
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre></details>
                 
                 
             </div>
@@ -2665,6 +2790,213 @@
                 
             </footer>
         </div>
+        
+            <div id="toc-pane">
+                <h3>本页内容</h3>
+                <ul id="toc">
+                    
+                        
+
+<li>
+    <a href="#静态局部变量">
+        <span>静态局部变量</span>
+    </a>
+
+    
+</li>
+
+                    
+                        
+
+<li>
+    <a href="#静态成员变量">
+        <span>静态成员变量</span>
+    </a>
+
+    
+        <ul>
+            
+                
+
+<li>
+    <a href="#语法详解">
+        <span>语法详解</span>
+    </a>
+
+    
+        <ul>
+            
+                
+
+<li>
+    <a href="#类外定义">
+        <span>类外定义</span>
+    </a>
+
+    
+</li>
+
+            
+                
+
+<li>
+    <a href="#忘了定义会怎样">
+        <span>忘了定义会怎样</span>
+    </a>
+
+    
+</li>
+
+            
+                
+
+<li>
+    <a href="#用类名直接访问">
+        <span>用类名直接访问</span>
+    </a>
+
+    
+</li>
+
+            
+        </ul>
+    
+</li>
+
+            
+        </ul>
+    
+</li>
+
+                    
+                        
+
+<li>
+    <a href="#静态成员函数">
+        <span>静态成员函数</span>
+    </a>
+
+    
+        <ul>
+            
+                
+
+<li>
+    <a href="#语法详解-1">
+        <span>语法详解</span>
+    </a>
+
+    
+        <ul>
+            
+                
+
+<li>
+    <a href="#不能访问非-static-成员">
+        <span>不能访问非 static 成员</span>
+    </a>
+
+    
+</li>
+
+            
+        </ul>
+    
+</li>
+
+            
+        </ul>
+    
+</li>
+
+                    
+                        
+
+<li>
+    <a href="#小结">
+        <span>小结</span>
+    </a>
+
+    
+</li>
+
+                    
+                        
+
+<li>
+    <a href="#习题">
+        <span>习题</span>
+    </a>
+
+    
+        <ul>
+            
+                
+
+<li>
+    <a href="#1-猜输出">
+        <span>1. 猜输出</span>
+    </a>
+
+    
+</li>
+
+            
+                
+
+<li>
+    <a href="#2-计数器函数">
+        <span>2. 计数器函数</span>
+    </a>
+
+    
+        <ul>
+            
+                
+
+<li>
+    <a href="#讲解">
+        <span>讲解</span>
+    </a>
+
+    
+</li>
+
+            
+                
+
+<li>
+    <a href="#c">
+        <span>C</span>
+    </a>
+
+    
+</li>
+
+            
+                
+
+<li>
+    <a href="#c-1">
+        <span>C++</span>
+    </a>
+
+    
+</li>
+
+            
+        </ul>
+    
+</li>
+
+            
+        </ul>
+    
+</li>
+
+                    
+                </ul>
+            </div>
         
     </div>
 </div>

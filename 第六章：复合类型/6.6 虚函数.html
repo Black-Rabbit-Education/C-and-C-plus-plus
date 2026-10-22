@@ -1745,7 +1745,7 @@
         C与C++(自制教程)
     </a>
     
-        <div class="header-button-placeholder"></div>
+        <button aria-label="切换目录" id="toc-pane-toggle-button" class="header-button"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M3 9h14V7H3v2zm0 4h14v-2H3v2zm0 4h14v-2H3v2zm16 0h2v-2h-2v2zm0-10V7h2v2h-2zm0 6h2v-2h-2v2z"></path></svg></button>
     
 </div>
 <div id="split-pane">
@@ -2473,22 +2473,6 @@
 
         </li>
     
-    
-        <li class="item">
-            
-
-    
-    <a class="type-text" href="6.8%20%E5%8C%BF%E5%90%8D%E5%87%BD%E6%95%B0.html">
-        
-        <span><i class="tn-icon bx bx-note"></i> 6.8 匿名函数</span>
-    </a>
-
-
-
-
-
-        </li>
-    
 </ul>
 
 
@@ -2639,11 +2623,169 @@
     </div>
     <div id="right-pane">
         <div id="main">
-            <div id="content" class="type-text ck-content no-content">
+            <div id="content" class="type-text ck-content">
                 
                     <h1 id="title">6.6 虚函数</h1>
                 
-                    <p>此笔记没有内容。</p>
+                    
+                    <p>虚函数同样是C++有，但是C没有的东西。</p><h2>虚函数<a id="虚函数" class="toc-anchor" name="虚函数" href="#虚函数">#</a></h2><p>基础语法如下，就是在成员函数声明的最前面加 <code spellcheck="false">virtual</code>：</p><pre><code class="language-text-x-c-src hljs"><span class="hljs-class"><span class="hljs-keyword">class</span> 类名 </span>{
+public:
+	virtual 返回类型 函数名(参数){		<span class="hljs-regexp">//</span> 加 virtual，变成虚函数
+		函数体;
+	}
+};</code></pre><p>几个案例：</p><pre><code class="language-text-x-c-src hljs"><span class="hljs-keyword">class</span> <span class="hljs-title">NPC</span> {
+<span class="hljs-keyword">public</span>:
+	<span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-keyword">void</span> <span class="hljs-title">say</span>()</span>{ }	<span class="hljs-comment">// 加 virtual，函数体照常写</span>
+};</code></pre><p>案例：</p><pre><code class="language-text-x-c-src hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">NPC</span> {
+<span class="hljs-keyword">public</span>:
+	<span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-type">void</span> <span class="hljs-title">say</span><span class="hljs-params">()</span></span>{ std::cout &lt;&lt; <span class="hljs-string">&quot;我是普通NPC\n&quot;</span>; }	<span class="hljs-comment">// 加 virtual</span>
+};
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">FlyingNPC</span> : <span class="hljs-keyword">public</span> NPC {
+<span class="hljs-keyword">public</span>:
+	<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">say</span><span class="hljs-params">()</span></span>{ std::cout &lt;&lt; <span class="hljs-string">&quot;我是会飞的NPC\n&quot;</span>; }			<span class="hljs-comment">// 重写父类的虚函数</span>
+};
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+	FlyingNPC bird;
+	NPC* p = &amp;bird;		<span class="hljs-comment">// 父类指针，指向子类对象</span>
+	p-&gt;<span class="hljs-built_in">say</span>();			<span class="hljs-comment">// 这次调的是子类的 say</span>
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre><p>运行结果：</p><pre><code class="language-text-x-trilium-auto hljs">我是会飞的NPC</code></pre><p>虚函数就是提前告知编译器，这个函数在子类会被重写，要编译器调用子类的函数而不是像前几节一样调用的父类函数。</p><h3>语法详解<a id="语法详解" class="toc-anchor" name="语法详解" href="#语法详解">#</a></h3><h4>virtual 写在哪<a id="virtual-写在哪" class="toc-anchor" name="virtual-写在哪" href="#virtual-写在哪">#</a></h4><p>加在父类的成员函数声明最前面。子类重写时，<code spellcheck="false">virtual</code> 可以写也可以不写，只要父类标了 <code spellcheck="false">virtual</code>，子类里那个同名同参数的函数自动也是虚函数。不过建议子类也写上，方便阅读代码。</p><h4>override<a id="override" class="toc-anchor" name="override" href="#override">#</a></h4><p>重写的时候，还可以在参数列表后面加一个 <code spellcheck="false">override</code>，明确告诉编译器“我这是在重写父类的虚函数”：</p><pre><code class="language-text-x-c-src hljs"><span class="hljs-keyword">class</span> <span class="hljs-title class_">FlyingNPC</span> : <span class="hljs-keyword">public</span> NPC {
+<span class="hljs-keyword">public</span>:
+	<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">say</span><span class="hljs-params">()</span> <span class="hljs-keyword">override</span> </span>{ std::cout &lt;&lt; <span class="hljs-string">&quot;我是会飞的NPC\n&quot;</span>; }	<span class="hljs-comment">// 写明这是重写</span>
+};</code></pre><p>其实不需要也能运行，主要用于更好的阅读代码和严格规定函数是重写而不是重载。比如参数写错了，多写一个：</p><pre><code class="language-text-x-c-src hljs"><span class="hljs-keyword">class</span> <span class="hljs-title class_">FlyingNPC</span> : <span class="hljs-keyword">public</span> NPC {
+<span class="hljs-keyword">public</span>:
+	<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">say</span><span class="hljs-params">(<span class="hljs-type">int</span> x)</span> <span class="hljs-keyword">override</span> </span>{ std::cout &lt;&lt; <span class="hljs-string">&quot;我是会飞的NPC\n&quot;</span>; }	<span class="hljs-comment">// 多写了个参数</span>
+};</code></pre><p>编译立刻报错：</p><pre><code class="language-text-x-trilium-auto hljs"><span class="hljs-keyword">error: </span>&#x27;void FlyingNPC::say(int)&#x27; marked &#x27;override&#x27;, but does not override</code></pre><p>案例：</p><pre><code class="language-text-x-c-src hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">NPC</span> {
+<span class="hljs-keyword">public</span>:
+	<span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-type">void</span> <span class="hljs-title">say</span><span class="hljs-params">()</span></span>{ std::cout &lt;&lt; <span class="hljs-string">&quot;我是普通NPC\n&quot;</span>; }
+};
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">FlyingNPC</span> : <span class="hljs-keyword">public</span> NPC {
+<span class="hljs-keyword">public</span>:
+	<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">say</span><span class="hljs-params">(<span class="hljs-type">int</span> x)</span></span>{ std::cout &lt;&lt; <span class="hljs-string">&quot;我是会飞的NPC\n&quot;</span>; }	<span class="hljs-comment">// 没了 override，编译器不管</span>
+};
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+	FlyingNPC bird;
+	NPC* p = &amp;bird;		<span class="hljs-comment">// 父类指针，指向子类对象</span>
+	p-&gt;<span class="hljs-built_in">say</span>();			<span class="hljs-comment">// 以为调子类，其实调的是父类</span>
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre><p>运行结果：</p><pre><code class="language-text-x-trilium-auto hljs">我是普通NPC</code></pre><h4>静态绑定和动态绑定<a id="静态绑定和动态绑定" class="toc-anchor" name="静态绑定和动态绑定" href="#静态绑定和动态绑定">#</a></h4><p>6.3 说普通成员函数是编译时就确定好调用的是哪个函数。根据指针类型：<code spellcheck="false">p</code> 是 <code spellcheck="false">NPC*</code>，就调用 <code spellcheck="false">NPC</code> 的 <code spellcheck="false">say</code>。这种编译时确定的，叫<strong>静态绑定</strong>（也叫早绑定）。</p><p>虚函数不一样。编译的时候，编译器不知道 <code spellcheck="false">p</code> 到底指向 NPC 还是 FlyingNPC，所以它不会去写成固定调用某个函数，而是让程序<strong>运行的时候</strong>临时查一下p 实际指向谁，再决定调用对应的函数。这种运行时才确定的，叫<strong>动态绑定</strong>（也叫晚绑定）。</p><aside class="admonition note"><p>编译器内部是靠一张“虚函数表”实现动态绑定的：每个带虚函数的对象里，都藏着一张记录“这个对象的函数到底调哪个版本”的表，运行时查这张表就行。</p></aside><h2>纯虚函数<a id="纯虚函数" class="toc-anchor" name="纯虚函数" href="#纯虚函数">#</a></h2><p>有时候，父类不需要实现函数，但是想要限制子类一定要有这个函数实现，我们就要用到纯虚函数。</p><p>语法：</p><pre><code class="language-text-x-c-src hljs">virtual 返回类型 函数名(参数) <span class="hljs-operator">=</span> <span class="hljs-number">0</span><span class="hljs-comment">;</span></code></pre><p>案例：</p><pre><code class="language-text-x-c-src hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Shape</span> {
+<span class="hljs-keyword">public</span>:
+	<span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-type">int</span> <span class="hljs-title">area</span><span class="hljs-params">()</span> </span>= <span class="hljs-number">0</span>;		<span class="hljs-comment">// 纯虚函数：要求子类必须实现求面积的函数</span>
+};
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Rect</span> : <span class="hljs-keyword">public</span> Shape {		<span class="hljs-comment">// 长方形</span>
+<span class="hljs-keyword">public</span>:
+	<span class="hljs-type">int</span> w, h;
+	<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">area</span><span class="hljs-params">()</span></span>{ <span class="hljs-keyword">return</span> w * h; }	<span class="hljs-comment">// 长乘宽</span>
+};
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Square</span> : <span class="hljs-keyword">public</span> Shape {	<span class="hljs-comment">// 正方形</span>
+<span class="hljs-keyword">public</span>:
+	<span class="hljs-type">int</span> side;
+	<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">area</span><span class="hljs-params">()</span></span>{ <span class="hljs-keyword">return</span> side * side; }	<span class="hljs-comment">// 边长乘边长</span>
+};
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+	Rect r; r.w = <span class="hljs-number">3</span>; r.h = <span class="hljs-number">4</span>;
+	Square s; s.side = <span class="hljs-number">5</span>;
+
+	Shape* shapes[<span class="hljs-number">2</span>];		<span class="hljs-comment">// 父类指针数组</span>
+	shapes[<span class="hljs-number">0</span>] = &amp;r;
+	shapes[<span class="hljs-number">1</span>] = &amp;s;
+
+	<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">2</span>; i++){
+		std::cout &lt;&lt; shapes[i]-&gt;<span class="hljs-built_in">area</span>() &lt;&lt; <span class="hljs-string">&quot;\n&quot;</span>;
+	}
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre><p>运行结果：</p><pre><code class="language-text-x-trilium-auto hljs">12
+25</code></pre><p>这里是多态，也是纯虚函数的应用。</p><p>含纯虚函数的类，叫<strong>抽象类</strong>。抽象类不能创建对象实例。如果你仍然坚持写 <code spellcheck="false">Shape s;</code>，编译会报错：</p><pre><code class="language-text-x-trilium-auto hljs"><span class="hljs-keyword">error: </span>cannot declare variable &#x27;s&#x27; to be of abstract type &#x27;Shape&#x27;</code></pre><p>抽象类的设计类似于模板，子类基于这个模板做实现，但抽象类本身不可直接创建对象实例使用。</p><h2>虚析构函数<a id="虚析构函数" class="toc-anchor" name="虚析构函数" href="#虚析构函数">#</a></h2><p>虚函数还能用在析构函数上。案例：</p><pre><code class="language-text-x-c-src hljs"><span class="hljs-comment">#include &lt;iostream&gt;</span>
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Animal</span> </span>{
+public:
+	~Animal(){ std::cout &lt;&lt; <span class="hljs-string">&quot;Animal 析构\n&quot;</span>; }	// 析构没加 virtual
+};
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Dog</span><span class="hljs-attr"> : public</span> <span class="hljs-title">Animal</span> </span>{
+public:
+	~Dog(){ std::cout &lt;&lt; <span class="hljs-string">&quot;Dog 析构\n&quot;</span>; }
+};
+
+<span class="hljs-keyword">int</span> main(){
+	Animal* p = new Dog;	<span class="hljs-regexp">//</span> 父类指针，指向 new 出来的子类
+	<span class="hljs-keyword">delete</span> p;				<span class="hljs-regexp">//</span> 释放
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre><p>运行结果：</p><pre><code class="language-text-x-trilium-auto hljs"><span class="hljs-keyword">Animal</span> 析构</code></pre><p>我们会发现析构函数调用的父类的析构函数，如此一来，若是我们子类中有<code spellcheck="false">new</code>的变量，这就会导致内存泄漏！</p><p>解决方案：</p><pre><code class="language-text-x-c-src hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Animal</span> {
+<span class="hljs-keyword">public</span>:
+	<span class="hljs-keyword">virtual</span> ~<span class="hljs-built_in">Animal</span>(){ std::cout &lt;&lt; <span class="hljs-string">&quot;Animal 析构\n&quot;</span>; }	<span class="hljs-comment">// 析构加 virtual</span>
+};
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Dog</span> : <span class="hljs-keyword">public</span> Animal {
+<span class="hljs-keyword">public</span>:
+	~<span class="hljs-built_in">Dog</span>(){ std::cout &lt;&lt; <span class="hljs-string">&quot;Dog 析构\n&quot;</span>; }
+};
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+	Animal* p = <span class="hljs-keyword">new</span> Dog;
+	<span class="hljs-keyword">delete</span> p;		<span class="hljs-comment">// 这次两个析构都会被运行</span>
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre><p>运行结果：</p><pre><code class="language-text-x-trilium-auto hljs">Dog 析构
+<span class="hljs-keyword">Animal</span> 析构</code></pre><p>这次 <code spellcheck="false">Dog</code> 的析构先跑（先销毁子类自己），<code spellcheck="false">Animal</code> 的析构再跑（再销毁父类部分）</p><aside class="admonition note"><p>建议：</p><p>如果一个类有虚函数，建议将析构函数也作为虚函数，这样后续使用子类时就不用担心内存泄漏问题。</p></aside><h2>小结<a id="小结" class="toc-anchor" name="小结" href="#小结">#</a></h2><p>虚函数就是一个模板，子类基于父类虚函数进行对应实现，同时确保在使用的时候能准确调用到对应函数。</p><p>虚函数并不难，主要问题在于记得解决内存泄漏问题。</p><p>下一节：<a class="reference-link type-text" href="6.7%20%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD.html"><span><span class="tn-icon bx bx-note"></span>6.7 运算符重载</span></a></p><h2>习题<a id="习题" class="toc-anchor" name="习题" href="#习题">#</a></h2><h3>1. 猜输出<a id="1-猜输出" class="toc-anchor" name="1-猜输出" href="#1-猜输出">#</a></h3><p>不运行代码，猜猜下面程序输出什么，再运行验证：</p><pre><code class="language-text-x-c-src hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">A</span> {
+<span class="hljs-keyword">public</span>:
+	<span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-type">void</span> <span class="hljs-title">f</span><span class="hljs-params">()</span></span>{ std::cout &lt;&lt; <span class="hljs-string">&quot;A\n&quot;</span>; }
+};
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">B</span> : <span class="hljs-keyword">public</span> A {
+<span class="hljs-keyword">public</span>:
+	<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">f</span><span class="hljs-params">()</span></span>{ std::cout &lt;&lt; <span class="hljs-string">&quot;B\n&quot;</span>; }
+};
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+	A a;
+	B b;
+	a.<span class="hljs-built_in">f</span>();			<span class="hljs-comment">// 普通对象，调 A 的 f</span>
+	b.<span class="hljs-built_in">f</span>();			<span class="hljs-comment">// 普通对象，调 B 的 f</span>
+	A* p = &amp;b;		<span class="hljs-comment">// 父类指针指向 B</span>
+	p-&gt;<span class="hljs-built_in">f</span>();			<span class="hljs-comment">// ?</span>
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre><p>本题推荐最大时长：3分钟</p><details class="trilium-collapsible" open=""><summary>答案</summary><p>输出是三行：<code spellcheck="false">A</code>、<code spellcheck="false">B</code>、<code spellcheck="false">B</code>。<code spellcheck="false">a.f()</code> 是普通对象，调的当然是 A 自己的 <code spellcheck="false">f</code>；<code spellcheck="false">b.f()</code> 调 B 的 <code spellcheck="false">f</code>；关键在 <code spellcheck="false">p-&gt;f()</code>，这里时虚函数</p></details><h3>2. 图形面积<a id="2-图形面积" class="toc-anchor" name="2-图形面积" href="#2-图形面积">#</a></h3><p>定义一个抽象类 <code spellcheck="false">Shape</code>，它有一个纯虚函数 <code spellcheck="false">int area()</code>。再定义一个子类 <code spellcheck="false">Rect</code> 继承它：<code spellcheck="false">Rect</code> 有两个成员 <code spellcheck="false">w</code>（宽）、<code spellcheck="false">h</code>（高），并实现 <code spellcheck="false">area()</code> 返回 <code spellcheck="false">w * h</code>。输入两个整数（宽 w 和高 h），声明一个 <code spellcheck="false">Rect</code> 对象、把 <code spellcheck="false">w</code>、<code spellcheck="false">h</code> 设成输入的值，再用一个 <code spellcheck="false">Shape*</code> 指针指向它，输出这个指针调用 <code spellcheck="false">area()</code> 的结果。</p><p>输入的数字为整数，且&nbsp;<span class="math-tex">\(1 \le w \le 1000\)</span>、<span class="math-tex">\(1 \le h \le 1000\)</span>。</p><p>本题推荐最大时长：12分钟</p><p>题目输入案例：<code spellcheck="false">3 4</code></p><p>输出结果案例：<code spellcheck="false">12</code></p><details class="trilium-collapsible"><summary>答案</summary><h4>C++<a id="c" class="toc-anchor" name="c" href="#c">#</a></h4><pre><code class="language-text-x-c-src hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Shape</span> {
+<span class="hljs-keyword">public</span>:
+	<span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-type">int</span> <span class="hljs-title">area</span><span class="hljs-params">()</span> </span>= <span class="hljs-number">0</span>;		<span class="hljs-comment">// 纯虚函数：只定规矩</span>
+};
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Rect</span> : <span class="hljs-keyword">public</span> Shape {
+<span class="hljs-keyword">public</span>:
+	<span class="hljs-type">int</span> w, h;					<span class="hljs-comment">// 宽和高</span>
+	<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">area</span><span class="hljs-params">()</span></span>{ <span class="hljs-keyword">return</span> w * h; }	<span class="hljs-comment">// 实现：长乘宽</span>
+};
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+	<span class="hljs-type">int</span> a, b;
+	std::cin &gt;&gt; a &gt;&gt; b;			<span class="hljs-comment">// 读入宽和高</span>
+
+	Rect r;
+	r.w = a;					<span class="hljs-comment">// 设置宽</span>
+	r.h = b;					<span class="hljs-comment">// 设置高</span>
+
+	Shape* p = &amp;r;				<span class="hljs-comment">// 父类指针指向子类对象</span>
+	std::cout &lt;&lt; p-&gt;<span class="hljs-built_in">area</span>();	<span class="hljs-comment">// 虚函数，调到 Rect 的 area</span>
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre></details>
                 
                 
             </div>
@@ -2665,6 +2807,161 @@
                 
             </footer>
         </div>
+        
+            <div id="toc-pane">
+                <h3>本页内容</h3>
+                <ul id="toc">
+                    
+                        
+
+<li>
+    <a href="#虚函数">
+        <span>虚函数</span>
+    </a>
+
+    
+        <ul>
+            
+                
+
+<li>
+    <a href="#语法详解">
+        <span>语法详解</span>
+    </a>
+
+    
+        <ul>
+            
+                
+
+<li>
+    <a href="#virtual-写在哪">
+        <span>virtual 写在哪</span>
+    </a>
+
+    
+</li>
+
+            
+                
+
+<li>
+    <a href="#override">
+        <span>override</span>
+    </a>
+
+    
+</li>
+
+            
+                
+
+<li>
+    <a href="#静态绑定和动态绑定">
+        <span>静态绑定和动态绑定</span>
+    </a>
+
+    
+</li>
+
+            
+        </ul>
+    
+</li>
+
+            
+        </ul>
+    
+</li>
+
+                    
+                        
+
+<li>
+    <a href="#纯虚函数">
+        <span>纯虚函数</span>
+    </a>
+
+    
+</li>
+
+                    
+                        
+
+<li>
+    <a href="#虚析构函数">
+        <span>虚析构函数</span>
+    </a>
+
+    
+</li>
+
+                    
+                        
+
+<li>
+    <a href="#小结">
+        <span>小结</span>
+    </a>
+
+    
+</li>
+
+                    
+                        
+
+<li>
+    <a href="#习题">
+        <span>习题</span>
+    </a>
+
+    
+        <ul>
+            
+                
+
+<li>
+    <a href="#1-猜输出">
+        <span>1. 猜输出</span>
+    </a>
+
+    
+</li>
+
+            
+                
+
+<li>
+    <a href="#2-图形面积">
+        <span>2. 图形面积</span>
+    </a>
+
+    
+        <ul>
+            
+                
+
+<li>
+    <a href="#c">
+        <span>C++</span>
+    </a>
+
+    
+</li>
+
+            
+        </ul>
+    
+</li>
+
+            
+        </ul>
+    
+</li>
+
+                    
+                </ul>
+            </div>
         
     </div>
 </div>

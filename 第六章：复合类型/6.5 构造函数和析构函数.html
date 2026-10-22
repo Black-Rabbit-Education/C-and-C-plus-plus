@@ -1745,7 +1745,7 @@
         C与C++(自制教程)
     </a>
     
-        <div class="header-button-placeholder"></div>
+        <button aria-label="切换目录" id="toc-pane-toggle-button" class="header-button"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M3 9h14V7H3v2zm0 4h14v-2H3v2zm0 4h14v-2H3v2zm16 0h2v-2h-2v2zm0-10V7h2v2h-2zm0 6h2v-2h-2v2z"></path></svg></button>
     
 </div>
 <div id="split-pane">
@@ -2473,22 +2473,6 @@
 
         </li>
     
-    
-        <li class="item">
-            
-
-    
-    <a class="type-text" href="6.8%20%E5%8C%BF%E5%90%8D%E5%87%BD%E6%95%B0.html">
-        
-        <span><i class="tn-icon bx bx-note"></i> 6.8 匿名函数</span>
-    </a>
-
-
-
-
-
-        </li>
-    
 </ul>
 
 
@@ -2639,11 +2623,225 @@
     </div>
     <div id="right-pane">
         <div id="main">
-            <div id="content" class="type-text ck-content no-content">
+            <div id="content" class="type-text ck-content">
                 
                     <h1 id="title">6.5 构造函数和析构函数</h1>
                 
-                    <p>此笔记没有内容。</p>
+                    
+                    <p>构造函数和析构函数，主要用于控制声明某一个类型变量(对象实例)或某一个对象实例被<code spellcheck="false">delete</code>或<code spellcheck="false">free</code>释放时发生什么。</p><h2>构造函数<a id="构造函数" class="toc-anchor" name="构造函数" href="#构造函数">#</a></h2><p>构造函数，就是在对象<strong>创建的那一瞬间，自动被调用</strong>的函数，专门用来给对象做初始情况。</p><p>基础语法如下：</p><pre><code class="language-text-x-c-src hljs"><span class="hljs-class"><span class="hljs-keyword">class</span> 类名 </span>{
+public:
+	类名(参数列表){		<span class="hljs-regexp">//</span> 构造函数：名字和类名一样
+		函数体;
+		[<span class="hljs-keyword">return</span>;]
+	}
+};</code></pre><p>注意它和普通成员函数的区别：<strong>没有返回类型，而且名字和类名一模一样</strong>。几个案例：</p><pre><code class="language-text-x-c-src hljs"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Student</span> </span>{
+public:
+	<span class="hljs-keyword">int</span> age;
+	Student(){			<span class="hljs-regexp">//</span> 构造函数，不需要返回类型
+		age = <span class="hljs-number">0</span>;		<span class="hljs-regexp">//</span> 一出生就把 age 设成 <span class="hljs-number">0</span>
+	}
+};</code></pre><p>案例：</p><pre><code class="language-text-x-c-src hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Student</span> {
+<span class="hljs-keyword">public</span>:
+	<span class="hljs-type">int</span> age;
+	<span class="hljs-built_in">Student</span>(){						<span class="hljs-comment">// 构造函数：名字和类名一样</span>
+		age = <span class="hljs-number">0</span>;					<span class="hljs-comment">// 出生时自动把 age 设成 0</span>
+		std::cout &lt;&lt; <span class="hljs-string">&quot;构造了！\n&quot;</span>;	<span class="hljs-comment">// 打印一句，证明它被调用了</span>
+	}
+};
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+	Student s;						<span class="hljs-comment">// 声明对象，构造函数自动跑</span>
+	std::cout &lt;&lt; s.age;				<span class="hljs-comment">// 输出 0：不用手动赋值了</span>
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre><p>运行结果：</p><pre><code class="language-text-x-trilium-auto hljs">构造了！
+0</code></pre><p>我们只写了 <code spellcheck="false">Student s;</code> 声明一个对象，构造函数就被自动调用了：先把 <code spellcheck="false">age</code> 设成 0，再打印“构造了！”，然后才轮到 <code spellcheck="false">main</code> 里的 <code spellcheck="false">std::cout &lt;&lt; s.age</code> 输出 0。</p><h3>语法详解<a id="语法详解" class="toc-anchor" name="语法详解" href="#语法详解">#</a></h3><h4>带参数的构造函数<a id="带参数的构造函数" class="toc-anchor" name="带参数的构造函数" href="#带参数的构造函数">#</a></h4><p>光把成员设成 0 不够，我们还常想“一出生就设成指定的值”。构造函数也能像普通函数一样带参数：</p><pre><code class="language-text-x-c-src hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Student</span> {
+<span class="hljs-keyword">public</span>:
+	<span class="hljs-type">int</span> age;
+	<span class="hljs-built_in">Student</span>(<span class="hljs-type">int</span> a){			<span class="hljs-comment">// 带参数的构造函数</span>
+		age = a;			<span class="hljs-comment">// 用传进来的 a 初始化 age</span>
+	}
+};
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+	<span class="hljs-function">Student <span class="hljs-title">s</span><span class="hljs-params">(<span class="hljs-number">18</span>)</span></span>;			<span class="hljs-comment">// 声明时传 18，age 被设成 18</span>
+	std::cout &lt;&lt; s.age;		<span class="hljs-comment">// 输出 18</span>
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre><p>运行结果：</p><pre><code class="language-text-x-trilium-auto hljs">18</code></pre><p><code spellcheck="false">Student s(18);</code> 就像调用函数一样，把 18 传给构造函数，构造函数里 <code spellcheck="false">age = a</code> 把成员设成 18。声明对象时后面跟的那对小括号，就是在给构造函数传参数。</p><h4>默认构造函数<a id="默认构造函数" class="toc-anchor" name="默认构造函数" href="#默认构造函数">#</a></h4><p>不带参数的构造函数，叫<strong>默认构造函数</strong>。你不写任何构造函数时，编译器会帮你补一个“空”的默认构造函数（什么都不做），但<strong>只要你写了任何一个构造函数，编译器就不再帮你补了</strong>：</p><pre><code class="language-text-x-c-src hljs"><span class="hljs-comment">#include &lt;iostream&gt;</span>
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Student</span> </span>{
+public:
+	<span class="hljs-keyword">int</span> age;
+	Student(<span class="hljs-keyword">int</span> a){			<span class="hljs-regexp">//</span> 只写了带参数的构造函数
+		age = a;
+	}
+};
+
+<span class="hljs-keyword">int</span> main(){
+	Student s;				<span class="hljs-regexp">//</span> 报错：没有默认构造函数了
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre><p>编译报错：</p><pre><code class="language-text-x-trilium-auto hljs"><span class="hljs-keyword">error: </span>no matching function for call to &#x27;Student::Student()&#x27;</code></pre><p>因为你写了 <code spellcheck="false">Student(int a)</code>，编译器就不再自动生成默认构造函数，<code spellcheck="false">Student s;</code> 想找一个不带参数的构造函数却找不到，于是报错。</p><p>想使用 <code spellcheck="false">Student s;</code> ，自己再补一个不带参数的构造函数就行，<strong>构造函数同样允许函数重载</strong>。</p><h4>初始化列表<a id="初始化列表" class="toc-anchor" name="初始化列表" href="#初始化列表">#</a></h4><p>除了在函数体里写 <code spellcheck="false">age = a;</code>，还有另一种更简短的写法，叫<strong>初始化列表</strong>，把初始化写在构造函数的冒号后面：</p><pre><code class="language-text-x-c-src hljs"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Student</span> </span>{
+public:
+	<span class="hljs-keyword">int</span> age;
+	Student(<span class="hljs-keyword">int</span> a) : age(a){	<span class="hljs-regexp">//</span> 初始化列表：age(a) 就是把 age 设成 a
+	}
+};</code></pre><p><code spellcheck="false">age(a)</code> 的意思，就是把成员 <code spellcheck="false">age</code> 设成 <code spellcheck="false">a</code>，效果和函数体里写 <code spellcheck="false">age = a;</code> 一样，但更简洁、更常用。多个成员用逗号隔开：<code spellcheck="false">Student(int a, int s) : age(a), score(s){ }</code>。</p><h3>初始化一个变量的N种方法<a id="初始化一个变量的n种方法" class="toc-anchor" name="初始化一个变量的n种方法" href="#初始化一个变量的n种方法">#</a></h3><p>学完了构造函数，类，数组，我们就有了非常非常多的初始化方法了：</p><pre><code class="language-text-x-c-src hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Student</span> {
+<span class="hljs-keyword">public</span>:
+	<span class="hljs-type">int</span> age;
+	<span class="hljs-built_in">Student</span>(){ age = <span class="hljs-number">0</span>; }		<span class="hljs-comment">// 默认构造函数</span>
+	<span class="hljs-built_in">Student</span>(<span class="hljs-type">int</span> a){ age = a; }	<span class="hljs-comment">// 带参数的构造函数</span>
+};
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+	<span class="hljs-type">int</span> b = <span class="hljs-number">10</span>;					<span class="hljs-comment">// 1. 等号</span>
+	<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">c</span><span class="hljs-params">(<span class="hljs-number">10</span>)</span></span>;					<span class="hljs-comment">// 2. 小括号</span>
+	<span class="hljs-type">int</span> d{<span class="hljs-number">10</span>};					<span class="hljs-comment">// 3. 花括号</span>
+	<span class="hljs-type">int</span> e = {<span class="hljs-number">10</span>};				<span class="hljs-comment">// 4. 等号加花括号</span>
+	<span class="hljs-type">int</span> f{};					<span class="hljs-comment">// 5. 空花括号：变成 0</span>
+	<span class="hljs-type">int</span>* g = <span class="hljs-keyword">new</span> <span class="hljs-built_in">int</span>(<span class="hljs-number">10</span>);		<span class="hljs-comment">// 6. new 的时候顺手初始化</span>
+	Student s1;					<span class="hljs-comment">// 7. 对象：走默认构造函数</span>
+	<span class="hljs-function">Student <span class="hljs-title">s2</span><span class="hljs-params">(<span class="hljs-number">18</span>)</span></span>;				<span class="hljs-comment">// 8. 对象：小括号把参数递给构造函数</span>
+	Student s3{<span class="hljs-number">18</span>};				<span class="hljs-comment">// 9. 对象：花括号也一样</span>
+
+	std::cout &lt;&lt; b &lt;&lt; <span class="hljs-string">&quot; &quot;</span> &lt;&lt; c &lt;&lt; <span class="hljs-string">&quot; &quot;</span> &lt;&lt; d &lt;&lt; <span class="hljs-string">&quot; &quot;</span> &lt;&lt; e &lt;&lt; <span class="hljs-string">&quot; &quot;</span>;
+	std::cout &lt;&lt; f &lt;&lt; <span class="hljs-string">&quot; &quot;</span> &lt;&lt; *g &lt;&lt; <span class="hljs-string">&quot; &quot;</span>;
+	std::cout &lt;&lt; s<span class="hljs-number">1.</span>age &lt;&lt; <span class="hljs-string">&quot; &quot;</span> &lt;&lt; s<span class="hljs-number">2.</span>age &lt;&lt; <span class="hljs-string">&quot; &quot;</span> &lt;&lt; s<span class="hljs-number">3.</span>age;
+	<span class="hljs-keyword">delete</span> g;
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre><p>运行结果：</p><pre><code class="language-text-x-trilium-auto hljs"><span class="hljs-symbol">10 </span><span class="hljs-number">10</span> <span class="hljs-number">10</span> <span class="hljs-number">10</span> <span class="hljs-number">0</span> <span class="hljs-number">10</span> <span class="hljs-number">0</span> <span class="hljs-number">18</span> <span class="hljs-number">18</span></code></pre><figure class="table"><table><tbody><tr><td>写法</td><td>名字</td><td>一句话</td></tr><tr><td><code spellcheck="false">int x;</code></td><td>默认初始化</td><td>局部变量是垃圾值，全局和 static 是 0</td></tr><tr><td><code spellcheck="false">int x = 1;</code></td><td>拷贝初始化</td><td>等号，C 里就有</td></tr><tr><td><code spellcheck="false">int x(1);</code></td><td>直接初始化</td><td>小括号，C++ 才有</td></tr><tr><td><code spellcheck="false">int x{1};</code></td><td>列表初始化</td><td>花括号，从C++11版本开始使用这种方式的代码逐渐变多</td></tr><tr><td><code spellcheck="false">int x{};</code></td><td>值初始化</td><td>空花括号，变成 0</td></tr><tr><td><code spellcheck="false">new int(1)</code></td><td>new 时初始化</td><td>申请内存时顺手给个值</td></tr><tr><td><code spellcheck="false">Student s(1);</code></td><td>调构造函数</td><td>类类型：括号里是构造函数的参数</td></tr></tbody></table></figure><h4>不写初值：默认初始化<a id="不写初值-默认初始化" class="toc-anchor" name="不写初值-默认初始化" href="#不写初值-默认初始化">#</a></h4><p>最省事的是什么都不写：<code spellcheck="false">int x;</code>，这叫<strong>默认初始化</strong>。它也分地方：局部变量拿到的是内存里的残留值，也就是 2.3 说过的垃圾值；全局变量和 <code spellcheck="false">static</code> 变量则是 0。</p><pre><code class="language-text-x-c-src hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+
+<span class="hljs-type">int</span> g;			<span class="hljs-comment">// 全局变量：不写初值也是 0</span>
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+	<span class="hljs-type">static</span> <span class="hljs-type">int</span> s;	<span class="hljs-comment">// static 局部：也是 0</span>
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d %d&quot;</span>, g, s);
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre><p>运行结果：</p><pre><code class="language-text-x-trilium-auto hljs"><span class="hljs-symbol">0 </span><span class="hljs-number">0</span></code></pre><h4>等号和小括号<a id="等号和小括号" class="toc-anchor" name="等号和小括号" href="#等号和小括号">#</a></h4><p><code spellcheck="false">int b = 10;</code> 用等号，叫<strong>拷贝初始化</strong>，从 C 一路继承下来，是最通用的写法。<code spellcheck="false">int c(10);</code> 用小括号，叫<strong>直接初始化</strong>，是 C++ 才有的。C无法编译：</p><pre><code class="language-text-x-c-src hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+	<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">c</span><span class="hljs-params">(<span class="hljs-number">10</span>)</span></span>;		<span class="hljs-comment">// C 里没有小括号写法</span>
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d&quot;</span>, c);
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre><p>编译报错：</p><pre><code class="language-text-x-trilium-auto hljs"><span class="hljs-keyword">error: </span>expected declaration specifiers or &#x27;...&#x27; before numeric constant</code></pre><h4>花括号：列表初始化<a id="花括号-列表初始化" class="toc-anchor" name="花括号-列表初始化" href="#花括号-列表初始化">#</a></h4><p>花括号写法 <code spellcheck="false">int d{10}</code> 叫<strong>列表初始化</strong>，C++11 才加进来的，现在大家都推荐用它。推荐的理由不是好看，是它不肯将就。拿小数往 <code spellcheck="false">int</code> 里塞试试：</p><pre><code class="language-text-x-c-src hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+	<span class="hljs-type">int</span> x{<span class="hljs-number">10.5</span>};		<span class="hljs-comment">// 花括号：小数塞不进 int，直接报错</span>
+	std::cout &lt;&lt; x;
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre><p>编译报错（关键的一行）：</p><pre><code class="language-text-x-trilium-auto hljs">error: narrowing <span class="hljs-keyword">conversion</span> <span class="hljs-keyword">of</span> <span class="hljs-string">&#x27;1.05e+1&#x27;</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;double&#x27;</span> <span class="hljs-keyword">to</span> <span class="hljs-string">&#x27;int&#x27;</span> [-Wnarrowing]</code></pre><p>括号里 <code spellcheck="false">1.05e+1</code> 就是 10.5 的科学计数法，编译器懒得替你换算了。同样的意思换成等号，编译一路绿灯，只是值被悄悄截成 10：</p><pre><code class="language-text-x-c-src hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+	<span class="hljs-type">int</span> x = <span class="hljs-number">10.5</span>;		<span class="hljs-comment">// 等号：不报错，精度丢失</span>
+	std::cout &lt;&lt; x;
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre><p>运行结果：</p><pre><code class="language-text-x-trilium-auto hljs">10</code></pre><p>花括号的意义就在这：写错了会直接提示你，语法上会更严格。顺便说一句，<code spellcheck="false">int e = {10}</code> 这种等号加花括号的混搭也合法，意思一样，只是很少见。</p><p>把花括号里的值掏空，<code spellcheck="false">int f{};</code> 又是另一回事了，这叫<strong>值初始化</strong>，编译器会把变量清成 0。它和不写初值的 <code spellcheck="false">int f;</code> 看着差不多，实际一个保证是 0，一个是垃圾值：</p><pre><code class="language-text-x-c-src hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+	<span class="hljs-type">int</span> f{};		<span class="hljs-comment">// 空花括号：初始化成 0</span>
+	std::cout &lt;&lt; f;
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre><p>运行结果：</p><pre><code class="language-text-x-trilium-auto hljs">0</code></pre><aside class="admonition tip"><p>花括号还能给多个值，数组的批量初始化就是这么做的。</p></aside><h4>对象怎么初始化<a id="对象怎么初始化" class="toc-anchor" name="对象怎么初始化" href="#对象怎么初始化">#</a></h4><p>类类型的对象也是变量，上面这些写法基本都能用，只是括号里的东西变成了构造函数的参数：</p><pre><code class="language-text-x-c-src hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Student</span> {
+<span class="hljs-keyword">public</span>:
+	<span class="hljs-type">int</span> age;
+	<span class="hljs-built_in">Student</span>(){ age = <span class="hljs-number">0</span>; }
+	<span class="hljs-built_in">Student</span>(<span class="hljs-type">int</span> a){ age = a; }
+};
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+	Student s1;			<span class="hljs-comment">// 默认构造函数</span>
+	<span class="hljs-function">Student <span class="hljs-title">s2</span><span class="hljs-params">(<span class="hljs-number">18</span>)</span></span>;		<span class="hljs-comment">// 小括号：参数递给构造函数</span>
+	Student s3{<span class="hljs-number">18</span>};		<span class="hljs-comment">// 花括号：也能把参数递进去</span>
+	std::cout &lt;&lt; s<span class="hljs-number">1.</span>age &lt;&lt; <span class="hljs-string">&quot; &quot;</span> &lt;&lt; s<span class="hljs-number">2.</span>age &lt;&lt; <span class="hljs-string">&quot; &quot;</span> &lt;&lt; s<span class="hljs-number">3.</span>age;
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre><p>运行结果：</p><pre><code class="language-text-x-trilium-auto hljs"><span class="hljs-symbol">0 </span><span class="hljs-number">18</span> <span class="hljs-number">18</span></code></pre><p><code spellcheck="false">Student s1;</code> 使用默认构造函数，而<code spellcheck="false">Student s2(18)</code> 和 <code spellcheck="false">Student s3{18}</code> 都调用的是 <code spellcheck="false">Student(int a)</code>。</p><h4>两个容易搞混的地方<a id="两个容易搞混的地方" class="toc-anchor" name="两个容易搞混的地方" href="#两个容易搞混的地方">#</a></h4><p>第一个：小括号里什么都不写，<code spellcheck="false">int x();</code> 不是变量，是<strong>函数声明</strong>。编译器会把它理解成“声明一个叫 x、不带参数、返回 int 的函数”，所以后面给它赋值就报错：</p><pre><code class="language-text-x-c-src hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+	<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">x</span><span class="hljs-params">()</span></span>;		<span class="hljs-comment">// 看起来像变量，其实是函数声明</span>
+	x = <span class="hljs-number">10</span>;			<span class="hljs-comment">// 报错</span>
+	std::cout &lt;&lt; x;
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre><p>编译报错（关键的一行）：</p><pre><code class="language-text-x-trilium-auto hljs"><span class="hljs-keyword">error: </span>assignment of function &#x27;int x()&#x27;</code></pre><p>还有“初始化列表”和“列表初始化”就差两个字，完全不是一回事。</p><p>上面讲的<strong>初始化列表</strong>是构造函数冒号后面那一段代码（<code spellcheck="false">Student(int a) : age(a){}</code>）</p><p>这里的<strong>列表初始化</strong>是花括号（<code spellcheck="false">int d{10}</code>），给变量用的。</p><h2>析构函数<a id="析构函数" class="toc-anchor" name="析构函数" href="#析构函数">#</a></h2><p><strong>析构函数 </strong>负责释放时候执行的操作。</p><p>基础语法如下：</p><pre><code class="language-text-x-c-src hljs"><span class="hljs-class"><span class="hljs-keyword">class</span> 类名 </span>{
+public:
+	~类名(){			<span class="hljs-regexp">//</span> 析构函数：名字是波浪线 + 类名
+		函数体;
+	}
+};</code></pre><p>复制跑一遍，看什么时候被调用：</p><pre><code class="language-text-x-c-src hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">NPC</span> {
+<span class="hljs-keyword">public</span>:
+	<span class="hljs-built_in">NPC</span>(){ std::cout &lt;&lt; <span class="hljs-string">&quot;NPC 出生\n&quot;</span>; }		<span class="hljs-comment">// 构造函数</span>
+	~<span class="hljs-built_in">NPC</span>(){ std::cout &lt;&lt; <span class="hljs-string">&quot;NPC 死亡\n&quot;</span>; }	<span class="hljs-comment">// 析构函数</span>
+};
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+	NPC a;						<span class="hljs-comment">// 声明局部对象</span>
+	std::cout &lt;&lt; <span class="hljs-string">&quot;函数体中间\n&quot;</span>;
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;					<span class="hljs-comment">// main 结束，a 要销毁</span>
+}</code></pre><p>运行结果：</p><pre><code class="language-text-x-trilium-auto hljs"><span class="hljs-attribute">NPC</span> 出生
+函数体中间
+NPC 死亡</code></pre><p>如果同时有好几个对象实例(变量)，销毁顺序和创建顺序正好反过来，后创建的先销毁，因为变量在内存的存储数据结构本身是个栈或堆数据结构(保存数据的方式)，这两种结构的就像一个桶一样，你东西只能放在顶部，你也必须先把顶部的东西拿出来才能翻到底部的东西。</p><h3>语法详解<a id="语法详解-1" class="toc-anchor" name="语法详解-1" href="#语法详解-1">#</a></h3><h4>析构函数的特征<a id="析构函数的特征" class="toc-anchor" name="析构函数的特征" href="#析构函数的特征">#</a></h4><p>析构函数和构造函数正好对称：名字是波浪线 <code spellcheck="false">~</code> 加上类名，没有返回类型，而且<strong>不能带参数</strong>。因为不能带参数，所以析构函数<strong>只能有一个</strong>，你没法像构造函数那样做函数重载。</p><h4>用处：善后还资源<a id="用处-善后还资源" class="toc-anchor" name="用处-善后还资源" href="#用处-善后还资源">#</a></h4><p>析构函数主要的用处，是处理指针对象这些手动申请了资源，释放的时候把资源还回去，对象如果在构造里 <code spellcheck="false">new</code> 了内存，那就在析构里 <code spellcheck="false">delete</code>，这样对象一释放，指针类型成员也能释放：</p><pre><code class="language-text-x-c-src hljs"><span class="hljs-comment">#include &lt;iostream&gt;</span>
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Buffer</span> </span>{
+public:
+	<span class="hljs-keyword">int</span>* p;				<span class="hljs-regexp">//</span> 指向堆上的内存（<span class="hljs-number">4.3</span> 学过 new/<span class="hljs-keyword">delete</span>）
+	Buffer(){			<span class="hljs-regexp">//</span> 构造：申请内存
+		p = new <span class="hljs-keyword">int</span>;
+		*p = <span class="hljs-number">0</span>;
+	}
+	~Buffer(){			<span class="hljs-regexp">//</span> 析构：还内存
+		<span class="hljs-keyword">delete</span> p;
+	}
+};
+
+<span class="hljs-keyword">int</span> main(){
+	Buffer b;			<span class="hljs-regexp">//</span> 构造：自动 new
+	*b.p = <span class="hljs-number">100</span>;			<span class="hljs-regexp">//</span> 用这块内存
+	std::cout &lt;&lt; *b.p;	<span class="hljs-regexp">//</span> 输出 <span class="hljs-number">100</span>
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;			<span class="hljs-regexp">//</span> 离开作用域，析构自动 <span class="hljs-keyword">delete</span>
+}</code></pre><p>运行结果：</p><pre><code class="language-text-x-trilium-auto hljs">100</code></pre><p>定义变量 <code spellcheck="false">b</code> 后，构造函数自动 <code spellcheck="false">new</code> 一块内存；<code spellcheck="false">main</code> 结束时 <code spellcheck="false">b</code> 销毁，析构函数自动 <code spellcheck="false">delete</code>。就不用手动管理 <code spellcheck="false">new</code> 的内存了，对象自己会善后。</p><h2>小结<a id="小结" class="toc-anchor" name="小结" href="#小结">#</a></h2><p>构造函数和析构函数本质就是变量初始化和变量释放时执行的函数。</p><p>下一节：<a class="reference-link type-text" href="6.6%20%E8%99%9A%E5%87%BD%E6%95%B0.html"><span><span class="tn-icon bx bx-note"></span>6.6 虚函数</span></a></p><h2>习题<a id="习题" class="toc-anchor" name="习题" href="#习题">#</a></h2><h3>1. 猜输出<a id="1-猜输出" class="toc-anchor" name="1-猜输出" href="#1-猜输出">#</a></h3><p>不运行代码，猜猜下面程序输出什么，再运行验证：</p><pre><code class="language-text-x-c-src hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">A</span> {
+<span class="hljs-keyword">public</span>:
+	<span class="hljs-type">int</span> id;
+	<span class="hljs-built_in">A</span>(<span class="hljs-type">int</span> i){ id = i; std::cout &lt;&lt; <span class="hljs-string">&quot;构造&quot;</span> &lt;&lt; id &lt;&lt; <span class="hljs-string">&quot; &quot;</span>; }	<span class="hljs-comment">// 记住自己的编号</span>
+	~<span class="hljs-built_in">A</span>(){ std::cout &lt;&lt; <span class="hljs-string">&quot;析构&quot;</span> &lt;&lt; id &lt;&lt; <span class="hljs-string">&quot; &quot;</span>; }
+};
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+	<span class="hljs-function">A <span class="hljs-title">a1</span><span class="hljs-params">(<span class="hljs-number">1</span>)</span></span>;					<span class="hljs-comment">// 先构造，编号 1</span>
+	std::cout &lt;&lt; <span class="hljs-string">&quot;中 &quot;</span>;
+	<span class="hljs-function">A <span class="hljs-title">a2</span><span class="hljs-params">(<span class="hljs-number">2</span>)</span></span>;					<span class="hljs-comment">// 后构造，编号 2</span>
+	std::cout &lt;&lt; <span class="hljs-string">&quot;尾 &quot;</span>;
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;					<span class="hljs-comment">// 结束时先析构 a2，再析构 a1</span>
+}</code></pre><p>本题推荐最大时长：3分钟</p><details class="trilium-collapsible"><summary>答案</summary><p>输出：<code spellcheck="false">构造1 中 构造2 尾 析构2 析构1</code>。<code spellcheck="false">a1(1)</code> 构造时打印“构造1”，再打“中”，<code spellcheck="false">a2(2)</code> 构造又打“构造2”，再打“尾”；<code spellcheck="false">main</code> 结束时两个对象一起销毁，销毁顺序和创建顺序相反，后创建的 <code spellcheck="false">a2</code> 先析构，所以先“析构2”再“析构1”。</p></details><h3>2. 矩形面积<a id="2-矩形面积" class="toc-anchor" name="2-矩形面积" href="#2-矩形面积">#</a></h3><p>定义一个类 <code spellcheck="false">Rect</code>（矩形），它有两个成员变量 <code spellcheck="false">w</code>（宽）和 <code spellcheck="false">h</code>（高），一个构造函数（接收两个整数，分别存进 <code spellcheck="false">w</code> 和 <code spellcheck="false">h</code>），以及一个成员函数 <code spellcheck="false">area</code>（返回 <code spellcheck="false">w</code> 和 <code spellcheck="false">h</code> 的乘积）。输入两个整数作为宽和高，用它们构造一个 <code spellcheck="false">Rect</code>，输出它的面积。</p><p>输入的数字为整数，且&nbsp;<span class="math-tex">\(0 \le w \le 1000\)</span>、<span class="math-tex">\(0 \le h \le 1000\)</span>。</p><p>本题推荐最大时长：10分钟</p><p>题目输入案例：<code spellcheck="false">3 4</code></p><p>输出结果案例：<code spellcheck="false">12</code></p><details class="trilium-collapsible"><summary>答案</summary><h4>讲解<a id="讲解" class="toc-anchor" name="讲解" href="#讲解">#</a></h4><p>这题的考点就一个：构造函数。构造函数名字等于类名、没有返回类型，声明对象 <code spellcheck="false">Rect r(a, b)</code> 时把参数传进去，成员 <code spellcheck="false">w</code>、<code spellcheck="false">h</code> 就被初始化好了。因为构造函数是 C++ 独有的，这题只有 C++ 一版。</p><h4>C++<a id="c" class="toc-anchor" name="c" href="#c">#</a></h4><pre><code class="language-text-x-c-src hljs"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Rect</span> {
+<span class="hljs-keyword">public</span>:
+	<span class="hljs-type">int</span> w;						<span class="hljs-comment">// 宽</span>
+	<span class="hljs-type">int</span> h;						<span class="hljs-comment">// 高</span>
+	<span class="hljs-built_in">Rect</span>(<span class="hljs-type">int</span> a, <span class="hljs-type">int</span> b){			<span class="hljs-comment">// 构造函数：初始化宽和高</span>
+		w = a;
+		h = b;
+	}
+	<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">area</span><span class="hljs-params">()</span></span>{					<span class="hljs-comment">// 成员函数：算面积</span>
+		<span class="hljs-keyword">return</span> w * h;
+	}
+};
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+	<span class="hljs-type">int</span> a, b;
+	std::cin &gt;&gt; a &gt;&gt; b;			<span class="hljs-comment">// 读入宽和高</span>
+	<span class="hljs-function">Rect <span class="hljs-title">r</span><span class="hljs-params">(a, b)</span></span>;				<span class="hljs-comment">// 构造一个矩形</span>
+	std::cout &lt;&lt; r.<span class="hljs-built_in">area</span>();		<span class="hljs-comment">// 输出面积</span>
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre></details>
                 
                 
             </div>
@@ -2665,6 +2863,272 @@
                 
             </footer>
         </div>
+        
+            <div id="toc-pane">
+                <h3>本页内容</h3>
+                <ul id="toc">
+                    
+                        
+
+<li>
+    <a href="#构造函数">
+        <span>构造函数</span>
+    </a>
+
+    
+        <ul>
+            
+                
+
+<li>
+    <a href="#语法详解">
+        <span>语法详解</span>
+    </a>
+
+    
+        <ul>
+            
+                
+
+<li>
+    <a href="#带参数的构造函数">
+        <span>带参数的构造函数</span>
+    </a>
+
+    
+</li>
+
+            
+                
+
+<li>
+    <a href="#默认构造函数">
+        <span>默认构造函数</span>
+    </a>
+
+    
+</li>
+
+            
+                
+
+<li>
+    <a href="#初始化列表">
+        <span>初始化列表</span>
+    </a>
+
+    
+</li>
+
+            
+        </ul>
+    
+</li>
+
+            
+                
+
+<li>
+    <a href="#初始化一个变量的n种方法">
+        <span>初始化一个变量的N种方法</span>
+    </a>
+
+    
+        <ul>
+            
+                
+
+<li>
+    <a href="#不写初值-默认初始化">
+        <span>不写初值：默认初始化</span>
+    </a>
+
+    
+</li>
+
+            
+                
+
+<li>
+    <a href="#等号和小括号">
+        <span>等号和小括号</span>
+    </a>
+
+    
+</li>
+
+            
+                
+
+<li>
+    <a href="#花括号-列表初始化">
+        <span>花括号：列表初始化</span>
+    </a>
+
+    
+</li>
+
+            
+                
+
+<li>
+    <a href="#对象怎么初始化">
+        <span>对象怎么初始化</span>
+    </a>
+
+    
+</li>
+
+            
+                
+
+<li>
+    <a href="#两个容易搞混的地方">
+        <span>两个容易搞混的地方</span>
+    </a>
+
+    
+</li>
+
+            
+        </ul>
+    
+</li>
+
+            
+        </ul>
+    
+</li>
+
+                    
+                        
+
+<li>
+    <a href="#析构函数">
+        <span>析构函数</span>
+    </a>
+
+    
+        <ul>
+            
+                
+
+<li>
+    <a href="#语法详解-1">
+        <span>语法详解</span>
+    </a>
+
+    
+        <ul>
+            
+                
+
+<li>
+    <a href="#析构函数的特征">
+        <span>析构函数的特征</span>
+    </a>
+
+    
+</li>
+
+            
+                
+
+<li>
+    <a href="#用处-善后还资源">
+        <span>用处：善后还资源</span>
+    </a>
+
+    
+</li>
+
+            
+        </ul>
+    
+</li>
+
+            
+        </ul>
+    
+</li>
+
+                    
+                        
+
+<li>
+    <a href="#小结">
+        <span>小结</span>
+    </a>
+
+    
+</li>
+
+                    
+                        
+
+<li>
+    <a href="#习题">
+        <span>习题</span>
+    </a>
+
+    
+        <ul>
+            
+                
+
+<li>
+    <a href="#1-猜输出">
+        <span>1. 猜输出</span>
+    </a>
+
+    
+</li>
+
+            
+                
+
+<li>
+    <a href="#2-矩形面积">
+        <span>2. 矩形面积</span>
+    </a>
+
+    
+        <ul>
+            
+                
+
+<li>
+    <a href="#讲解">
+        <span>讲解</span>
+    </a>
+
+    
+</li>
+
+            
+                
+
+<li>
+    <a href="#c">
+        <span>C++</span>
+    </a>
+
+    
+</li>
+
+            
+        </ul>
+    
+</li>
+
+            
+        </ul>
+    
+</li>
+
+                    
+                </ul>
+            </div>
         
     </div>
 </div>
